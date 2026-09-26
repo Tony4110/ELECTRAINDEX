@@ -113,10 +113,11 @@ export async function runOnce(env: Env, f: Fetch = fetch, budgetMs = TIME_BUDGET
 }
 
 // ---- Deno entry point -------------------------------------------------
-declare const Deno: { env: { get(k: string): string | undefined }; serve(h: (r: Request) => Promise<Response>): void } | undefined;
-if (typeof Deno !== "undefined") {
-  Deno.serve(async (req: Request) => {
-    const get = (k: string) => Deno!.env.get(k);
+// deno-lint-ignore no-explicit-any
+const D = (globalThis as any).Deno;
+if (D) {
+  D.serve(async (req: Request) => {
+    const get = (k: string): string | undefined => D.env.get(k);
     const secret = get("CRON_SECRET");
     if (secret && req.headers.get("x-cron-secret") !== secret) return new Response("forbidden", { status: 403 });
     try {
