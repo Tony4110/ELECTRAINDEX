@@ -105,5 +105,6 @@ et les enregistre via `ingest_mcp_servers()` : dédoublonnage, historique, évé
 - Installation en une fois : `supabase/INSTALL_ROBOT_1.sql`
 - 1er passage : crawl complet (~30k serveurs) réparti sur plusieurs exécutions, reprise automatique au bon endroit.
   Ensuite : seulement les serveurs modifiés depuis le dernier crawl complet.
+- Correctif : `supabase/INSTALL_FIX_1.sql` (0006 + 0007) — noms non latins, re-crawl complet chaque lundi 03:00 UTC
 - Suivi : `select * from v_bot_runs limit 20;`
 - Test local : `DB=t_bot node --experimental-strip-types tests/bot_mcp_registry.test.mts` (après installation de la base de test)
