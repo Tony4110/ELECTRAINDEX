@@ -94,3 +94,16 @@ PGHOST=/tmp PGPORT=5433 PGUSER=postgres scripts/local_test.sh
 1. Robots P0 en Edge Functions + cron : MCP Registry, GitHub, npm, PyPI, sonde A2A.
 2. 100–200 premières fiches, puis publication (`is_published`) selon `publish_rules`.
 3. Pages SEO (Next.js) branchées sur les vues.
+
+## Robot #1 — Discovery · Official MCP Registry
+
+Récupère tous les serveurs MCP publiés sur registry.modelcontextprotocol.io (dernière version de chacun)
+et les enregistre via `ingest_mcp_servers()` : dédoublonnage, historique, événements de changement.
+
+- Code : `supabase/functions/discovery-mcp-registry/index.ts` (Edge Function Deno)
+- SQL : `supabase/migrations/0004_bot_mcp_registry.sql` (+ `0005_cron_intendex.sql` pour le cron toutes les 15 min)
+- Installation en une fois : `supabase/INSTALL_ROBOT_1.sql`
+- 1er passage : crawl complet (~30k serveurs) réparti sur plusieurs exécutions, reprise automatique au bon endroit.
+  Ensuite : seulement les serveurs modifiés depuis le dernier crawl complet.
+- Suivi : `select * from v_bot_runs limit 20;`
+- Test local : `DB=t_bot node --experimental-strip-types tests/bot_mcp_registry.test.mts` (après installation de la base de test)
