@@ -31,10 +31,12 @@ export default async function McpPage({ params }: { params: P }) {
   const m = await load((await params).slug);
   if (!m) notFound();
 
-  const [{ data: obs }, { data: hist }] = await Promise.all([
+  const [{ data: obs }, { data: hist }, { data: caps }] = await Promise.all([
     c.from("observations").select("field,value,evidence_level,confidence,observed_at,last_confirmed_at,sources(code,name)").eq("entity_id", m.id).order("observed_at", { ascending: false }),
     c.from("v_signals").select("*").eq("entity_slug", m.slug).eq("entity_type", "mcp_server").order("detected_at", { ascending: false }).limit(30),
+    c.from("v_provider_capabilities").select("capability_slug,capability,evidence_level,confidence,evidence").eq("provider_slug", m.slug).eq("provider_type", "mcp_server").order("capability"),
   ]);
+  const capabilities = (caps as { capability_slug: string; capability: string; evidence_level: string; confidence: string; evidence: string | null }[] | null) ?? [];
   // latest value per field + evidence level
   const seen = new Set<string>();
   const facts = ((obs as Obs[] | null) ?? []).filter((o) => { const k = o.field + o.evidence_level; if (seen.has(k)) return false; seen.add(k); return true; });
@@ -70,6 +72,17 @@ export default async function McpPage({ params }: { params: P }) {
         <div><span className="small muted">Packages</span><b style={{ fontSize: 16 }}>{m.packages?.join(", ") ?? "—"}</b></div>
         <div><span className="small muted">First seen</span><b style={{ fontSize: 16 }}>{shortDate(m.first_seen_at)}</b></div>
         <div><span className="small muted">Last seen</span><b style={{ fontSize: 16 }}>{timeAgo(m.last_seen_at)}</b></div>
+      </div>
+
+      <div className="card" style={{ marginTop: 24 }}>
+        <div className="card-head"><h2>Capabilities</h2><span className="small muted">Matched from the publisher&apos;s description · automatic, low confidence</span></div>
+        <div className="card-body">
+          {capabilities.length === 0 ? <span className="muted">No capability identified yet.</span> : (
+            <div className="chips" style={{ marginTop: 0 }}>
+              {capabilities.map((x) => <Link key={x.capability_slug} href={`/capabilities#${x.capability_slug}`} className="chip acc" title={x.evidence ?? ""}>{x.capability}</Link>)}
+            </div>
+          )}
+        </div>
       </div>
 
       <section className="grid cols-3" style={{ marginTop: 24 }}>

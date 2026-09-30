@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
-import { getStats } from "@/lib/db";
-import { num, timeAgo } from "@/lib/format";
 
 export const dynamic = "force-dynamic";
 
@@ -12,25 +10,6 @@ export const metadata: Metadata = {
   description: "Electra Index: discover, compare and track AI agents and MCP servers. Every fact sourced and dated.",
   openGraph: { siteName: "Electra Index", type: "website" },
 };
-
-async function Ticker() {
-  const s = await getStats();
-  return (
-    <div className="ticker" aria-label="Index counters">
-      <div className="wrap">
-        <span className="live">● LIVE</span>
-        <span>MCP SERVERS <b>{num(s?.mcp_servers)}</b></span>
-        <span>A2A AGENTS <b style={{ color: "#F2B35B" }}>PROBE PENDING</b></span>
-        <span>TASKS <b>{num(s?.tasks)}</b></span>
-        <span>CAPABILITIES <b>{num(s?.capabilities)}</b></span>
-        <span>SOURCES <b>{num(s?.active_sources)}</b> ACTIVE / {num(s?.mapped_sources)} MAPPED</span>
-        <span>SIGNALS 24H <b>{num(s?.signals_24h)}</b></span>
-        <span className="spacer" />
-        <span>LAST UPDATE <b>{timeAgo(s?.last_update)}</b></span>
-      </div>
-    </div>
-  );
-}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -43,22 +22,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        <Ticker />
         <header className="header">
           <div className="wrap">
             <Link href="/" className="logo" aria-label="Electra Index — home">
               ELECTRA<span className="sub">INDEX</span>
             </Link>
             <nav className="nav" aria-label="Main">
-              <Link href="/mcp">MCP servers</Link>
+              <Link href="/themes">Themes</Link>
               <Link href="/tasks">Tasks</Link>
-              <Link href="/capabilities">Capabilities</Link>
+              <Link href="/mcp">Agents &amp; tools</Link>
               <Link href="/signals">Signals</Link>
-              <Link href="/sources">Sources</Link>
+              <Link href="/sources">Methodology</Link>
             </nav>
             <span className="spacer" />
             <span className="mono small muted">API · soon</span>
-            <Link href="/sources" className="btn dark">Methodology</Link>
+            <Link href="/search" className="btn dark">Search</Link>
           </div>
         </header>
         <main>

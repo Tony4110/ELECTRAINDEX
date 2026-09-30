@@ -1,98 +1,73 @@
 import Link from "next/link";
-import { db, getSignals, getTasks, type McpServer } from "@/lib/db";
-import { timeAgo } from "@/lib/format";
-import { Tri, SignalItem, Empty, SetupNotice } from "@/components/ui";
+import { db, getSignals, getStats, getThemes, getTasks } from "@/lib/db";
+import { num } from "@/lib/format";
+import { SignalItem, Empty, SetupNotice } from "@/components/ui";
 
-const EXAMPLES = [
-  ["Find leads", "find-leads"],
-  ["Research competitors", "research-competitors"],
-  ["Write SEO articles", "write-seo-articles"],
-  ["Automate customer support", "automate-customer-support"],
-  ["Extract website data", "extract-website-data"],
-];
+const POPULAR = ["find-leads", "research-competitors", "write-seo-articles", "automate-customer-support", "extract-website-data", "query-databases-in-plain-language"];
 
 export default async function Home() {
   const c = db();
-  const [signals, tasks, newest] = await Promise.all([
-    getSignals(8),
+  const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString();
+  const [stats, themes, tasks, signals, week, counts] = await Promise.all([
+    getStats(),
+    getThemes(),
     getTasks(),
-    c
-      ? c.from("v_mcp_servers").select("*").order("first_seen_at", { ascending: false }).limit(12).then((r) => (r.data as McpServer[]) ?? [])
-      : Promise.resolve([] as McpServer[]),
+    getSignals(5),
+    c ? c.from("v_signals").select("id", { count: "exact", head: true }).gte("detected_at", weekAgo).then((r) => r.count ?? 0) : Promise.resolve(0),
+    c ? Promise.all(POPULAR.map((s) => c.from("v_task_rankings").select("provider_id", { count: "exact", head: true }).eq("task_slug", s).then((r) => [s, r.count ?? 0] as const)))
+      : Promise.resolve([] as (readonly [string, number])[]),
   ]);
-  const featured = ["find-leads", "research-competitors", "write-seo-articles", "automate-customer-support", "extract-website-data",
-    "review-pull-requests", "automate-bookkeeping", "find-influencers", "take-meeting-notes", "recruit-developers"];
-  const taskTiles = featured.map((s) => tasks.find((t) => t.slug === s)).filter(Boolean);
+  const countOf = new Map(counts);
+  const popular = POPULAR.map((s) => tasks.find((t) => t.slug === s)).filter((t): t is NonNullable<typeof t> => Boolean(t));
 
   return (
     <>
-      <section style={{ paddingBottom: 32 }}>
+      <section style={{ paddingTop: 24 }}>
         <div className="eyebrow">Electra Index · the agent economy, made readable</div>
-        <h1 style={{ maxWidth: 1000 }}>Discover, compare and track the AI agents powering the new economy.</h1>
-        <p className="lede">Every agent, MCP server and price, sourced and dated. Scores come from observable data, never from opinion.</p>
+        <h1 style={{ maxWidth: 900 }}>What do you need done?</h1>
+        <p className="lede">Find the right AI agent or tool for any task, ranked on sourced, dated data. No paid rankings.</p>
         <form action="/search" method="get" className="search" role="search">
           <label htmlFor="q" className="sr-only">What do you need an AI agent to do?</label>
-          <input id="q" name="q" type="search" placeholder="What do you need an AI agent to do?" autoComplete="off" />
+          <input id="q" name="q" type="search" placeholder="e.g. find leads, write SEO articles, query my database" autoComplete="off" />
           <button type="submit">Search →</button>
         </form>
-        <div className="chips">
-          <span className="small muted">Try:</span>
-          {EXAMPLES.map(([label, slug]) => <Link key={slug} href={`/tasks/${slug}`} className="chip">{label}</Link>)}
+        <div className="stats3" aria-label="Index at a glance">
+          <div><b>{num(stats?.mcp_servers)}</b><span className="small muted">agents &amp; tools tracked</span></div>
+          <div><b>{num(stats?.tasks)}</b><span className="small muted">tasks ranked</span></div>
+          <div><b>{num(week)}</b><span className="small muted">changes this week</span></div>
         </div>
       </section>
 
-      {!c ? <SetupNotice /> : (
-        <section className="grid cols-3">
-          <div className="card span-2">
-            <div className="card-head">
-              <h2>Newest MCP servers</h2>
-              <span className="spacer" />
-              <Link href="/mcp" className="strong">Full index →</Link>
-            </div>
-            {newest.length === 0 ? <div className="card-body"><Empty title="No published servers yet">The robots are still collecting. Come back in a few minutes.</Empty></div> : (
-              <div className="table-wrap">
-                <table>
-                  <thead><tr><th>Server</th><th>Version</th><th>Access</th><th>Seen</th></tr></thead>
-                  <tbody>
-                    {newest.map((m) => (
-                      <tr key={m.id}>
-                        <td><Link href={`/mcp/${m.slug}`} className="strong ink">{m.name}</Link><div className="desc">{m.short_description}</div></td>
-                        <td className="mono">{m.version ?? "—"}</td>
-                        <td><span className="pills"><Tri label="REMOTE" value={m.remote} /><Tri label="LOCAL" value={m.local} /></span></td>
-                        <td className="mono small muted">{timeAgo(m.first_seen_at)}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
+      {!c ? <div style={{ marginTop: 32 }}><SetupNotice /></div> : (
+        <>
+          <div className="section-title"><h2>Browse by theme</h2><span className="spacer" /><Link href="/themes" className="strong">All themes →</Link></div>
+          <div className="themes">
+            {themes.map((t) => (
+              <Link key={t.theme_slug} href={`/themes/${t.theme_slug}`} className="theme">
+                <span className="name">{t.theme}</span>
+                <span className="small muted">{num(t.providers)} agents &amp; tools · {t.tasks} tasks</span>
+              </Link>
+            ))}
           </div>
+
+          <div className="section-title"><h2>Popular tasks</h2><span className="spacer" /><Link href="/tasks" className="strong">All tasks →</Link></div>
+          <div className="tiles tiles-3">
+            {popular.map((t) => (
+              <Link key={t.slug} href={`/tasks/${t.slug}`} className="tile">
+                <span className="cat">{t.category}</span>
+                <span className="name">{t.name}</span>
+                <span className="small muted">{(countOf.get(t.slug) ?? 0) === 1 ? "1 agent or tool can help" : `${num(countOf.get(t.slug) ?? 0)} agents & tools can help`}</span>
+              </Link>
+            ))}
+          </div>
+
+          <div className="section-title"><h2>This week in the agent economy</h2><span className="spacer" /><Link href="/signals" className="strong">All signals →</Link></div>
           <div className="card">
-            <div className="card-head"><h2>Signals</h2><span className="badge pos">LIVE</span><span className="spacer" /><Link href="/signals" className="strong">All →</Link></div>
-            {signals.length === 0 ? <div className="card-body"><Empty title="No signals yet">Changes appear here as soon as a robot detects them.</Empty></div> : (
-              <ul className="signals">{signals.map((s) => <SignalItem key={s.id} s={s} />)}</ul>
-            )}
+            {signals.length === 0 ? <div className="card-body"><Empty title="No signals yet">Changes appear here as soon as a robot detects them.</Empty></div>
+              : <ul className="signals">{signals.map((s) => <SignalItem key={s.id} s={s} />)}</ul>}
           </div>
-        </section>
+        </>
       )}
-
-      <section style={{ marginTop: 40 }}>
-        <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 16 }}>
-          <h2 style={{ fontSize: 22 }}>Browse by task</h2>
-          <span className="muted small">{tasks.length} tasks mapped to capabilities</span>
-          <span className="spacer" style={{ flexGrow: 1 }} />
-          <Link href="/tasks" className="strong">All tasks →</Link>
-        </div>
-        <div className="tiles">
-          {taskTiles.map((t) => t && (
-            <Link key={t.slug} href={`/tasks/${t.slug}`} className="tile">
-              <span className="cat">{t.category}</span>
-              <span className="name">{t.name}</span>
-              <span className="small muted">{t.capabilities.map((x) => x.name).join(" · ")}</span>
-            </Link>
-          ))}
-        </div>
-      </section>
     </>
   );
 }

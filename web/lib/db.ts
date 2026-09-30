@@ -86,3 +86,28 @@ export async function getTasks(): Promise<Task[]> {
   const { data } = await c.from("v_tasks").select("*").order("category").order("name");
   return (data as Task[]) ?? [];
 }
+
+export type TaskRanking = {
+  task_slug: string; task_name: string; provider_id: string; provider_type: string; provider_slug: string; provider_name: string;
+  short_description: string | null; last_seen_at: string; version: string | null; remote: boolean | null; local: boolean | null;
+  matched: number; n_req: number; coverage_pct: number; matched_capabilities: string[]; match_confidence: string;
+  trust_level: "declared" | "verified" | "proven"; quality_score: number | null;
+};
+
+export type ThemeRanking = {
+  theme_slug: string; theme: string; provider_id: string; provider_type: string; provider_slug: string; provider_name: string;
+  short_description: string | null; version: string | null; remote: boolean | null; local: boolean | null;
+  trust_level: "declared" | "verified" | "proven"; quality_score: number | null; last_seen_at: string;
+  tasks_fully_covered: number; tasks_touched: number; best_coverage: number; top_tasks: string[];
+};
+
+export type Theme = { theme_slug: string; theme: string; tasks: number; providers: number };
+
+export async function getThemes(): Promise<Theme[]> {
+  const c = db();
+  if (!c) return [];
+  const { data } = await c.from("v_theme_overview").select("*").order("theme");
+  return (data as Theme[]) ?? [];
+}
+
+export const providerHref = (type: string, slug: string) => (type === "agent" ? `/agents/${slug}` : `/mcp/${slug}`);

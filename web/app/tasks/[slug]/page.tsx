@@ -1,11 +1,14 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { db, type Task } from "@/lib/db";
-import { Empty, SetupNotice } from "@/components/ui";
+import { db, type Task, type TaskRanking } from "@/lib/db";
+import { num, timeAgo } from "@/lib/format";
+import { Tri, Empty, SetupNotice } from "@/components/ui";
+import { Trust, Coverage, ProviderCell } from "@/components/rank";
 
 type P = Promise<{ slug: string }>;
-type Match = { agent_slug: string; agent_name: string; matched: number; n_req: number; coverage_pct: number; declared_for_task: boolean };
+type SP = Promise<{ page?: string; full?: string }>;
+const PAGE = 50;
 
 async function load(slug: string) {
   const c = db();
@@ -16,54 +19,68 @@ async function load(slug: string) {
 
 export async function generateMetadata({ params }: { params: P }): Promise<Metadata> {
   const t = await load((await params).slug);
-  return t ? { title: `Best AI agents to ${t.name.toLowerCase()}`, description: `Which AI agents can ${t.name.toLowerCase()}? Ranked by capability coverage, from sourced data.` } : { title: "Not found" };
+  return t ? { title: `Best AI agents to ${t.name.toLowerCase()}`, description: `Which AI agents and tools can ${t.name.toLowerCase()}? Ranked by capability coverage, from sourced data.` } : { title: "Not found" };
 }
 
-export default async function TaskPage({ params }: { params: P }) {
+export default async function TaskPage({ params, searchParams }: { params: P; searchParams: SP }) {
   const c = db();
   if (!c) return <SetupNotice />;
   const t = await load((await params).slug);
   if (!t) notFound();
-  const { data } = await c.from("v_task_matches").select("*").eq("task_slug", t.slug).order("coverage_pct", { ascending: false }).limit(50);
-  const matches = (data as Match[] | null) ?? [];
-  const { data: related } = await c.from("v_tasks").select("slug,name").eq("category_slug", t.category_slug ?? "").neq("slug", t.slug).limit(6);
+  const sp = await searchParams;
+  const page = Math.max(1, parseInt(sp.page ?? "1", 10) || 1);
+  const onlyFull = sp.full === "1";
+
+  let q = c.from("v_task_rankings").select("*", { count: "exact" }).eq("task_slug", t.slug);
+  if (onlyFull) q = q.eq("coverage_pct", 100);
+  const [{ data, count }, { count: fullCount }, { data: related }] = await Promise.all([
+    q.order("coverage_pct", { ascending: false }).order("matched", { ascending: false }).order("last_seen_at", { ascending: false })
+      .range((page - 1) * PAGE, page * PAGE - 1),
+    c.from("v_task_rankings").select("provider_id", { count: "exact", head: true }).eq("task_slug", t.slug).eq("coverage_pct", 100),
+    c.from("v_tasks").select("slug,name").eq("category_slug", t.category_slug ?? "").neq("slug", t.slug).limit(6),
+  ]);
+  const rows = (data as TaskRanking[] | null) ?? [];
+  const pages = Math.max(1, Math.ceil((count ?? 0) / PAGE));
+  const link = (p: number, full = onlyFull) => `/tasks/${t.slug}?${new URLSearchParams({ ...(p > 1 ? { page: String(p) } : {}), ...(full ? { full: "1" } : {}) })}`;
 
   return (
     <>
-      <nav className="crumbs" aria-label="Breadcrumb"><Link href="/tasks">Tasks</Link><span>/</span><span>{t.category}</span><span>/</span><span className="ink">{t.name}</span></nav>
+      <nav className="crumbs" aria-label="Breadcrumb"><Link href="/tasks">Tasks</Link><span>/</span>
+        {t.category_slug ? <Link href={`/themes/${t.category_slug}`}>{t.category}</Link> : <span>{t.category}</span>}<span>/</span><span className="ink">{t.name}</span></nav>
       <div className="eyebrow">Task · {t.category}</div>
       <h1>Best AI agents to {t.name.toLowerCase()}</h1>
-      <p className="lede">This task needs {t.capabilities.length} capabilities. Agents are ranked by how many of them they document, with a source for each one.</p>
+      <p className="lede">This task needs {t.capabilities.length} capabilities. {num(fullCount ?? 0)} agents and tools cover all of them; {num(count ?? 0)} {onlyFull ? "shown" : "cover at least one"}.</p>
       <div className="chips">
         <span className="small muted">Required capabilities:</span>
         {t.capabilities.map((x) => <Link key={x.slug} href={`/capabilities#${x.slug}`} className="chip acc">{x.name}</Link>)}
       </div>
+      <div className="filters">
+        <Link href={link(1, false)} className={`chip ${!onlyFull ? "on" : ""}`}>All matches</Link>
+        <Link href={link(1, true)} className={`chip ${onlyFull ? "on" : ""}`}>Full coverage only</Link>
+      </div>
 
-      <section className="grid cols-3" style={{ marginTop: 28 }}>
-        <div className="card span-2">
-          <div className="card-head"><h2>Matching agents</h2></div>
-          {matches.length === 0 ? (
+      <section className="grid cols-3">
+        <div className="card span-2 table-wrap">
+          {rows.length === 0 ? (
             <div className="card-body">
-              <Empty title="No verified agent yet">
-                Our robots are classifying agents and MCP servers by capability. Agents appear here only once each capability is backed by a source. Nothing is listed on guesswork.
-              </Empty>
+              <Empty title="No match yet">Our robots are still classifying agents and tools by capability. Nothing is listed on guesswork.</Empty>
             </div>
           ) : (
-            <div className="table-wrap">
-              <table>
-                <thead><tr><th>#</th><th>Agent</th><th>Coverage</th><th>Declared for this task</th></tr></thead>
-                <tbody>
-                  {matches.map((m, i) => (
-                    <tr key={m.agent_slug}>
-                      <td className="mono muted">{i + 1}</td>
-                      <td className="strong">{m.agent_name}</td>
-                      <td className="mono">{m.coverage_pct}% <span className="muted small">({m.matched}/{m.n_req})</span></td>
-                      <td>{m.declared_for_task ? "yes" : "—"}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            <table>
+              <thead><tr><th>#</th><th>Agent / tool</th><th>Coverage</th><th>Access</th><th>Trust</th><th>Seen</th></tr></thead>
+              <tbody>
+                {rows.map((r, i) => (
+                  <tr key={r.provider_id}>
+                    <td className="rank-num">{(page - 1) * PAGE + i + 1}</td>
+                    <ProviderCell type={r.provider_type} slug={r.provider_slug} name={r.provider_name} desc={r.short_description} />
+                    <td title={(r.matched_capabilities ?? []).join(", ")}><Coverage pct={r.coverage_pct} /></td>
+                    <td><span className="pills"><Tri label="REMOTE" value={r.remote} /><Tri label="LOCAL" value={r.local} /></span></td>
+                    <td><Trust level={r.trust_level} /></td>
+                    <td className="mono small muted">{timeAgo(r.last_seen_at)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           )}
         </div>
         <div className="card">
@@ -75,6 +92,12 @@ export default async function TaskPage({ params }: { params: P }) {
           </ul>
         </div>
       </section>
+      <div className="pager">
+        {page > 1 ? <Link className="btn" href={link(page - 1)}>← Previous</Link> : null}
+        <span className="mono small muted">Page {page} / {pages}</span>
+        {page < pages ? <Link className="btn" href={link(page + 1)}>Next →</Link> : null}
+      </div>
+      <p className="note">Coverage = share of this task&apos;s required capabilities that an agent or tool documents. Matching is automatic from each publisher&apos;s description (keyword method v1, low confidence) and will be refined.</p>
     </>
   );
 }
