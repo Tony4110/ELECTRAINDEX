@@ -8,8 +8,8 @@
 --      best    = quality >= 60 and entry price <= $50/month (or free with no paid plan listed)
 --      premium = quality >= 70 and entry price  > $50/month
 --      free    = has a free plan (quality below the "best" bar)
---      fair    = everything else with a known price
---      (no label when no price is published)
+--      fair    = everything else with a published monthly price
+--      (no label when the price is on quote or not published)
 -- =====================================================================
 
 create or replace function ingest_agent(p jsonb) returns uuid language plpgsql as $$
@@ -158,7 +158,8 @@ select b.*,
             when b.quality_score >= 60 and (b.from_usd_month <= 50 or (b.from_usd_month is null and b.has_free)) then 'best'
             when b.quality_score >= 70 and b.from_usd_month > 50 then 'premium'
             when b.has_free then 'free'
-            else 'fair' end as value_label
+            when b.from_usd_month is not null then 'fair'
+            else null end as value_label
   from base b;
 create unique index if not exists uq_mv_task_rankings on mv_task_rankings(task_slug, provider_id);
 create index if not exists idx_mv_task_rankings_rank on mv_task_rankings(task_slug, coverage_pct desc, quality_score desc nulls last);
