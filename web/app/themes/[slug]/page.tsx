@@ -31,7 +31,7 @@ export default async function ThemePage({ params, searchParams }: { params: P; s
   const page = Math.max(1, parseInt((await searchParams).page ?? "1", 10) || 1);
   const [{ data, count }, tasks] = await Promise.all([
     c.from("v_theme_rankings").select("*", { count: "exact" }).eq("theme_slug", slug)
-      .order("tasks_fully_covered", { ascending: false }).order("tasks_touched", { ascending: false }).order("last_seen_at", { ascending: false })
+      .order("coverage_score", { ascending: false }).order("tasks_fully_covered", { ascending: false }).order("last_seen_at", { ascending: false })
       .range((page - 1) * PAGE, page * PAGE - 1),
     getTasks(),
   ]);
@@ -44,7 +44,7 @@ export default async function ThemePage({ params, searchParams }: { params: P; s
       <nav className="crumbs" aria-label="Breadcrumb"><Link href="/themes">Themes</Link><span>/</span><span className="ink">{t.theme}</span></nav>
       <div className="eyebrow">Ranking · {t.theme}</div>
       <h1>Best AI agents &amp; tools for {t.theme}</h1>
-      <p className="lede">{num(count)} agents and tools cover at least one of the {t.tasks} {t.theme.toLowerCase()} tasks. Ranked by how many tasks they fully cover, then by breadth.</p>
+      <p className="lede">{num(count)} agents and tools cover at least one of the {t.tasks} {t.theme.toLowerCase()} tasks. Ranked by coverage score: how much of the theme&apos;s tasks each one covers, summed across all tasks.</p>
       <div className="chips">
         <span className="small muted">Tasks in this theme:</span>
         {themeTasks.map((x) => <Link key={x.slug} href={`/tasks/${x.slug}`} className="chip">{x.name}</Link>)}
@@ -53,14 +53,14 @@ export default async function ThemePage({ params, searchParams }: { params: P; s
       <div className="card table-wrap" style={{ marginTop: 24 }}>
         {rows.length === 0 ? <div className="card-body"><Empty title="Ranking in progress">Our robots are still classifying agents and tools for this theme.</Empty></div> : (
           <table>
-            <thead><tr><th>#</th><th>Agent / tool</th><th>Tasks fully covered</th><th>Tasks touched</th><th>Best at</th><th>Access</th><th>Trust</th><th>Seen</th></tr></thead>
+            <thead><tr><th>#</th><th>Agent / tool</th><th>Coverage score</th><th>Tasks covered</th><th>Best at</th><th>Access</th><th>Trust</th><th>Seen</th></tr></thead>
             <tbody>
               {rows.map((r, i) => (
                 <tr key={r.provider_id}>
                   <td className="rank-num">{(page - 1) * PAGE + i + 1}</td>
                   <ProviderCell type={r.provider_type} slug={r.provider_slug} name={r.provider_name} desc={r.short_description} />
-                  <td className="mono">{r.tasks_fully_covered}</td>
-                  <td className="mono">{r.tasks_touched}</td>
+                  <td className="mono" title="Sum of task coverage across the theme">{Number(r.coverage_score).toFixed(1)}</td>
+                  <td className="mono">{r.tasks_touched} / {t.tasks}</td>
                   <td className="small">{(r.top_tasks ?? []).join(" · ")}</td>
                   <td><span className="pills"><Tri label="REMOTE" value={r.remote} /><Tri label="LOCAL" value={r.local} /></span></td>
                   <td><Trust level={r.trust_level} /></td>
