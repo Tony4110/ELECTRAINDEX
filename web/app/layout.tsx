@@ -47,7 +47,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <header className="header">
           <div className="wrap">
             <Link href="/" className="logo" aria-label="Electra Index — home">
-              <svg className="star" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5 L14.2 9.8 L22.5 12 L14.2 14.2 L12 22.5 L9.8 14.2 L1.5 12 L9.8 9.8 Z" fill="currentColor" /></svg>
               ELECTRA<span className="sub">INDEX</span>
             </Link>
             <nav className="nav" aria-label="Main">
