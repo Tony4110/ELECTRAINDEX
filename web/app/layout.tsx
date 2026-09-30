@@ -30,7 +30,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <nav className="nav" aria-label="Main">
               <Link href="/themes">Themes</Link>
               <Link href="/tasks">Tasks</Link>
-              <Link href="/mcp">Agents &amp; tools</Link>
+              <Link href="/agents">AI agents</Link>
+              <Link href="/mcp">MCP servers</Link>
               <Link href="/signals">Signals</Link>
               <Link href="/sources">Methodology</Link>
             </nav>

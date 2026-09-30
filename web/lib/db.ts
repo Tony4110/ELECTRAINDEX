@@ -92,6 +92,24 @@ export type TaskRanking = {
   short_description: string | null; last_seen_at: string; version: string | null; remote: boolean | null; local: boolean | null;
   matched: number; n_req: number; coverage_pct: number; matched_capabilities: string[]; match_confidence: string;
   trust_level: "declared" | "verified" | "proven"; quality_score: number | null;
+  from_usd_month: number | null; has_free: boolean; has_pricing: boolean; value_label: ValueLabel | null;
+};
+
+export type ValueLabel = "best" | "premium" | "free" | "fair";
+
+export type AgentCard = {
+  id: string; slug: string; name: string; short_description: string | null; website: string | null;
+  last_verified_at: string | null; first_seen_at: string; company: string | null;
+  themes: string[] | null; theme_slugs: string[] | null;
+  api: boolean | null; mcp: boolean | null; open_source: boolean | null; free_trial: boolean | null; pricing_url: string | null;
+  from_usd_month: number | null; has_free: boolean; pricing_verified: boolean;
+  quality_score: number | null; score_confidence: string | null; methodology_version: string | null;
+  score_components: Record<string, number> | null; score_missing: string[] | null;
+};
+
+export type AgentPrice = {
+  agent_slug: string; plan_name: string; billing_model: string; amount: number | null; currency: string | null;
+  interval: string | null; unit: string | null; is_trial: boolean; evidence_level: string; observed_at: string; last_confirmed_at: string;
 };
 
 export type ThemeRanking = {
@@ -99,6 +117,7 @@ export type ThemeRanking = {
   short_description: string | null; version: string | null; remote: boolean | null; local: boolean | null;
   trust_level: "declared" | "verified" | "proven"; quality_score: number | null; last_seen_at: string;
   coverage_score: number; tasks_fully_covered: number; tasks_touched: number; best_coverage: number; top_tasks: string[];
+  from_usd_month: number | null; has_free: boolean; has_pricing: boolean; value_label: ValueLabel | null; listed_in_theme: boolean;
 };
 
 export type Theme = { theme_slug: string; theme: string; tasks: number; providers: number };

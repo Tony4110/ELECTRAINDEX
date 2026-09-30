@@ -1,0 +1,2348 @@
+[
+  {
+    "name": "Elicit",
+    "company": "Elicit",
+    "website": "https://elicit.com",
+    "theme": "Research",
+    "short_description": "AI research assistant that searches papers, runs systematic reviews and extracts data into tables.",
+    "capabilities": [
+      "Web Research",
+      "Data Extraction",
+      "Document Understanding",
+      "Summarization",
+      "Report Generation"
+    ],
+    "pricing_url": "https://elicit.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Basic",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "subscription",
+        "amount": 49,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Scale",
+        "billing_model": "subscription",
+        "amount": 169,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": true,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Annual: Pro $588/yr, Scale $2,028/yr. API listed on Pro and Enterprise; Scale API not explicit. Research Agent limited on free plan."
+  },
+  {
+    "name": "Consensus",
+    "company": "Consensus",
+    "website": "https://consensus.app",
+    "theme": "Research",
+    "short_description": "AI academic search engine that answers questions with evidence synthesized from peer-reviewed papers.",
+    "capabilities": [
+      "Web Research",
+      "Summarization",
+      "Report Generation",
+      "Document Understanding"
+    ],
+    "pricing_url": "https://consensus.app/home/pricing/",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Premium",
+        "billing_model": "subscription",
+        "amount": 8.99,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Teams",
+        "billing_model": "seat",
+        "amount": 9.99,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": false,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Prices from consensus.app/home/pricing/ (main /pricing/ page is JS-rendered); third-party sites cite higher prices ($15-$45), so this vendor page may be outdated or show annual-equivalent rates. Premium $108/yr, Teams $120/seat/yr. Search API marked 'Coming Soon'."
+  },
+  {
+    "name": "SciSpace Agent",
+    "company": "SciSpace (PubGenius Inc.)",
+    "website": "https://scispace.com",
+    "theme": "Research",
+    "short_description": "Research agent that runs literature reviews, paper chat and academic writing tasks on a credit system.",
+    "capabilities": [
+      "Web Research",
+      "Document Understanding",
+      "Summarization",
+      "Report Generation",
+      "Content Writing",
+      "Data Extraction"
+    ],
+    "pricing_url": "https://scispace.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Basic",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Premium",
+        "billing_model": "subscription",
+        "amount": 20,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Advanced",
+        "billing_model": "subscription",
+        "amount": 90,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Max",
+        "billing_model": "subscription",
+        "amount": 200,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Prices from vendor credits guide (scispace.com/resources/credits-pricing-guide/); /pricing is JS-rendered. Annual-billed: Premium $12/mo, Advanced $70/mo, Max $160/mo. Credits: 100/1,200/10,000/40,000 per month."
+  },
+  {
+    "name": "Scite Assistant",
+    "company": "Scite (Research Solutions)",
+    "website": "https://scite.ai",
+    "theme": "Research",
+    "short_description": "Research assistant grounded in Smart Citations showing whether papers support or contrast a claim.",
+    "capabilities": [
+      "Web Research",
+      "Summarization",
+      "Report Generation",
+      "Document Understanding"
+    ],
+    "pricing_url": "https://scite.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Basic",
+        "billing_model": "subscription",
+        "amount": 14,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "subscription",
+        "amount": 35,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": true,
+    "api": true,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Basic and Pro prices shown are per month billed yearly; monthly-billed price not captured. 7-day free trial. API on Pro; MCP credits on all tiers (free tier needs trial or paid plan for MCP)."
+  },
+  {
+    "name": "Undermind",
+    "company": "Undermind",
+    "website": "https://www.undermind.ai",
+    "theme": "Research",
+    "short_description": "Deep scientific search agent that reads full-text papers to find everything relevant to a complex topic.",
+    "capabilities": [
+      "Web Research",
+      "Document Understanding",
+      "Summarization",
+      "Report Generation"
+    ],
+    "pricing_url": "https://www.undermind.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "subscription",
+        "amount": 16,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Team",
+        "billing_model": "seat",
+        "amount": 15,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": true,
+    "api": null,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Pro $16/mo and Team $15/person/mo are annual-billed rates; monthly-billed Pro price not shown explicitly. MCP connection to Claude/ChatGPT agents supported."
+  },
+  {
+    "name": "Perplexity Deep Research",
+    "company": "Perplexity AI",
+    "website": "https://www.perplexity.ai",
+    "theme": "Research",
+    "short_description": "Answer engine whose Research mode runs dozens of searches and writes cited multi-page reports.",
+    "capabilities": [
+      "Web Research",
+      "Report Generation",
+      "Summarization",
+      "Document Understanding",
+      "Image Generation"
+    ],
+    "pricing_url": "https://www.perplexity.ai/enterprise/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Standard",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "subscription",
+        "amount": 20,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise Pro",
+        "billing_model": "seat",
+        "amount": 40,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise Max",
+        "billing_model": "seat",
+        "amount": 325,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "API",
+        "billing_model": "usage",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": true,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Prices from /enterprise/pricing (consumer /pro page is JS-rendered). Max consumer plan price not captured; Education Pro $10/mo. Pro: up to 20 Deep Research/month. API is pay-as-you-go (rates not captured)."
+  },
+  {
+    "name": "ChatGPT Deep Research",
+    "company": "OpenAI",
+    "website": "https://chatgpt.com",
+    "theme": "Research",
+    "short_description": "ChatGPT agent mode that browses the web for minutes and produces cited analyst-style research reports.",
+    "capabilities": [
+      "Web Research",
+      "Report Generation",
+      "Summarization",
+      "Data Analysis",
+      "Document Understanding",
+      "Browser Automation"
+    ],
+    "pricing_url": "https://chatgpt.com/pricing",
+    "pricing_verified": false,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Plus",
+        "billing_model": "subscription",
+        "amount": 20,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "subscription",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Business",
+        "billing_model": "seat",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": true,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "chatgpt.com/pricing is JS-rendered; amounts not readable. Plus $20/mo confirmed via help.openai.com. Go/Pro/Business amounts left null. Deep research limited on Free/Go, expanded on Plus, max on Pro. API availability of deep-research models is from general knowledge, not the pricing page."
+  },
+  {
+    "name": "Gemini Deep Research",
+    "company": "Google",
+    "website": "https://gemini.google",
+    "theme": "Research",
+    "short_description": "Gemini agent that plans, browses hundreds of sites and compiles comprehensive research reports.",
+    "capabilities": [
+      "Web Research",
+      "Report Generation",
+      "Summarization",
+      "Document Understanding"
+    ],
+    "pricing_url": "https://gemini.google/subscriptions/",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Google AI Plus",
+        "billing_model": "subscription",
+        "amount": 4.99,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Google AI Pro",
+        "billing_model": "subscription",
+        "amount": 19.99,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Google AI Ultra",
+        "billing_model": "subscription",
+        "amount": 99.99,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Page says Ultra 'starting at $99.99/month' with a $199.99 higher tier. Deep Research included on free tier with limits; higher limits on paid plans. API availability of the Deep Research agent not confirmed on this page."
+  },
+  {
+    "name": "You.com Research API",
+    "company": "You.com",
+    "website": "https://you.com",
+    "theme": "Research",
+    "short_description": "API for multi-step search and synthesis returning cited research answers, from lite to exhaustive depth.",
+    "capabilities": [
+      "Web Research",
+      "Report Generation",
+      "Summarization",
+      "Data Extraction"
+    ],
+    "pricing_url": "https://you.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Research API",
+        "billing_model": "usage",
+        "amount": 12,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "1,000 calls (starting tier)",
+        "is_trial": false
+      },
+      {
+        "plan": "Finance Research API",
+        "billing_model": "usage",
+        "amount": 110,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "1,000 calls (Deep tier)",
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": true,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "$100 free API credit. Research API tiers: Lite, Standard, Deep, Exhaustive, Frontier; $12/1k is the starting tier. MCP server mentioned for Contents API. Free tier: 100 queries/day."
+  },
+  {
+    "name": "Exa",
+    "company": "Exa Labs",
+    "website": "https://exa.ai",
+    "theme": "Research",
+    "short_description": "Search engine API for AI with deep research agent and Websets for finding and enriching lists of entities.",
+    "capabilities": [
+      "Web Research",
+      "Data Extraction",
+      "Lead Generation",
+      "Lead Enrichment",
+      "Competitor Monitoring",
+      "Summarization"
+    ],
+    "pricing_url": "https://exa.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Starter",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Deep Search",
+        "billing_model": "usage",
+        "amount": 12,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "1,000 requests",
+        "is_trial": false
+      },
+      {
+        "plan": "Agent API",
+        "billing_model": "usage",
+        "amount": 0.012,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "request (Minimal effort; up to $1.00 at X-high)",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": true,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Free: $10 credits/month + $10 onboarding bonus. Other endpoints: Instant $4/1k, Fast/Auto $7/1k, Contents $1/1k pages, Monitors $15/1k, Answer $5/1k. Websets plan prices not captured; lead/competitor capabilities inferred from Websets/Monitors positioning - verify."
+  },
+  {
+    "name": "Parallel Task API",
+    "company": "Parallel Web Systems",
+    "website": "https://parallel.ai",
+    "theme": "Research",
+    "short_description": "Web research API whose Task processors run deep research and enrichment jobs returning structured, cited output.",
+    "capabilities": [
+      "Web Research",
+      "Data Extraction",
+      "Lead Enrichment",
+      "Report Generation",
+      "Competitor Monitoring"
+    ],
+    "pricing_url": "https://parallel.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free tier",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Task API Lite",
+        "billing_model": "usage",
+        "amount": 5,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "1,000 requests",
+        "is_trial": false
+      },
+      {
+        "plan": "Task API Pro",
+        "billing_model": "usage",
+        "amount": 100,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "1,000 requests",
+        "is_trial": false
+      },
+      {
+        "plan": "Task API Ultra",
+        "billing_model": "usage",
+        "amount": 300,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "1,000 requests",
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": true,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Up to 5,000 free requests/month; up to $80 at signup + $5/month free credits. Processors range $5-$2,400 per 1k. Also Search ($1-5/1k), Extract ($1/1k), Monitor, FindAll APIs."
+  },
+  {
+    "name": "Tavily",
+    "company": "Tavily",
+    "website": "https://www.tavily.com",
+    "theme": "Research",
+    "short_description": "Search, extract and research API built for AI agents, with a research endpoint producing cited reports.",
+    "capabilities": [
+      "Web Research",
+      "Web Scraping",
+      "Data Extraction",
+      "Report Generation"
+    ],
+    "pricing_url": "https://www.tavily.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Researcher",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pay As You Go",
+        "billing_model": "usage",
+        "amount": 0.008,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "credit",
+        "is_trial": false
+      },
+      {
+        "plan": "Project",
+        "billing_model": "subscription",
+        "amount": 30,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Bootstrap",
+        "billing_model": "subscription",
+        "amount": 100,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Startup",
+        "billing_model": "subscription",
+        "amount": 220,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Growth",
+        "billing_model": "subscription",
+        "amount": 500,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": true,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Free: 1,000 credits/month. Project/Bootstrap/Startup/Growth amounts from docs.tavily.com/documentation/api-credits (pricing page uses slider). Research endpoint: 4-250 credits/request. MCP not mentioned on pricing page."
+  },
+  {
+    "name": "Manus",
+    "company": "Manus AI",
+    "website": "https://manus.im",
+    "theme": "Research",
+    "short_description": "General autonomous agent that researches, browses and builds deliverables like reports, slides and sites.",
+    "capabilities": [
+      "Web Research",
+      "Browser Automation",
+      "Report Generation",
+      "Data Analysis",
+      "Code Generation",
+      "Content Writing"
+    ],
+    "pricing_url": "https://manus.im/pricing",
+    "pricing_verified": false,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "subscription",
+        "amount": 20,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro (8,000 credits)",
+        "billing_model": "subscription",
+        "amount": 40,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Team",
+        "billing_model": "seat",
+        "amount": 20,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": true,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Vendor pricing page is JS-rendered; amounts from third-party nocode.mba (Sep 2026) - unverified. Free: 300 daily refresh credits; Pro $20 = 4,000 credits; ~17% annual discount. Capabilities from general product knowledge; verify."
+  },
+  {
+    "name": "Genspark Super Agent",
+    "company": "Genspark (MainFunc)",
+    "website": "https://www.genspark.ai",
+    "theme": "Research",
+    "short_description": "All-in-one super agent that researches and produces reports, slides, sheets and can make calls.",
+    "capabilities": [
+      "Web Research",
+      "Report Generation",
+      "Spreadsheet Automation",
+      "Content Writing",
+      "Image Generation",
+      "Video Generation",
+      "Voice Calls"
+    ],
+    "pricing_url": "https://www.genspark.ai/business/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Plus",
+        "billing_model": "subscription",
+        "amount": 24.99,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "subscription",
+        "amount": 249.99,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Team",
+        "billing_model": "seat",
+        "amount": 30,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "/pricing blocked by robots.txt; prices from vendor's /business/pricing. Annual: Plus $19.99/mo, Pro $199.99/mo. Free 100 credits/day. Capability list from general product knowledge - verify."
+  },
+  {
+    "name": "GPT Researcher",
+    "company": "GPT Researcher (open source)",
+    "website": "https://gptr.dev",
+    "theme": "Research",
+    "short_description": "Open-source autonomous agent that researches any topic online and writes detailed cited reports.",
+    "capabilities": [
+      "Web Research",
+      "Report Generation",
+      "Summarization",
+      "Web Scraping"
+    ],
+    "pricing_url": "https://github.com/assafelovic/gpt-researcher",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Self-hosted",
+        "billing_model": "open_source",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": true,
+    "mcp": true,
+    "open_source": true,
+    "github_repo": "assafelovic/gpt-researcher",
+    "notes": "Apache 2.0, ~29.5k stars, actively maintained. Costs are your own LLM/search API usage. MCP integration for data sources."
+  },
+  {
+    "name": "STORM",
+    "company": "Stanford OVAL",
+    "website": "https://storm.genie.stanford.edu",
+    "theme": "Research",
+    "short_description": "Open-source research system that writes Wikipedia-style cited articles via multi-perspective questioning.",
+    "capabilities": [
+      "Web Research",
+      "Report Generation",
+      "Summarization"
+    ],
+    "pricing_url": "https://github.com/stanford-oval/storm",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Self-hosted",
+        "billing_model": "open_source",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Hosted research preview",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": true,
+    "github_repo": "stanford-oval/storm",
+    "notes": "MIT, ~30.8k stars. Last notable release Jan 2025 (v1.1.0) - maintenance activity lower; academic project. Free hosted preview at storm.genie.stanford.edu."
+  },
+  {
+    "name": "Kosmos",
+    "company": "Edison Scientific",
+    "website": "https://edisonscientific.com",
+    "theme": "Research",
+    "short_description": "AI scientist agent that reads papers and analyzes datasets for hours to produce cited discovery reports.",
+    "capabilities": [
+      "Web Research",
+      "Data Analysis",
+      "Document Understanding",
+      "Report Generation",
+      "Code Generation"
+    ],
+    "pricing_url": "https://edisonscientific.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Founding Kosmos",
+        "billing_model": "subscription",
+        "amount": 200,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Extra credits",
+        "billing_model": "credits",
+        "amount": 1,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "credit",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Spin-out of FutureHouse. Free: 10 credits/month, standard agents. Founding Kosmos: 650 credits/month. Free 650 credits for academics (.edu). API not detailed on pricing page. Code Generation/Data Analysis inferred from 'code and citations' positioning."
+  },
+  {
+    "name": "Crayon",
+    "company": "Crayon",
+    "website": "https://www.crayon.co",
+    "theme": "Research",
+    "short_description": "Competitive intelligence platform that monitors competitors, scores insights with AI and builds battlecards.",
+    "capabilities": [
+      "Competitor Monitoring",
+      "Summarization",
+      "Content Writing",
+      "CRM Integration"
+    ],
+    "pricing_url": "https://www.crayon.co/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Custom",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": false,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "No public pricing ('Request an Estimate'). Integrations with Salesforce, Slack, Highspot."
+  },
+  {
+    "name": "Klue Compete Agent",
+    "company": "Klue",
+    "website": "https://klue.com",
+    "theme": "Research",
+    "short_description": "Competitive intelligence and win-loss platform with agents that collect, curate and share competitor intel.",
+    "capabilities": [
+      "Competitor Monitoring",
+      "Summarization",
+      "Report Generation",
+      "CRM Integration",
+      "Voice Calls"
+    ],
+    "pricing_url": "https://klue.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Custom",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": false,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "No public pricing (demo/sales). Agents: Compete Agent, Win & Loss Story Agent, AI Interviewer (voice conversations with buyers)."
+  },
+  {
+    "name": "AlphaSense",
+    "company": "AlphaSense",
+    "website": "https://www.alpha-sense.com",
+    "theme": "Research",
+    "short_description": "Market intelligence platform with AI search, summarization and workflow agents over 500M+ documents.",
+    "capabilities": [
+      "Web Research",
+      "Summarization",
+      "Document Understanding",
+      "Report Generation",
+      "Competitor Monitoring"
+    ],
+    "pricing_url": "https://www.alpha-sense.com/pricing/",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Market Intelligence",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise Intelligence",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": false,
+    "free_trial": true,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "No public pricing. 'Get Started for Free' CTA suggests a trial; length not stated. Competitor Monitoring inferred from market intelligence positioning."
+  },
+  {
+    "name": "Firecrawl",
+    "company": "Firecrawl",
+    "website": "https://www.firecrawl.dev",
+    "theme": "Data",
+    "short_description": "Web data API that crawls, scrapes and extracts sites into LLM-ready markdown or JSON, with an agent mode.",
+    "capabilities": [
+      "Web Scraping",
+      "Data Extraction",
+      "Web Research",
+      "Browser Automation"
+    ],
+    "pricing_url": "https://www.firecrawl.dev/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Hobby",
+        "billing_model": "subscription",
+        "amount": 19,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Standard",
+        "billing_model": "subscription",
+        "amount": 99,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Growth",
+        "billing_model": "subscription",
+        "amount": 399,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Scale",
+        "billing_model": "subscription",
+        "amount": 749,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": true,
+    "mcp": true,
+    "open_source": true,
+    "github_repo": "firecrawl/firecrawl",
+    "notes": "Credits: 1k/5k/100k/500k/1M per month. Annual: $16/$83/$333/$599. Agent in preview (5 free daily runs). MCP server documented on vendor docs (not on pricing page). Repo formerly mendableai/firecrawl (AGPL core)."
+  },
+  {
+    "name": "Browse AI",
+    "company": "Browse AI",
+    "website": "https://www.browse.ai",
+    "theme": "Data",
+    "short_description": "No-code robots that extract and monitor data from any website, with change alerts and integrations.",
+    "capabilities": [
+      "Web Scraping",
+      "Data Extraction",
+      "Price Monitoring",
+      "Competitor Monitoring",
+      "API Integration"
+    ],
+    "pricing_url": "https://www.browse.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Personal",
+        "billing_model": "subscription",
+        "amount": 48,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Professional",
+        "billing_model": "subscription",
+        "amount": 87,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Premium",
+        "billing_model": "subscription",
+        "amount": 500,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": true,
+    "api": true,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Annual: Personal $19/mo, Professional $69/mo (page says 20% discount though numbers differ more). Premium 'starting at' $500/mo. Free 50 credits/month."
+  },
+  {
+    "name": "Apify",
+    "company": "Apify",
+    "website": "https://apify.com",
+    "theme": "Data",
+    "short_description": "Cloud platform of 'Actors' for web scraping and browser automation that AI agents can call via MCP.",
+    "capabilities": [
+      "Web Scraping",
+      "Data Extraction",
+      "Browser Automation",
+      "Workflow Orchestration",
+      "API Integration",
+      "Lead Generation"
+    ],
+    "pricing_url": "https://apify.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Starter",
+        "billing_model": "subscription",
+        "amount": 19,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Scale",
+        "billing_model": "subscription",
+        "amount": 199,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Business",
+        "billing_model": "subscription",
+        "amount": 999,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Compute units",
+        "billing_model": "usage",
+        "amount": 0.2,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "compute unit (Free/Starter)",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": true,
+    "mcp": true,
+    "open_source": null,
+    "github_repo": null,
+    "notes": "Plans include equal usage credits plus overage; CU $0.20 (Free/Starter), $0.16 (Scale), $0.13 (Business). Supports x402 agentic payments. Crawlee is Apify's open-source library but platform itself is not open source. Lead Generation from Actor store positioning - verify."
+  },
+  {
+    "name": "Bright Data",
+    "company": "Bright Data",
+    "website": "https://brightdata.com",
+    "theme": "Data",
+    "short_description": "Web data platform with unlocker, scraper APIs, agent browser and MCP server for AI agents.",
+    "capabilities": [
+      "Web Scraping",
+      "Data Extraction",
+      "Browser Automation",
+      "Web Research",
+      "Price Monitoring"
+    ],
+    "pricing_url": "https://brightdata.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Web Unlocker",
+        "billing_model": "usage",
+        "amount": 1,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "1,000 requests",
+        "is_trial": false
+      },
+      {
+        "plan": "Scraper APIs",
+        "billing_model": "usage",
+        "amount": 0.75,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "1,000 records",
+        "is_trial": false
+      },
+      {
+        "plan": "Browser API",
+        "billing_model": "usage",
+        "amount": 5,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "GB",
+        "is_trial": false
+      },
+      {
+        "plan": "Bright Data MCP",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": true,
+    "mcp": true,
+    "open_source": null,
+    "github_repo": null,
+    "notes": "All 'starts from' prices; Scraper APIs promo $0.75 (from $1). Free tiers on Unlocker, SERP, Scraper Studio and MCP. Retail Insights from $2,000/mo."
+  },
+  {
+    "name": "Browserbase + Stagehand",
+    "company": "Browserbase",
+    "website": "https://www.browserbase.com",
+    "theme": "Data",
+    "short_description": "Headless browser cloud with the Stagehand agent framework for AI browser automation and extraction.",
+    "capabilities": [
+      "Browser Automation",
+      "Web Scraping",
+      "Data Extraction",
+      "Web Research"
+    ],
+    "pricing_url": "https://www.browserbase.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Developer",
+        "billing_model": "subscription",
+        "amount": 20,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Startup",
+        "billing_model": "subscription",
+        "amount": 99,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Scale",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": true,
+    "mcp": null,
+    "open_source": true,
+    "github_repo": "browserbase/stagehand",
+    "notes": "Browser hours 1/100/500; overage $0.12/$0.10 per hour. Agent runs 3/15/50 included. Stagehand is open source; Browserbase cloud is not. MCP listed in nav but not detailed."
+  },
+  {
+    "name": "Browser Use",
+    "company": "Browser Use",
+    "website": "https://browser-use.com",
+    "theme": "Data",
+    "short_description": "Open-source and cloud agent that controls a web browser to complete tasks and extract data.",
+    "capabilities": [
+      "Browser Automation",
+      "Web Scraping",
+      "Data Extraction",
+      "Computer Use"
+    ],
+    "pricing_url": "https://browser-use.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Browsers",
+        "billing_model": "usage",
+        "amount": 0.02,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "browser hour",
+        "is_trial": false
+      },
+      {
+        "plan": "Browser Use Agents",
+        "billing_model": "usage",
+        "amount": null,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "model token cost + 20% fee",
+        "is_trial": false
+      },
+      {
+        "plan": "Open source",
+        "billing_model": "open_source",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": false,
+    "free_trial": null,
+    "api": true,
+    "mcp": true,
+    "open_source": true,
+    "github_repo": "browser-use/browser-use",
+    "notes": "$15 one-time free credits on eligible signup; $5 min top-up; credits never expire. Proxy $5/GB residential. Computer Use mapping is loose (browser-only)."
+  },
+  {
+    "name": "Crawl4AI",
+    "company": "Crawl4AI (open source)",
+    "website": "https://crawl4ai.com",
+    "theme": "Data",
+    "short_description": "Open-source crawler that turns websites into LLM-ready markdown and structured data via LLM extraction.",
+    "capabilities": [
+      "Web Scraping",
+      "Data Extraction",
+      "Browser Automation"
+    ],
+    "pricing_url": "https://github.com/unclecode/crawl4ai",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Self-hosted",
+        "billing_model": "open_source",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": null,
+    "mcp": true,
+    "open_source": true,
+    "github_repo": "unclecode/crawl4ai",
+    "notes": "Apache 2.0, ~84.5k stars, v0.9.4 released 2026-09-23. README references cloud instances; no public cloud pricing found."
+  },
+  {
+    "name": "ScrapeGraphAI",
+    "company": "ScrapeGraphAI",
+    "website": "https://scrapegraphai.com",
+    "theme": "Data",
+    "short_description": "LLM-powered scraping API and open-source library that extracts structured data from sites via prompts.",
+    "capabilities": [
+      "Web Scraping",
+      "Data Extraction",
+      "Competitor Monitoring"
+    ],
+    "pricing_url": "https://scrapegraphai.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Starter",
+        "billing_model": "subscription",
+        "amount": 20,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Growth",
+        "billing_model": "subscription",
+        "amount": 100,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "subscription",
+        "amount": 500,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": true,
+    "mcp": null,
+    "open_source": true,
+    "github_repo": "ScrapeGraphAI/Scrapegraph-ai",
+    "notes": "Free = 500 one-time credits. Credits 10k/100k/750k per month. Monitors included (1/5/25/100). MCP not confirmed on pricing page."
+  },
+  {
+    "name": "Kadoa",
+    "company": "Kadoa",
+    "website": "https://www.kadoa.com",
+    "theme": "Data",
+    "short_description": "AI agents that build and maintain web scrapers automatically and deliver structured data feeds.",
+    "capabilities": [
+      "Web Scraping",
+      "Data Extraction",
+      "Workflow Orchestration",
+      "API Integration"
+    ],
+    "pricing_url": "https://www.kadoa.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Starter",
+        "billing_model": "usage",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": false,
+    "free_trial": true,
+    "api": true,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Consumption-based; no public amounts. Free/no-commitment evaluation period. MCP, Snowflake, S3 integrations listed on Enterprise."
+  },
+  {
+    "name": "AgentQL",
+    "company": "TinyFish",
+    "website": "https://www.agentql.com",
+    "theme": "Data",
+    "short_description": "Query language and API that lets AI agents locate elements and extract structured data from any web page.",
+    "capabilities": [
+      "Web Scraping",
+      "Data Extraction",
+      "Browser Automation"
+    ],
+    "pricing_url": "https://www.agentql.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free Trial",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": true
+      },
+      {
+        "plan": "Starter",
+        "billing_model": "usage",
+        "amount": 0.02,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "API call beyond 50 free/month",
+        "is_trial": false
+      },
+      {
+        "plan": "Professional",
+        "billing_model": "subscription",
+        "amount": 99,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": true,
+    "api": true,
+    "mcp": null,
+    "open_source": null,
+    "github_repo": null,
+    "notes": "Trial: 300 free calls. Starter $0/mo with 50 calls then $0.02/call. Professional: 10k calls, $0.015/call overage. MCP not mentioned on pricing page. Company attribution to TinyFish from general knowledge."
+  },
+  {
+    "name": "Reducto",
+    "company": "Reducto",
+    "website": "https://reducto.ai",
+    "theme": "Data",
+    "short_description": "Document parsing and extraction API that turns complex PDFs and spreadsheets into structured, cited data.",
+    "capabilities": [
+      "Document Understanding",
+      "Data Extraction",
+      "API Integration"
+    ],
+    "pricing_url": "https://reducto.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Standard - Parse",
+        "billing_model": "usage",
+        "amount": 10,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "1,000 pages",
+        "is_trial": false
+      },
+      {
+        "plan": "Standard - Extract",
+        "billing_model": "usage",
+        "amount": 20,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "1,000 pages",
+        "is_trial": false
+      },
+      {
+        "plan": "Growth",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": true,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "$150 free usage on Standard. Deep Extract $40/1k pages, Classify $7.50/1k. Borderline 'agent' - included as document-data extraction agent."
+  },
+  {
+    "name": "Julius AI",
+    "company": "Julius AI",
+    "website": "https://julius.ai",
+    "theme": "Data",
+    "short_description": "AI data analyst that connects to files and databases to run analyses, charts and reports in plain English.",
+    "capabilities": [
+      "Data Analysis",
+      "SQL Querying",
+      "Report Generation",
+      "Spreadsheet Automation",
+      "Forecasting"
+    ],
+    "pricing_url": "https://julius.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Plus",
+        "billing_model": "subscription",
+        "amount": 20,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "subscription",
+        "amount": 45,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Max",
+        "billing_model": "subscription",
+        "amount": 200,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Business",
+        "billing_model": "subscription",
+        "amount": 450,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Annual: $16/$37/$166/$375 per month. Connectors: Snowflake, BigQuery, PostgreSQL on paid plans. Forecasting from general product knowledge - verify."
+  },
+  {
+    "name": "Hex Agent",
+    "company": "Hex Technologies",
+    "website": "https://hex.tech",
+    "theme": "Data",
+    "short_description": "Data notebook and BI workspace with an AI agent that writes SQL/Python and builds analyses.",
+    "capabilities": [
+      "Data Analysis",
+      "SQL Querying",
+      "Code Generation",
+      "Report Generation"
+    ],
+    "pricing_url": "https://hex.tech/pricing/",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Community",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Professional",
+        "billing_model": "seat",
+        "amount": 36,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "editor",
+        "is_trial": false
+      },
+      {
+        "plan": "Team",
+        "billing_model": "seat",
+        "amount": 75,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "editor",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": true,
+    "api": true,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Billing interval (monthly vs annual) for per-editor prices not stated. Team has 14-day trial. REST API on Team/Enterprise. Community has only an agent trial."
+  },
+  {
+    "name": "Vanna AI",
+    "company": "Vanna AI",
+    "website": "https://vanna.ai",
+    "theme": "Data",
+    "short_description": "Text-to-SQL agent that answers questions about your database, available as open source or hosted.",
+    "capabilities": [
+      "SQL Querying",
+      "Data Analysis",
+      "Code Generation"
+    ],
+    "pricing_url": "https://vanna.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Vanna OSS",
+        "billing_model": "open_source",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Explorer",
+        "billing_model": "subscription",
+        "amount": 50,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Team",
+        "billing_model": "subscription",
+        "amount": 500,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": true,
+    "mcp": null,
+    "open_source": true,
+    "github_repo": "vanna-ai/vanna",
+    "notes": "20% off annual. Explorer 20 questions/day, Team 300/day."
+  },
+  {
+    "name": "Wren AI",
+    "company": "Canner",
+    "website": "https://www.getwren.ai",
+    "theme": "Data",
+    "short_description": "GenBI agent that turns natural-language questions into SQL, charts and dashboards over a semantic layer.",
+    "capabilities": [
+      "SQL Querying",
+      "Data Analysis",
+      "Report Generation"
+    ],
+    "pricing_url": "https://www.getwren.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Essential Cloud",
+        "billing_model": "subscription",
+        "amount": 179,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise Cloud",
+        "billing_model": "subscription",
+        "amount": 559,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise Plus",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": true,
+    "api": true,
+    "mcp": true,
+    "open_source": true,
+    "github_repo": "Canner/WrenAI",
+    "notes": "Essential/Enterprise Cloud prices are per month billed annually. Overage $0.10/credit. MCP on Enterprise Cloud and above; API on Essential+. Open-source CLI/context engine on GitHub."
+  },
+  {
+    "name": "Databricks Genie",
+    "company": "Databricks",
+    "website": "https://www.databricks.com",
+    "theme": "Data",
+    "short_description": "AI/BI agent that answers natural-language questions over governed Databricks data with SQL.",
+    "capabilities": [
+      "SQL Querying",
+      "Data Analysis",
+      "Knowledge Base QA"
+    ],
+    "pricing_url": "https://www.databricks.com/product/pricing/genie",
+    "pricing_verified": false,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Genie (LLM usage)",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Compute (SQL Serverless)",
+        "billing_model": "usage",
+        "amount": null,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "DBU",
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": true,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Pricing table did not render. Page states free usage applies to Genie LLM usage only; compute billed separately in DBUs. 14-day Databricks free trial."
+  },
+  {
+    "name": "Snowflake Cortex Analyst",
+    "company": "Snowflake",
+    "website": "https://www.snowflake.com",
+    "theme": "Data",
+    "short_description": "Text-to-SQL and agent services inside Snowflake that answer business questions over governed data.",
+    "capabilities": [
+      "SQL Querying",
+      "Data Analysis",
+      "Knowledge Base QA",
+      "Workflow Orchestration"
+    ],
+    "pricing_url": "https://docs.snowflake.com/en/user-guide/snowflake-cortex/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "AI Credits (global routing)",
+        "billing_model": "usage",
+        "amount": 2.0,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "AI credit",
+        "is_trial": false
+      },
+      {
+        "plan": "AI Credits (regional routing)",
+        "billing_model": "usage",
+        "amount": 2.2,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "AI credit",
+        "is_trial": false
+      }
+    ],
+    "free_plan": false,
+    "free_trial": true,
+    "api": true,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Cortex Analyst billed per 1,000 messages and Cortex Agents per million tokens in AI Credits; credits-per-unit rates are in the Service Consumption Table (not captured). Free trial referenced on product page."
+  },
+  {
+    "name": "ThoughtSpot Spotter",
+    "company": "ThoughtSpot",
+    "website": "https://www.thoughtspot.com",
+    "theme": "Data",
+    "short_description": "Agentic analytics platform where Spotter answers data questions in natural language and builds insights.",
+    "capabilities": [
+      "Data Analysis",
+      "SQL Querying",
+      "Report Generation",
+      "Forecasting"
+    ],
+    "pricing_url": "https://www.thoughtspot.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Essentials",
+        "billing_model": "seat",
+        "amount": 25,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "seat",
+        "amount": 50,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Embedded Developer",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": true,
+    "api": true,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Essentials/Pro prices are per user/month billed annually. MCP on Pro and Enterprise. Embedded Developer free for 1 year with REST API. Forecasting from general product knowledge - verify."
+  },
+  {
+    "name": "Powerdrill Bloom",
+    "company": "Powerdrill",
+    "website": "https://powerdrill.ai",
+    "theme": "Data",
+    "short_description": "AI data analysis agent that explores uploaded files and open data to produce insights and reports.",
+    "capabilities": [
+      "Data Analysis",
+      "Report Generation",
+      "Spreadsheet Automation",
+      "Web Research"
+    ],
+    "pricing_url": "https://powerdrill.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "subscription",
+        "amount": 16.58,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Plus",
+        "billing_model": "subscription",
+        "amount": 33.25,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Premium",
+        "billing_model": "subscription",
+        "amount": 165.83,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Amounts are regular prices shown as monthly; page also shows 20% promo ($13.27/$26.60/$132.67) and yearly $199/$399/$1,990 (equal to 12x regular) - billing interval ambiguous. Free: 1,000 daily credits."
+  },
+  {
+    "name": "Fabi.ai",
+    "company": "Fabi.ai",
+    "website": "https://www.fabi.ai",
+    "theme": "Data",
+    "short_description": "AI analyst agent and SQL/Python notebooks for self-serve analysis and automated reports.",
+    "capabilities": [
+      "Data Analysis",
+      "SQL Querying",
+      "Report Generation",
+      "Code Generation"
+    ],
+    "pricing_url": "https://www.fabi.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Starter",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Builder",
+        "billing_model": "subscription",
+        "amount": 39,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": null,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Builder $39/mo billed monthly; yearly price not shown. MCP (OAuth) listed as feature, tier availability unclear. SQL Querying from product positioning."
+  }
+]

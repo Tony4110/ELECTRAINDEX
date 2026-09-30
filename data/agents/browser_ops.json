@@ -1,0 +1,2113 @@
+[
+ {
+  "name": "Browserbase",
+  "company": "Browserbase",
+  "website": "https://www.browserbase.com",
+  "theme": "Browser & Computer Use",
+  "short_description": "Cloud browsers plus agent runs and the Stagehand framework for AI web automation.",
+  "capabilities": [
+   "Browser Automation",
+   "Web Scraping",
+   "Web Research",
+   "Data Extraction",
+   "API Integration"
+  ],
+  "pricing_url": "https://www.browserbase.com/pricing",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Free",
+    "billing_model": "free",
+    "amount": 0,
+    "currency": "USD",
+    "interval": "month",
+    "unit": null,
+    "is_trial": false
+   },
+   {
+    "plan": "Developer",
+    "billing_model": "subscription",
+    "amount": 20,
+    "currency": "USD",
+    "interval": "month",
+    "unit": null,
+    "is_trial": false
+   },
+   {
+    "plan": "Startup",
+    "billing_model": "subscription",
+    "amount": 99,
+    "currency": "USD",
+    "interval": "month",
+    "unit": null,
+    "is_trial": false
+   },
+   {
+    "plan": "Developer overage",
+    "billing_model": "usage",
+    "amount": 0.12,
+    "currency": "USD",
+    "interval": "per_unit",
+    "unit": "browser hour",
+    "is_trial": false
+   },
+   {
+    "plan": "Scale",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "USD",
+    "interval": null,
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": true,
+  "free_trial": null,
+  "api": true,
+  "mcp": null,
+  "open_source": true,
+  "github_repo": "browserbase/stagehand",
+  "notes": "Free: 1 browser hour, 3 agent runs. Startup overage $0.10/browser hr. MCP not stated on pricing page. Open source refers to Stagehand SDK, not the hosted platform."
+ },
+ {
+  "name": "Browser Use",
+  "company": "Browser Use",
+  "website": "https://browser-use.com",
+  "theme": "Browser & Computer Use",
+  "short_description": "Open-source AI browser agent library with a pay-as-you-go cloud for agents and browsers.",
+  "capabilities": [
+   "Browser Automation",
+   "Web Scraping",
+   "Data Extraction",
+   "Web Research",
+   "API Integration"
+  ],
+  "pricing_url": "https://browser-use.com/pricing",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Browsers (PAYG)",
+    "billing_model": "usage",
+    "amount": 0.02,
+    "currency": "USD",
+    "interval": "per_unit",
+    "unit": "browser hour",
+    "is_trial": false
+   },
+   {
+    "plan": "Agents (PAYG)",
+    "billing_model": "usage",
+    "amount": null,
+    "currency": "USD",
+    "interval": "per_unit",
+    "unit": "model token cost + 20% service fee",
+    "is_trial": false
+   },
+   {
+    "plan": "Enterprise",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "USD",
+    "interval": null,
+    "unit": null,
+    "is_trial": false
+   },
+   {
+    "plan": "Library",
+    "billing_model": "open_source",
+    "amount": 0,
+    "currency": "USD",
+    "interval": null,
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": false,
+  "free_trial": true,
+  "api": true,
+  "mcp": true,
+  "open_source": true,
+  "github_repo": "browser-use/browser-use",
+  "notes": "$5 minimum top-up; $15 free credits for eligible new signups (recorded as trial). No subscriptions; credits never expire. Proxies $5/GB residential."
+ },
+ {
+  "name": "Skyvern",
+  "company": "Skyvern",
+  "website": "https://www.skyvern.com",
+  "theme": "Browser & Computer Use",
+  "short_description": "Open-source LLM + vision agent that automates browser workflows like forms, logins and downloads.",
+  "capabilities": [
+   "Browser Automation",
+   "Data Extraction",
+   "Web Scraping",
+   "Workflow Orchestration",
+   "API Integration"
+  ],
+  "pricing_url": "https://www.skyvern.com/pricing",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Free",
+    "billing_model": "free",
+    "amount": 0,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "5,000 one-time credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Hobby",
+    "billing_model": "subscription",
+    "amount": 29,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "30,000 credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Pro",
+    "billing_model": "subscription",
+    "amount": 149,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "150,000 credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Enterprise",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "USD",
+    "interval": null,
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": true,
+  "free_trial": null,
+  "api": true,
+  "mcp": null,
+  "open_source": true,
+  "github_repo": "Skyvern-AI/skyvern",
+  "notes": "Pricing page mentions SDKs & API; MCP not stated. Pro add-on SMS numbers $10/mo each."
+ },
+ {
+  "name": "Hyperbrowser",
+  "company": "Hyperbrowser",
+  "website": "https://www.hyperbrowser.ai",
+  "theme": "Browser & Computer Use",
+  "short_description": "Cloud browser API for AI agents, running HyperAgent, Browser Use and Claude/OpenAI computer-use agents.",
+  "capabilities": [
+   "Browser Automation",
+   "Computer Use",
+   "Web Scraping",
+   "Data Extraction",
+   "API Integration"
+  ],
+  "pricing_url": "https://www.hyperbrowser.ai/docs/pricing",
+  "pricing_verified": false,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Browser sessions",
+    "billing_model": "credits",
+    "amount": 0.1,
+    "currency": "USD",
+    "interval": "per_unit",
+    "unit": "browser hour (100 credits)",
+    "is_trial": false
+   },
+   {
+    "plan": "HyperAgent / Browser Use",
+    "billing_model": "credits",
+    "amount": 0.02,
+    "currency": "USD",
+    "interval": "per_unit",
+    "unit": "agent step (20 credits)",
+    "is_trial": false
+   }
+  ],
+  "free_plan": null,
+  "free_trial": null,
+  "api": true,
+  "mcp": null,
+  "open_source": true,
+  "github_repo": "hyperbrowserai/HyperAgent",
+  "notes": "Main pricing page did not render; only per-credit rates from docs (1 credit = $0.001). Subscription tiers not captured, hence pricing_verified=false."
+ },
+ {
+  "name": "Steel",
+  "company": "Steel",
+  "website": "https://steel.dev",
+  "theme": "Browser & Computer Use",
+  "short_description": "Open-source browser API that gives AI agents on-demand cloud browser sessions.",
+  "capabilities": [
+   "Browser Automation",
+   "Web Scraping",
+   "API Integration"
+  ],
+  "pricing_url": "https://steel.dev/pricing",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Launch",
+    "billing_model": "free",
+    "amount": 0,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "$30 one-time credits + usage",
+    "is_trial": false
+   },
+   {
+    "plan": "Scale",
+    "billing_model": "subscription",
+    "amount": 250,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "+ usage, $100 monthly credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Enterprise",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "USD",
+    "interval": null,
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": true,
+  "free_trial": null,
+  "api": true,
+  "mcp": null,
+  "open_source": true,
+  "github_repo": "steel-dev/steel-browser",
+  "notes": "Paid plans also bill usage on top. MCP not stated on pricing page. Infrastructure for agents rather than an end-user agent."
+ },
+ {
+  "name": "Browserless",
+  "company": "Browserless",
+  "website": "https://www.browserless.io",
+  "theme": "Browser & Computer Use",
+  "short_description": "Hosted headless browsers with REST APIs and an MCP server so AI agents can use a real browser.",
+  "capabilities": [
+   "Browser Automation",
+   "Web Scraping",
+   "Data Extraction",
+   "API Integration"
+  ],
+  "pricing_url": "https://www.browserless.io/pricing",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Free",
+    "billing_model": "free",
+    "amount": 0,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "1,000 units",
+    "is_trial": false
+   },
+   {
+    "plan": "Prototyping",
+    "billing_model": "subscription",
+    "amount": 25,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "20,000 units",
+    "is_trial": false
+   },
+   {
+    "plan": "Starter",
+    "billing_model": "subscription",
+    "amount": 140,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "180,000 units",
+    "is_trial": false
+   },
+   {
+    "plan": "Scale",
+    "billing_model": "subscription",
+    "amount": 350,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "500,000 units",
+    "is_trial": false
+   },
+   {
+    "plan": "Enterprise",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "USD",
+    "interval": null,
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": true,
+  "free_trial": null,
+  "api": true,
+  "mcp": true,
+  "open_source": true,
+  "github_repo": "browserless/browserless",
+  "notes": "Paid prices shown are annual-billed monthly equivalents; monthly-billed rates not shown (annual saves 30%). 1 unit = up to 30s browser time. Open-source licence details not stated on page."
+ },
+ {
+  "name": "Anchor Browser",
+  "company": "Anchor Browser",
+  "website": "https://www.anchorbrowser.io",
+  "theme": "Browser & Computer Use",
+  "short_description": "Cloud browsers with an embedded AI agent for automating authenticated web tasks.",
+  "capabilities": [
+   "Browser Automation",
+   "Data Extraction",
+   "API Integration"
+  ],
+  "pricing_url": "https://www.anchorbrowser.io/pricing",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Free",
+    "billing_model": "free",
+    "amount": 0,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "5 credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Starter",
+    "billing_model": "subscription",
+    "amount": 50,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "50 credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Team",
+    "billing_model": "subscription",
+    "amount": 500,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "500 credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Growth",
+    "billing_model": "subscription",
+    "amount": 2000,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "2,000 credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Overage",
+    "billing_model": "credits",
+    "amount": 1,
+    "currency": "USD",
+    "interval": "per_unit",
+    "unit": "credit",
+    "is_trial": false
+   },
+   {
+    "plan": "Enterprise",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "USD",
+    "interval": null,
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": true,
+  "free_trial": null,
+  "api": true,
+  "mcp": true,
+  "open_source": null,
+  "github_repo": null,
+  "notes": "MCP via BrowserMCP.com. Agent task costs 0.1 credit on free plan."
+ },
+ {
+  "name": "Airtop",
+  "company": "Airtop",
+  "website": "https://www.airtop.ai",
+  "theme": "Browser & Computer Use",
+  "short_description": "No-code AI browser agents that log in, navigate and automate web workflows in the cloud.",
+  "capabilities": [
+   "Browser Automation",
+   "Web Scraping",
+   "Data Extraction",
+   "Workflow Orchestration"
+  ],
+  "pricing_url": "https://www.airtop.ai/pricing",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Free",
+    "billing_model": "free",
+    "amount": 0,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "1,000 credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Starter",
+    "billing_model": "subscription",
+    "amount": 29,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "30,000 credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Professional",
+    "billing_model": "subscription",
+    "amount": 189,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "225,000 credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Enterprise",
+    "billing_model": "subscription",
+    "amount": 558,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "775,000 credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Custom",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "USD",
+    "interval": null,
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": true,
+  "free_trial": null,
+  "api": null,
+  "mcp": null,
+  "open_source": null,
+  "github_repo": null,
+  "notes": "Free plan includes 10,000 one-time bonus credits and 7-day trial of 'Mark'. Annual billing -10%. API/MCP not stated on pricing page."
+ },
+ {
+  "name": "Manus",
+  "company": "Manus",
+  "website": "https://manus.im",
+  "theme": "Browser & Computer Use",
+  "short_description": "General-purpose autonomous agent that browses, codes and completes multi-step tasks in a cloud computer.",
+  "capabilities": [
+   "Web Research",
+   "Browser Automation",
+   "Computer Use",
+   "Report Generation",
+   "Data Analysis"
+  ],
+  "pricing_url": "https://manus.im/pricing",
+  "pricing_verified": false,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Free",
+    "billing_model": "free",
+    "amount": 0,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "limited monthly credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Pro",
+    "billing_model": "credits",
+    "amount": null,
+    "currency": "USD",
+    "interval": "month",
+    "unit": null,
+    "is_trial": false
+   },
+   {
+    "plan": "Team",
+    "billing_model": "credits",
+    "amount": null,
+    "currency": "USD",
+    "interval": "month",
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": true,
+  "free_trial": null,
+  "api": true,
+  "mcp": null,
+  "open_source": false,
+  "github_repo": null,
+  "notes": "Pricing page and help center did not render prices; plan names from vendor docs (manus.im/docs). API docs at open.manus.ai. Capabilities from general product description; verify."
+ },
+ {
+  "name": "ChatGPT agent (incl. Atlas agent mode)",
+  "company": "OpenAI",
+  "website": "https://chatgpt.com",
+  "theme": "Browser & Computer Use",
+  "short_description": "ChatGPT mode that operates a virtual browser to click, fill forms and complete tasks for the user.",
+  "capabilities": [
+   "Browser Automation",
+   "Web Research",
+   "Report Generation",
+   "Email Automation",
+   "Calendar Management"
+  ],
+  "pricing_url": "https://chatgpt.com/pricing",
+  "pricing_verified": false,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Free",
+    "billing_model": "free",
+    "amount": 0,
+    "currency": "USD",
+    "interval": "month",
+    "unit": null,
+    "is_trial": false
+   },
+   {
+    "plan": "Plus",
+    "billing_model": "subscription",
+    "amount": null,
+    "currency": "USD",
+    "interval": "month",
+    "unit": null,
+    "is_trial": false
+   },
+   {
+    "plan": "Pro",
+    "billing_model": "subscription",
+    "amount": null,
+    "currency": "USD",
+    "interval": "month",
+    "unit": null,
+    "is_trial": false
+   },
+   {
+    "plan": "Business",
+    "billing_model": "seat",
+    "amount": null,
+    "currency": "USD",
+    "interval": "month",
+    "unit": null,
+    "is_trial": false
+   },
+   {
+    "plan": "Enterprise",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "USD",
+    "interval": null,
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": true,
+  "free_trial": null,
+  "api": null,
+  "mcp": null,
+  "open_source": false,
+  "github_repo": null,
+  "notes": "Prices not rendered on vendor pricing page (third-party sources cite Plus $20/mo). Agent on Plus (40 msgs/mo), Pro (400), Business/Enterprise/Edu per help.openai.com; not on Free. Atlas browser agent mode for Plus/Pro/Business. Help center says original agent now folded into main ChatGPT experience."
+ },
+ {
+  "name": "Comet",
+  "company": "Perplexity",
+  "website": "https://www.perplexity.ai/comet",
+  "theme": "Browser & Computer Use",
+  "short_description": "Perplexity's AI browser whose assistant can research, shop and handle web tasks on the user's behalf.",
+  "capabilities": [
+   "Browser Automation",
+   "Web Research",
+   "Summarization",
+   "Email Automation"
+  ],
+  "pricing_url": "https://www.perplexity.ai/comet",
+  "pricing_verified": false,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Comet browser",
+    "billing_model": "free",
+    "amount": 0,
+    "currency": "USD",
+    "interval": "month",
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": true,
+  "free_trial": null,
+  "api": null,
+  "mcp": null,
+  "open_source": false,
+  "github_repo": null,
+  "notes": "Vendor page shows 'Is Comet free?' FAQ but answer not retrievable; free availability per press (CNBC Oct 2025). Paid Pro/Max/Comet Plus tiers and agent limits not verified."
+ },
+ {
+  "name": "Opera Neon",
+  "company": "Opera",
+  "website": "https://www.operaneon.com",
+  "theme": "Browser & Computer Use",
+  "short_description": "Agentic browser whose Neon Do agent reads pages, acts on commands and builds outputs from the web.",
+  "capabilities": [
+   "Browser Automation",
+   "Web Research",
+   "Report Generation"
+  ],
+  "pricing_url": "https://www.operaneon.com/",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Neon subscription",
+    "billing_model": "subscription",
+    "amount": 19.9,
+    "currency": "USD",
+    "interval": "month",
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": false,
+  "free_trial": null,
+  "api": null,
+  "mcp": true,
+  "open_source": false,
+  "github_repo": null,
+  "notes": "Price stated on product page. No free trial mentioned; agentic features need subscription. Page mentions MCP and CLI connections."
+ },
+ {
+  "name": "Simular",
+  "company": "Simular",
+  "website": "https://www.simular.ai",
+  "theme": "Browser & Computer Use",
+  "short_description": "Autonomous computer agent that automates desktop and web workflows via clicks and keystrokes.",
+  "capabilities": [
+   "Computer Use",
+   "Browser Automation",
+   "Workflow Orchestration"
+  ],
+  "pricing_url": "https://www.simular.ai/pricing",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Starter",
+    "billing_model": "subscription",
+    "amount": 50,
+    "currency": "USD",
+    "interval": "month",
+    "unit": null,
+    "is_trial": false
+   },
+   {
+    "plan": "Premium",
+    "billing_model": "subscription",
+    "amount": 200,
+    "currency": "USD",
+    "interval": "month",
+    "unit": null,
+    "is_trial": false
+   },
+   {
+    "plan": "Pro",
+    "billing_model": "subscription",
+    "amount": 500,
+    "currency": "USD",
+    "interval": "month",
+    "unit": null,
+    "is_trial": false
+   },
+   {
+    "plan": "Enterprise",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "USD",
+    "interval": null,
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": false,
+  "free_trial": null,
+  "api": true,
+  "mcp": null,
+  "open_source": true,
+  "github_repo": "simular-ai/Agent-S",
+  "notes": "Access described as invite-only. API on Pro/Enterprise. Open source refers to Agent S research framework, not the commercial product. No annual pricing."
+ },
+ {
+  "name": "Amazon Nova Act",
+  "company": "Amazon Web Services",
+  "website": "https://aws.amazon.com/nova/act/",
+  "theme": "Browser & Computer Use",
+  "short_description": "AWS service and SDK for building agents that automate browser UI workflows with natural language.",
+  "capabilities": [
+   "Browser Automation",
+   "Data Extraction",
+   "Test Generation",
+   "Workflow Orchestration"
+  ],
+  "pricing_url": "https://aws.amazon.com/nova/pricing/",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Nova Act",
+    "billing_model": "usage",
+    "amount": 4.75,
+    "currency": "USD",
+    "interval": "per_unit",
+    "unit": "agent hour",
+    "is_trial": false
+   }
+  ],
+  "free_plan": null,
+  "free_trial": null,
+  "api": true,
+  "mcp": null,
+  "open_source": true,
+  "github_repo": "aws/nova-act",
+  "notes": "Generally available. Human-in-the-loop waiting time not billed. 'Test Generation' mapped from web QA testing use case. Free tier not stated."
+ },
+ {
+  "name": "Bytebot",
+  "company": "Bytebot",
+  "website": "https://www.bytebot.ai",
+  "theme": "Browser & Computer Use",
+  "short_description": "Open-source AI desktop agent that runs in a container and operates apps like a human.",
+  "capabilities": [
+   "Computer Use",
+   "Browser Automation",
+   "Document Understanding",
+   "Data Extraction"
+  ],
+  "pricing_url": "https://www.bytebot.ai/",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Self-hosted",
+    "billing_model": "open_source",
+    "amount": 0,
+    "currency": "USD",
+    "interval": null,
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": true,
+  "free_trial": null,
+  "api": null,
+  "mcp": null,
+  "open_source": true,
+  "github_repo": "bytebot-ai/bytebot",
+  "notes": "Apache 2.0; user pays own LLM API and infra costs. No hosted plan pricing shown."
+ },
+ {
+  "name": "Claude in Chrome",
+  "company": "Anthropic",
+  "website": "https://claude.com/chrome",
+  "theme": "Browser & Computer Use",
+  "short_description": "Chrome extension that lets Claude navigate sites, click and fill forms, including scheduled tasks.",
+  "capabilities": [
+   "Browser Automation",
+   "Data Extraction",
+   "Web Research",
+   "Calendar Management",
+   "Email Automation",
+   "CRM Integration"
+  ],
+  "pricing_url": "https://claude.com/pricing",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Pro",
+    "billing_model": "subscription",
+    "amount": 20,
+    "currency": "USD",
+    "interval": "month",
+    "unit": null,
+    "is_trial": false
+   },
+   {
+    "plan": "Max",
+    "billing_model": "subscription",
+    "amount": 100,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "from",
+    "is_trial": false
+   }
+  ],
+  "free_plan": false,
+  "free_trial": null,
+  "api": null,
+  "mcp": null,
+  "open_source": false,
+  "github_repo": null,
+  "notes": "Beta; available to paid subscribers (not Free). Max listed as 'from $100/month'."
+ },
+ {
+  "name": "Axiom.ai",
+  "company": "Axiom.ai",
+  "website": "https://axiom.ai",
+  "theme": "Browser & Computer Use",
+  "short_description": "No-code browser automation bots with AI steps, runnable on desktop or cloud.",
+  "capabilities": [
+   "Browser Automation",
+   "Web Scraping",
+   "Data Extraction",
+   "Spreadsheet Automation",
+   "API Integration"
+  ],
+  "pricing_url": "https://axiom.ai/pricing",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Starter",
+    "billing_model": "subscription",
+    "amount": 15,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "5 runtime hours",
+    "is_trial": false
+   },
+   {
+    "plan": "Pro",
+    "billing_model": "subscription",
+    "amount": 50,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "30 runtime hours",
+    "is_trial": false
+   },
+   {
+    "plan": "Pro Max",
+    "billing_model": "subscription",
+    "amount": 150,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "100 runtime hours",
+    "is_trial": false
+   },
+   {
+    "plan": "Ultimate",
+    "billing_model": "subscription",
+    "amount": 250,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "250 runtime hours",
+    "is_trial": false
+   }
+  ],
+  "free_plan": false,
+  "free_trial": true,
+  "api": true,
+  "mcp": true,
+  "open_source": false,
+  "github_repo": null,
+  "notes": "2 free runtime hours for new accounts, no card (recorded as trial). API and MCP server on Pro and above."
+ },
+ {
+  "name": "Bardeen",
+  "company": "Bardeen",
+  "website": "https://www.bardeen.ai",
+  "theme": "Browser & Computer Use",
+  "short_description": "AI browser automation for scraping, web search and enrichment into Sheets, Airtable and Notion.",
+  "capabilities": [
+   "Web Scraping",
+   "Browser Automation",
+   "Lead Enrichment",
+   "Spreadsheet Automation"
+  ],
+  "pricing_url": "https://www.bardeen.ai/pricing",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Free",
+    "billing_model": "free",
+    "amount": 0,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "100 credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Basic",
+    "billing_model": "subscription",
+    "amount": 10,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "100 credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Premium",
+    "billing_model": "subscription",
+    "amount": 50,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "1,000 credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Enterprise",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "USD",
+    "interval": null,
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": true,
+  "free_trial": null,
+  "api": null,
+  "mcp": null,
+  "open_source": false,
+  "github_repo": null,
+  "notes": "Pricing page does not explicitly mention AI agents/API/MCP; free tier described as 'always 100 credits'. Basic and Free both list 100 credits per page."
+ },
+ {
+  "name": "Firecrawl",
+  "company": "Firecrawl",
+  "website": "https://www.firecrawl.dev",
+  "theme": "Browser & Computer Use",
+  "short_description": "Web data API with an Agent endpoint that searches, navigates and extracts data for AI apps.",
+  "capabilities": [
+   "Web Scraping",
+   "Web Research",
+   "Data Extraction",
+   "API Integration"
+  ],
+  "pricing_url": "https://www.firecrawl.dev/pricing",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Free",
+    "billing_model": "free",
+    "amount": 0,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "1,000 credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Hobby",
+    "billing_model": "subscription",
+    "amount": 16,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "5,000 credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Standard",
+    "billing_model": "subscription",
+    "amount": 83,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "100,000 credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Growth",
+    "billing_model": "subscription",
+    "amount": 333,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "500,000 credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Scale",
+    "billing_model": "subscription",
+    "amount": 599,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "1,000,000 credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Enterprise",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "USD",
+    "interval": null,
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": true,
+  "free_trial": null,
+  "api": true,
+  "mcp": null,
+  "open_source": true,
+  "github_repo": "firecrawl/firecrawl",
+  "notes": "Prices are annual-billed monthly equivalents; monthly-billed rates not captured. Agent endpoint in preview with 5 free daily runs, dynamic pricing. MCP not stated on pricing page."
+ },
+ {
+  "name": "Kernel",
+  "company": "Kernel",
+  "website": "https://www.kernel.sh",
+  "theme": "Browser & Computer Use",
+  "short_description": "Autoscaling cloud browser infrastructure with stealth and managed auth for AI agents.",
+  "capabilities": [
+   "Browser Automation",
+   "API Integration"
+  ],
+  "pricing_url": "https://www.kernel.sh/pricing",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Free",
+    "billing_model": "free",
+    "amount": 0,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "$5 monthly credits + usage",
+    "is_trial": false
+   },
+   {
+    "plan": "Hobbyist",
+    "billing_model": "subscription",
+    "amount": 30,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "+ usage",
+    "is_trial": false
+   },
+   {
+    "plan": "Startup",
+    "billing_model": "subscription",
+    "amount": 200,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "+ usage",
+    "is_trial": false
+   },
+   {
+    "plan": "Usage",
+    "billing_model": "usage",
+    "amount": 1.66667e-05,
+    "currency": "USD",
+    "interval": "per_unit",
+    "unit": "GB-second",
+    "is_trial": false
+   },
+   {
+    "plan": "Enterprise",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "USD",
+    "interval": null,
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": true,
+  "free_trial": null,
+  "api": true,
+  "mcp": null,
+  "open_source": null,
+  "github_repo": null,
+  "notes": "Infrastructure for agents. Page mentions open-source projects but no specific repo verified."
+ },
+ {
+  "name": "Zapier Agents",
+  "company": "Zapier",
+  "website": "https://zapier.com/agents",
+  "theme": "Business Operations",
+  "short_description": "AI agents that act across 8,000+ apps on Zapier's automation platform.",
+  "capabilities": [
+   "Workflow Orchestration",
+   "API Integration",
+   "Email Automation",
+   "CRM Integration",
+   "Lead Enrichment"
+  ],
+  "pricing_url": "https://zapier.com/pricing",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Free",
+    "billing_model": "free",
+    "amount": 0,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "100 tasks",
+    "is_trial": false
+   },
+   {
+    "plan": "Professional",
+    "billing_model": "subscription",
+    "amount": 19.99,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "from; 750+ tasks",
+    "is_trial": false
+   },
+   {
+    "plan": "Team",
+    "billing_model": "subscription",
+    "amount": 69,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "from",
+    "is_trial": false
+   },
+   {
+    "plan": "Agents Free",
+    "billing_model": "free",
+    "amount": 0,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "400 activities",
+    "is_trial": false
+   },
+   {
+    "plan": "Agents Pro",
+    "billing_model": "subscription",
+    "amount": 33.33,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "1,500 activities",
+    "is_trial": false
+   },
+   {
+    "plan": "Enterprise",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "USD",
+    "interval": null,
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": true,
+  "free_trial": true,
+  "api": true,
+  "mcp": true,
+  "open_source": false,
+  "github_repo": null,
+  "notes": "Agents Pro $33.33/mo is annual-billed ($400/yr); monthly rate not captured. 14-day Professional trial. MCP: one tool call = 2 tasks. Capabilities beyond orchestration inferred from integrations; verify."
+ },
+ {
+  "name": "n8n",
+  "company": "n8n",
+  "website": "https://n8n.io",
+  "theme": "Business Operations",
+  "short_description": "Fair-code workflow automation platform with AI agent nodes, self-hostable or cloud.",
+  "capabilities": [
+   "Workflow Orchestration",
+   "API Integration",
+   "Code Generation"
+  ],
+  "pricing_url": "https://n8n.io/pricing/",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Community (self-hosted)",
+    "billing_model": "open_source",
+    "amount": 0,
+    "currency": "USD",
+    "interval": null,
+    "unit": null,
+    "is_trial": false
+   },
+   {
+    "plan": "Starter",
+    "billing_model": "subscription",
+    "amount": 20,
+    "currency": "EUR",
+    "interval": "month",
+    "unit": "2,500 executions",
+    "is_trial": false
+   },
+   {
+    "plan": "Pro",
+    "billing_model": "subscription",
+    "amount": 50,
+    "currency": "EUR",
+    "interval": "month",
+    "unit": "10,000 executions",
+    "is_trial": false
+   },
+   {
+    "plan": "Business",
+    "billing_model": "subscription",
+    "amount": 667,
+    "currency": "EUR",
+    "interval": "month",
+    "unit": "40,000 executions, self-hosted",
+    "is_trial": false
+   },
+   {
+    "plan": "Enterprise",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "EUR",
+    "interval": null,
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": true,
+  "free_trial": true,
+  "api": true,
+  "mcp": true,
+  "open_source": true,
+  "github_repo": "n8n-io/n8n",
+  "notes": "Source-available (Sustainable Use License) rather than OSI open source. Cloud trial without card. 'Code Generation' via custom code steps + AI assistant - weak mapping."
+ },
+ {
+  "name": "Lindy",
+  "company": "Lindy",
+  "website": "https://www.lindy.ai",
+  "theme": "Business Operations",
+  "short_description": "AI assistant agents that handle email, meetings, scheduling and computer-use tasks for teams.",
+  "capabilities": [
+   "Email Automation",
+   "Meeting Scheduling",
+   "Calendar Management",
+   "Computer Use",
+   "Workflow Orchestration",
+   "API Integration"
+  ],
+  "pricing_url": "https://www.lindy.ai/pricing",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Plus",
+    "billing_model": "seat",
+    "amount": 29.99,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "per user, 3,000 credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Pro",
+    "billing_model": "seat",
+    "amount": 99.99,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "per user, 15,000 credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Max",
+    "billing_model": "seat",
+    "amount": 199.99,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "per user, 35,000 credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Enterprise",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "USD",
+    "interval": null,
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": false,
+  "free_trial": true,
+  "api": null,
+  "mcp": true,
+  "open_source": false,
+  "github_repo": null,
+  "notes": "7-day trial only for members joining via Slack; direct signups billed immediately. 1,000+ integrations."
+ },
+ {
+  "name": "Relevance AI",
+  "company": "Relevance AI",
+  "website": "https://relevanceai.com",
+  "theme": "Business Operations",
+  "short_description": "Platform to build an 'AI workforce' of specialist agents for sales, support, marketing and HR.",
+  "capabilities": [
+   "Workflow Orchestration",
+   "Lead Enrichment",
+   "Voice Calls",
+   "Meeting Scheduling",
+   "CRM Integration",
+   "API Integration"
+  ],
+  "pricing_url": "https://relevanceai.com/pricing",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Enterprise",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "USD",
+    "interval": null,
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": null,
+  "free_trial": null,
+  "api": true,
+  "mcp": true,
+  "open_source": false,
+  "github_repo": null,
+  "notes": "Pricing page shows only Enterprise (talk to sales); self-serve tiers not shown. API and MCP referenced in site footer/docs."
+ },
+ {
+  "name": "Gumloop",
+  "company": "Gumloop",
+  "website": "https://www.gumloop.com",
+  "theme": "Business Operations",
+  "short_description": "No-code platform for building AI agents and workflows that automate business tasks.",
+  "capabilities": [
+   "Workflow Orchestration",
+   "API Integration",
+   "Web Scraping",
+   "Data Extraction"
+  ],
+  "pricing_url": "https://www.gumloop.com/pricing",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Pro",
+    "billing_model": "subscription",
+    "amount": 37,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "20,000 credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Enterprise",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "USD",
+    "interval": null,
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": null,
+  "free_trial": true,
+  "api": null,
+  "mcp": true,
+  "open_source": false,
+  "github_repo": null,
+  "notes": "14-day free trial; 8% orchestration fee on Pro; MCP server hosting included. Free plan not shown. Capabilities beyond orchestration inferred; verify."
+ },
+ {
+  "name": "Make AI Agents",
+  "company": "Make",
+  "website": "https://www.make.com",
+  "theme": "Business Operations",
+  "short_description": "Visual automation platform with AI agents that act inside Make scenarios.",
+  "capabilities": [
+   "Workflow Orchestration",
+   "API Integration"
+  ],
+  "pricing_url": "https://www.make.com/en/pricing",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Free",
+    "billing_model": "free",
+    "amount": 0,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "1,000 credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Core",
+    "billing_model": "subscription",
+    "amount": 12,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "10,000 credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Pro",
+    "billing_model": "subscription",
+    "amount": 21,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "10,000 credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Teams",
+    "billing_model": "subscription",
+    "amount": 38,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "10,000 credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Enterprise",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "USD",
+    "interval": null,
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": true,
+  "free_trial": true,
+  "api": true,
+  "mcp": true,
+  "open_source": false,
+  "github_repo": null,
+  "notes": "Make AI Agents in beta on all plans. Assumed listed prices are monthly-billed (annual saves 15%+)."
+ },
+ {
+  "name": "Juicebox",
+  "company": "Juicebox",
+  "website": "https://juicebox.ai",
+  "theme": "Business Operations",
+  "short_description": "AI recruiting search (PeopleGPT) with autonomous agents that source, shortlist and email candidates.",
+  "capabilities": [
+   "Candidate Sourcing",
+   "Outreach Sequencing",
+   "Email Automation",
+   "CRM Integration",
+   "Lead Enrichment"
+  ],
+  "pricing_url": "https://juicebox.ai/pricing",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Free",
+    "billing_model": "free",
+    "amount": 0,
+    "currency": "USD",
+    "interval": "month",
+    "unit": null,
+    "is_trial": false
+   },
+   {
+    "plan": "Starter",
+    "billing_model": "seat",
+    "amount": 99,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "per seat",
+    "is_trial": false
+   },
+   {
+    "plan": "Growth",
+    "billing_model": "seat",
+    "amount": 179,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "per seat",
+    "is_trial": false
+   },
+   {
+    "plan": "Business",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "USD",
+    "interval": null,
+    "unit": "annual only",
+    "is_trial": false
+   },
+   {
+    "plan": "Juicebox Agents add-on",
+    "billing_model": "subscription",
+    "amount": 199,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "per agent",
+    "is_trial": false
+   }
+  ],
+  "free_plan": true,
+  "free_trial": null,
+  "api": null,
+  "mcp": null,
+  "open_source": false,
+  "github_repo": null,
+  "notes": "ATS/CRM integration (41 ATS, 21 CRMs) on Business. API/MCP not listed."
+ },
+ {
+  "name": "Paradox (Olivia)",
+  "company": "Paradox",
+  "website": "https://www.paradox.ai",
+  "theme": "Business Operations",
+  "short_description": "Conversational recruiting agent Olivia that screens, schedules and onboards candidates via chat/SMS.",
+  "capabilities": [
+   "Resume Screening",
+   "Meeting Scheduling",
+   "Customer Chat",
+   "API Integration"
+  ],
+  "pricing_url": "https://www.paradox.ai/",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Enterprise",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "USD",
+    "interval": null,
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": null,
+  "free_trial": null,
+  "api": true,
+  "mcp": null,
+  "open_source": false,
+  "github_repo": null,
+  "notes": "No public pricing; demo-driven. 'Open API' mentioned. Customer Chat maps candidate conversational chat."
+ },
+ {
+  "name": "Ribbon",
+  "company": "Ribbon",
+  "website": "https://www.ribbon.ai",
+  "theme": "Business Operations",
+  "short_description": "AI voice and video interviewer that screens candidates at scale with ATS integrations.",
+  "capabilities": [
+   "Resume Screening",
+   "Voice Calls",
+   "Speech Transcription",
+   "Outreach Sequencing",
+   "API Integration"
+  ],
+  "pricing_url": "https://www.ribbon.ai/pricing",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Growth",
+    "billing_model": "subscription",
+    "amount": 499,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "100 interviews",
+    "is_trial": false
+   },
+   {
+    "plan": "Business",
+    "billing_model": "subscription",
+    "amount": 999,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "400 interviews",
+    "is_trial": false
+   },
+   {
+    "plan": "Scale",
+    "billing_model": "subscription",
+    "amount": 1999,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "1,000 interviews",
+    "is_trial": false
+   },
+   {
+    "plan": "Overage",
+    "billing_model": "usage",
+    "amount": 4,
+    "currency": "USD",
+    "interval": "per_unit",
+    "unit": "interview (Growth)",
+    "is_trial": false
+   },
+   {
+    "plan": "Enterprise",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "USD",
+    "interval": null,
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": false,
+  "free_trial": null,
+  "api": true,
+  "mcp": null,
+  "open_source": false,
+  "github_repo": null,
+  "notes": "All prices billed annually (monthly equivalent). Overage $3 Business, $2.50 Scale. Speech Transcription inferred from interview analytics - verify."
+ },
+ {
+  "name": "Tezi (Max)",
+  "company": "Tezi",
+  "website": "https://tezi.ai",
+  "theme": "Business Operations",
+  "short_description": "Autonomous AI recruiter 'Max' that sources, screens and schedules candidates via Slack and email.",
+  "capabilities": [
+   "Candidate Sourcing",
+   "Resume Screening",
+   "Meeting Scheduling",
+   "Email Automation"
+  ],
+  "pricing_url": "https://tezi.ai/",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Custom",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "USD",
+    "interval": null,
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": null,
+  "free_trial": null,
+  "api": null,
+  "mcp": null,
+  "open_source": false,
+  "github_repo": null,
+  "notes": "Priced by number of planned hires; contact sales. Includes built-in ATS and 750M profiles."
+ },
+ {
+  "name": "Spellbook",
+  "company": "Spellbook",
+  "website": "https://spellbook.com",
+  "theme": "Business Operations",
+  "short_description": "AI contract drafting and review in Word, with an 'Associate' multi-document legal agent.",
+  "capabilities": [
+   "Document Understanding",
+   "Content Writing",
+   "Summarization"
+  ],
+  "pricing_url": "https://spellbook.com/pricing",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Law Firms / In-House",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "USD",
+    "interval": null,
+    "unit": "per team member",
+    "is_trial": false
+   }
+  ],
+  "free_plan": false,
+  "free_trial": true,
+  "api": null,
+  "mcp": null,
+  "open_source": false,
+  "github_repo": null,
+  "notes": "7-day free trial; custom per-team pricing. Features: review, redlining, drafting, benchmarking, playbooks."
+ },
+ {
+  "name": "Harvey",
+  "company": "Harvey",
+  "website": "https://www.harvey.ai",
+  "theme": "Business Operations",
+  "short_description": "Legal AI platform with agents for contract review, legal research and end-to-end legal workflows.",
+  "capabilities": [
+   "Document Understanding",
+   "Web Research",
+   "Summarization",
+   "Content Writing",
+   "Workflow Orchestration"
+  ],
+  "pricing_url": "https://www.harvey.ai/",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Enterprise",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "USD",
+    "interval": null,
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": null,
+  "free_trial": null,
+  "api": null,
+  "mcp": null,
+  "open_source": false,
+  "github_repo": null,
+  "notes": "No public pricing page; demo only. API not documented on homepage."
+ },
+ {
+  "name": "Luminance",
+  "company": "Luminance",
+  "website": "https://www.luminance.com",
+  "theme": "Business Operations",
+  "short_description": "Legal AI that reviews contracts and autonomously generates negotiation markups from playbooks.",
+  "capabilities": [
+   "Document Understanding",
+   "Workflow Orchestration"
+  ],
+  "pricing_url": "https://www.luminance.com/autonomous-negotiation/",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Enterprise",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "USD",
+    "interval": null,
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": null,
+  "free_trial": null,
+  "api": null,
+  "mcp": null,
+  "open_source": false,
+  "github_repo": null,
+  "notes": "No public pricing; demo only. Launched 'Agent Lumi' agentic assistant (press release)."
+ },
+ {
+  "name": "LegalOn",
+  "company": "LegalOn Technologies",
+  "website": "https://www.legalontech.com",
+  "theme": "Business Operations",
+  "short_description": "AI contract review and redlining against 135+ playbooks, plus legal matter intake triage.",
+  "capabilities": [
+   "Document Understanding",
+   "Ticket Triage",
+   "Workflow Orchestration"
+  ],
+  "pricing_url": "https://www.legalontech.com/pricing",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Core Review",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "USD",
+    "interval": null,
+    "unit": "per seat",
+    "is_trial": false
+   },
+   {
+    "plan": "Contracting Suite",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "USD",
+    "interval": null,
+    "unit": "per seat",
+    "is_trial": false
+   },
+   {
+    "plan": "Productivity Suite",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "USD",
+    "interval": null,
+    "unit": "per seat",
+    "is_trial": false
+   }
+  ],
+  "free_plan": null,
+  "free_trial": null,
+  "api": null,
+  "mcp": null,
+  "open_source": false,
+  "github_repo": null,
+  "notes": "Per-seat custom quotes; no amounts shown. Ticket Triage maps matter intake and triage."
+ },
+ {
+  "name": "Ironclad (Jurist agents)",
+  "company": "Ironclad",
+  "website": "https://ironcladapp.com",
+  "theme": "Business Operations",
+  "short_description": "Contract lifecycle platform with AI agents for intake, playbook redlining and contract search.",
+  "capabilities": [
+   "Document Understanding",
+   "Data Extraction",
+   "Knowledge Base QA",
+   "Workflow Orchestration"
+  ],
+  "pricing_url": "https://ironcladapp.com/resources/articles/ai-agentic-launch",
+  "pricing_verified": false,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Enterprise",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "USD",
+    "interval": null,
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": null,
+  "free_trial": null,
+  "api": null,
+  "mcp": null,
+  "open_source": false,
+  "github_repo": null,
+  "notes": "No pricing page reached; enterprise_quote assumed from demo-based sales. Agents: Intake, Redlining, Conversational Search, Jurist."
+ },
+ {
+  "name": "Zip",
+  "company": "Zip",
+  "website": "https://zip.com",
+  "theme": "Business Operations",
+  "short_description": "Procurement orchestration platform with AI agents for intake, approvals, contract and vendor risk review.",
+  "capabilities": [
+   "Procurement",
+   "Document Understanding",
+   "Workflow Orchestration"
+  ],
+  "pricing_url": "https://zip.com/solutions/procurement",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Enterprise",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "USD",
+    "interval": null,
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": null,
+  "free_trial": null,
+  "api": null,
+  "mcp": null,
+  "open_source": false,
+  "github_repo": null,
+  "notes": "No public pricing; demo only. Domain moved from ziphq.com to zip.com. Markets 'Superagents' / 50+ AI agents."
+ },
+ {
+  "name": "Pactum",
+  "company": "Pactum",
+  "website": "https://pactum.com",
+  "theme": "Business Operations",
+  "short_description": "Autonomous procurement agents that handle intake, policy checks, sourcing and supplier negotiation.",
+  "capabilities": [
+   "Procurement",
+   "Workflow Orchestration"
+  ],
+  "pricing_url": "https://pactum.com/procurement-agents",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Enterprise",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "USD",
+    "interval": null,
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": null,
+  "free_trial": null,
+  "api": null,
+  "mcp": null,
+  "open_source": false,
+  "github_repo": null,
+  "notes": "No public pricing; demo only."
+ },
+ {
+  "name": "Ramp (AI agents)",
+  "company": "Ramp",
+  "website": "https://ramp.com",
+  "theme": "Business Operations",
+  "short_description": "Spend platform with AI agents for AP, expense review, approvals and procurement.",
+  "capabilities": [
+   "Procurement",
+   "Invoicing",
+   "Bookkeeping",
+   "Payments",
+   "Workflow Orchestration"
+  ],
+  "pricing_url": "https://ramp.com/pricing",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Ramp Free",
+    "billing_model": "free",
+    "amount": 0,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "per user",
+    "is_trial": false
+   },
+   {
+    "plan": "Ramp Plus",
+    "billing_model": "seat",
+    "amount": 15,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "per user + platform fee",
+    "is_trial": false
+   },
+   {
+    "plan": "Enterprise",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "USD",
+    "interval": null,
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": true,
+  "free_trial": null,
+  "api": null,
+  "mcp": null,
+  "open_source": false,
+  "github_repo": null,
+  "notes": "Procurement Agent is an add-on to Plus/Enterprise (price not shown). Plus: 20% off annual. Which agents are in Free not specified. Invoicing/Payments mapped from AP features."
+ },
+ {
+  "name": "Shopify Sidekick",
+  "company": "Shopify",
+  "website": "https://www.shopify.com/sidekick",
+  "theme": "Business Operations",
+  "short_description": "AI assistant in Shopify admin that analyzes data, manages orders/products and builds store content.",
+  "capabilities": [
+   "E-commerce Management",
+   "Data Analysis",
+   "Content Writing",
+   "SEO Optimization",
+   "Image Generation",
+   "Email Automation"
+  ],
+  "pricing_url": "https://www.shopify.com/sidekick",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Included with Shopify plan",
+    "billing_model": "free",
+    "amount": 0,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "requires paid Shopify plan",
+    "is_trial": false
+   }
+  ],
+  "free_plan": null,
+  "free_trial": null,
+  "api": null,
+  "mcp": null,
+  "open_source": false,
+  "github_repo": null,
+  "notes": "Included with Shopify plans; features and usage limits vary by plan. Store subscription itself is not free."
+ },
+ {
+  "name": "Dust",
+  "company": "Dust",
+  "website": "https://dust.tt",
+  "theme": "Business Operations",
+  "short_description": "Platform for teams to build custom AI agents connected to company data and tools via MCP.",
+  "capabilities": [
+   "Knowledge Base QA",
+   "Workflow Orchestration",
+   "Data Analysis",
+   "API Integration"
+  ],
+  "pricing_url": "https://dust.tt/home/pricing",
+  "pricing_verified": true,
+  "checked_at": "2026-09-30",
+  "plans": [
+   {
+    "plan": "Free",
+    "billing_model": "free",
+    "amount": 0,
+    "currency": "EUR",
+    "interval": null,
+    "unit": "500 lifetime credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Pro",
+    "billing_model": "subscription",
+    "amount": 24,
+    "currency": "EUR",
+    "interval": "month",
+    "unit": "8,000 credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Max",
+    "billing_model": "subscription",
+    "amount": 120,
+    "currency": "EUR",
+    "interval": "month",
+    "unit": "40,000 credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Enterprise",
+    "billing_model": "enterprise_quote",
+    "amount": null,
+    "currency": "EUR",
+    "interval": null,
+    "unit": null,
+    "is_trial": false
+   }
+  ],
+  "free_plan": true,
+  "free_trial": null,
+  "api": null,
+  "mcp": true,
+  "open_source": null,
+  "github_repo": null,
+  "notes": "Pro/Max prices shown are yearly-billed monthly equivalents; monthly-billed rates not captured. Up to 5 MCP servers on Business plans. Unclear if per user."
+ }
+]

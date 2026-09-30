@@ -1,0 +1,2068 @@
+[
+  {
+    "name": "Digits",
+    "company": "Digits",
+    "website": "https://digits.com",
+    "theme": "Finance",
+    "short_description": "AI bookkeeping platform that categorizes, reconciles and closes books continuously.",
+    "capabilities": [
+      "Bookkeeping",
+      "Invoicing",
+      "Payments",
+      "Report Generation",
+      "API Integration"
+    ],
+    "pricing_url": "https://digits.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Essentials",
+        "billing_model": "subscription",
+        "amount": 65,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Core",
+        "billing_model": "subscription",
+        "amount": 100,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "subscription",
+        "amount": 250,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": false,
+    "free_trial": true,
+    "api": true,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Pro plan listed as 'coming soon'. No per-seat fees; multi-entity needs separate subscriptions. 30-day trial. Developer API & MCP advertised on pricing page."
+  },
+  {
+    "name": "Vic.ai",
+    "company": "Vic.ai",
+    "website": "https://www.vic.ai",
+    "theme": "Finance",
+    "short_description": "Autonomous accounts-payable platform with AI agents for invoice processing, approvals and payments.",
+    "capabilities": [
+      "Invoicing",
+      "Data Extraction",
+      "Document Understanding",
+      "Payments",
+      "Workflow Orchestration"
+    ],
+    "pricing_url": "https://www.vic.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Custom",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "No public prices; demo request only. Products: VicInbox, VicPay, VicCard, VicAnalytics, VicAgents."
+  },
+  {
+    "name": "Ramp",
+    "company": "Ramp",
+    "website": "https://ramp.com",
+    "theme": "Finance",
+    "short_description": "Spend management platform with AI agents for expense review, AP coding and approvals.",
+    "capabilities": [
+      "Bookkeeping",
+      "Payments",
+      "Procurement",
+      "Invoicing",
+      "Travel Booking",
+      "API Integration"
+    ],
+    "pricing_url": "https://ramp.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Plus",
+        "billing_model": "seat",
+        "amount": 15,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": true,
+    "api": true,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Plus is $15/user/month plus a platform fee based on team size (not published); 20% off annual. Procurement is an add-on. MCP documented at support.ramp.com/ramp-mcp. Travel Booking capability based on Ramp Travel product (not on pricing page) - verify."
+  },
+  {
+    "name": "Brex",
+    "company": "Brex",
+    "website": "https://www.brex.com",
+    "theme": "Finance",
+    "short_description": "Corporate card and spend platform with an AI expense assistant and automated bill pay.",
+    "capabilities": [
+      "Payments",
+      "Bookkeeping",
+      "Travel Booking",
+      "API Integration"
+    ],
+    "pricing_url": "https://www.brex.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Essentials",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Premium",
+        "billing_model": "seat",
+        "amount": 12,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": true,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "AI features: AI expense assistant, auto-filled expense reports, AI compliance audit (Premium+). Agentic depth lighter than dedicated AP agents. Premium billing interval (monthly vs annual) not stated."
+  },
+  {
+    "name": "Booke AI",
+    "company": "Booke AI",
+    "website": "https://booke.ai",
+    "theme": "Finance",
+    "short_description": "AI bookkeeper for QuickBooks and Xero that categorizes and reconciles transactions.",
+    "capabilities": [
+      "Bookkeeping",
+      "Data Extraction",
+      "Document Understanding",
+      "Report Generation",
+      "Email Automation"
+    ],
+    "pricing_url": "https://booke.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "AI Bookkeeper (Business)",
+        "billing_model": "subscription",
+        "amount": 129,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "business",
+        "is_trial": false
+      },
+      {
+        "plan": "Accounting Firms",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "$129 per business/month; monthly/annual toggle shown but annual price not captured. Firm pricing by request. No public API documented."
+  },
+  {
+    "name": "Stampli",
+    "company": "Stampli",
+    "website": "https://www.stampli.com",
+    "theme": "Finance",
+    "short_description": "AP automation platform where its Billy AI agent captures, codes and matches invoices.",
+    "capabilities": [
+      "Invoicing",
+      "Data Extraction",
+      "Payments",
+      "Procurement",
+      "Workflow Orchestration"
+    ],
+    "pricing_url": "https://www.stampli.com/pricing/",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Stampli for Accounts Payable",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Quote-based. Add-ons: Procurement, Direct Pay, Credit Card, Advanced Vendor Management."
+  },
+  {
+    "name": "Tipalti",
+    "company": "Tipalti",
+    "website": "https://tipalti.com",
+    "theme": "Finance",
+    "short_description": "Payables automation with AI agents for invoice scanning, bill approvals and reporting.",
+    "capabilities": [
+      "Invoicing",
+      "Payments",
+      "Data Extraction",
+      "Report Generation",
+      "Procurement",
+      "API Integration"
+    ],
+    "pricing_url": "https://tipalti.com/pricing/",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Accounts Payable",
+        "billing_model": "subscription",
+        "amount": 99,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Mass Payments",
+        "billing_model": "subscription",
+        "amount": 249,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": true,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Prices are 'starting at' plus per-invoice/per-payment transaction fees; custom quotes for exact pricing. Procurement, Expenses, Treasury add-ons."
+  },
+  {
+    "name": "Rillet",
+    "company": "Rillet",
+    "website": "https://www.rillet.com",
+    "theme": "Finance",
+    "short_description": "AI-native ERP and general ledger with Aura AI to automate accounting close.",
+    "capabilities": [
+      "Bookkeeping",
+      "Invoicing",
+      "Report Generation",
+      "API Integration"
+    ],
+    "pricing_url": "https://www.rillet.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Custom",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": true,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Quote-based via demo. API docs at docs.api.rillet.com. Agent capabilities of Aura AI not detailed on the page."
+  },
+  {
+    "name": "Hebbia",
+    "company": "Hebbia",
+    "website": "https://www.hebbia.com",
+    "theme": "Finance",
+    "short_description": "AI agent platform for investment professionals to analyze filings, data rooms and documents.",
+    "capabilities": [
+      "Document Understanding",
+      "Data Extraction",
+      "Data Analysis",
+      "Web Research",
+      "Report Generation"
+    ],
+    "pricing_url": "https://www.hebbia.com",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Custom",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "No pricing page; demo request only. Products: Matrix and Max. Integrates SEC filings, FactSet, S&P Capital IQ, PitchBook."
+  },
+  {
+    "name": "AlphaSense",
+    "company": "AlphaSense",
+    "website": "https://www.alpha-sense.com",
+    "theme": "Finance",
+    "short_description": "Market intelligence platform with generative search and workflow agents for financial research.",
+    "capabilities": [
+      "Web Research",
+      "Document Understanding",
+      "Summarization",
+      "Report Generation",
+      "Competitor Monitoring"
+    ],
+    "pricing_url": "https://www.alpha-sense.com/pricing/",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Market Intelligence",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise Intelligence",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Annual subscriptions, custom quotes. Homepage has 'Get Started for Free' CTA but no documented free plan/trial."
+  },
+  {
+    "name": "Rogo",
+    "company": "Rogo",
+    "website": "https://rogo.com",
+    "theme": "Finance",
+    "short_description": "AI agents for bankers and investors that produce models, memos and decks from financial data.",
+    "capabilities": [
+      "Web Research",
+      "Data Analysis",
+      "Spreadsheet Automation",
+      "Report Generation",
+      "Document Understanding"
+    ],
+    "pricing_url": "https://rogo.com/demo",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Custom",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "rogo.ai redirects to rogo.com. No pricing page; demo only."
+  },
+  {
+    "name": "Zeni",
+    "company": "Zeni",
+    "website": "https://www.zeni.ai",
+    "theme": "Finance",
+    "short_description": "AI bookkeeping and finance service for startups with AI bill pay and reimbursements.",
+    "capabilities": [
+      "Bookkeeping",
+      "Payments",
+      "Report Generation"
+    ],
+    "pricing_url": "https://www.zeni.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Starter",
+        "billing_model": "subscription",
+        "amount": 494,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Growth",
+        "billing_model": "subscription",
+        "amount": 719,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Listed prices are billed annually ($549/$799 per month list before 10% annual discount); monthly-billed availability unclear. Hybrid AI + human finance team. Add-ons: CFO, tax, payroll."
+  },
+  {
+    "name": "Docyt",
+    "company": "Docyt",
+    "website": "https://docyt.com",
+    "theme": "Finance",
+    "short_description": "AI accounting automation with agents for continuous close, reconciliation and reporting.",
+    "capabilities": [
+      "Bookkeeping",
+      "Payments",
+      "Forecasting",
+      "Report Generation",
+      "Data Extraction"
+    ],
+    "pricing_url": "https://docyt.com/pricing/",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Accounting Suite",
+        "billing_model": "subscription",
+        "amount": 299,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "property",
+        "is_trial": false
+      },
+      {
+        "plan": "Daily Flash (BI)",
+        "billing_model": "subscription",
+        "amount": 100,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "location",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise Suite",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "$299/property/month is 'starting at', monthly billing on annual plans. Payments and BI suites add-on prices not listed. Claims 16 AI agents."
+  },
+  {
+    "name": "Puzzle",
+    "company": "Puzzle",
+    "website": "https://puzzle.io",
+    "theme": "Finance",
+    "short_description": "AI-powered accounting software that auto-categorizes transactions and drafts financial statements.",
+    "capabilities": [
+      "Bookkeeping",
+      "Report Generation",
+      "Data Analysis"
+    ],
+    "pricing_url": "https://puzzle.io/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Starter",
+        "billing_model": "subscription",
+        "amount": 30,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Core",
+        "billing_model": "subscription",
+        "amount": 72,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Complete",
+        "billing_model": "subscription",
+        "amount": 120,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Scale",
+        "billing_model": "subscription",
+        "amount": 360,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Expert Reviewed",
+        "billing_model": "subscription",
+        "amount": 171,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Full Service",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": true,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Free trial mentioned. Monthly/yearly toggle; whether shown prices are monthly-billed not confirmed. AI credits vary by plan."
+  },
+  {
+    "name": "Datarails",
+    "company": "Datarails",
+    "website": "https://www.datarails.com",
+    "theme": "Finance",
+    "short_description": "Excel-native FP&A platform with AI agents for recurring analyses and board-ready reports.",
+    "capabilities": [
+      "Spreadsheet Automation",
+      "Forecasting",
+      "Report Generation",
+      "Data Analysis"
+    ],
+    "pricing_url": "https://www.datarails.com/pricing/",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Professional",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Premium",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Expert",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "All tiers quote-based. 'FinanceOS AI Connector' exposes data to external AI tools (protocol not specified)."
+  },
+  {
+    "name": "Numeric",
+    "company": "Numeric",
+    "website": "https://www.numeric.io",
+    "theme": "Finance",
+    "short_description": "AI-powered close management and financial data platform with agentic reconciliation and analysis.",
+    "capabilities": [
+      "Bookkeeping",
+      "Invoicing",
+      "Report Generation",
+      "Data Analysis",
+      "Data Extraction"
+    ],
+    "pricing_url": "https://www.numeric.io/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Custom",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Custom pricing based on transactions and seats. In-app AI 'Prism'."
+  },
+  {
+    "name": "FinRobot",
+    "company": "AI4Finance Foundation",
+    "website": "https://github.com/AI4Finance-Foundation/FinRobot",
+    "theme": "Finance",
+    "short_description": "Open-source multi-agent framework that generates equity research reports and valuations.",
+    "capabilities": [
+      "Report Generation",
+      "Forecasting",
+      "Data Analysis",
+      "Web Research"
+    ],
+    "pricing_url": "https://github.com/AI4Finance-Foundation/FinRobot",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Open source",
+        "billing_model": "open_source",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": true,
+    "github_repo": "AI4Finance-Foundation/FinRobot",
+    "notes": "Apache-2.0, ~7.8k stars. Requires own LLM API keys. Desktop v0.1.0 for macOS."
+  },
+  {
+    "name": "Basis",
+    "company": "Basis",
+    "website": "https://www.getbasis.ai",
+    "theme": "Finance",
+    "short_description": "AI agents for accounting firms that run closes, tax prep and audit procedures end-to-end.",
+    "capabilities": [
+      "Bookkeeping",
+      "Document Understanding",
+      "Report Generation",
+      "Workflow Orchestration"
+    ],
+    "pricing_url": "https://www.getbasis.ai",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Custom",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "No pricing page; demo/waitlist signup. Targets accounting firms."
+  },
+  {
+    "name": "Abacum",
+    "company": "Abacum",
+    "website": "https://www.abacum.ai",
+    "theme": "Finance",
+    "short_description": "AI-native FP&A platform for forecasting, scenario planning and automated performance summaries.",
+    "capabilities": [
+      "Forecasting",
+      "Data Analysis",
+      "Report Generation",
+      "Spreadsheet Automation",
+      "Summarization"
+    ],
+    "pricing_url": "https://www.abacum.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Custom",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Quote-based via demo. Pricing URL content resembled homepage; no prices published."
+  },
+  {
+    "name": "OpenBB Workspace",
+    "company": "OpenBB",
+    "website": "https://openbb.co",
+    "theme": "Finance",
+    "short_description": "Financial research workspace with an AI copilot and custom agents over market data.",
+    "capabilities": [
+      "Data Analysis",
+      "Web Research",
+      "Report Generation",
+      "API Integration"
+    ],
+    "pricing_url": "https://openbb.co/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Community",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Lite",
+        "billing_model": "subscription",
+        "amount": 1200,
+        "currency": "USD",
+        "interval": "year",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Snowflake",
+        "billing_model": "seat",
+        "amount": 500,
+        "currency": "USD",
+        "interval": "year",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": null,
+    "mcp": true,
+    "open_source": null,
+    "github_repo": "OpenBB-finance/OpenBB",
+    "notes": "Lite $1,200/yr shown as 50% promo 'until Aug 31' (may be stale). Open Data Platform is open source; Workspace is proprietary with announced plans to open-source -> open_source null. Community: 20 Copilot queries/day. Workspace MCP server."
+  },
+  {
+    "name": "Superhuman Mail",
+    "company": "Superhuman",
+    "website": "https://superhuman.com",
+    "theme": "Productivity",
+    "short_description": "AI email client that auto-drafts replies, labels, archives and reminds you to follow up.",
+    "capabilities": [
+      "Email Automation",
+      "Summarization",
+      "Content Writing",
+      "Calendar Management",
+      "CRM Integration"
+    ],
+    "pricing_url": "https://superhuman.com/plans",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Business",
+        "billing_model": "seat",
+        "amount": 40,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": null,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Mail only in Business/Enterprise tiers of Superhuman Suite; $33/mo if billed annually. Free/Pro suite tiers exclude Mail. 'Mail MCP' listed."
+  },
+  {
+    "name": "Shortwave",
+    "company": "Shortwave",
+    "website": "https://www.shortwave.com",
+    "theme": "Productivity",
+    "short_description": "Gmail client with an AI assistant that searches, drafts, filters and organizes your inbox.",
+    "capabilities": [
+      "Email Automation",
+      "Summarization",
+      "Content Writing",
+      "Calendar Management",
+      "Web Research"
+    ],
+    "pricing_url": "https://www.shortwave.com/pricing/",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Business",
+        "billing_model": "seat",
+        "amount": 30,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Premier",
+        "billing_model": "seat",
+        "amount": 45,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Max",
+        "billing_model": "seat",
+        "amount": 120,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": true,
+    "api": null,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Monthly billing prices. 14-day trial. Permanent free tier not confirmed."
+  },
+  {
+    "name": "Fyxer AI",
+    "company": "Fyxer",
+    "website": "https://www.fyxer.com",
+    "theme": "Productivity",
+    "short_description": "AI executive assistant that sorts your inbox, drafts replies and writes meeting follow-ups.",
+    "capabilities": [
+      "Email Automation",
+      "Content Writing",
+      "Speech Transcription",
+      "Summarization"
+    ],
+    "pricing_url": "https://www.fyxer.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "seat",
+        "amount": 49,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Team",
+        "billing_model": "seat",
+        "amount": 99,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": true,
+    "api": true,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Page showed $37/$64 per month billed annually vs $49/$99 standard; recorded $49/$99 as monthly - verify. Credit-based (Free 400/mo). API on Enterprise only."
+  },
+  {
+    "name": "Lindy",
+    "company": "Lindy",
+    "website": "https://www.lindy.ai",
+    "theme": "Productivity",
+    "short_description": "AI assistant that manages inbox, calendar, meeting notes and tasks through Slack or iMessage.",
+    "capabilities": [
+      "Email Automation",
+      "Meeting Scheduling",
+      "Calendar Management",
+      "Speech Transcription",
+      "Summarization",
+      "Computer Use",
+      "Workflow Orchestration",
+      "API Integration"
+    ],
+    "pricing_url": "https://www.lindy.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Plus",
+        "billing_model": "seat",
+        "amount": 29.99,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "seat",
+        "amount": 99.99,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Max",
+        "billing_model": "seat",
+        "amount": 199.99,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": true,
+    "api": null,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Credit-based (3k/15k/35k credits/user/month). 7-day trial only for teammates joining via Slack; direct signups billed immediately."
+  },
+  {
+    "name": "Inbox Zero",
+    "company": "Inbox Zero",
+    "website": "https://www.getinboxzero.com",
+    "theme": "Productivity",
+    "short_description": "Open-source AI email assistant that sorts, labels, drafts replies and blocks cold email.",
+    "capabilities": [
+      "Email Automation",
+      "Content Writing",
+      "Summarization",
+      "Speech Transcription"
+    ],
+    "pricing_url": "https://www.getinboxzero.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Starter",
+        "billing_model": "seat",
+        "amount": 20,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Plus",
+        "billing_model": "seat",
+        "amount": 35,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Professional",
+        "billing_model": "seat",
+        "amount": 50,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": true,
+    "api": null,
+    "mcp": null,
+    "open_source": true,
+    "github_repo": "elie222/inbox-zero",
+    "notes": "Up to 20% off annual. Self-hostable open-source repo. 7-day trial on Starter."
+  },
+  {
+    "name": "Motion",
+    "company": "Motion",
+    "website": "https://www.usemotion.com",
+    "theme": "Productivity",
+    "short_description": "AI calendar and project manager that auto-schedules tasks and meetings into your day.",
+    "capabilities": [
+      "Calendar Management",
+      "Meeting Scheduling",
+      "Content Writing",
+      "Speech Transcription"
+    ],
+    "pricing_url": "https://www.usemotion.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Pro AI",
+        "billing_model": "seat",
+        "amount": 19,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Business AI",
+        "billing_model": "seat",
+        "amount": 29,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": true,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Listed as monthly-billing prices; annual saves 33% (unusually low monthly - verify). Credits: 7.5k/15k per seat; extra credits $0.25/$0.19 per 100."
+  },
+  {
+    "name": "Reclaim.ai",
+    "company": "Reclaim.ai",
+    "website": "https://reclaim.ai",
+    "theme": "Productivity",
+    "short_description": "AI calendar assistant that auto-schedules focus time, habits, tasks and meetings.",
+    "capabilities": [
+      "Calendar Management",
+      "Meeting Scheduling"
+    ],
+    "pricing_url": "https://reclaim.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Lite",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Starter",
+        "billing_model": "seat",
+        "amount": 12,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Business",
+        "billing_model": "seat",
+        "amount": 18,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "seat",
+        "amount": 22,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Extracted page listed $10/$15 and $12/$18 with monthly/annual labels apparently swapped; recorded higher figures as monthly-billed - verify. Enterprise $22 annual only, contact sales. Recommended by Clockwise as migration path."
+  },
+  {
+    "name": "Howie",
+    "company": "Howie",
+    "website": "https://howie.com",
+    "theme": "Productivity",
+    "short_description": "AI calendar secretary that schedules meetings over email, SMS and iMessage.",
+    "capabilities": [
+      "Meeting Scheduling",
+      "Calendar Management",
+      "Email Automation"
+    ],
+    "pricing_url": "https://howie.com",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Team",
+        "billing_model": "subscription",
+        "amount": 25,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": true,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Team includes 1,250 credits/month, unlimited teammates; custom assistant email +$20/month. Free starter credits ($25 value) recorded as free_trial. /pricing returned 404; prices taken from homepage."
+  },
+  {
+    "name": "Otter.ai",
+    "company": "Otter.ai",
+    "website": "https://otter.ai",
+    "theme": "Productivity",
+    "short_description": "AI meeting agent that transcribes, summarizes and answers questions across meetings.",
+    "capabilities": [
+      "Speech Transcription",
+      "Summarization",
+      "Knowledge Base QA",
+      "Lead Scoring",
+      "API Integration"
+    ],
+    "pricing_url": "https://otter.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Basic",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "seat",
+        "amount": 16.99,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Business",
+        "billing_model": "seat",
+        "amount": 30,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": true,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Annual: Pro $8.33, Business $19.99 /user/month. API & MCP server on Enterprise. 'SDR Agent' for lead qualification mapped to Lead Scoring."
+  },
+  {
+    "name": "Fireflies.ai",
+    "company": "Fireflies.ai",
+    "website": "https://fireflies.ai",
+    "theme": "Productivity",
+    "short_description": "AI notetaker that records, transcribes and summarizes meetings with an assistant, AskFred.",
+    "capabilities": [
+      "Speech Transcription",
+      "Summarization",
+      "Knowledge Base QA",
+      "Email Automation",
+      "Voice Calls",
+      "CRM Integration",
+      "API Integration"
+    ],
+    "pricing_url": "https://fireflies.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "seat",
+        "amount": 18,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Business",
+        "billing_model": "seat",
+        "amount": 29,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "seat",
+        "amount": 39,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": true,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Annual: Pro $10, Business $19. Enterprise $39/seat/month annual only. Voice Agents / Email Assistant on higher tiers."
+  },
+  {
+    "name": "Fathom",
+    "company": "Fathom",
+    "website": "https://www.fathom.ai",
+    "theme": "Productivity",
+    "short_description": "AI meeting assistant that records, transcribes and summarizes calls and syncs to CRM.",
+    "capabilities": [
+      "Speech Transcription",
+      "Summarization",
+      "CRM Integration",
+      "Knowledge Base QA",
+      "API Integration"
+    ],
+    "pricing_url": "https://www.fathom.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Premium",
+        "billing_model": "seat",
+        "amount": 20,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Team",
+        "billing_model": "seat",
+        "amount": 19,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Business",
+        "billing_model": "seat",
+        "amount": 34,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": true,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Annual: Premium $16, Team $15, Business $25. Team plans min 2 users. 90-day money-back guarantee."
+  },
+  {
+    "name": "Granola",
+    "company": "Granola",
+    "website": "https://www.granola.ai",
+    "theme": "Productivity",
+    "short_description": "Bot-free AI notepad that transcribes meetings and turns notes into summaries and follow-ups.",
+    "capabilities": [
+      "Speech Transcription",
+      "Summarization",
+      "Content Writing",
+      "CRM Integration",
+      "API Integration"
+    ],
+    "pricing_url": "https://www.granola.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Basic",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Business",
+        "billing_model": "seat",
+        "amount": 14,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "seat",
+        "amount": 35,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": true,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Page did not distinguish monthly vs annual billing for listed prices. MCP & API on Business+."
+  },
+  {
+    "name": "Read AI",
+    "company": "Read AI",
+    "website": "https://www.read.ai",
+    "theme": "Productivity",
+    "short_description": "AI meeting copilot that summarizes meetings and searches across meetings, email and chat.",
+    "capabilities": [
+      "Speech Transcription",
+      "Summarization",
+      "Knowledge Base QA",
+      "Report Generation",
+      "API Integration"
+    ],
+    "pricing_url": "https://www.read.ai/plans-pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "seat",
+        "amount": 19.75,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "seat",
+        "amount": 29.75,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise+",
+        "billing_model": "seat",
+        "amount": 39.75,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": true,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Annual: $15 / $22.50 / $29.75. Enterprise+ requires 5+ licenses."
+  },
+  {
+    "name": "Jamie",
+    "company": "Jamie",
+    "website": "https://www.meetjamie.ai",
+    "theme": "Productivity",
+    "short_description": "Bot-free AI note-taker that summarizes online and in-person meetings, hosted in the EU.",
+    "capabilities": [
+      "Speech Transcription",
+      "Summarization",
+      "Translation",
+      "Knowledge Base QA",
+      "CRM Integration",
+      "API Integration"
+    ],
+    "pricing_url": "https://www.meetjamie.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "EUR",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Plus",
+        "billing_model": "subscription",
+        "amount": 21,
+        "currency": "EUR",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "subscription",
+        "amount": 39,
+        "currency": "EUR",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Team",
+        "billing_model": "seat",
+        "amount": 33,
+        "currency": "EUR",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": true,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Plus/Pro prices are billed annually; monthly-billed prices not captured. Team billing basis unclear. Translation inferred from 99+ language support - verify."
+  },
+  {
+    "name": "MeetGeek",
+    "company": "MeetGeek",
+    "website": "https://meetgeek.ai",
+    "theme": "Productivity",
+    "short_description": "AI meeting assistant that records, transcribes and runs agentic follow-up workflows.",
+    "capabilities": [
+      "Speech Transcription",
+      "Summarization",
+      "Workflow Orchestration",
+      "CRM Integration",
+      "Voice Calls",
+      "API Integration"
+    ],
+    "pricing_url": "https://meetgeek.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Basic",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "subscription",
+        "amount": 15.99,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Business",
+        "billing_model": "subscription",
+        "amount": 27,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": true,
+    "api": true,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Unclear whether listed prices are monthly or annual-billed (annual saves up to 40%). 14-day trial on Business. Custom Voice Agents on Enterprise."
+  },
+  {
+    "name": "Martin",
+    "company": "Martin",
+    "website": "https://www.trymartin.com",
+    "theme": "Productivity",
+    "short_description": "AI personal assistant that manages calendar, inbox, reminders and calls via text or voice.",
+    "capabilities": [
+      "Calendar Management",
+      "Email Automation",
+      "Meeting Scheduling",
+      "Voice Calls"
+    ],
+    "pricing_url": "https://www.trymartin.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Basic",
+        "billing_model": "subscription",
+        "amount": 35,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "subscription",
+        "amount": 49,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": false,
+    "free_trial": true,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Annual: $21 / $30 per month. 7-day free trial. Homepage showed stale Black Friday banner. free_plan false inferred from no free tier listed."
+  },
+  {
+    "name": "Notion Agent",
+    "company": "Notion",
+    "website": "https://www.notion.com",
+    "theme": "Productivity",
+    "short_description": "Workspace AI agent that runs multi-step tasks, takes meeting notes and researches across apps.",
+    "capabilities": [
+      "Summarization",
+      "Speech Transcription",
+      "Web Research",
+      "Report Generation",
+      "Content Writing",
+      "Knowledge Base QA",
+      "Workflow Orchestration",
+      "API Integration"
+    ],
+    "pricing_url": "https://www.notion.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "member",
+        "is_trial": false
+      },
+      {
+        "plan": "Plus",
+        "billing_model": "seat",
+        "amount": 10,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "member",
+        "is_trial": false
+      },
+      {
+        "plan": "Business",
+        "billing_model": "seat",
+        "amount": 20,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "member",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Custom Agents credits",
+        "billing_model": "credits",
+        "amount": 10,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "1,000 credits",
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": true,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Annual: Plus $8, Business $16. Free has only basic AI trial. Custom Agents $10 per 1,000 monthly credits after trial. MCP not on pricing page (null)."
+  },
+  {
+    "name": "Akiflow",
+    "company": "Akiflow",
+    "website": "https://akiflow.com",
+    "theme": "Productivity",
+    "short_description": "Task and calendar planner with an AI assistant, Aki, that organizes and schedules your work.",
+    "capabilities": [
+      "Calendar Management",
+      "Meeting Scheduling",
+      "Speech Transcription",
+      "Summarization"
+    ],
+    "pricing_url": "https://akiflow.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Pro Monthly",
+        "billing_model": "subscription",
+        "amount": 34,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro Yearly",
+        "billing_model": "subscription",
+        "amount": 228,
+        "currency": "USD",
+        "interval": "year",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "AI Meeting Assistant add-on",
+        "billing_model": "subscription",
+        "amount": 19,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": false,
+    "free_trial": true,
+    "api": null,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "7-day trial, card required. Multi-year 'Believer' plans also offered. Teams custom pricing."
+  },
+  {
+    "name": "Cal.com",
+    "company": "Cal.com",
+    "website": "https://cal.com",
+    "theme": "Productivity",
+    "short_description": "Open-source scheduling platform with Cal.ai voice agents that book meetings by phone.",
+    "capabilities": [
+      "Meeting Scheduling",
+      "Calendar Management",
+      "Voice Calls",
+      "Payments",
+      "API Integration"
+    ],
+    "pricing_url": "https://cal.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Teams",
+        "billing_model": "seat",
+        "amount": 12,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Organizations",
+        "billing_model": "seat",
+        "amount": 28,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": true,
+    "api": true,
+    "mcp": null,
+    "open_source": true,
+    "github_repo": "calcom/cal.com",
+    "notes": "Teams/Organizations prices shown are annual-billed (25% savings); monthly-billed prices not captured. Cal.ai voice agent pricing not on page."
+  },
+  {
+    "name": "Saner.AI",
+    "company": "Saner.AI",
+    "website": "https://www.saner.ai",
+    "theme": "Productivity",
+    "short_description": "AI personal assistant for notes, tasks and schedules that plans your day from your data.",
+    "capabilities": [
+      "Knowledge Base QA",
+      "Summarization",
+      "Web Research",
+      "Document Understanding"
+    ],
+    "pricing_url": "https://www.saner.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Starter",
+        "billing_model": "subscription",
+        "amount": 8,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Standard",
+        "billing_model": "subscription",
+        "amount": 16,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "20% off annual. Unclear whether listed prices are monthly-billed. External model usage billed separately by tokens. Calendar/task features not described on pricing page, so not mapped."
+  }
+]

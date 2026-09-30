@@ -1,0 +1,2452 @@
+[
+  {
+    "name": "Fin AI Agent",
+    "company": "Intercom",
+    "website": "https://fin.ai",
+    "theme": "Customer Support",
+    "short_description": "Outcome-priced AI agent that resolves support conversations across chat, email, voice and messaging.",
+    "capabilities": [
+      "Customer Chat",
+      "Voice Calls",
+      "Email Automation",
+      "Knowledge Base QA",
+      "Workflow Orchestration",
+      "CRM Integration",
+      "Lead Scoring"
+    ],
+    "pricing_url": "https://fin.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Fin AI Agent",
+        "billing_model": "usage",
+        "amount": 0.99,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "outcome",
+        "is_trial": false
+      },
+      {
+        "plan": "Qualification outcome",
+        "billing_model": "usage",
+        "amount": 9.99,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "qualification",
+        "is_trial": false
+      },
+      {
+        "plan": "Intercom Essential (helpdesk seat)",
+        "billing_model": "seat",
+        "amount": 29,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Intercom Advanced (helpdesk seat)",
+        "billing_model": "seat",
+        "amount": 85,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Intercom Expert (helpdesk seat)",
+        "billing_model": "seat",
+        "amount": 132,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      }
+    ],
+    "free_plan": false,
+    "free_trial": true,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Fin works standalone on other helpdesks (Salesforce, HubSpot, Freshworks) with no seat fee. 14-day trial with unlimited outcomes. Intercom seat prices from intercom.com/pricing; billing cadence not stated. Lead Scoring mapped from qualification/disqualification outcomes."
+  },
+  {
+    "name": "Zendesk AI Agents",
+    "company": "Zendesk",
+    "website": "https://www.zendesk.com",
+    "theme": "Customer Support",
+    "short_description": "AI agents built into Zendesk that autonomously resolve tickets, billed per automated resolution.",
+    "capabilities": [
+      "Customer Chat",
+      "Ticket Triage",
+      "Knowledge Base QA",
+      "Email Automation"
+    ],
+    "pricing_url": "https://www.zendesk.com/pricing/",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Support Team",
+        "billing_model": "seat",
+        "amount": 25,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "agent",
+        "is_trial": false
+      },
+      {
+        "plan": "Suite Team",
+        "billing_model": "seat",
+        "amount": 69,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "agent",
+        "is_trial": false
+      },
+      {
+        "plan": "Suite Professional",
+        "billing_model": "seat",
+        "amount": 149,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "agent",
+        "is_trial": false
+      },
+      {
+        "plan": "Suite Enterprise + Copilot",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Automated resolution (committed)",
+        "billing_model": "usage",
+        "amount": 1.5,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "resolution",
+        "is_trial": false
+      },
+      {
+        "plan": "Automated resolution (pay-as-you-go)",
+        "billing_model": "usage",
+        "amount": 2.0,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "resolution",
+        "is_trial": false
+      },
+      {
+        "plan": "Professional trial",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": true
+      }
+    ],
+    "free_plan": false,
+    "free_trial": true,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Monthly-billed seat prices shown (annual: $19/$55/$115). Includes 5 (Team) or 10 (Professional) automated resolutions per agent/month. 14-day trial. Capabilities from general knowledge of pricing page only; Ticket Triage/Email not re-verified on product page."
+  },
+  {
+    "name": "Sierra",
+    "company": "Sierra",
+    "website": "https://sierra.ai",
+    "theme": "Customer Support",
+    "short_description": "Enterprise conversational AI agents for customer service across chat, voice, email, SMS and WhatsApp.",
+    "capabilities": [
+      "Customer Chat",
+      "Voice Calls",
+      "Email Automation",
+      "Workflow Orchestration",
+      "Translation"
+    ],
+    "pricing_url": "https://sierra.ai",
+    "pricing_verified": false,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "No public pricing page (sierra.ai/pricing 404). Site states outcome-based pricing. Translation mapped from 'built-in multilingual support'."
+  },
+  {
+    "name": "Decagon",
+    "company": "Decagon",
+    "website": "https://decagon.ai",
+    "theme": "Customer Support",
+    "short_description": "Enterprise AI agents for chat, email and voice support driven by natural-language procedures (AOPs).",
+    "capabilities": [
+      "Customer Chat",
+      "Voice Calls",
+      "Email Automation",
+      "Workflow Orchestration",
+      "Knowledge Base QA",
+      "Report Generation"
+    ],
+    "pricing_url": "https://decagon.ai",
+    "pricing_verified": false,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "No public pricing; demo required."
+  },
+  {
+    "name": "Ada",
+    "company": "Ada",
+    "website": "https://www.ada.cx",
+    "theme": "Customer Support",
+    "short_description": "Enterprise AI customer service agent across voice, messaging and email that takes actions in business systems.",
+    "capabilities": [
+      "Customer Chat",
+      "Voice Calls",
+      "Email Automation",
+      "Translation",
+      "API Integration",
+      "Workflow Orchestration"
+    ],
+    "pricing_url": "https://www.ada.cx/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": true,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Pricing page reached; no public prices, demo for custom quote. 'Ada Computer' uses API, code and MCP tools; open APIs and SDKs."
+  },
+  {
+    "name": "Forethought",
+    "company": "Forethought",
+    "website": "https://forethought.ai",
+    "theme": "Customer Support",
+    "short_description": "Agentic AI suite (Solve, Triage, Assist, Discover) that resolves, routes and classifies support tickets.",
+    "capabilities": [
+      "Customer Chat",
+      "Email Automation",
+      "Voice Calls",
+      "Ticket Triage",
+      "Knowledge Base QA",
+      "Content Writing"
+    ],
+    "pricing_url": "https://forethought.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Team",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Professional",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": true,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Tiers published without prices. Solve API and analytics API on Enterprise tier; AI article creation (Discover) mapped to Content Writing."
+  },
+  {
+    "name": "Agentforce Service",
+    "company": "Salesforce",
+    "website": "https://www.salesforce.com/agentforce/",
+    "theme": "Customer Support",
+    "short_description": "Salesforce's autonomous agents for service and sales, billed per conversation, credits or user add-on.",
+    "capabilities": [
+      "Customer Chat",
+      "Voice Calls",
+      "CRM Integration",
+      "Workflow Orchestration",
+      "Knowledge Base QA"
+    ],
+    "pricing_url": "https://www.salesforce.com/agentforce/pricing/",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Flex Credits",
+        "billing_model": "credits",
+        "amount": 500,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "100k credits (20 credits/standard action)",
+        "is_trial": false
+      },
+      {
+        "plan": "Conversations",
+        "billing_model": "usage",
+        "amount": 2,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "conversation",
+        "is_trial": false
+      },
+      {
+        "plan": "Agentforce Add-on (Sales/Service/Field Service)",
+        "billing_model": "seat",
+        "amount": 125,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Agentforce Industries Add-on",
+        "billing_model": "seat",
+        "amount": 150,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Agentforce User License",
+        "billing_model": "seat",
+        "amount": 5,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Agentforce 1 Editions",
+        "billing_model": "seat",
+        "amount": 550,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Salesforce Foundations",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Agentforce 1 Editions 'from $550 user/month'. Foundations is a no-cost tier for experimentation (requires Salesforce). Voice actions cost 30 credits. Billing cadence (annual contracts typical) not stated."
+  },
+  {
+    "name": "Gorgias AI Agent",
+    "company": "Gorgias",
+    "website": "https://www.gorgias.com/ai-agent",
+    "theme": "Customer Support",
+    "short_description": "E-commerce AI agent trained on your Shopify catalog that resolves support tickets and helps convert shoppers.",
+    "capabilities": [
+      "Customer Chat",
+      "E-commerce Management",
+      "Knowledge Base QA",
+      "Voice Calls"
+    ],
+    "pricing_url": "https://www.gorgias.com/pricing",
+    "pricing_verified": false,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "AI Agent",
+        "billing_model": "usage",
+        "amount": null,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "resolved conversation",
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Pricing page reachable but price tables are client-rendered and could not be extracted; page states 'AI Agent on every plan, pay only when it resolves a conversation' and helpdesk priced by ticket volume (50-5,000/mo), not per agent. Third-party blogs list prices but were not used."
+  },
+  {
+    "name": "Freddy AI Agent",
+    "company": "Freshworks",
+    "website": "https://www.freshworks.com/freshdesk/",
+    "theme": "Customer Support",
+    "short_description": "Freshdesk's AI agent that autonomously resolves customer queries, billed per session bundle.",
+    "capabilities": [
+      "Customer Chat",
+      "Knowledge Base QA",
+      "Ticket Triage"
+    ],
+    "pricing_url": "https://www.freshworks.com/freshdesk/pricing/",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Growth",
+        "billing_model": "seat",
+        "amount": 19,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "agent",
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "seat",
+        "amount": 55,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "agent",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "seat",
+        "amount": 89,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "agent",
+        "is_trial": false
+      },
+      {
+        "plan": "Freddy AI Agent sessions",
+        "billing_model": "usage",
+        "amount": 49,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "100 sessions",
+        "is_trial": false
+      }
+    ],
+    "free_plan": false,
+    "free_trial": true,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Seat prices are billed annually (monthly-billed price not shown). First 500 Freddy AI Agent sessions included on all plans. 14-day Enterprise trial. Ticket Triage not explicitly verified on pricing page."
+  },
+  {
+    "name": "HubSpot Customer Agent",
+    "company": "HubSpot",
+    "website": "https://www.hubspot.com/products/service",
+    "theme": "Customer Support",
+    "short_description": "Service Hub AI agent that answers customer questions and resolves tickets, powered by HubSpot Credits.",
+    "capabilities": [
+      "Customer Chat",
+      "Knowledge Base QA",
+      "CRM Integration",
+      "Ticket Triage"
+    ],
+    "pricing_url": "https://www.hubspot.com/pricing/service",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Starter",
+        "billing_model": "seat",
+        "amount": 7,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Professional",
+        "billing_model": "seat",
+        "amount": 90,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "seat",
+        "amount": 150,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "HubSpot Credits (pay-as-you-go)",
+        "billing_model": "credits",
+        "amount": 0.01,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "credit",
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": true,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Page showed Starter $7 monthly vs $20 annual (inverted; likely promo or extraction error \u2014 verify). Professional $90 monthly/$100 annual, $1,500 onboarding; Enterprise from $150/seat, $3,500 onboarding. Customer Agent requires Pro/Enterprise seat; 14-day unlimited free access to Customer Agent."
+  },
+  {
+    "name": "Lyro AI Agent",
+    "company": "Tidio",
+    "website": "https://www.tidio.com",
+    "theme": "Customer Support",
+    "short_description": "Conversational AI agent for SMB websites that answers customer questions from your knowledge base.",
+    "capabilities": [
+      "Customer Chat",
+      "Knowledge Base QA"
+    ],
+    "pricing_url": "https://www.tidio.com/pricing/",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Starter",
+        "billing_model": "subscription",
+        "amount": 24.17,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Growth",
+        "billing_model": "subscription",
+        "amount": 49.17,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Plus",
+        "billing_model": "subscription",
+        "amount": 300,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Premium",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Lyro AI Agent add-on",
+        "billing_model": "subscription",
+        "amount": 32.5,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "from 50 Lyro conversations",
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": true,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Starter/Growth figures shown as '/mo' with annual $290.04/$590.04 \u2014 the $24.17/$49.17 are likely annual-equivalent monthly prices. Plus is 'starting at $300/mo + usage'. Premium guarantees 50% Lyro resolution rate. 7-day trial, no card."
+  },
+  {
+    "name": "Chatbase",
+    "company": "Chatbase",
+    "website": "https://www.chatbase.co",
+    "theme": "Customer Support",
+    "short_description": "No-code builder for AI support agents trained on your data, deployable on web, voice and helpdesks.",
+    "capabilities": [
+      "Customer Chat",
+      "Knowledge Base QA",
+      "Voice Calls",
+      "API Integration"
+    ],
+    "pricing_url": "https://www.chatbase.co/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Hobby",
+        "billing_model": "subscription",
+        "amount": 40,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Standard",
+        "billing_model": "subscription",
+        "amount": 150,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "subscription",
+        "amount": 500,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Extra credits",
+        "billing_model": "credits",
+        "amount": 40,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "1,000 message credits",
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": true,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Monthly prices; 20% off annual. API access from Standard. MCP not mentioned."
+  },
+  {
+    "name": "Siena AI",
+    "company": "Siena AI",
+    "website": "https://www.siena.cx",
+    "theme": "Customer Support",
+    "short_description": "Agentic AI for e-commerce customer experience that automates support tickets across channels.",
+    "capabilities": [
+      "Customer Chat",
+      "E-commerce Management",
+      "Social Media Management"
+    ],
+    "pricing_url": "https://www.siena.cx/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Platform fee",
+        "billing_model": "subscription",
+        "amount": 750,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Automation pack",
+        "billing_model": "usage",
+        "amount": 0.9,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "ticket",
+        "is_trial": false
+      }
+    ],
+    "free_plan": false,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Custom quote form but platform fee and per-ticket price are published. Social Media Management mapped from social-tools integration; verify."
+  },
+  {
+    "name": "Maven AGI",
+    "company": "Maven AGI",
+    "website": "https://www.mavenagi.com",
+    "theme": "Customer Support",
+    "short_description": "Enterprise AI agents for text and voice support plus agent-assist inside Zendesk and Salesforce.",
+    "capabilities": [
+      "Customer Chat",
+      "Voice Calls",
+      "Data Extraction",
+      "CRM Integration",
+      "Knowledge Base QA"
+    ],
+    "pricing_url": "https://www.mavenagi.com",
+    "pricing_verified": false,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "No public pricing; demo required. 'Intelligent Fields' mapped to Data Extraction."
+  },
+  {
+    "name": "Lorikeet",
+    "company": "Lorikeet",
+    "website": "https://www.lorikeetcx.ai",
+    "theme": "Customer Support",
+    "short_description": "Outcome-priced AI support concierge for fintech and healthtech across chat, email, voice, SMS and WhatsApp.",
+    "capabilities": [
+      "Customer Chat",
+      "Voice Calls",
+      "Email Automation",
+      "Ticket Triage",
+      "Workflow Orchestration"
+    ],
+    "pricing_url": "https://www.lorikeetcx.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Start",
+        "billing_model": "subscription",
+        "amount": 2100,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Scale",
+        "billing_model": "subscription",
+        "amount": 5100,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Signature",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Resolution (chat/email/SMS, Start)",
+        "billing_model": "usage",
+        "amount": 0.99,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "resolution",
+        "is_trial": false
+      },
+      {
+        "plan": "Resolution (voice, Start)",
+        "billing_model": "usage",
+        "amount": 1.5,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "resolution",
+        "is_trial": false
+      },
+      {
+        "plan": "Triage (Start)",
+        "billing_model": "usage",
+        "amount": 0.3,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "ticket",
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": true,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Plans billed annually. Scale tier: $0.90 chat / $1.20 voice resolutions, $0.27 triage. 30-day free trial mentioned on homepage."
+  },
+  {
+    "name": "Parloa",
+    "company": "Parloa",
+    "website": "https://www.parloa.com",
+    "theme": "Customer Support",
+    "short_description": "Enterprise AI agent platform for voice-first customer service, inbound and outbound.",
+    "capabilities": [
+      "Voice Calls",
+      "Customer Chat",
+      "Workflow Orchestration",
+      "Translation"
+    ],
+    "pricing_url": "https://www.parloa.com",
+    "pricing_verified": false,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "No public pricing; demo and value calculator only. Translation mapped from 'Expanded Language Coverage'."
+  },
+  {
+    "name": "Yellow.ai",
+    "company": "Yellow.ai",
+    "website": "https://yellow.ai",
+    "theme": "Customer Support",
+    "short_description": "Agentic AI platform for customer service across chat, voice and email on 35+ channels.",
+    "capabilities": [
+      "Customer Chat",
+      "Voice Calls",
+      "Email Automation",
+      "API Integration"
+    ],
+    "pricing_url": "https://yellow.ai/pricing/",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Free plan overage",
+        "billing_model": "usage",
+        "amount": 0.99,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "resolution",
+        "is_trial": false
+      },
+      {
+        "plan": "Basic",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Free plan: 1 agent, 500 chat sessions/month, then $0.99 per resolution. Basic and Enterprise prices not published."
+  },
+  {
+    "name": "Help Scout AI Answers",
+    "company": "Help Scout",
+    "website": "https://www.helpscout.com",
+    "theme": "Customer Support",
+    "short_description": "Help Scout's AI agent that auto-resolves customer questions from your docs, charged per resolution.",
+    "capabilities": [
+      "Customer Chat",
+      "Knowledge Base QA"
+    ],
+    "pricing_url": "https://www.helpscout.com/pricing/",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Standard",
+        "billing_model": "seat",
+        "amount": 25,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Plus",
+        "billing_model": "seat",
+        "amount": 45,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "seat",
+        "amount": 75,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "AI Answers",
+        "billing_model": "usage",
+        "amount": 0.75,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "resolution",
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": true,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Seat prices monthly (16% off annually). AI Answers includes 3-month free trial with unlimited resolutions. 15-day trial for Standard/Plus."
+  },
+  {
+    "name": "Botpress",
+    "company": "Botpress",
+    "website": "https://botpress.com",
+    "theme": "Customer Support",
+    "short_description": "Platform for building and deploying LLM-powered AI agents for support across web, messaging and voice.",
+    "capabilities": [
+      "Customer Chat",
+      "Knowledge Base QA",
+      "API Integration",
+      "Workflow Orchestration"
+    ],
+    "pricing_url": "https://botpress.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Plus",
+        "billing_model": "subscription",
+        "amount": 150,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Team",
+        "billing_model": "subscription",
+        "amount": 750,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Extra conversations (Plus)",
+        "billing_model": "usage",
+        "amount": 65,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "100 conversations",
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": true,
+    "mcp": null,
+    "open_source": null,
+    "github_repo": "botpress/botpress",
+    "notes": "Plus/Team prices are billed annually (monthly is ~20% more; not shown). AI spend credits included ($25/$150). Voice only on Enterprise. GitHub repo exists for community contributions; full-platform open-source status unclear."
+  },
+  {
+    "name": "Crisp AI Agent",
+    "company": "Crisp",
+    "website": "https://crisp.chat",
+    "theme": "Customer Support",
+    "short_description": "All-in-one support inbox with an AI agent that automates customer conversations, priced per workspace.",
+    "capabilities": [
+      "Customer Chat",
+      "Knowledge Base QA",
+      "Ticket Triage",
+      "Workflow Orchestration",
+      "API Integration"
+    ],
+    "pricing_url": "https://crisp.chat/en/pricing/",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Mini",
+        "billing_model": "subscription",
+        "amount": 45,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "workspace",
+        "is_trial": false
+      },
+      {
+        "plan": "Essentials",
+        "billing_model": "subscription",
+        "amount": 95,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "workspace",
+        "is_trial": false
+      },
+      {
+        "plan": "Plus",
+        "billing_model": "subscription",
+        "amount": 295,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "workspace",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": true,
+    "api": true,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "AI credits included ($5/$25/$75 ~ 90/450/1,350 automated conversations). 14-day trial. MCP server listed on Plus plan. Billing cadence of listed prices not stated."
+  },
+  {
+    "name": "GitHub Copilot",
+    "company": "GitHub (Microsoft)",
+    "website": "https://github.com/features/copilot",
+    "theme": "Coding",
+    "short_description": "AI pair programmer with agent mode, cloud coding agent and code review across IDEs, CLI and GitHub.",
+    "capabilities": [
+      "Code Generation",
+      "Code Review",
+      "Debugging"
+    ],
+    "pricing_url": "https://github.com/features/copilot/plans",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "subscription",
+        "amount": 10,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro+",
+        "billing_model": "subscription",
+        "amount": 39,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Max",
+        "billing_model": "subscription",
+        "amount": 100,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Business",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": null,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Pro/Pro+/Max include $15/$70/$200 AI credit allowances. Plans page as fetched showed Business/Enterprise as contact-sales (historically public per-seat prices; re-check). MCP on all plans."
+  },
+  {
+    "name": "Claude Code",
+    "company": "Anthropic",
+    "website": "https://code.claude.com",
+    "theme": "Coding",
+    "short_description": "Agentic coding tool that reads your codebase, edits files, runs commands and opens PRs from terminal, IDE or web.",
+    "capabilities": [
+      "Code Generation",
+      "Code Review",
+      "Test Generation",
+      "Debugging",
+      "DevOps Automation",
+      "Security Scanning",
+      "Translation"
+    ],
+    "pricing_url": "https://claude.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Pro",
+        "billing_model": "subscription",
+        "amount": 20,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Max",
+        "billing_model": "subscription",
+        "amount": 100,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Team Standard",
+        "billing_model": "seat",
+        "amount": 25,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Team Premium",
+        "billing_model": "seat",
+        "amount": 125,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "seat",
+        "amount": 20,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      }
+    ],
+    "free_plan": false,
+    "free_trial": null,
+    "api": true,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Monthly-billed prices (Pro $17, Team $20/$100 annual). Max 'starting at $100'. Enterprise $20/seat/month + usage at API rates, annual. Free Claude plan excludes Claude Code. Also usable with Anthropic Console API key and Agent SDK. Not open source."
+  },
+  {
+    "name": "OpenAI Codex",
+    "company": "OpenAI",
+    "website": "https://openai.com/codex",
+    "theme": "Coding",
+    "short_description": "OpenAI's coding agent for cloud, desktop, IDE and an open-source terminal CLI, included in ChatGPT plans.",
+    "capabilities": [
+      "Code Generation",
+      "Code Review",
+      "Debugging"
+    ],
+    "pricing_url": "https://learn.chatgpt.com/docs/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Go",
+        "billing_model": "subscription",
+        "amount": 8,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Plus",
+        "billing_model": "subscription",
+        "amount": 20,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "subscription",
+        "amount": 100,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Business",
+        "billing_model": "seat",
+        "amount": 25,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise & Edu",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "API key",
+        "billing_model": "usage",
+        "amount": null,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "token",
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": true,
+    "mcp": null,
+    "open_source": true,
+    "github_repo": "openai/codex",
+    "notes": "Pro 'from $100' ($100/$200/$500 tiers). Business $25 monthly or $20 annual. API usage billed at API token rates. Codex CLI is Apache-2.0; cloud agent proprietary."
+  },
+  {
+    "name": "Cursor",
+    "company": "Anysphere",
+    "website": "https://cursor.com",
+    "theme": "Coding",
+    "short_description": "AI code editor with autonomous agents, cloud agents and Bugbot automated PR review.",
+    "capabilities": [
+      "Code Generation",
+      "Code Review",
+      "Debugging",
+      "Browser Automation"
+    ],
+    "pricing_url": "https://cursor.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Hobby",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Individual (Pro)",
+        "billing_model": "subscription",
+        "amount": 20,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Teams",
+        "billing_model": "seat",
+        "amount": 40,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": null,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Individual has Pro/Pro+/Ultra tiers; only the $20 entry price was extractable. On-demand usage billed in arrears; Bugbot usage-based for individuals. Browser Automation from Enterprise 'browser controls'; verify."
+  },
+  {
+    "name": "Devin",
+    "company": "Cognition",
+    "website": "https://devin.ai",
+    "theme": "Coding",
+    "short_description": "Autonomous AI software engineer (now including Windsurf) that plans, codes and ships in the cloud.",
+    "capabilities": [
+      "Code Generation",
+      "Code Review",
+      "Debugging",
+      "Test Generation"
+    ],
+    "pricing_url": "https://devin.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "subscription",
+        "amount": 20,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Max",
+        "billing_model": "subscription",
+        "amount": 200,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Teams (base)",
+        "billing_model": "subscription",
+        "amount": 80,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Teams (per developer)",
+        "billing_model": "seat",
+        "amount": 40,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "windsurf.com/pricing now redirects to devin.ai/pricing (Windsurf merged into Devin plans). ACU pricing no longer shown. Capabilities from general product knowledge beyond pricing page; verify Test Generation/Code Review."
+  },
+  {
+    "name": "Replit Agent",
+    "company": "Replit",
+    "website": "https://replit.com",
+    "theme": "Coding",
+    "short_description": "Cloud IDE agent that builds, deploys and hosts full apps from natural-language prompts.",
+    "capabilities": [
+      "Code Generation",
+      "Debugging",
+      "DevOps Automation"
+    ],
+    "pricing_url": "https://replit.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Core",
+        "billing_model": "subscription",
+        "amount": 20,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "subscription",
+        "amount": 100,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Monthly-billed prices ($18/$90 annual). Core includes $20 model credit; Pro $100 credit and 10 parallel agents. Free tier not shown on fetched page."
+  },
+  {
+    "name": "Lovable",
+    "company": "Lovable",
+    "website": "https://lovable.dev",
+    "theme": "Coding",
+    "short_description": "AI app builder that generates and deploys full-stack web apps from chat prompts.",
+    "capabilities": [
+      "Code Generation",
+      "Debugging"
+    ],
+    "pricing_url": "https://docs.lovable.dev/introduction/subscription-plans",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro (100 credits)",
+        "billing_model": "subscription",
+        "amount": 25,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Business (100 credits)",
+        "billing_model": "subscription",
+        "amount": 50,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro top-up",
+        "billing_model": "credits",
+        "amount": 15,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "50 credits",
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "lovable.dev/pricing not extractable; prices from Lovable's own docs. Pro/Business scale with credit tiers up to 10,000 credits ($2,250 / $4,300 per month)."
+  },
+  {
+    "name": "Bolt",
+    "company": "StackBlitz",
+    "website": "https://bolt.new",
+    "theme": "Coding",
+    "short_description": "Browser-based AI agent that builds, runs and deploys full-stack web apps from prompts.",
+    "capabilities": [
+      "Code Generation",
+      "Debugging",
+      "SEO Optimization",
+      "Image Generation"
+    ],
+    "pricing_url": "https://bolt.new/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "subscription",
+        "amount": 25,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Teams",
+        "billing_model": "seat",
+        "amount": 30,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "member",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Monthly billing; up to 28% off yearly. Free: 1M tokens/month. SEO boosting and AI image editing listed on Pro (Image Generation mapped from image editing; verify)."
+  },
+  {
+    "name": "v0",
+    "company": "Vercel",
+    "website": "https://v0.app",
+    "theme": "Coding",
+    "short_description": "Vercel's AI agent that generates, iterates on and deploys web apps and UIs.",
+    "capabilities": [
+      "Code Generation",
+      "Debugging"
+    ],
+    "pricing_url": "https://v0.app/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Plus",
+        "billing_model": "seat",
+        "amount": 30,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Business",
+        "billing_model": "seat",
+        "amount": 100,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Plus shown as $30 (reduced from $90). Plans include monthly credits; model token rates listed separately."
+  },
+  {
+    "name": "Jules",
+    "company": "Google",
+    "website": "https://jules.google",
+    "theme": "Coding",
+    "short_description": "Google's asynchronous coding agent that works on GitHub repos in a cloud VM and opens pull requests.",
+    "capabilities": [
+      "Code Generation",
+      "Test Generation",
+      "Debugging"
+    ],
+    "pricing_url": "https://jules.google",
+    "pricing_verified": false,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Jules (Free)",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Jules Pro (via Google AI Pro)",
+        "billing_model": "subscription",
+        "amount": null,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Jules Ultra (via Google AI Ultra)",
+        "billing_model": "subscription",
+        "amount": null,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": true,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Tiers by task limits (15/100/300 daily). Pro/Ultra come with Google AI Pro/Ultra subscriptions; USD prices not extractable from Google One page. REST API and Jules Tools CLI documented."
+  },
+  {
+    "name": "Kiro",
+    "company": "Amazon Web Services",
+    "website": "https://kiro.dev",
+    "theme": "Coding",
+    "short_description": "AWS's spec-driven agentic IDE and CLI that turns prompts into specs, code and tests.",
+    "capabilities": [
+      "Code Generation",
+      "Test Generation",
+      "Debugging"
+    ],
+    "pricing_url": "https://kiro.dev/pricing/",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "subscription",
+        "amount": 20,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro+",
+        "billing_model": "subscription",
+        "amount": 40,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro Max",
+        "billing_model": "subscription",
+        "amount": 100,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Power",
+        "billing_model": "subscription",
+        "amount": 200,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Overage",
+        "billing_model": "credits",
+        "amount": 0.04,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "credit",
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Free: 50 credits. Paid: 1,000/2,000/5,000/10,000 credits. Capabilities (tests) from general knowledge; MCP not mentioned on pricing page."
+  },
+  {
+    "name": "Augment Code",
+    "company": "Augment Code",
+    "website": "https://www.augmentcode.com",
+    "theme": "Coding",
+    "short_description": "Coding agent with a codebase Context Engine, CLI and AI code review for GitHub PRs.",
+    "capabilities": [
+      "Code Generation",
+      "Code Review",
+      "Debugging"
+    ],
+    "pricing_url": "https://www.augmentcode.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Standard",
+        "billing_model": "subscription",
+        "amount": 20,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Business",
+        "billing_model": "subscription",
+        "amount": 100,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": null,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Plans include equal $ usage (LLM, context, compute), flat rate up to 50 seats, pay-as-you-go top-ups. No free tier shown."
+  },
+  {
+    "name": "Factory Droids",
+    "company": "Factory",
+    "website": "https://factory.com",
+    "theme": "Coding",
+    "short_description": "Agent-native development platform whose 'Droids' run coding tasks locally or in the cloud.",
+    "capabilities": [
+      "Code Generation",
+      "Code Review",
+      "Debugging"
+    ],
+    "pricing_url": "https://factory.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Pro",
+        "billing_model": "subscription",
+        "amount": 20,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Plus",
+        "billing_model": "subscription",
+        "amount": 100,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Max",
+        "billing_model": "subscription",
+        "amount": 200,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Teams (base)",
+        "billing_model": "subscription",
+        "amount": 60,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Teams (per seat)",
+        "billing_model": "seat",
+        "amount": 40,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Business",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "factory.ai redirects to factory.com. SDK available; Code Review not confirmed on pricing page."
+  },
+  {
+    "name": "CodeRabbit",
+    "company": "CodeRabbit",
+    "website": "https://www.coderabbit.ai",
+    "theme": "Coding",
+    "short_description": "AI code review agent that comments on pull requests with line-by-line feedback and fixes.",
+    "capabilities": [
+      "Code Review",
+      "Security Scanning",
+      "Code Generation"
+    ],
+    "pricing_url": "https://www.coderabbit.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Essentials",
+        "billing_model": "seat",
+        "amount": 24,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "developer",
+        "is_trial": false
+      },
+      {
+        "plan": "Team",
+        "billing_model": "seat",
+        "amount": 48,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "developer",
+        "is_trial": false
+      },
+      {
+        "plan": "Advanced",
+        "billing_model": "seat",
+        "amount": 72,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "developer",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "CodeRabbit Agent",
+        "billing_model": "usage",
+        "amount": 0.4,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "agent minute",
+        "is_trial": false
+      },
+      {
+        "plan": "Open Source",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": true,
+    "api": null,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Seat prices are annual-billed monthly equivalents (monthly ~20% higher, not shown). 14-day trial, no card. Free plan for open-source projects. Security Scan is usage-priced. Code Generation mapped from CodeRabbit Agent; verify."
+  },
+  {
+    "name": "Qodo",
+    "company": "Qodo",
+    "website": "https://www.qodo.ai",
+    "theme": "Coding",
+    "short_description": "AI code review and quality platform with agents for PR review and test generation.",
+    "capabilities": [
+      "Code Review",
+      "Test Generation"
+    ],
+    "pricing_url": "https://www.qodo.ai/pricing/",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free trial",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": true
+      },
+      {
+        "plan": "Pro Team",
+        "billing_model": "credits",
+        "amount": 0.012,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "credit",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Open Source program",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": false,
+    "free_trial": true,
+    "api": null,
+    "mcp": null,
+    "open_source": null,
+    "github_repo": null,
+    "notes": "Pay-as-you-go credits pooled across team (packs 2,500-20,000). 14-day trial. Free for qualified OSS projects. Test Generation from general product knowledge; verify. Qodo has OSS repos (e.g. PR-Agent) not confirmed here."
+  },
+  {
+    "name": "Amp",
+    "company": "Amp (Sourcegraph spin-out)",
+    "website": "https://ampcode.com",
+    "theme": "Coding",
+    "short_description": "Frontier coding agent running locally or in cloud 'orbs', triggered by CI failures, issues or schedules.",
+    "capabilities": [
+      "Code Generation",
+      "Debugging",
+      "DevOps Automation"
+    ],
+    "pricing_url": "https://ampcode.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Hobby",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Megawatt",
+        "billing_model": "subscription",
+        "amount": 20,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Gigawatt",
+        "billing_model": "subscription",
+        "amount": null,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": null,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Bring-your-own keys, no token fees. Megawatt includes 45,000 orb minutes. Gigawatt price not shown. Company attribution uncertain (Amp originated at Sourcegraph)."
+  },
+  {
+    "name": "Junie",
+    "company": "JetBrains",
+    "website": "https://junie.jetbrains.com",
+    "theme": "Coding",
+    "short_description": "JetBrains' coding agent for IDEs, terminal and CI that plans and executes multi-step coding tasks.",
+    "capabilities": [
+      "Code Generation",
+      "Test Generation",
+      "DevOps Automation"
+    ],
+    "pricing_url": "https://junie.jetbrains.com",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free (5 AI credits / BYOK)",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "AI Pro",
+        "billing_model": "seat",
+        "amount": 8.33,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      },
+      {
+        "plan": "AI Ultimate",
+        "billing_model": "seat",
+        "amount": 25,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "user",
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "$8.33 is likely an annual-billed monthly equivalent. BYOK at provider rates, zero markup. CLI integrates with GitHub Actions and GitLab CI. Test Generation from general knowledge; verify."
+  },
+  {
+    "name": "Cline",
+    "company": "Cline",
+    "website": "https://cline.bot",
+    "theme": "Coding",
+    "short_description": "Open-source autonomous coding agent for VS Code and CLI with bring-your-own-model and MCP marketplace.",
+    "capabilities": [
+      "Code Generation",
+      "Debugging",
+      "Browser Automation"
+    ],
+    "pricing_url": "https://cline.bot/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Open Source",
+        "billing_model": "open_source",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": null,
+    "mcp": true,
+    "open_source": true,
+    "github_repo": "cline/cline",
+    "notes": "Pay only for inference (BYOK or Cline credits). Browser Automation from general product knowledge; verify."
+  },
+  {
+    "name": "Aider",
+    "company": "Aider (open source)",
+    "website": "https://aider.chat",
+    "theme": "Coding",
+    "short_description": "Open-source terminal AI pair programmer that edits code, auto-commits to git and runs lint and tests.",
+    "capabilities": [
+      "Code Generation",
+      "Debugging",
+      "Test Generation"
+    ],
+    "pricing_url": "https://aider.chat",
+    "pricing_verified": false,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Open Source",
+        "billing_model": "open_source",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": true,
+    "github_repo": "Aider-AI/aider",
+    "notes": "No pricing page; free tool, you pay your chosen LLM provider. Test Generation inferred from 'lint and test on every change' \u2014 verify."
+  },
+  {
+    "name": "OpenHands",
+    "company": "OpenHands (All Hands AI)",
+    "website": "https://www.openhands.dev",
+    "theme": "Coding",
+    "short_description": "Open-source, model-agnostic platform for cloud coding agents, with hosted and self-hosted options.",
+    "capabilities": [
+      "Code Generation",
+      "Debugging",
+      "DevOps Automation"
+    ],
+    "pricing_url": "https://www.openhands.dev/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Open Source (local)",
+        "billing_model": "open_source",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Individual (SaaS)",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": true,
+    "mcp": true,
+    "open_source": true,
+    "github_repo": "OpenHands/OpenHands",
+    "notes": "Individual SaaS: BYOK or providers at cost, up to 10 daily conversations. all-hands.dev redirects to openhands.dev. Repo path may still be All-Hands-AI/OpenHands (redirects)."
+  }
+]

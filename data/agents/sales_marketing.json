@@ -1,0 +1,2149 @@
+[
+  {
+    "name": "11x (Alice & Julian)",
+    "company": "11x",
+    "website": "https://www.11x.ai",
+    "theme": "Sales",
+    "short_description": "AI SDR 'Alice' prospects and runs multichannel outreach; 'Julian' answers inbound calls and books meetings.",
+    "capabilities": [
+      "Lead Generation",
+      "Web Research",
+      "Lead Enrichment",
+      "Outreach Sequencing",
+      "Email Automation",
+      "Voice Calls",
+      "Meeting Scheduling",
+      "CRM Integration"
+    ],
+    "pricing_url": "https://www.11x.ai",
+    "pricing_verified": false,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Pricing page /pricing returned 404; homepage shows no prices, only demo requests (enterprise_quote)."
+  },
+  {
+    "name": "Ava (AI BDR)",
+    "company": "Artisan",
+    "website": "https://www.artisan.co",
+    "theme": "Sales",
+    "short_description": "AI BDR that finds leads, runs email/social campaigns, handles replies and books meetings autonomously.",
+    "capabilities": [
+      "Lead Generation",
+      "Lead Enrichment",
+      "Outreach Sequencing",
+      "Email Automation",
+      "Meeting Scheduling",
+      "CRM Integration"
+    ],
+    "pricing_url": "https://www.artisan.co/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Team",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Scale",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "All tiers 'pricing scoped on your plan' (Team ~2,500 leads/mo, Scale ~6,000). AI dialer is a per-seat add-on for human reps."
+  },
+  {
+    "name": "AiSDR",
+    "company": "AiSDR",
+    "website": "https://aisdr.com",
+    "theme": "Sales",
+    "short_description": "AI SDR that finds leads from an ICP description, researches them and runs personalized email and LinkedIn outreach.",
+    "capabilities": [
+      "Lead Generation",
+      "Web Research",
+      "Lead Enrichment",
+      "Lead Scoring",
+      "Email Automation",
+      "Outreach Sequencing",
+      "CRM Integration"
+    ],
+    "pricing_url": "https://aisdr.com/pricing/",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Solo",
+        "billing_model": "subscription",
+        "amount": 250,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Explore",
+        "billing_model": "subscription",
+        "amount": 900,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Scale",
+        "billing_model": "subscription",
+        "amount": 2500,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": false,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Solo billed monthly, no contract; Explore and Scale require quarterly commitment (20% off annual). Salesforce sync only on Scale."
+  },
+  {
+    "name": "RegieGO",
+    "company": "Regie.ai",
+    "website": "https://www.regie.ai",
+    "theme": "Sales",
+    "short_description": "AI prospecting agents that build lists, verify contacts, draft outreach in your voice and power-dial prospects.",
+    "capabilities": [
+      "Lead Generation",
+      "Web Research",
+      "Lead Enrichment",
+      "Email Automation",
+      "Voice Calls"
+    ],
+    "pricing_url": "https://www.regie.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "one_time",
+        "unit": "250 credits",
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "subscription",
+        "amount": 49,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Team",
+        "billing_model": "seat",
+        "amount": 150,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Monthly-billed prices shown; annual: Pro $41/mo, Team $125/seat/mo. Team min 2 seats. 'Voice Calls' = power dialer for reps."
+  },
+  {
+    "name": "Clay (Claygent)",
+    "company": "Clay",
+    "website": "https://www.clay.com",
+    "theme": "Sales",
+    "short_description": "GTM data platform whose Claygent AI agent researches the web and enriches lead lists from 100+ providers.",
+    "capabilities": [
+      "Web Research",
+      "Lead Enrichment",
+      "Lead Generation",
+      "CRM Integration",
+      "API Integration"
+    ],
+    "pricing_url": "https://www.clay.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Launch",
+        "billing_model": "subscription",
+        "amount": 167,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Growth",
+        "billing_model": "subscription",
+        "amount": 446,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": true,
+    "api": true,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Monthly-billed; ~10% off annual (Launch ~$150, Growth ~$401). Credit/action based. HTTP API and CRM sync on Growth+. MCP listed for reps."
+  },
+  {
+    "name": "Apollo.io",
+    "company": "Apollo.io",
+    "website": "https://www.apollo.io",
+    "theme": "Sales",
+    "short_description": "Sales intelligence platform with AI research, lead database, email sequences and workflow automation.",
+    "capabilities": [
+      "Lead Generation",
+      "Lead Enrichment",
+      "Web Research",
+      "Email Automation",
+      "Outreach Sequencing",
+      "CRM Integration",
+      "Workflow Orchestration"
+    ],
+    "pricing_url": "https://www.apollo.io/pricing",
+    "pricing_verified": false,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Basic",
+        "billing_model": "seat",
+        "amount": 49,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Professional",
+        "billing_model": "seat",
+        "amount": 79,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Organization",
+        "billing_model": "seat",
+        "amount": 119,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": true,
+    "api": true,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Pricing page did not render prices; figures from Apollo's own pricing-explainer article and are annual-billed per-user rates. Monthly-billed rates not captured. Organization min 3 users. API on Custom plans; Apollo MCP exists."
+  },
+  {
+    "name": "Agentforce Sales (SDR Agent)",
+    "company": "Salesforce",
+    "website": "https://www.salesforce.com/agentforce/",
+    "theme": "Sales",
+    "short_description": "Salesforce AI agents that nurture and qualify leads, answer questions, book meetings and update opportunities.",
+    "capabilities": [
+      "Email Automation",
+      "Lead Scoring",
+      "Meeting Scheduling",
+      "Knowledge Base QA",
+      "CRM Integration"
+    ],
+    "pricing_url": "https://www.salesforce.com/agentforce/pricing/",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Salesforce Foundations",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Flex Credits",
+        "billing_model": "credits",
+        "amount": 500,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "100k credits",
+        "is_trial": false
+      },
+      {
+        "plan": "Conversations",
+        "billing_model": "usage",
+        "amount": 2,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "conversation",
+        "is_trial": false
+      },
+      {
+        "plan": "Agentforce Add-on (Sales)",
+        "billing_model": "seat",
+        "amount": 125,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Agentforce 1 Edition",
+        "billing_model": "seat",
+        "amount": 550,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Standard action = 20 flex credits (~$0.10). Agentforce User License $5/user/mo also required with Flex Credits. Salesforce contracts usually annual."
+  },
+  {
+    "name": "Breeze Prospecting Agent (Sales Hub)",
+    "company": "HubSpot",
+    "website": "https://www.hubspot.com/products/sales/ai-prospecting-agent",
+    "theme": "Sales",
+    "short_description": "HubSpot agent that monitors buying signals, scores accounts, sources contacts and drafts personalized outreach.",
+    "capabilities": [
+      "Web Research",
+      "Lead Scoring",
+      "Lead Enrichment",
+      "Email Automation",
+      "CRM Integration"
+    ],
+    "pricing_url": "https://www.hubspot.com/pricing/sales",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Starter",
+        "billing_model": "seat",
+        "amount": 20,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Professional",
+        "billing_model": "seat",
+        "amount": 100,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "seat",
+        "amount": 150,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Prospecting Agent usage",
+        "billing_model": "usage",
+        "amount": 1,
+        "currency": "USD",
+        "interval": "per_unit",
+        "unit": "recommended lead",
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Monthly-billed seat prices (page also shows annual-billed Starter $7, Pro $90); Pro onboarding $1,500, Enterprise $3,500 one-time and requires sales. Agent runs on HubSpot Credits ($0.01/credit)."
+  },
+  {
+    "name": "Outreach AI Agents",
+    "company": "Outreach",
+    "website": "https://www.outreach.ai",
+    "theme": "Sales",
+    "short_description": "Sales execution platform with research, personalization, deal and meeting-prep agents plus AI forecasting.",
+    "capabilities": [
+      "Web Research",
+      "Email Automation",
+      "Lead Enrichment",
+      "Lead Scoring",
+      "Summarization",
+      "Forecasting",
+      "Outreach Sequencing"
+    ],
+    "pricing_url": "https://www.outreach.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Amplify Essentials",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Amplify Core",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Amplify Plus",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Amplify Pro",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": true,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Quote-only; seat + AI-credit hybrid (10k-100k AI credits by package). Outreach MCP server and client included; API call quotas by tier. outreach.io redirects to outreach.ai."
+  },
+  {
+    "name": "Salesloft AI Agents",
+    "company": "Salesloft",
+    "website": "https://www.salesloft.com",
+    "theme": "Sales",
+    "short_description": "Revenue platform agents that research accounts, draft cadence emails, summarize deals and prioritize tasks.",
+    "capabilities": [
+      "Web Research",
+      "Email Automation",
+      "Outreach Sequencing",
+      "Summarization",
+      "Data Analysis"
+    ],
+    "pricing_url": "https://www.salesloft.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": null,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Quote-only ('Talk to Sales'). Salesloft MCP Server documented."
+  },
+  {
+    "name": "Piper the AI SDR",
+    "company": "Qualified",
+    "website": "https://www.qualified.com",
+    "theme": "Sales",
+    "short_description": "AI SDR agent that converses with website visitors, engages inbound leads by email and books sales meetings.",
+    "capabilities": [
+      "Customer Chat",
+      "Email Automation",
+      "Meeting Scheduling",
+      "CRM Integration"
+    ],
+    "pricing_url": "https://www.qualified.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Premier",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Ultimate",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Quote-only; tiers by web sessions and email contacts. Salesforce-native; also voice/video modes."
+  },
+  {
+    "name": "Relevance AI BDR Agent",
+    "company": "Relevance AI",
+    "website": "https://relevanceai.com",
+    "theme": "Sales",
+    "short_description": "No-code AI workforce platform; its BDR agent researches leads, writes outreach, handles replies and books meetings.",
+    "capabilities": [
+      "Web Research",
+      "Lead Enrichment",
+      "Email Automation",
+      "Meeting Scheduling",
+      "CRM Integration",
+      "Workflow Orchestration"
+    ],
+    "pricing_url": "https://relevanceai.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": true,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Pricing page only shows Enterprise ('Talk to sales'); BDR page claims a free plan and free trial but no public paid tier prices captured."
+  },
+  {
+    "name": "Jason AI SDR",
+    "company": "Reply.io",
+    "website": "https://reply.io",
+    "theme": "Sales",
+    "short_description": "AI SDR that finds contacts, personalizes multichannel sequences, answers replies and books meetings.",
+    "capabilities": [
+      "Lead Generation",
+      "Lead Enrichment",
+      "Email Automation",
+      "Outreach Sequencing",
+      "Meeting Scheduling",
+      "CRM Integration"
+    ],
+    "pricing_url": "https://reply.io/pricing/",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Email Volume",
+        "billing_model": "seat",
+        "amount": 59,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "AI SDR Starter",
+        "billing_model": "subscription",
+        "amount": 500,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "AI SDR Growth",
+        "billing_model": "subscription",
+        "amount": 1500,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "AI SDR Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": false,
+    "free_trial": true,
+    "api": true,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "AI SDR prices are 'from' amounts (Starter $500-800, Growth $1,500-3,000 by contacts). Email Volume monthly price ambiguous on page ($49-59). 14-day trial, no card. API and MCP on all plans."
+  },
+  {
+    "name": "Instantly AI Agents",
+    "company": "Instantly",
+    "website": "https://instantly.ai",
+    "theme": "Sales",
+    "short_description": "Cold email platform with AI sales and reply agents, a 450M+ lead database and built-in CRM.",
+    "capabilities": [
+      "Lead Generation",
+      "Email Automation",
+      "Outreach Sequencing"
+    ],
+    "pricing_url": "https://instantly.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Outreach Starter",
+        "billing_model": "subscription",
+        "amount": 94,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Outreach Scale",
+        "billing_model": "subscription",
+        "amount": 194,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Outreach Agency",
+        "billing_model": "subscription",
+        "amount": 555,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Growth Credits",
+        "billing_model": "credits",
+        "amount": 47,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "1.5k credits",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": true,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Monthly-billed bundle prices; annual $85/$175/$500. Page says 'Start free' but no free tier detailed. Pricing page structure complex; figures as extracted."
+  },
+  {
+    "name": "Amplemarket Duo",
+    "company": "Amplemarket",
+    "website": "https://www.amplemarket.com",
+    "theme": "Sales",
+    "short_description": "Sales platform with Duo AI that detects intent signals, writes personalized emails and drafts inbox replies.",
+    "capabilities": [
+      "Lead Generation",
+      "Email Automation",
+      "Outreach Sequencing"
+    ],
+    "pricing_url": "https://www.amplemarket.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Startup",
+        "billing_model": "subscription",
+        "amount": 600,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Growth",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Elite",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": true,
+    "api": null,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Startup $600/mo on annual term (2 users). Duo Voice sends AI voice messages (not live calls). MCP to prospect from Claude/ChatGPT."
+  },
+  {
+    "name": "Unify",
+    "company": "Unify",
+    "website": "https://www.unifygtm.com",
+    "theme": "Sales",
+    "short_description": "Warm-outbound agents that research accounts, watch intent signals and run AI-personalized sequences.",
+    "capabilities": [
+      "Lead Generation",
+      "Lead Enrichment",
+      "Web Research",
+      "Outreach Sequencing",
+      "Email Automation",
+      "CRM Integration"
+    ],
+    "pricing_url": "https://www.unifygtm.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Base",
+        "billing_model": "seat",
+        "amount": 20,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "seat",
+        "amount": 60,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Business",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": true,
+    "api": true,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "14-day trial on Pro. API/webhooks on Business only. CRM sync read-only on Pro."
+  },
+  {
+    "name": "Gong AI Agents",
+    "company": "Gong",
+    "website": "https://www.gong.io",
+    "theme": "Sales",
+    "short_description": "Revenue AI agents that transcribe calls, fill CRM fields, flag deal risk, predict revenue and draft emails.",
+    "capabilities": [
+      "Speech Transcription",
+      "CRM Integration",
+      "Data Extraction",
+      "Email Automation",
+      "Forecasting",
+      "Summarization",
+      "Translation"
+    ],
+    "pricing_url": "https://www.gong.io/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Quote-only: per-user license + platform fee. Custom agents via Agent Builder."
+  },
+  {
+    "name": "Persana AI",
+    "company": "Persana AI",
+    "website": "https://persana.ai",
+    "theme": "Sales",
+    "short_description": "AI prospecting platform with research agents, waterfall enrichment, web scrapers and autopilot outbound.",
+    "capabilities": [
+      "Lead Generation",
+      "Lead Enrichment",
+      "Web Research",
+      "Web Scraping",
+      "Outreach Sequencing",
+      "CRM Integration"
+    ],
+    "pricing_url": "https://persana.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "50 credits",
+        "is_trial": false
+      },
+      {
+        "plan": "Starter",
+        "billing_model": "subscription",
+        "amount": 85,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Growth",
+        "billing_model": "subscription",
+        "amount": 151,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "subscription",
+        "amount": 400,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Unlimited",
+        "billing_model": "subscription",
+        "amount": 600,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": true,
+    "api": true,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Starter $85 billed monthly ($68 annual). Growth/Pro/Unlimited shown as annual-billed monthly prices. Autopilot agents on Unlimited+; CRM integration Pro+."
+  },
+  {
+    "name": "Warmly AI Inbound Autopilot",
+    "company": "Warmly",
+    "website": "https://www.warmly.ai",
+    "theme": "Sales",
+    "short_description": "De-anonymizes website visitors and runs AI chat agents that qualify, route and book inbound leads.",
+    "capabilities": [
+      "Lead Generation",
+      "Customer Chat",
+      "Meeting Scheduling",
+      "CRM Integration"
+    ],
+    "pricing_url": "https://www.warmly.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "AI Web-Deanonymization",
+        "billing_model": "subscription",
+        "amount": 10000,
+        "currency": "USD",
+        "interval": "year",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Inbound Chat",
+        "billing_model": "subscription",
+        "amount": 20000,
+        "currency": "USD",
+        "interval": "year",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "AI Inbound Autopilot",
+        "billing_model": "subscription",
+        "amount": 30000,
+        "currency": "USD",
+        "interval": "year",
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": true,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Annual prices; quarterly billing $4,875 / $6,500 / $9,750 per quarter. No monthly plan or free plan mentioned."
+  },
+  {
+    "name": "Agent Frank",
+    "company": "Salesforge",
+    "website": "https://www.salesforge.ai",
+    "theme": "Sales",
+    "short_description": "Autonomous AI SDR that prospects, writes personalized emails and runs outreach 24/7 in autopilot or copilot mode.",
+    "capabilities": [
+      "Lead Generation",
+      "Email Automation",
+      "Outreach Sequencing"
+    ],
+    "pricing_url": "https://www.salesforge.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Pro (human)",
+        "billing_model": "subscription",
+        "amount": 48,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Growth (human)",
+        "billing_model": "subscription",
+        "amount": 96,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Agent Frank",
+        "billing_model": "subscription",
+        "amount": 499,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": true,
+    "api": true,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Agent Frank $499/mo on quarterly billing plus $416/mo infra per 1k contacts. Pro/Growth monthly vs annual figures ($40/$48, $80/$96) were ambiguous on extraction. 14-day trial."
+  },
+  {
+    "name": "Jasper",
+    "company": "Jasper",
+    "website": "https://www.jasper.ai",
+    "theme": "Marketing",
+    "short_description": "Marketing AI platform with 100+ agents for on-brand content, research, GEO optimization, translation and images.",
+    "capabilities": [
+      "Content Writing",
+      "SEO Optimization",
+      "Web Research",
+      "Translation",
+      "Image Generation"
+    ],
+    "pricing_url": "https://www.jasper.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Pro",
+        "billing_model": "seat",
+        "amount": 69,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Business",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": false,
+    "free_trial": true,
+    "api": true,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Pro $59/seat annual. 7-day trial. API and MCP on Business."
+  },
+  {
+    "name": "Copy.ai GTM Workflows",
+    "company": "Copy.ai",
+    "website": "https://www.copy.ai",
+    "theme": "Marketing",
+    "short_description": "GTM AI platform that runs multi-step AI workflows for content, SEO articles and account research.",
+    "capabilities": [
+      "Content Writing",
+      "SEO Optimization",
+      "Web Research",
+      "Workflow Orchestration"
+    ],
+    "pricing_url": "https://www.copy.ai/prices",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Chat",
+        "billing_model": "subscription",
+        "amount": 29,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Growth",
+        "billing_model": "subscription",
+        "amount": 1000,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Expansion",
+        "billing_model": "subscription",
+        "amount": 2000,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Scale",
+        "billing_model": "subscription",
+        "amount": 3000,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": true,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Chat plan ($24 annual) is chat-only; workflow agents start at Growth, which is billed annually ($12k/yr). API on Enterprise."
+  },
+  {
+    "name": "WRITER Agent",
+    "company": "WRITER",
+    "website": "https://writer.com",
+    "theme": "Marketing",
+    "short_description": "Enterprise agent that turns multi-step marketing and business work into automated, governed playbooks.",
+    "capabilities": [
+      "Workflow Orchestration",
+      "Web Research",
+      "Browser Automation",
+      "Image Generation",
+      "Data Analysis",
+      "Report Generation"
+    ],
+    "pricing_url": "https://writer.com/plans/",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Starter",
+        "billing_model": "seat",
+        "amount": null,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": true,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Starter is per-seat monthly/annual but no price shown on plans or pricing page. 14-day free trial, no card."
+  },
+  {
+    "name": "AirOps",
+    "company": "AirOps",
+    "website": "https://www.airops.com",
+    "theme": "Marketing",
+    "short_description": "Content engineering platform that automates SEO/GEO content workflows and tracks visibility in AI answer engines.",
+    "capabilities": [
+      "Content Writing",
+      "SEO Optimization",
+      "Data Extraction",
+      "Workflow Orchestration"
+    ],
+    "pricing_url": "https://www.airops.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Solo",
+        "billing_model": "subscription",
+        "amount": null,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "subscription",
+        "amount": null,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": true,
+    "api": null,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Solo and Pro marked 'Free to start' with no dollar amount shown; overage $0.025/task on Solo. 14-day trial. MCP connectors mentioned."
+  },
+  {
+    "name": "Surfer",
+    "company": "Surfer",
+    "website": "https://surferseo.com",
+    "theme": "Marketing",
+    "short_description": "SEO and AI-search platform that writes and optimizes content and tracks brand visibility in AI answers.",
+    "capabilities": [
+      "SEO Optimization",
+      "Content Writing"
+    ],
+    "pricing_url": "https://surferseo.com/pricing/",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Discovery",
+        "billing_model": "subscription",
+        "amount": 49,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Standard",
+        "billing_model": "subscription",
+        "amount": 99,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "subscription",
+        "amount": 182,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Peace of Mind",
+        "billing_model": "subscription",
+        "amount": 299,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "AI Search Analytics",
+        "billing_model": "subscription",
+        "amount": 82,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": true,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "All prices shown are annual-billed monthly equivalents; monthly-billed prices not captured. API & MCP on Pro+. 'Start for free' shown but trial terms unclear."
+  },
+  {
+    "name": "Writesonic",
+    "company": "Writesonic",
+    "website": "https://writesonic.com",
+    "theme": "Marketing",
+    "short_description": "GEO/SEO agents that monitor brand visibility across 10 AI platforms, write articles and prioritize fixes.",
+    "capabilities": [
+      "SEO Optimization",
+      "Content Writing"
+    ],
+    "pricing_url": "https://writesonic.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Starter",
+        "billing_model": "subscription",
+        "amount": 79,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Basic",
+        "billing_model": "subscription",
+        "amount": 199,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Growth",
+        "billing_model": "subscription",
+        "amount": 399,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": true,
+    "api": true,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Monthly prices; annual $948/$2,388/$4,788 per year. Free trial, no card."
+  },
+  {
+    "name": "Frase",
+    "company": "Frase",
+    "website": "https://www.frase.io",
+    "theme": "Marketing",
+    "short_description": "SEO/GEO content agent that researches, writes, optimizes and can auto-publish articles, with AI visibility tracking.",
+    "capabilities": [
+      "SEO Optimization",
+      "Content Writing",
+      "Web Research",
+      "Report Generation"
+    ],
+    "pricing_url": "https://www.frase.io/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Starter",
+        "billing_model": "subscription",
+        "amount": 49,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Professional",
+        "billing_model": "subscription",
+        "amount": 129,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Scale",
+        "billing_model": "subscription",
+        "amount": 299,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": true,
+    "api": true,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Monthly-billed; annual $39/$103/$239. 7-day trial, no card. MCP server, CLI and API."
+  },
+  {
+    "name": "Blaze",
+    "company": "Blaze",
+    "website": "https://www.blaze.ai",
+    "theme": "Marketing",
+    "short_description": "AI marketing agent that plans, creates and schedules social posts, emails, blogs and ads for small businesses.",
+    "capabilities": [
+      "Social Media Management",
+      "Content Writing",
+      "Video Generation"
+    ],
+    "pricing_url": "https://www.blaze.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Starter",
+        "billing_model": "subscription",
+        "amount": 79,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Growth",
+        "billing_model": "subscription",
+        "amount": 149,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "All-In-One",
+        "billing_model": "subscription",
+        "amount": 999,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": true,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Credit-based generation (post 1, email/blog 3, AI video 15). All-In-One is a managed service. Annual pricing not captured."
+  },
+  {
+    "name": "Averi",
+    "company": "Averi",
+    "website": "https://www.averi.ai",
+    "theme": "Marketing",
+    "short_description": "AI content engine for lean teams: builds strategy, drafts SEO/GEO-scored content and auto-publishes to your CMS.",
+    "capabilities": [
+      "Content Writing",
+      "SEO Optimization"
+    ],
+    "pricing_url": "https://www.averi.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Solo",
+        "billing_model": "subscription",
+        "amount": 99,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Team",
+        "billing_model": "subscription",
+        "amount": 199,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": true,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "14-day free trial. Agency plan mentioned without price. Newer entrant."
+  },
+  {
+    "name": "Madgicx",
+    "company": "Madgicx",
+    "website": "https://madgicx.com",
+    "theme": "Marketing",
+    "short_description": "AI ad platform that optimizes Meta ads, generates ad creatives and produces cross-channel performance reports.",
+    "capabilities": [
+      "Image Generation",
+      "Data Analysis",
+      "Report Generation"
+    ],
+    "pricing_url": "https://madgicx.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Pro Complete with AI",
+        "billing_model": "subscription",
+        "amount": null,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Tracking Pro add-on",
+        "billing_model": "subscription",
+        "amount": 49,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": true,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Main plan price hidden ('See price inside the app'). 7-day free trial, no card."
+  },
+  {
+    "name": "AdCreative.ai",
+    "company": "AdCreative.ai",
+    "website": "https://www.adcreative.ai",
+    "theme": "Marketing",
+    "short_description": "Generates ad creatives, video ads and product shots, scores them for performance and analyzes competitor ads.",
+    "capabilities": [
+      "Image Generation",
+      "Video Generation",
+      "Content Writing",
+      "Competitor Monitoring"
+    ],
+    "pricing_url": "https://www.adcreative.ai/",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Starter",
+        "billing_model": "subscription",
+        "amount": 39,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Professional",
+        "billing_model": "subscription",
+        "amount": 249,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Ultimate",
+        "billing_model": "subscription",
+        "amount": 999,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": true,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "/pricing returned 404; prices taken from vendor homepage (25% off quarterly, 50% off yearly). 7-day trial. DAM API for enterprise."
+  },
+  {
+    "name": "Pencil",
+    "company": "Pencil",
+    "website": "https://www.trypencil.com",
+    "theme": "Marketing",
+    "short_description": "Generative ad platform whose agents create text, image and video ads, resize them and predict performance.",
+    "capabilities": [
+      "Image Generation",
+      "Video Generation",
+      "Content Writing",
+      "Translation"
+    ],
+    "pricing_url": "https://www.trypencil.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Core",
+        "billing_model": "subscription",
+        "amount": 14,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Growth",
+        "billing_model": "subscription",
+        "amount": 55,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": true,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Monthly-billed; annual $11/$44. Free guided experience to create six ads."
+  },
+  {
+    "name": "Arcads",
+    "company": "Arcads",
+    "website": "https://www.arcads.ai",
+    "theme": "Marketing",
+    "short_description": "Creates AI UGC-style video and image ads with 1,000+ AI actors, captions and 30+ language localization.",
+    "capabilities": [
+      "Video Generation",
+      "Image Generation",
+      "Translation",
+      "Speech Transcription"
+    ],
+    "pricing_url": "https://www.arcads.ai",
+    "pricing_verified": false,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Paid plans",
+        "billing_model": "subscription",
+        "amount": null,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": true,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "No public pricing page reachable (/pricing 404); only third-party sources list prices, not used. Limited-time 7-day unlimited Seedance trial advertised. API and Claude MCP (connectmcp.arcads.ai)."
+  },
+  {
+    "name": "Creatify",
+    "company": "Creatify",
+    "website": "https://creatify.ai",
+    "theme": "Marketing",
+    "short_description": "AI video ad generator that turns URLs into UGC-style ads, tracks competitor ads and automates performance.",
+    "capabilities": [
+      "Video Generation",
+      "Image Generation",
+      "Competitor Monitoring",
+      "Translation"
+    ],
+    "pricing_url": "https://creatify.ai/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "10 credits",
+        "is_trial": false
+      },
+      {
+        "plan": "Starter",
+        "billing_model": "subscription",
+        "amount": 39,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Pro",
+        "billing_model": "subscription",
+        "amount": 99,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": true,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Up to 50% off on annual. MCP on Pro+. API with volume discounts."
+  },
+  {
+    "name": "Profound",
+    "company": "Profound",
+    "website": "https://www.tryprofound.com",
+    "theme": "Marketing",
+    "short_description": "AI-search visibility platform with agents that track brand mentions across answer engines and act on them.",
+    "capabilities": [
+      "SEO Optimization"
+    ],
+    "pricing_url": "https://www.tryprofound.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Trial",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": null,
+        "unit": null,
+        "is_trial": true
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": false,
+    "free_trial": true,
+    "api": true,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "7-day trial then Enterprise quote-only; Agency Growth plan mentioned without price. API on Enterprise."
+  },
+  {
+    "name": "Typeface",
+    "company": "Typeface",
+    "website": "https://www.typeface.ai",
+    "theme": "Marketing",
+    "short_description": "Enterprise agentic marketing platform that plans, creates and optimizes on-brand, personalized campaigns.",
+    "capabilities": [
+      "Content Writing",
+      "Workflow Orchestration"
+    ],
+    "pricing_url": "https://www.typeface.ai",
+    "pricing_verified": false,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": true,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "/pricing returned 404; site directs to demo/contact sales. MCP and APIs mentioned."
+  },
+  {
+    "name": "Composer (Marketing Agent)",
+    "company": "Klaviyo",
+    "website": "https://www.klaviyo.com/solutions/ai/marketing-agent",
+    "theme": "Marketing",
+    "short_description": "Klaviyo agent that builds email/SMS campaigns, segments and flows, and audits performance for B2C brands.",
+    "capabilities": [
+      "Email Automation",
+      "Content Writing",
+      "Data Analysis"
+    ],
+    "pricing_url": "https://www.klaviyo.com/pricing",
+    "pricing_verified": false,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Paid plans",
+        "billing_model": "subscription",
+        "amount": null,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Pricing page content did not render (prices vary by contacts). Composer has 'free and paid access options'. Formerly announced as K:AI Marketing Agent."
+  },
+  {
+    "name": "Breeze Agents (Marketing Hub)",
+    "company": "HubSpot",
+    "website": "https://www.hubspot.com/products/marketing",
+    "theme": "Marketing",
+    "short_description": "HubSpot Marketing Hub AI agents for customer chat, content creation, social posting and CRM data work.",
+    "capabilities": [
+      "Customer Chat",
+      "Content Writing",
+      "Social Media Management",
+      "CRM Integration"
+    ],
+    "pricing_url": "https://www.hubspot.com/pricing/marketing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Free",
+        "billing_model": "free",
+        "amount": 0,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Starter",
+        "billing_model": "seat",
+        "amount": 20,
+        "currency": "USD",
+        "interval": "month",
+        "unit": "seat",
+        "is_trial": false
+      },
+      {
+        "plan": "Professional",
+        "billing_model": "subscription",
+        "amount": 890,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Enterprise",
+        "billing_model": "subscription",
+        "amount": 3600,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": true,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Extraction ambiguous: Pro $800 (annual) vs $890 (monthly) incl. 3 seats, +$3,000 onboarding; Enterprise from $3,600/mo incl. 5 seats, +$7,000 onboarding. Agents consume HubSpot Credits ($0.01 each)."
+  },
+  {
+    "name": "Ocoya",
+    "company": "Ocoya",
+    "website": "https://www.ocoya.com",
+    "theme": "Marketing",
+    "short_description": "AI social media tool that creates, schedules and auto-publishes posts across 25+ platforms with workflows.",
+    "capabilities": [
+      "Social Media Management",
+      "Content Writing",
+      "Workflow Orchestration"
+    ],
+    "pricing_url": "https://www.ocoya.com/pricing",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Starter",
+        "billing_model": "subscription",
+        "amount": 29,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Team",
+        "billing_model": "subscription",
+        "amount": 79,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Agency",
+        "billing_model": "subscription",
+        "amount": 199,
+        "currency": "USD",
+        "interval": "month",
+        "unit": null,
+        "is_trial": false
+      },
+      {
+        "plan": "Custom",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": true,
+    "api": true,
+    "mcp": true,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Annual billing = 2 months free. 7-day trial. MCP for Claude/ChatGPT."
+  },
+  {
+    "name": "Albert",
+    "company": "Albert Technologies",
+    "website": "https://albert.ai",
+    "theme": "Marketing",
+    "short_description": "Autonomous AI that designs, runs and optimizes paid campaigns and budgets across search, social and video.",
+    "capabilities": [
+      "Data Analysis"
+    ],
+    "pricing_url": "https://albert.ai/pricing/",
+    "pricing_verified": true,
+    "checked_at": "2026-09-30",
+    "plans": [
+      {
+        "plan": "Enterprise",
+        "billing_model": "enterprise_quote",
+        "amount": null,
+        "currency": null,
+        "interval": null,
+        "unit": null,
+        "is_trial": false
+      }
+    ],
+    "free_plan": null,
+    "free_trial": null,
+    "api": null,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "Quote only, based on annual ad budget. Maintenance uncertain: latest blog posts seen from 2025. Included to reach 20; weakest Marketing entry."
+  }
+]
