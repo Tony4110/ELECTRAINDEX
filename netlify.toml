@@ -1,0 +1,17 @@
+# Electra Index — Netlify deploy (site lives in /web, Next.js runtime auto-detected)
+[build]
+  base = "web"
+  command = "npm run build"
+  publish = ".next"
+
+# agentelectra.com (and www) → electraindex.com, once both domains are attached to the site
+[[redirects]]
+  from = "https://agentelectra.com/*"
+  to = "https://electraindex.com/:splat"
+  status = 301
+  force = true
+[[redirects]]
+  from = "https://www.agentelectra.com/*"
+  to = "https://electraindex.com/:splat"
+  status = 301
+  force = true

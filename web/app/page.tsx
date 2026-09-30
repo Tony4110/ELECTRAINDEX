@@ -27,7 +27,7 @@ export default async function Home() {
   return (
     <>
       <section style={{ paddingBottom: 32 }}>
-        <div className="eyebrow">The agent economy index · v0.1</div>
+        <div className="eyebrow">Electra Index · the agent economy, made readable</div>
         <h1 style={{ maxWidth: 1000 }}>Discover, compare and track the AI agents powering the new economy.</h1>
         <p className="lede">Every agent, MCP server and price, sourced and dated. Scores come from observable data, never from opinion.</p>
         <form action="/search" method="get" className="search" role="search">

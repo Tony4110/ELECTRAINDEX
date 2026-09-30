@@ -1,4 +1,4 @@
-# Intendex — site web (Next.js)
+# Electra Index — site web (Next.js) · electraindex.com
 
 Lit uniquement les données **publiées** de Supabase, avec la clé publique (anon / publishable).
 

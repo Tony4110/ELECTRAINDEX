@@ -23,7 +23,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .header { background: var(--panel); border-bottom: 1px solid var(--line); }
 .header .wrap { display: flex; align-items: center; gap: 32px; min-height: 64px; flex-wrap: wrap; }
 .logo { display: flex; align-items: center; gap: 8px; color: var(--ink); font-weight: 800; font-size: 20px; letter-spacing: -.02em; }
-.logo .mark { background: var(--accent); color: #fff; font-family: var(--mono); font-size: 12px; font-weight: 500; padding: 5px 6px; border-radius: 4px; }
+.logo .star { color: var(--accent); }
+.logo .sub { font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: .12em; color: var(--muted); margin-left: 2px; }
 .nav { display: flex; gap: 24px; font-size: 14px; font-weight: 500; flex-wrap: wrap; }
 .nav a { color: var(--muted); } .nav a:hover { color: var(--ink); }
 .spacer { flex-grow: 1; }

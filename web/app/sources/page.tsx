@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { db } from "@/lib/db";
 import { Empty, SetupNotice } from "@/components/ui";
 
-export const metadata: Metadata = { title: "Sources & methodology", description: "Where Intendex data comes from and the rules it follows." };
+export const metadata: Metadata = { title: "Sources & methodology", description: "Where Electra Index data comes from and the rules it follows." };
 
 type Src = { code: string; name: string; url: string | null; layer: string | null; access: string | null; refresh: string | null };
 
