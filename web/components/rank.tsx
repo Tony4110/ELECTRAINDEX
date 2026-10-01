@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { providerHref } from "@/lib/db";
+import { Favicon } from "@/components/favicon";
 
 export function Trust({ level }: { level: string }) {
   if (level === "proven") return <span className="badge pos" title="Proven: measured over time">✓✓ PROVEN</span>;
@@ -63,4 +64,30 @@ export function KindTabs({ base, kind, counts, extra = {} }: { base: string; kin
       <Link role="tab" aria-selected={kind === "tools"} href={href("tools")} className={kind === "tools" ? "on" : ""}>Tools &amp; MCP servers <span className="mono faint">{counts.tools.toLocaleString("en-US")}</span></Link>
     </div>
   );
+}
+
+export function domainOf(url: string | null | undefined): string | null {
+  if (!url) return null;
+  try { return new URL(url).hostname.replace(/^www\./, ""); } catch { return null; }
+}
+
+/** Vendor logo from its website favicon, with a letter tile underneath as fallback. */
+export function Logo({ name, website, size = 32 }: { name: string; website?: string | null; size?: number }) {
+  const d = domainOf(website);
+  return (
+    <span className="logo-tile" style={{ width: size, height: size, fontSize: size * 0.45 }} aria-hidden="true">
+      {name.charAt(0).toUpperCase()}
+      {d ? <Favicon domain={d} size={size} /> : null}
+    </span>
+  );
+}
+
+export function valueOf(q: number | null, from: number | null, free: boolean): "best" | "premium" | "free" | "fair" | null {
+  const s = q == null ? null : Number(q);
+  const f = from == null ? null : Number(from);
+  if (s != null && s >= 60 && ((f != null && f <= 50) || (f == null && free))) return "best";
+  if (s != null && s >= 70 && f != null && f > 50) return "premium";
+  if (free) return "free";
+  if (f != null) return "fair";
+  return null;
 }
