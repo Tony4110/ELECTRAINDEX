@@ -57,11 +57,12 @@ export default async function Home({ searchParams }: { searchParams: SP }) {
   return (
     <>
       <section className="hero">
-        <div className="eyebrow">Electra Index · the agent economy, made readable</div>
-        <h1>What do you need done?</h1>
+        <div className="eyebrow">Electra Index · the trust layer for the agent economy</div>
+        <h1>Know your agent. Trust your transaction.</h1>
+        <p className="lede">Which AI agent to use, whether it can be trusted, and what it really costs. Ranked on sourced, dated data.</p>
         <form action="/search" method="get" className="search" role="search">
           <label htmlFor="q" className="sr-only">What do you need an AI agent to do?</label>
-          <input id="q" name="q" type="search" placeholder="e.g. find leads, write SEO articles, query my database" autoComplete="off" />
+          <input id="q" name="q" type="search" placeholder="What do you need done? e.g. find leads, write SEO articles" autoComplete="off" />
           <button type="submit">Search →</button>
         </form>
         <div className="stats-line" aria-label="Index at a glance">
