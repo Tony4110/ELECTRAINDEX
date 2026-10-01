@@ -22,8 +22,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .ticker .live { color: #5BD08A; }
 .header { background: var(--panel); border-bottom: 1px solid var(--line); }
 .header .wrap { display: flex; align-items: center; gap: 32px; min-height: 64px; flex-wrap: wrap; }
-.logo { display: flex; align-items: center; gap: 8px; color: var(--ink); font-weight: 800; font-size: 20px; letter-spacing: -.02em; }
-.logo .sub { font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: .12em; color: var(--muted); margin-left: 2px; }
+.logo { display: flex; align-items: baseline; gap: 6px; color: var(--ink); font-weight: 800; font-size: 21px; letter-spacing: -.02em; white-space: nowrap; }
+.logo .sub { font-weight: 800; color: var(--accent); }
 .nav { display: flex; gap: 24px; font-size: 14px; font-weight: 500; flex-wrap: wrap; }
 .nav a { color: var(--muted); } .nav a:hover { color: var(--ink); }
 .spacer { flex-grow: 1; }

@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://electraindex.com"),
-  title: { default: "Electra — The agent economy, made readable", template: "%s · Electra" },
+  title: { default: "Electra Index — The agent economy, made readable", template: "%s · Electra Index" },
   description: "Electra Index: discover, compare and track AI agents and MCP servers. Every fact sourced and dated.",
   openGraph: { siteName: "Electra Index", type: "website" },
 };
