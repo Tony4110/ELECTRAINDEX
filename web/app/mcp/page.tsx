@@ -4,7 +4,7 @@ import { db, type McpServer } from "@/lib/db";
 import { num, timeAgo } from "@/lib/format";
 import { Tri, Empty, SetupNotice } from "@/components/ui";
 
-export const metadata: Metadata = { title: "MCP servers", description: "Every public MCP server, sourced and dated, with version, access type and history." };
+export const metadata: Metadata = { title: "Tools for AI agents (MCP servers)", description: "Every public MCP server, sourced and dated, with version, access type and history." };
 
 const PAGE = 50;
 type SP = Promise<{ q?: string; page?: string; access?: string; sort?: string }>;
@@ -40,9 +40,9 @@ export default async function McpIndex({ searchParams }: { searchParams: SP }) {
 
   return (
     <>
-      <div className="eyebrow">Index · MCP servers</div>
-      <h1>MCP servers</h1>
-      <p className="lede">{num(count)} servers from the Official MCP Registry, refreshed every 15 minutes. Facts are declared by publishers unless marked observed.</p>
+      <div className="eyebrow">Index · Tools</div>
+      <h1>Tools for AI agents</h1>
+      <p className="lede">{num(count)} tools that AI agents plug into (MCP servers), from the Official MCP Registry, refreshed every 15 minutes. Facts are declared by publishers unless marked observed.</p>
 
       <form className="filters" action="/mcp" method="get">
         <label htmlFor="mq" className="sr-only">Search MCP servers</label>

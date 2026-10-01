@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   metadataBase: new URL("https://electraindex.com"),
   title: { default: "Electra Index — The agent economy, made readable", template: "%s · Electra Index" },
-  description: "Electra Index: discover, compare and track AI agents and MCP servers. Every fact sourced and dated.",
+  description: "Electra Index: discover, compare and track AI agents and the tools they use. Every fact sourced and dated.",
   openGraph: { siteName: "Electra Index", type: "website" },
 };
 
@@ -30,12 +30,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <nav className="nav" aria-label="Main">
               <Link href="/">Agents</Link>
               <Link href="/tasks">Tasks</Link>
-              <Link href="/mcp">MCP servers</Link>
-              <Link href="/signals">Signals</Link>
+              <Link href="/mcp">Tools</Link>
+              <Link href="/new">New</Link>
               <Link href="/sources">Methodology</Link>
             </nav>
             <span className="spacer" />
-            <span className="mono small muted">API · soon</span>
+            <Link href="/submit" className="btn list">List your agent</Link>
             <Link href="/search" className="btn dark">Search</Link>
           </div>
         </header>

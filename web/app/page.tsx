@@ -66,7 +66,7 @@ export default async function Home({ searchParams }: { searchParams: SP }) {
         </form>
         <div className="stats-line" aria-label="Index at a glance">
           <span><b>{num(cards.length)}</b> AI agents ranked</span>
-          <span><b>{num(stats?.mcp_servers)}</b> MCP servers tracked</span>
+          <span><b>{num(stats?.mcp_servers)}</b> tools tracked</span>
           <span><b>{num(stats?.tasks)}</b> tasks</span>
           <span><b>{num(week)}</b> changes this week</span>
         </div>
@@ -124,11 +124,11 @@ export default async function Home({ searchParams }: { searchParams: SP }) {
         )}
       </div>
       <p className="note">
-        {current ? <><Link href={`/themes/${current.theme_slug}`} className="strong">Full {current.theme} ranking with task coverage and MCP servers →</Link><br /></> : null}
+        {current ? <><Link href={`/themes/${current.theme_slug}`} className="strong">Full {current.theme} ranking with task coverage and tools →</Link><br /></> : null}
         Quality = Agent Score (0–100). Prices are read on each vendor&apos;s pricing page and dated. No paid placement: a commercial partnership never changes a score. <Link href="/sources">Methodology</Link>
       </p>
 
-      <div className="section-title"><h2>This week in the agent economy</h2><span className="spacer" /><Link href="/signals" className="strong">All signals →</Link></div>
+      <div className="section-title"><h2>This week in the agent economy</h2><span className="spacer" /><Link href="/new" className="strong">New listings →</Link></div>
       <div className="card">
         {signals.length === 0 ? <div className="card-body"><Empty title="No signals yet">Changes appear here as soon as a robot detects them.</Empty></div>
           : <ul className="signals">{signals.map((s) => <SignalItem key={s.id} s={s} />)}</ul>}

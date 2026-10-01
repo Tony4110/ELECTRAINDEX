@@ -31,7 +31,7 @@ export default async function AgentsPage({ searchParams }: { searchParams: SP })
     <>
       <div className="eyebrow">Index · AI agents</div>
       <h1>AI agents, ranked</h1>
-      <p className="lede">{count ?? 0} commercial AI agents, ranked by Agent Score, with their entry price read on each vendor&apos;s pricing page. Looking for developer tools? See the <Link href="/mcp">MCP servers</Link>.</p>
+      <p className="lede">{count ?? 0} commercial AI agents, ranked by Agent Score, with their entry price read on each vendor&apos;s pricing page. Looking for developer tools? See <Link href="/mcp">Tools</Link>.</p>
       <div className="filters">
         <Link href={href({ theme: undefined })} className={`chip ${!sp.theme ? "on" : ""}`}>All themes</Link>
         {themes.map((t) => <Link key={t.theme_slug} href={href({ theme: t.theme_slug })} className={`chip ${sp.theme === t.theme_slug ? "on" : ""}`}>{t.theme}</Link>)}

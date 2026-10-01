@@ -61,7 +61,7 @@ export function KindTabs({ base, kind, counts, extra = {} }: { base: string; kin
   return (
     <div className="tabs" role="tablist">
       <Link role="tab" aria-selected={kind === "agents"} href={href("agents")} className={kind === "agents" ? "on" : ""}>AI agents <span className="mono faint">{counts.agents}</span></Link>
-      <Link role="tab" aria-selected={kind === "tools"} href={href("tools")} className={kind === "tools" ? "on" : ""}>Tools &amp; MCP servers <span className="mono faint">{counts.tools.toLocaleString("en-US")}</span></Link>
+      <Link role="tab" aria-selected={kind === "tools"} href={href("tools")} className={kind === "tools" ? "on" : ""}>Tools <span className="mono faint">{counts.tools.toLocaleString("en-US")}</span></Link>
     </div>
   );
 }

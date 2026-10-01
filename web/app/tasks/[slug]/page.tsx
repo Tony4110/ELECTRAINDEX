@@ -49,7 +49,7 @@ export default async function TaskPage({ params, searchParams }: { params: P; se
   const rows = (data as TaskRanking[] | null) ?? [];
   const pages = Math.max(1, Math.ceil((count ?? 0) / PAGE));
   const link = (p: number, full = onlyFull) => `/tasks/${t.slug}?${new URLSearchParams({ ...(kind === "tools" ? { kind } : {}), ...(p > 1 ? { page: String(p) } : {}), ...(full ? { full: "1" } : {}) })}`;
-  const what = kind === "agents" ? "AI agents" : "tools and MCP servers";
+  const what = kind === "agents" ? "AI agents" : "tools";
 
   return (
     <>
@@ -78,7 +78,7 @@ export default async function TaskPage({ params, searchParams }: { params: P; se
             <table>
               <thead>{kind === "agents"
                 ? <tr><th>#</th><th>Agent</th><th>Coverage</th><th>Quality</th><th>From</th><th>Value</th><th>Trust</th></tr>
-                : <tr><th>#</th><th>Tool / MCP server</th><th>Coverage</th><th>Access</th><th>Trust</th><th>Seen</th></tr>}</thead>
+                : <tr><th>#</th><th>Tool</th><th>Coverage</th><th>Access</th><th>Trust</th><th>Seen</th></tr>}</thead>
               <tbody>
                 {rows.map((r, i) => (
                   <tr key={r.provider_id}>

@@ -66,7 +66,7 @@ export default async function ThemePage({ params, searchParams }: { params: P; s
       <h1>Best AI agents &amp; tools for {t.theme}</h1>
       <p className="lede">{kind === "agents"
         ? <>{num(nAgents ?? 0)} AI agents built for {t.theme.toLowerCase()}, ranked by quality, with their entry price and value for money. Prices come from each vendor&apos;s own pricing page.</>
-        : <>{num(nTools ?? 0)} tools and MCP servers cover at least one of the {t.tasks} {t.theme.toLowerCase()} tasks, ranked by coverage score: how much of the theme&apos;s tasks each one covers.</>}</p>
+        : <>{num(nTools ?? 0)} tools cover at least one of the {t.tasks} {t.theme.toLowerCase()} tasks, ranked by coverage score: how much of the theme&apos;s tasks each one covers.</>}</p>
       <div className="chips">
         <span className="small muted">Tasks in this theme:</span>
         {themeTasks.map((x) => <Link key={x.slug} href={`/tasks/${x.slug}`} className="chip">{x.name}</Link>)}
@@ -103,7 +103,7 @@ export default async function ThemePage({ params, searchParams }: { params: P; s
           </table>
         ) : (
           <table>
-            <thead><tr><th>#</th><th>Tool / MCP server</th><th>Coverage score</th><th>Tasks covered</th><th>Best at</th><th>Access</th><th>Trust</th><th>Seen</th></tr></thead>
+            <thead><tr><th>#</th><th>Tool</th><th>Coverage score</th><th>Tasks covered</th><th>Best at</th><th>Access</th><th>Trust</th><th>Seen</th></tr></thead>
             <tbody>
               {rows.map((r, i) => (
                 <tr key={r.provider_id}>
