@@ -28,9 +28,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               ELECTRA<span className="sub">INDEX</span>
             </Link>
             <nav className="nav" aria-label="Main">
-              <Link href="/themes">Themes</Link>
+              <Link href="/">Agents</Link>
               <Link href="/tasks">Tasks</Link>
-              <Link href="/agents">AI agents</Link>
               <Link href="/mcp">MCP servers</Link>
               <Link href="/signals">Signals</Link>
               <Link href="/sources">Methodology</Link>
