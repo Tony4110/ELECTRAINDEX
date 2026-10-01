@@ -198,3 +198,16 @@ h2.day { margin: 28px 0 10px; font-size: 16px; display: flex; gap: 8px; align-it
 .header .btn.list { min-height: 40px; }
 @media (max-width: 760px) { .form-grid { grid-template-columns: 1fr; } .launch .side { display: none; } .launch .desc2 { white-space: normal; } }
 .form-grid label .small { font-weight: 400; }
+
+/* compact hero: one-line lede, everything higher on the page */
+main { padding-block: 20px 56px; }
+.hero { padding-top: 0; }
+.hero h1 { margin: 4px 0 6px; }
+.hero .lede { max-width: none; font-size: 16px; }
+.hero .search { margin-top: 12px; max-width: none; }
+.hero .search input { padding-block: 14px; }
+.hero .search button { min-height: 52px; }
+.stats-line { margin-top: 10px; }
+.theme-bar { margin-top: 10px; padding: 10px 0 8px; }
+.theme-tab { min-height: 68px; }
+@media (min-width: 900px) { .hero .lede { white-space: nowrap; } }
