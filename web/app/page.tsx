@@ -57,15 +57,13 @@ export default async function Home({ searchParams }: { searchParams: SP }) {
   return (
     <>
       <section className="hero">
-        <div className="hero-text">
-          <h1>Know your agent. Trust your transaction.</h1>
-          <p className="lede">AI agents ranked on quality, price and trust.</p>
-        </div>
+        <h1>Know your agent. Trust your transaction.</h1>
         <form action="/search" method="get" className="search" role="search">
           <label htmlFor="q" className="sr-only">What do you need an AI agent to do?</label>
           <input id="q" name="q" type="search" placeholder="What do you need done?" autoComplete="off" />
           <button type="submit" aria-label="Search">Search</button>
         </form>
+        <p className="lede">AI agents ranked on quality, price and trust.</p>
       </section>
 
       <nav className="theme-line" aria-label="Themes" id="ranking">

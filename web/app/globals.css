@@ -238,3 +238,10 @@ footer.site .wrap { padding-block: 16px; gap: 8px 24px; }
 .hero .search { flex: 1 1 360px; width: auto; max-width: 520px; }
 @media (min-width: 900px) { .hero { flex-wrap: nowrap; } .hero-text { flex-shrink: 0; } }
 @media (max-width: 899px) { .hero .search { max-width: none; flex-basis: 100%; } }
+/* slogan and search on one centred row, lede underneath */
+.hero { padding-top: 20px; row-gap: 6px; }
+.hero h1 { font-size: clamp(26px, 2.9vw, 38px); margin: 0; line-height: 1.1; }
+.hero .search input, .hero .search button { min-height: 48px; }
+.hero .lede { flex-basis: 100%; }
+@media (min-width: 900px) { .hero { flex-wrap: wrap; } .hero h1 { flex-shrink: 0; white-space: nowrap; } .hero .search { flex: 1 1 300px; max-width: 480px; } }
+@media (max-width: 899px) { .hero h1 { flex-basis: 100%; } .hero .lede { order: 2; } .hero .search { order: 3; margin-top: 8px; } }
