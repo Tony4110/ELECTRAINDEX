@@ -63,7 +63,7 @@ export default async function Home({ searchParams }: { searchParams: SP }) {
           <input id="q" name="q" type="search" placeholder="What do you need done?" autoComplete="off" />
           <button type="submit" aria-label="Search">Search</button>
         </form>
-        <p className="lede">AI agents ranked on quality, price and trust.</p>
+        <p className="lede">Which AI agent to use, whether it can be trusted, and what it really costs.</p>
       </section>
 
       <nav className="theme-line" aria-label="Themes" id="ranking">

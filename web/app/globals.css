@@ -245,3 +245,7 @@ footer.site .wrap { padding-block: 16px; gap: 8px 24px; }
 .hero .lede { flex-basis: 100%; }
 @media (min-width: 900px) { .hero { flex-wrap: wrap; } .hero h1 { flex-shrink: 0; white-space: nowrap; } .hero .search { flex: 1 1 300px; max-width: 480px; } }
 @media (max-width: 899px) { .hero h1 { flex-basis: 100%; } .hero .lede { order: 2; } .hero .search { order: 3; margin-top: 8px; } }
+.hero h1 { font-size: clamp(28px, 3.3vw, 44px); }
+.hero .search input, .hero .search button { min-height: 44px; }
+@media (min-width: 900px) { .hero .search { flex: 0 1 340px; max-width: 340px; } }
+.hero h1 { font-size: clamp(28px, 2.85vw, 41px); }
