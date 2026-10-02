@@ -249,3 +249,7 @@ footer.site .wrap { padding-block: 16px; gap: 8px 24px; }
 .hero .search input, .hero .search button { min-height: 44px; }
 @media (min-width: 900px) { .hero .search { flex: 0 1 340px; max-width: 340px; } }
 .hero h1 { font-size: clamp(28px, 2.85vw, 41px); }
+.hero h1 { font-size: clamp(28px, 3.5vw, 50px); line-height: 1; }
+.hero .search input, .hero .search button { min-height: 40px; }
+.hero .search input { font-size: 14px; }
+@media (min-width: 900px) { .hero .search { flex: 0 1 300px; max-width: 300px; } }
