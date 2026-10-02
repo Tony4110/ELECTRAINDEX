@@ -262,3 +262,4 @@ footer.site .wrap { padding-block: 16px; gap: 8px 24px; }
 .rank-head .search input { flex-grow: 1; min-width: 0; border: 0; padding: 0 14px; min-height: 40px; font-size: 14px; background: transparent; outline: none; font-family: var(--sans); color: var(--ink); }
 .rank-head .search button { border: 0; background: var(--accent); color: #fff; font-weight: 600; font-size: 14px; padding: 0 16px; min-height: 40px; cursor: pointer; font-family: var(--sans); }
 @media (max-width: 760px) { .rank-head .search { order: 5; flex-basis: 100%; margin: 4px 0 0; } }
+.rank-head h2 { font-size: 21px; }
