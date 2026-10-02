@@ -1,0 +1,528 @@
+{
+  "protocols": [
+    {
+      "name": "x402",
+      "full_name": "x402 (HTTP 402 payments protocol)",
+      "role": "pay_per_request",
+      "one_liner": "Lets a website or API ask for a small stablecoin payment inside a normal web request, so an AI agent can pay and get the data instantly.",
+      "best_for": "API calls, data, micro-payments, paid MCP tools",
+      "money": [
+        "stablecoin"
+      ],
+      "stewards": [
+        "x402 Foundation (Linux Foundation)",
+        "Coinbase (original author)",
+        "Cloudflare (co-initiator of the foundation)"
+      ],
+      "governance": "x402 Foundation under the Linux Foundation; operational launch 2026-07-14 with 40 member organisations; Coinbase completed contribution of the protocol",
+      "status": "production",
+      "launched": "2025-05",
+      "official_url": "https://x402.org",
+      "spec_url": "https://github.com/x402-foundation/x402/tree/main/specs",
+      "github_repo": "x402-foundation/x402",
+      "networks": [
+        "EVM chains (eip155, e.g. Base, Ethereum, Polygon, Arbitrum)",
+        "Solana",
+        "TON",
+        "Algorand",
+        "Stellar",
+        "Aptos",
+        "Hedera",
+        "Keeta",
+        "NEAR",
+        "Concordium",
+        "XRPL",
+        "Cardano"
+      ],
+      "sources": [
+        "https://github.com/x402-foundation/x402",
+        "https://x402.org/linux-foundation-announces-operational-launch-of-x402-foundation-to-standardize-internet-native-payments-for-ai-agents-and-applications/",
+        "https://www.coinbase.com/developer-platform/discover/launches/x402",
+        "https://www.coinbase.com/blog/coinbase-and-cloudflare-will-launch-x402-foundation",
+        "https://blog.cloudflare.com/x402/",
+        "https://docs.x402.org/core-concepts/network-and-token-support.md",
+        "https://docs.x402.org/dev-tools/facilitators.md"
+      ],
+      "checked_at": "2026-10-02",
+      "notes": "Repo moved from coinbase/x402 to x402-foundation/x402. Launched by Coinbase 2025-05-06 (USDC on Base); foundation intent announced 2025-09-23, operational 2026-07-14. Payment schemes in repo: exact, upto, batch-settlement. spec_url is the specs/ directory named in the README (directory page itself not fetched); x402.org home page could not be fetched directly."
+    },
+    {
+      "name": "MPP",
+      "full_name": "Machine Payments Protocol",
+      "role": "pay_per_request",
+      "one_liner": "An open way for AI agents to pay for a service in the same web request, using stablecoins, cards or Bitcoin Lightning.",
+      "best_for": "API calls, paid services, session/streamed micro-payments",
+      "money": [
+        "stablecoin",
+        "card",
+        "lightning"
+      ],
+      "stewards": [
+        "Tempo",
+        "Stripe"
+      ],
+      "governance": "Core spec ('Payment' HTTP Authentication Scheme) submitted to IETF as an individual Internet-Draft (draft-httpauth-payment-01, 2026-09-09, expires 2027-03-13); not endorsed by IETF, no WG adoption. Payment-method specs are maintained independently.",
+      "status": "production",
+      "launched": "2026-03",
+      "official_url": "https://mpp.dev",
+      "spec_url": "https://datatracker.ietf.org/doc/draft-httpauth-payment/",
+      "github_repo": "tempoxyz/mpp-specs",
+      "networks": [
+        "Tempo",
+        "Bitcoin Lightning",
+        "Solana",
+        "XRPL",
+        "Stellar",
+        "Monad",
+        "NEAR",
+        "EVM"
+      ],
+      "sources": [
+        "https://stripe.com/blog/machine-payments-protocol",
+        "https://mpp.dev/governance",
+        "https://mpp.dev/faq",
+        "https://mpp.dev/overview",
+        "https://mpp.dev/services",
+        "https://github.com/tempoxyz/mpp-specs",
+        "https://datatracker.ietf.org/doc/draft-httpauth-payment/",
+        "https://datatracker.ietf.org/doc/draft-ryan-httpauth-payment/",
+        "https://docs.stripe.com/payments/machine/mpp",
+        "https://developers.cloudflare.com/agents/agentic-payments/mpp"
+      ],
+      "checked_at": "2026-10-02",
+      "notes": "Announced 2026-03-18. FAQ states Tempo stablecoin, card (Card/Stripe) and Lightning payments are in production; other chains are listed as methods. The earlier draft-ryan-httpauth-payment-01 is expired; the current draft is draft-httpauth-payment-01. MPP is documented as backwards-compatible with x402. Service directory: https://mpp.dev/services (137 services listed), JSON at https://mpp.dev/api/services, MCP at https://mpp.dev/mcp/services (endpoints quoted on the page, not called)."
+    },
+    {
+      "name": "AP2",
+      "full_name": "Agent Payments Protocol",
+      "role": "authorization",
+      "one_liner": "Gives an AI agent signed, tamper-proof proof that a person really authorised a purchase, so banks and merchants can trust it.",
+      "best_for": "Proving user consent for agent-initiated purchases (mandates)",
+      "money": [
+        "card",
+        "stablecoin",
+        "bank_transfer"
+      ],
+      "stewards": [
+        "Google",
+        "FIDO Alliance"
+      ],
+      "governance": "Donated by Google to the FIDO Alliance (announced 2026-04-28); standardisation continues in FIDO's Agentic Authentication Technical and Payments Technical Working Groups",
+      "status": "spec_published",
+      "launched": "2025-09",
+      "official_url": "https://ap2-protocol.org/",
+      "spec_url": "https://ap2-protocol.org/ap2/specification/",
+      "github_repo": "google-agentic-commerce/AP2",
+      "networks": [],
+      "sources": [
+        "https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol",
+        "https://blog.google/products-and-platforms/platforms/google-pay/agent-payments-protocol-fido-alliance/",
+        "https://ap2-protocol.org/",
+        "https://ap2-protocol.org/faq/",
+        "https://github.com/google-agentic-commerce/AP2"
+      ],
+      "checked_at": "2026-10-02",
+      "notes": "Announced 2025-09-16 with 60+ organisations; v0.2 (adds 'Human Not Present' payments) published with the FIDO donation on 2026-04-28. The docs site says the initial implementation covers card payments, with stablecoins via x402 and real-time bank transfers on the roadmap/announcement, so non-card rails are less mature. Docs home page shows 'v0.2' next to the 2025-09-16 date, which conflicts with the Google blog."
+    },
+    {
+      "name": "ACP",
+      "full_name": "Agentic Commerce Protocol",
+      "role": "checkout",
+      "one_liner": "Lets an AI assistant like ChatGPT complete a purchase from a shop on the buyer's behalf, passing a secure payment token to the merchant.",
+      "best_for": "In-chat checkout of physical and digital goods",
+      "money": [
+        "card"
+      ],
+      "stewards": [
+        "OpenAI",
+        "Stripe"
+      ],
+      "governance": "Maintained by OpenAI and Stripe as Founding Maintainers; consensus-based governance with stated intent to move to neutral foundation stewardship as the ecosystem matures; Apache 2.0",
+      "status": "spec_published",
+      "launched": "2025-09",
+      "official_url": "https://agenticcommerce.dev",
+      "spec_url": "https://github.com/agentic-commerce-protocol/agentic-commerce-protocol/tree/main/spec/2026-04-17/openapi",
+      "github_repo": "agentic-commerce-protocol/agentic-commerce-protocol",
+      "networks": [],
+      "sources": [
+        "https://github.com/agentic-commerce-protocol/agentic-commerce-protocol",
+        "https://github.com/agentic-commerce-protocol/agentic-commerce-protocol/blob/main/README.md",
+        "https://docs.stripe.com/agentic-commerce/acp",
+        "https://openai.com/index/buy-it-in-chatgpt/",
+        "https://www.agenticcommerce.dev/docs/reference/payments"
+      ],
+      "checked_at": "2026-10-02",
+      "notes": "Repo labels the spec 'beta'; spec versions 2025-09-29 (initial), 2025-12-12, 2026-01-16, 2026-01-30, 2026-04-17 (latest). Conflict: Stripe docs now say ACP was 'created by Stripe, OpenAI, and Meta', while the GitHub README names only OpenAI and Stripe. Delegate Payment reference says only card (FPAN or network token) is supported. It powers ChatGPT Instant Checkout (launched 2025-09-29)."
+    },
+    {
+      "name": "UCP",
+      "full_name": "Universal Commerce Protocol",
+      "role": "checkout",
+      "one_liner": "A common language so AI agents, shops and payment providers can handle product discovery, checkout and orders without custom integrations.",
+      "best_for": "Agentic shopping and checkout across retailers (Google Search/Gemini)",
+      "money": [
+        "any"
+      ],
+      "stewards": [
+        "Google",
+        "Shopify",
+        "Etsy",
+        "Wayfair",
+        "Target",
+        "Walmart"
+      ],
+      "governance": "Open source (Apache 2.0) under the Universal-Commerce-Protocol GitHub organisation; the dev.ucp.* namespace is governed by the 'UCP Tech Council'; no external standards body documented",
+      "status": "spec_published",
+      "launched": "2026-01",
+      "official_url": "https://ucp.dev",
+      "spec_url": "https://github.com/universal-commerce-protocol/ucp",
+      "github_repo": "Universal-Commerce-Protocol/ucp",
+      "networks": [],
+      "sources": [
+        "https://blog.google/company-news/inside-google/message-ceo/nrf-2026-remarks/",
+        "https://github.com/universal-commerce-protocol/ucp",
+        "https://github.com/universal-commerce-protocol",
+        "https://ucp.dev/documentation/core-concepts/"
+      ],
+      "checked_at": "2026-10-02",
+      "notes": "Announced 2026-01-11 at NRF as built with Shopify, Etsy, Wayfair, Target and Walmart and endorsed by 20+ more. Latest GitHub release seen: v2026-04-08 (2026-04-09); search results show a 2026-08-25 spec path on ucp.dev that was not fetched. Payment is delegated to pluggable 'payment handlers' (examples: com.google.pay, dev.shopify.shop_pay) and supports AP2 mandates, hence money='any'; ucp.dev home page could not be fetched directly."
+    },
+    {
+      "name": "MCP",
+      "full_name": "Model Context Protocol",
+      "role": "tool_access",
+      "one_liner": "A standard plug that lets AI assistants connect to outside tools and data; payment protocols are often delivered through it.",
+      "best_for": "Connecting agents to tools, data and paid services",
+      "money": [
+        "none"
+      ],
+      "stewards": [
+        "Agentic AI Foundation (Linux Foundation)",
+        "Anthropic (original author)"
+      ],
+      "governance": "Donated by Anthropic to the Agentic AI Foundation, a Linux Foundation directed fund co-founded by Anthropic, Block and OpenAI (2025-12-09); decisions remain with maintainers via the SEP process",
+      "status": "production",
+      "launched": "2024-11",
+      "official_url": "https://modelcontextprotocol.io",
+      "spec_url": "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+      "github_repo": "modelcontextprotocol/modelcontextprotocol",
+      "networks": [],
+      "sources": [
+        "https://blog.modelcontextprotocol.io/posts/2025-12-09-mcp-joins-agentic-ai-foundation/",
+        "https://blog.modelcontextprotocol.io/posts/2026-07-28/",
+        "https://github.com/modelcontextprotocol/modelcontextprotocol/releases",
+        "https://en.wikipedia.org/wiki/Model_Context_Protocol"
+      ],
+      "checked_at": "2026-10-02",
+      "notes": "Latest stable spec revision is 2026-07-28 (stateless protocol core, no initialize handshake). Initial release date (2024-11-25) comes from Wikipedia, not a primary source. MCP has no payment function itself; x402 Bazaar, MPP and Agentic.Market expose MCP servers. spec_url appeared in search results and was not fetched."
+    },
+    {
+      "name": "A2A",
+      "full_name": "Agent2Agent Protocol",
+      "role": "agent_communication",
+      "one_liner": "A shared language that lets AI agents from different companies find each other, talk and hand over tasks.",
+      "best_for": "Agent-to-agent task delegation and collaboration",
+      "money": [
+        "none"
+      ],
+      "stewards": [
+        "Linux Foundation (A2A project)",
+        "Google (original author)"
+      ],
+      "governance": "Linux Foundation project since 2025-06-23; Technical Steering Committee with AWS, Cisco, Google, IBM Research, Microsoft, Salesforce, SAP and ServiceNow; Apache 2.0",
+      "status": "spec_published",
+      "launched": "2025-04",
+      "official_url": "https://a2a-protocol.org/latest/",
+      "spec_url": "https://a2a-protocol.org/latest/specification/",
+      "github_repo": "a2aproject/A2A",
+      "networks": [],
+      "sources": [
+        "https://a2a-protocol.org/latest/",
+        "https://a2a-protocol.org/latest/specification/",
+        "https://github.com/a2aproject/A2A",
+        "https://www.linuxfoundation.org/press/linux-foundation-launches-the-agent2agent-protocol-project-to-enable-secure-intelligent-communication-between-ai-agents",
+        "https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol"
+      ],
+      "checked_at": "2026-10-02",
+      "notes": "Latest released spec version shown is 1.0.0 (release date not verified). No native payments; Google's AP2 announcement describes an 'A2A x402 extension' for crypto payments, and AP2/UCP build on A2A."
+    },
+    {
+      "name": "Visa TAP",
+      "full_name": "Visa Trusted Agent Protocol (part of Visa Intelligent Commerce)",
+      "role": "card_network_framework",
+      "one_liner": "Lets online shops check that an AI shopping agent is genuine and approved by Visa, rather than a malicious bot.",
+      "best_for": "Merchants recognising trusted agents at card checkout",
+      "money": [
+        "card"
+      ],
+      "stewards": [
+        "Visa"
+      ],
+      "governance": "Visa-published framework developed with Cloudflare; built on HTTP Message Signatures (RFC 9421) / Web Bot Auth; Visa states an aim to align with IETF, OpenID Foundation and EMVCo",
+      "status": "spec_published",
+      "launched": "2025-10",
+      "official_url": "https://developer.visa.com/capabilities/trusted-agent-protocol/overview",
+      "spec_url": "https://developer.visa.com/capabilities/trusted-agent-protocol/overview",
+      "github_repo": "visa/trusted-agent-protocol",
+      "networks": [],
+      "sources": [
+        "https://developer.visa.com/capabilities/trusted-agent-protocol/overview",
+        "https://github.com/visa/trusted-agent-protocol",
+        "https://investor.visa.com/news/news-details/2025/Visa-Introduces-Trusted-Agent-Protocol-An-Ecosystem-Led-Framework-for-AI-Commerce/default.aspx",
+        "https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.21361.html",
+        "https://corporate.visa.com/en/sites/visa-perspectives/newsroom/visa-intelligent-commerce-connect-ai-shopping-for-businesses.html"
+      ],
+      "checked_at": "2026-10-02",
+      "notes": "TAP announced 2025-10-14; the parent programme Visa Intelligent Commerce was announced 2025-04-30. Visa's developer page still says the product 'is in the process of development and deployment'. Visa Intelligent Commerce Connect (2026-04-08, in pilot) accepts TAP, MPP, ACP and UCP. GitHub repo is a sample implementation; licence not verified."
+    },
+    {
+      "name": "Mastercard Agent Pay",
+      "full_name": "Mastercard Agent Pay (Agentic Tokens / Agent Pay Acceptance Framework)",
+      "role": "card_network_framework",
+      "one_liner": "Mastercard's programme that gives AI agents special secure card tokens so they can pay on a cardholder's behalf with consent.",
+      "best_for": "Card payments made by AI agents on Mastercard",
+      "money": [
+        "card"
+      ],
+      "stewards": [
+        "Mastercard"
+      ],
+      "governance": "Proprietary Mastercard programme; Agent Pay Acceptance Framework shared on Mastercard Developers for industry feedback; uses Web Bot Auth for agent verification",
+      "status": "production",
+      "launched": "2025-04",
+      "official_url": "https://investor.mastercard.com/investor-news/investor-news-details/2025/Mastercard-Unveils-Agent-Pay-Pioneering-Agentic-Payments-Technology-to-Power-Commerce-in-the-Age-of-AI/default.aspx",
+      "spec_url": null,
+      "github_repo": null,
+      "networks": [],
+      "sources": [
+        "https://investor.mastercard.com/investor-news/investor-news-details/2025/Mastercard-Unveils-Agent-Pay-Pioneering-Agentic-Payments-Technology-to-Power-Commerce-in-the-Age-of-AI/default.aspx",
+        "https://www.mastercard.com/us/en/news-and-trends/stories/2025/agentic-commerce-framework.html",
+        "https://www.mastercard.com/global/en/news-and-trends/stories/2025/agentic-commerce-momentum.html",
+        "https://www.mastercard.com/us/en/news-and-trends/press/2025/september/mastercard-unveils-new-tools-and-collaborations-to-power-smarter,-safer-agentic-commerce.html"
+      ],
+      "checked_at": "2026-10-02",
+      "notes": "Announced 2025-04-29. Mastercard said Citi and U.S. Bank cardholders were already enabled and that all U.S. cardholders would be enabled by mid-November 2025 with global rollout to follow; completion of that rollout was not verified. The Mastercard product page and developer docs could not be fetched, so official_url is the launch press release and spec_url is null."
+    },
+    {
+      "name": "Verifiable Intent",
+      "full_name": "Verifiable Intent",
+      "role": "authorization",
+      "one_liner": "Creates a tamper-resistant record of what a person authorised an AI agent to do, as cryptographic proof if a purchase is disputed.",
+      "best_for": "Proof of user authorisation for agent purchases, dispute evidence",
+      "money": [],
+      "stewards": [
+        "Mastercard",
+        "Google"
+      ],
+      "governance": "Open-sourced by Mastercard (co-developed with Google); built on FIDO Alliance, EMVCo, IETF and W3C specifications; aligned with AP2 and UCP; no standards-body ownership verified",
+      "status": "spec_published",
+      "launched": "2026-03",
+      "official_url": "https://verifiableintent.dev/",
+      "spec_url": null,
+      "github_repo": "agent-intent/verifiable-intent",
+      "networks": [],
+      "sources": [
+        "https://www.mastercard.com/us/en/news-and-trends/stories/2026/verifiable-intent.html",
+        "https://blog.google/products-and-platforms/platforms/google-pay/agent-payments-protocol-fido-alliance/"
+      ],
+      "checked_at": "2026-10-02",
+      "notes": "Announced 2026-03-05; Mastercard said it would be integrated into Agent Pay's intent APIs. The website and GitHub repo URLs come from the Mastercard article and were not fetched themselves; payment rails are not specified, so money is left empty."
+    },
+    {
+      "name": "KYAPay",
+      "full_name": "KYAPay (Know Your Agent + Pay) protocol",
+      "role": "identity",
+      "one_liner": "Gives an AI agent a verifiable ID card and a payment token, so a service knows who the agent represents and can charge it.",
+      "best_for": "Agent identity verification, account creation and guest checkout",
+      "money": [
+        "card",
+        "stablecoin",
+        "bank_transfer"
+      ],
+      "stewards": [
+        "Skyfire"
+      ],
+      "governance": "Open spec under Community Specification License 1.0 in Skyfire's GitHub; working group formation pending; token format submitted as individual IETF Internet-Draft draft-skyfire-oauth-kyapay-token (not endorsed by IETF)",
+      "status": "draft",
+      "launched": "2025-06",
+      "official_url": "https://kyapay.org",
+      "spec_url": "https://datatracker.ietf.org/doc/html/draft-skyfire-oauth-kyapay-token-00",
+      "github_repo": "skyfire-xyz/kyapay",
+      "networks": [],
+      "sources": [
+        "https://github.com/skyfire-xyz/kyapay",
+        "https://kyapay.org",
+        "https://kyapay.org/whitepaper",
+        "https://datatracker.ietf.org/doc/html/draft-skyfire-oauth-kyapay-token-00",
+        "https://www.businesswire.com/news/home/20250626772489/en/Skyfire-Launches-Open-KYAPay-Protocol-With-Agent-Checkout"
+      ],
+      "checked_at": "2026-10-02",
+      "notes": "Launched 2025-06-26 with three JWT token types (KYA, Pay, KYA+Pay); buyer wallets funded by card, USDC or ACH. The GitHub README says full specification v1.0 is 'aimed to be released soon'. Datatracker shows newer draft versions (-01, -02) than the -00 fetched; exact dates of those versions not verified."
+    },
+    {
+      "name": "L402",
+      "full_name": "L402 (Lightning HTTP 402 Protocol, formerly LSAT)",
+      "role": "pay_per_request",
+      "one_liner": "Lets software pay a tiny Bitcoin Lightning invoice to unlock an API, and the payment receipt doubles as the login.",
+      "best_for": "Bitcoin micro-payments for APIs, no accounts",
+      "money": [
+        "lightning"
+      ],
+      "stewards": [
+        "Lightning Labs"
+      ],
+      "governance": "Open specification published by Lightning Labs on GitHub (MIT licence); no standards body",
+      "status": "production",
+      "launched": "2020-03",
+      "official_url": "https://l402.tech/",
+      "spec_url": "https://docs.lightning.engineering/the-lightning-network/l402/protocol-specification",
+      "github_repo": "lightninglabs/L402",
+      "networks": [
+        "Bitcoin Lightning Network"
+      ],
+      "sources": [
+        "https://github.com/lightninglabs/L402",
+        "https://docs.lightning.engineering/the-lightning-network/l402",
+        "https://docs.lightning.engineering/the-lightning-network/l402/protocol-specification",
+        "https://lightning.engineering/posts/2020-03-30-lsat/",
+        "https://l402.tech/"
+      ],
+      "checked_at": "2026-10-02",
+      "notes": "First published 2020-03-30 as LSAT (Lightning Service Authentication Tokens); the original post is now titled L402. The date of the rename was not verified. Lightning Labs states it runs in production across Lightning Loop, Pool and Aperture; the repo now includes an 'Agent Specification'."
+    },
+    {
+      "name": "Web Bot Auth",
+      "full_name": "Web Bot Auth (HTTP Message Signatures for automated traffic)",
+      "role": "identity",
+      "one_liner": "Lets bots and AI agents cryptographically sign their web requests so websites can verify who they really are.",
+      "best_for": "Verifying bot/agent identity at the CDN or website edge",
+      "money": [
+        "none"
+      ],
+      "stewards": [
+        "IETF Web Bot Auth Working Group",
+        "Cloudflare (draft author)"
+      ],
+      "governance": "Active IETF working group (webbotauth), charter approved; builds on RFC 9421; base draft draft-meunier-web-bot-auth-architecture authored at Cloudflare; not yet an RFC",
+      "status": "draft",
+      "launched": "2025",
+      "official_url": "https://datatracker.ietf.org/wg/webbotauth/about/",
+      "spec_url": "https://www.ietf.org/archive/id/draft-meunier-web-bot-auth-architecture-02.html",
+      "github_repo": null,
+      "networks": [],
+      "sources": [
+        "https://datatracker.ietf.org/wg/webbotauth/about/",
+        "https://www.ietf.org/archive/id/draft-meunier-web-bot-auth-architecture-02.html",
+        "https://blog.cloudflare.com/verified-bots-with-cryptography/",
+        "https://www.webbotauth.org/"
+      ],
+      "checked_at": "2026-10-02",
+      "notes": "Not a payment protocol but the identity layer under Visa TAP, Mastercard Agent Pay and Cloudflare pay per crawl. The WG charter puts HTTP APIs and agent-to-agent interfaces out of scope. WG milestones (standards-track specs April 2026, BCP August 2026) were listed; whether they were met was not verified. webbotauth.org is an independent directory, not an official site."
+    },
+    {
+      "name": "Pay per crawl",
+      "full_name": "Cloudflare Pay Per Crawl",
+      "role": "pay_per_request",
+      "one_liner": "Lets website owners charge AI crawlers a price each time they fetch a page, with Cloudflare handling the billing.",
+      "best_for": "Publishers charging AI crawlers for content access",
+      "money": [],
+      "stewards": [
+        "Cloudflare"
+      ],
+      "governance": "Proprietary Cloudflare feature (not an open standard); Cloudflare acts as Merchant of Record",
+      "status": "draft",
+      "launched": "2025-07",
+      "official_url": "https://blog.cloudflare.com/introducing-pay-per-crawl/",
+      "spec_url": "https://developers.cloudflare.com/ai-crawl-control/features/pay-per-crawl/use-pay-per-crawl-as-ai-owner/crawl-pages/",
+      "github_repo": null,
+      "networks": [],
+      "sources": [
+        "https://blog.cloudflare.com/introducing-pay-per-crawl/",
+        "https://developers.cloudflare.com/changelog/post/2025-07-01-pay-per-crawl/",
+        "https://developers.cloudflare.com/ai-crawl-control/features/pay-per-crawl/use-pay-per-crawl-as-ai-owner/crawl-pages/",
+        "https://blog.cloudflare.com/x402/"
+      ],
+      "checked_at": "2026-10-02",
+      "notes": "Launched 2025-07-01 in private beta; current docs do not say whether it is still beta, so status 'draft' means beta/unverified GA. Uses HTTP 402 with crawler-price / crawler-exact-price / crawler-max-price / crawler-charged headers and requires Web Bot Auth signatures. Charges go to the crawler's Cloudflare account (changelog mentions Stripe for site owners); exact rails not documented, so money is empty. Cloudflare said an x402 'deferred' scheme would be integrated."
+    },
+    {
+      "name": "PayPal Agentic Commerce",
+      "full_name": "PayPal agentic commerce services (Agent Ready, Store Sync)",
+      "role": "checkout",
+      "one_liner": "PayPal services that make a shop's products visible to AI assistants and let shoppers pay with PayPal inside AI chats.",
+      "best_for": "PayPal merchants selling through AI shopping surfaces",
+      "money": [],
+      "stewards": [
+        "PayPal"
+      ],
+      "governance": "Proprietary PayPal product suite, not an open protocol; PayPal says it supports 'leading payments protocols' without naming them in the release",
+      "status": "announced",
+      "launched": "2025-10",
+      "official_url": "https://newsroom.paypal-corp.com/2025-10-28-PayPal-Launches-Agentic-Commerce-Services-to-Power-AI-Driven-Shopping",
+      "spec_url": null,
+      "github_repo": null,
+      "networks": [],
+      "sources": [
+        "https://newsroom.paypal-corp.com/2025-10-28-PayPal-Launches-Agentic-Commerce-Services-to-Power-AI-Driven-Shopping"
+      ],
+      "checked_at": "2026-10-02",
+      "notes": "Weakly verified: only the 2025-10-28 press release was fetched. It said Store Sync sign-ups were open and Agent Ready would be available in early 2026; actual availability in 2026 was not verified, and the payment rails are not specified in the source. PayPal is also named as an AP2 launch partner in Google's announcement."
+    }
+  ],
+  "x402_discovery": [
+    {
+      "name": "CDP x402 Bazaar - catalog endpoint",
+      "url": "https://api.cdp.coinbase.com/platform/v2/x402/discovery/resources",
+      "what": "Paginated JSON catalog of x402 resources settled through the Coinbase CDP facilitator (limit default 100, max 1000; offset). No API key required per docs. Caveat: URL is documented by Coinbase, but a direct fetch from this research environment returned HTTP 404, so test it before relying on it.",
+      "source": "https://coinbase-cloud.mintlify.app/x402/bazaar"
+    },
+    {
+      "name": "CDP x402 Bazaar - search endpoint",
+      "url": "https://api.cdp.coinbase.com/platform/v2/x402/discovery/search",
+      "what": "Semantic + full-text search over the Bazaar with filters (query, network, asset, payTo, maxUsdPrice); max 20 results per request. Documented, not called.",
+      "source": "https://coinbase-cloud.mintlify.app/x402/bazaar"
+    },
+    {
+      "name": "CDP x402 Bazaar - merchant lookup",
+      "url": "https://api.cdp.coinbase.com/platform/v2/x402/discovery/merchant?payTo=<address>",
+      "what": "Lists resources payable to a given wallet address. Documented, not called.",
+      "source": "https://coinbase-cloud.mintlify.app/x402/bazaar"
+    },
+    {
+      "name": "CDP x402 Bazaar - MCP server",
+      "url": "https://api.cdp.coinbase.com/platform/v2/x402/discovery/mcp",
+      "what": "MCP server that lets agents discover and call paid x402 endpoints; AWS docs describe it as exposing 10,000+ paid tools, no authorization needed.",
+      "source": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/payments-connect-bazaar.html"
+    },
+    {
+      "name": "x402 Bazaar extension (generic facilitator pattern)",
+      "url": "https://docs.x402.org/extensions/bazaar",
+      "what": "Protocol-level discovery extension: any facilitator supporting it may expose GET {facilitator_url}/discovery/resources (optional ?payTo=<address>; resource types 'http' and 'mcp'). The docs do not list which facilitators implement it.",
+      "source": "https://docs.x402.org/extensions/bazaar"
+    },
+    {
+      "name": "Agentic.Market",
+      "url": "https://agentic.market/",
+      "what": "Public directory of x402-enabled services operated by Coinbase (explicitly not an official x402 Foundation product); services are indexed automatically from CDP facilitator payments with the Bazaar extension; agent skill file at agentic.market/SKILL.md and endpoint validator at agentic.market/validate.",
+      "source": "https://agentic.market/about"
+    },
+    {
+      "name": "x402scan",
+      "url": "https://x402scan.com",
+      "what": "Open-source x402 ecosystem explorer by Merit Systems: lists x402 servers, transaction volumes, facilitators and resources; resources can be registered at https://www.x402scan.com/resources/register. Site itself not fetched, facts from its GitHub repo.",
+      "source": "https://github.com/Merit-Systems/x402scan"
+    },
+    {
+      "name": "x402 facilitators list (official docs)",
+      "url": "https://docs.x402.org/dev-tools/facilitators.md",
+      "what": "Official list of production facilitator services (CDP, Celo, Polygon, PayAI, Fireblocks, Stellar, etc.) - a starting point for per-facilitator discovery endpoints.",
+      "source": "https://docs.x402.org/dev-tools/facilitators.md"
+    },
+    {
+      "name": "awesome-agentic-commerce (Merit Systems)",
+      "url": "https://github.com/Merit-Systems/awesome-agentic-commerce",
+      "what": "Curated GitHub list of x402 directories and explorers (x402scan, x402station, AgentZone, Onyx Bazaar, gold-402); the individual sites listed were not fetched.",
+      "source": "https://github.com/Merit-Systems/awesome-agentic-commerce"
+    }
+  ]
+}

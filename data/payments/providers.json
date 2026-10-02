@@ -1,0 +1,1202 @@
+[
+  {
+    "name": "Stripe",
+    "company": "Stripe, Inc.",
+    "website": "https://stripe.com",
+    "kind": "payment_processor",
+    "one_liner": "Payment processor that lets agents pay by card (Shared Payment Tokens) or stablecoin over MPP and x402, settling to a Stripe balance.",
+    "agentic_product": "Agentic Commerce Suite / Machine payments (Shared Payment Tokens, Link Agent Wallet)",
+    "protocols": [
+      "MPP",
+      "x402",
+      "ACP",
+      "UCP"
+    ],
+    "protocol_sources": {
+      "MPP": "https://docs.stripe.com/payments/machine",
+      "x402": "https://docs.stripe.com/payments/machine",
+      "ACP": "https://docs.stripe.com/agentic-commerce",
+      "UCP": "https://docs.stripe.com/agentic-commerce"
+    },
+    "rails": [
+      "card",
+      "stablecoin",
+      "bank_transfer",
+      "wallet"
+    ],
+    "networks": [
+      "Tempo",
+      "Solana",
+      "Base",
+      "Ethereum",
+      "Polygon"
+    ],
+    "fees": [
+      {
+        "label": "Online card (US, domestic)",
+        "percent": 2.9,
+        "fixed": 0.3,
+        "currency": "USD",
+        "description": "2.9% + 30¢ per successful transaction for domestic cards",
+        "region": "US"
+      },
+      {
+        "label": "International cards surcharge",
+        "percent": 1.5,
+        "fixed": null,
+        "currency": "USD",
+        "description": "+1.5% for international cards",
+        "region": "US"
+      },
+      {
+        "label": "Currency conversion",
+        "percent": 1.0,
+        "fixed": null,
+        "currency": "USD",
+        "description": "+1% if currency conversion is required",
+        "region": "US"
+      },
+      {
+        "label": "Stablecoin payments",
+        "percent": 1.5,
+        "fixed": null,
+        "currency": "USD",
+        "description": "1.5% of the transaction amount in USD",
+        "region": "US"
+      },
+      {
+        "label": "ACH Direct Debit",
+        "percent": 0.8,
+        "fixed": null,
+        "currency": "USD",
+        "description": "0.8% ACH Direct Debit, $5.00 cap",
+        "region": "US"
+      },
+      {
+        "label": "Agentic commerce: Shared Payment Token",
+        "percent": null,
+        "fixed": 0.15,
+        "currency": "USD",
+        "description": "$0.15 per SPT issued",
+        "region": "US"
+      }
+    ],
+    "pricing_public": true,
+    "pricing_url": "https://stripe.com/pricing",
+    "pricing_verified": true,
+    "kyc_required": null,
+    "regions": "SPTs: all US states (other countries listed in docs). Stablecoin machine payments: all US states except New York; 30+ other countries on request.",
+    "sources": [
+      "https://stripe.com/pricing",
+      "https://docs.stripe.com/payments/machine",
+      "https://docs.stripe.com/payments/machine/mpp",
+      "https://docs.stripe.com/agentic-commerce",
+      "https://docs.stripe.com/payments/stablecoin-payments",
+      "https://stripe.com/newsroom/news/agentic-commerce-suite"
+    ],
+    "checked_at": "2026-10-02",
+    "notes": "US pricing page only; fees differ by country. Machine-payment minimums: 0.50 USD by card (SPT), 0.01 USDC by stablecoin. x402 on Stripe = USDC on Base; MPP = USDC.e on Tempo and USDC on Solana. The SPT fee line was read via a page summary; re-check wording before publishing."
+  },
+  {
+    "name": "Coinbase Developer Platform",
+    "company": "Coinbase, Inc.",
+    "website": "https://www.coinbase.com/developer-platform",
+    "kind": "x402_facilitator",
+    "one_liner": "Runs the CDP x402 facilitator plus agent wallets (Agentic Wallets, Payments MCP) for stablecoin payments by AI agents.",
+    "agentic_product": "x402 Facilitator / Agentic Wallets / Payments MCP / Coinbase for Agents",
+    "protocols": [
+      "x402",
+      "MCP"
+    ],
+    "protocol_sources": {
+      "x402": "https://docs.cdp.coinbase.com/x402/core-concepts/facilitator",
+      "MCP": "https://www.coinbase.com/developer-platform/discover/launches/payments-mcp"
+    },
+    "rails": [
+      "stablecoin",
+      "wallet"
+    ],
+    "networks": [
+      "Base",
+      "Polygon",
+      "Arbitrum",
+      "World",
+      "Solana"
+    ],
+    "fees": [
+      {
+        "label": "x402 facilitator: free tier",
+        "percent": null,
+        "fixed": 0,
+        "currency": "USD",
+        "description": "Up to 1,000 transactions per month free",
+        "region": "global"
+      },
+      {
+        "label": "x402 facilitator: per transaction",
+        "percent": null,
+        "fixed": 0.001,
+        "currency": "USD",
+        "description": "$0.001 per transaction beyond the free tier",
+        "region": "global"
+      }
+    ],
+    "pricing_public": true,
+    "pricing_url": "https://docs.cdp.coinbase.com/x402/core-concepts/facilitator",
+    "pricing_verified": true,
+    "kyc_required": null,
+    "regions": null,
+    "sources": [
+      "https://docs.cdp.coinbase.com/x402/core-concepts/facilitator",
+      "https://www.coinbase.com/developer-platform/discover/launches/payments-mcp",
+      "https://www.coinbase.com/developer-platform/discover/launches/agentic-wallets",
+      "https://www.coinbase.com/blog/coinbase-for-agents",
+      "https://www.coinbase.com/business/payments",
+      "https://help.coinbase.com/en/coinbase/trading-and-funding/coinbase-business/payment-links",
+      "https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol"
+    ],
+    "checked_at": "2026-10-02",
+    "notes": "Docs describe KYT (transaction screening), not KYC, so kyc_required is null. Coinbase Business (successor to Commerce) merchant fee is NOT public: page says to log in to view current fees. Coinbase is named as an AP2 collaborator on Google's announcement but AP2 is not listed here because Coinbase's own pages were not seen stating it."
+  },
+  {
+    "name": "Circle",
+    "company": "Circle Internet Group",
+    "website": "https://www.circle.com",
+    "kind": "stablecoin_issuer",
+    "one_liner": "USDC issuer; Gateway Nanopayments offers gas-free, x402-compatible USDC payments down to $0.000001 for agents.",
+    "agentic_product": "Gateway Nanopayments (Agent Stack)",
+    "protocols": [
+      "x402"
+    ],
+    "protocol_sources": {
+      "x402": "https://developers.circle.com/gateway/nanopayments"
+    },
+    "rails": [
+      "stablecoin"
+    ],
+    "networks": [
+      "Arc",
+      "Arbitrum",
+      "Avalanche",
+      "Base",
+      "Ethereum",
+      "HyperEVM",
+      "OP",
+      "Polygon PoS",
+      "Sei",
+      "Solana",
+      "Sonic",
+      "Unichain",
+      "World Chain"
+    ],
+    "fees": [
+      {
+        "label": "Gateway crosschain transfer fee",
+        "percent": 0.005,
+        "fixed": null,
+        "currency": "USD",
+        "description": "Crosschain transfers incur a percentage-based fee of 0.005% (0.5 basis points); same-chain transfers exempt",
+        "region": "global"
+      },
+      {
+        "label": "Gateway gas fee (Base source)",
+        "percent": null,
+        "fixed": 0.01,
+        "currency": "USD",
+        "description": "Burn gas fee on Base: $0.01 USDC (ranges from $0.001 on Sei/Unichain to $1.00 on Ethereum; Solana $0.15)",
+        "region": "global"
+      },
+      {
+        "label": "Gateway Forwarding Service",
+        "percent": null,
+        "fixed": 0.05,
+        "currency": "USD",
+        "description": "$0.05 per transfer on all destination blockchains, plus gas",
+        "region": "global"
+      },
+      {
+        "label": "CCTP Standard Transfer",
+        "percent": 0,
+        "fixed": null,
+        "currency": "USD",
+        "description": "Standard transfers: 0 bps",
+        "region": "global"
+      },
+      {
+        "label": "CCTP Fast Transfer (Base source)",
+        "percent": 0.013,
+        "fixed": null,
+        "currency": "USD",
+        "description": "Fast transfer fee 1.3 bps from Base (1 bps Ethereum/Solana, up to 13 bps Linea); fees can change at any time",
+        "region": "global"
+      }
+    ],
+    "pricing_public": true,
+    "pricing_url": "https://developers.circle.com/gateway/references/fees",
+    "pricing_verified": true,
+    "kyc_required": null,
+    "regions": "CPN: subject to applicable laws; not available in sanctioned countries",
+    "sources": [
+      "https://developers.circle.com/gateway/references/fees",
+      "https://developers.circle.com/cctp/concepts/fees",
+      "https://developers.circle.com/gateway/nanopayments",
+      "https://www.circle.com/nanopayments",
+      "https://www.circle.com/cpn",
+      "https://help.circle.com/s/article/USDC-redemption-structure"
+    ],
+    "checked_at": "2026-10-02",
+    "notes": "Nanopayments' own fee is not stated on the pages fetched. Circle Payments Network (CPN) publishes no fees and is limited to eligible financial institutions. USDC redemption-fee help page did not render, so mint/redeem fees are unverified. Networks listed are the Gateway fee-table chains."
+  },
+  {
+    "name": "PayPal",
+    "company": "PayPal Holdings, Inc.",
+    "website": "https://www.paypal.com",
+    "kind": "payment_processor",
+    "one_liner": "Wallet and card processor offering Agent Ready and Store Sync so merchants can sell and get paid inside AI shopping surfaces.",
+    "agentic_product": "Agentic Commerce Services (Agent Ready, Store Sync)",
+    "protocols": [],
+    "protocol_sources": {},
+    "rails": [
+      "card",
+      "wallet",
+      "stablecoin",
+      "bank_transfer"
+    ],
+    "networks": [],
+    "fees": [
+      {
+        "label": "PayPal Checkout (US)",
+        "percent": 3.49,
+        "fixed": 0.49,
+        "currency": "USD",
+        "description": "3.49% + fixed fee ($0.49 USD)",
+        "region": "US"
+      },
+      {
+        "label": "Standard credit and debit card payments (US)",
+        "percent": 2.99,
+        "fixed": 0.49,
+        "currency": "USD",
+        "description": "2.99% + fixed fee ($0.49 USD)",
+        "region": "US"
+      },
+      {
+        "label": "Advanced credit and debit card payments (US)",
+        "percent": 2.89,
+        "fixed": 0.39,
+        "currency": "USD",
+        "description": "2.89% + fixed fee ($0.39 USD) as extracted from the page",
+        "region": "US"
+      },
+      {
+        "label": "Pay with Crypto",
+        "percent": 1.5,
+        "fixed": null,
+        "currency": "USD",
+        "description": "0.99% of transaction amount until July 31, 2026; 1.5% of transaction amount on or after August 1, 2026",
+        "region": "US"
+      },
+      {
+        "label": "International commercial transactions surcharge",
+        "percent": 1.5,
+        "fixed": null,
+        "currency": "USD",
+        "description": "Additional 1.50% on top of the domestic rate",
+        "region": "US"
+      }
+    ],
+    "pricing_public": true,
+    "pricing_url": "https://www.paypal.com/us/business/paypal-business-fees",
+    "pricing_verified": true,
+    "kyc_required": null,
+    "regions": null,
+    "sources": [
+      "https://www.paypal.com/us/business/paypal-business-fees",
+      "https://newsroom.paypal-corp.com/2025-10-28-PayPal-Launches-Agentic-Commerce-Services-to-Power-AI-Driven-Shopping",
+      "https://www.paypal.ai/",
+      "https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol"
+    ],
+    "checked_at": "2026-10-02",
+    "notes": "No protocol is listed: PayPal's press release only says it 'supports leading payments protocols' without naming them, and the developer docs page (redirect to developer.paypal.com/agentic-commerce-services/about) could not be fetched. Fee page shows 'last updated October 1, 2026'; the Advanced card rate and fixed-fee amounts should be re-read manually. No agentic-specific fee published; PYUSD: page says fees do not apply to buying/selling PYUSD."
+  },
+  {
+    "name": "Adyen",
+    "company": "Adyen N.V.",
+    "website": "https://www.adyen.com",
+    "kind": "payment_processor",
+    "one_liner": "Enterprise payment processor whose Adyen Agentic APIs (Feed, Cart, Payments) let merchants sell through AI platforms.",
+    "agentic_product": "Adyen Agentic",
+    "protocols": [
+      "UCP",
+      "AP2",
+      "ACP"
+    ],
+    "protocol_sources": {
+      "UCP": "https://www.adyen.com/press-and-media/adyen-agentic",
+      "AP2": "https://www.adyen.com/press-and-media/adyen-agentic",
+      "ACP": "https://www.adyen.com/press-and-media/adyen-agentic"
+    },
+    "rails": [
+      "card",
+      "wallet",
+      "bank_transfer"
+    ],
+    "networks": [],
+    "fees": [
+      {
+        "label": "Processing fee (all payment methods)",
+        "percent": null,
+        "fixed": 0.13,
+        "currency": "USD",
+        "description": "Fixed processing fee of $0.13 per transaction, plus a payment-method fee",
+        "region": "global"
+      },
+      {
+        "label": "Visa / Mastercard",
+        "percent": 0.6,
+        "fixed": 0.13,
+        "currency": "USD",
+        "description": "$0.13 + Interchange++ + 0.60% (interchange passed through, not included in percent)",
+        "region": "global"
+      },
+      {
+        "label": "American Express (North America)",
+        "percent": 3.3,
+        "fixed": 0.23,
+        "currency": "USD",
+        "description": "$0.13 + 3.3% + $0.10",
+        "region": "North America"
+      }
+    ],
+    "pricing_public": true,
+    "pricing_url": "https://www.adyen.com/pricing",
+    "pricing_verified": true,
+    "kyc_required": null,
+    "regions": "Adyen Agentic: limited availability for enterprise merchants operating in the U.S. (announced 16 June 2026)",
+    "sources": [
+      "https://www.adyen.com/pricing",
+      "https://www.adyen.com/press-and-media/adyen-agentic",
+      "https://developers.googleblog.com/under-the-hood-universal-commerce-protocol-ucp/"
+    ],
+    "checked_at": "2026-10-02",
+    "notes": "Card percent excludes interchange and scheme fees (Interchange++). Page says fees are indicative and a minimum invoice applies; no setup or monthly fees. No agentic-specific fee published."
+  },
+  {
+    "name": "Checkout.com",
+    "company": "Checkout Ltd",
+    "website": "https://www.checkout.com",
+    "kind": "payment_processor",
+    "one_liner": "Enterprise payment processor that has adopted the Agentic Commerce Protocol to power agentic checkout for merchants.",
+    "agentic_product": null,
+    "protocols": [
+      "ACP"
+    ],
+    "protocol_sources": {
+      "ACP": "https://www.checkout.com/newsroom/checkout-adopts-acp-backed-by-openai-to-power-agentic-commerce-for-enterprise-merchants"
+    },
+    "rails": [
+      "card"
+    ],
+    "networks": [],
+    "fees": [],
+    "pricing_public": false,
+    "pricing_url": "https://www.checkout.com/pricing",
+    "pricing_verified": false,
+    "kyc_required": null,
+    "regions": null,
+    "sources": [
+      "https://www.checkout.com/pricing",
+      "https://www.checkout.com/newsroom/checkout-adopts-acp-backed-by-openai-to-power-agentic-commerce-for-enterprise-merchants",
+      "https://www.checkout.com/blog/agentic-commerce-questions-answered",
+      "https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol"
+    ],
+    "checked_at": "2026-10-02",
+    "notes": "Pricing page fetched: no numbers, custom pricing only (flat-rate or Interchange++, free for registered charities). Named as AP2 collaborator on Google's announcement, but its own pages fetched only state ACP adoption (25 Nov 2025)."
+  },
+  {
+    "name": "Worldpay",
+    "company": "Worldpay",
+    "website": "https://www.worldpay.com",
+    "kind": "payment_processor",
+    "one_liner": "Payment processor with a public MCP server and documented ACP and UCP support for agent-initiated checkout.",
+    "agentic_product": "Worldpay MCP server",
+    "protocols": [
+      "ACP",
+      "UCP",
+      "MCP"
+    ],
+    "protocol_sources": {
+      "ACP": "https://www.worldpay.com/en/agentic-commerce",
+      "UCP": "https://www.worldpay.com/en/agentic-commerce",
+      "MCP": "https://docs.worldpay.com/access/products/ai/mcp/gateway"
+    },
+    "rails": [
+      "card"
+    ],
+    "networks": [],
+    "fees": [],
+    "pricing_public": false,
+    "pricing_url": null,
+    "pricing_verified": false,
+    "kyc_required": null,
+    "regions": null,
+    "sources": [
+      "https://www.worldpay.com/en/agentic-commerce",
+      "https://docs.worldpay.com/access/products/ai/mcp/gateway",
+      "https://corporate.worldpay.com/news-releases/news-release-details/worldpay-collaborates-visa-and-cloudflare-advance-trusted-agent",
+      "https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol"
+    ],
+    "checked_at": "2026-10-02",
+    "notes": "No Worldpay pricing page was fetched and no fees appear on the pages read; pricing_public=false is 'none found', not exhaustively confirmed. Worldpay says it is 'collaborating with Visa to advance' Trusted Agent Protocol (14 Oct 2025), which is not listed as support. MCP server is in preview."
+  },
+  {
+    "name": "Visa",
+    "company": "Visa Inc.",
+    "website": "https://www.visa.com",
+    "kind": "card_network",
+    "one_liner": "Card network whose Visa Intelligent Commerce and Trusted Agent Protocol let verified AI agents pay with tokenized cards.",
+    "agentic_product": "Visa Intelligent Commerce / Trusted Agent Protocol",
+    "protocols": [
+      "Visa TAP",
+      "MCP",
+      "MPP"
+    ],
+    "protocol_sources": {
+      "Visa TAP": "https://developer.visa.com/capabilities/trusted-agent-protocol",
+      "MCP": "https://corporate.visa.com/en/sites/visa-perspectives/innovation/visa-mcp-server-agent-acceptance-toolkit.html",
+      "MPP": "https://corporate.visa.com/en/sites/visa-perspectives/innovation/visa-card-specification-sdk-for-machine-payments-protocol.html"
+    },
+    "rails": [
+      "card"
+    ],
+    "networks": [],
+    "fees": [],
+    "pricing_public": false,
+    "pricing_url": "https://developer.visa.com/capabilities/visa-intelligent-commerce",
+    "pricing_verified": false,
+    "kyc_required": null,
+    "regions": "North America, Asia-Pacific, Europe, CEMEA, LAC (in development; may not be available in all markets)",
+    "sources": [
+      "https://developer.visa.com/capabilities/visa-intelligent-commerce",
+      "https://developer.visa.com/capabilities/trusted-agent-protocol",
+      "https://corporate.visa.com/en/sites/visa-perspectives/innovation/visa-mcp-server-agent-acceptance-toolkit.html",
+      "https://corporate.visa.com/en/sites/visa-perspectives/innovation/visa-card-specification-sdk-for-machine-payments-protocol.html"
+    ],
+    "checked_at": "2026-10-02",
+    "notes": "Developer page states: 'Free to use in Sandbox. Contact Visa for fees in Production.' Visa released a card specification and SDK for MPP on 18 March 2026 and says it complements x402, but x402 support itself is not claimed."
+  },
+  {
+    "name": "Mastercard",
+    "company": "Mastercard Incorporated",
+    "website": "https://www.mastercard.com",
+    "kind": "card_network",
+    "one_liner": "Card network whose Agent Pay registers AI agents and issues agentic tokens; Agent Pay for Machines targets machine payments.",
+    "agentic_product": "Mastercard Agent Pay / Agent Pay for Machines",
+    "protocols": [
+      "Mastercard Agent Pay",
+      "MCP",
+      "A2A",
+      "ACP",
+      "AP2",
+      "UCP"
+    ],
+    "protocol_sources": {
+      "Mastercard Agent Pay": "https://www.mastercard.com/us/en/business/artificial-intelligence/mastercard-agent-pay.html",
+      "MCP": "https://www.mastercard.com/us/en/news-and-trends/stories/2025/agentic-commerce-framework.html",
+      "A2A": "https://www.mastercard.com/us/en/news-and-trends/stories/2025/agentic-commerce-framework.html",
+      "ACP": "https://www.mastercard.com/us/en/news-and-trends/stories/2025/agentic-commerce-framework.html",
+      "AP2": "https://www.mastercard.com/us/en/news-and-trends/stories/2026/verifiable-intent.html",
+      "UCP": "https://www.mastercard.com/us/en/news-and-trends/stories/2026/verifiable-intent.html"
+    },
+    "rails": [
+      "card",
+      "stablecoin",
+      "bank_transfer"
+    ],
+    "networks": [],
+    "fees": [],
+    "pricing_public": false,
+    "pricing_url": null,
+    "pricing_verified": false,
+    "kyc_required": null,
+    "regions": null,
+    "sources": [
+      "https://www.mastercard.com/us/en/business/artificial-intelligence/mastercard-agent-pay.html",
+      "https://www.mastercard.com/us/en/news-and-trends/stories/2025/agentic-commerce-framework.html",
+      "https://www.mastercard.com/us/en/news-and-trends/stories/2026/verifiable-intent.html",
+      "https://investor.mastercard.com/investor-news/investor-news-details/2026/Mastercard-Launches-Agent-Pay-for-Machines-to-Unlock-Super-Fast-Always-On-Payments/default.aspx"
+    ],
+    "checked_at": "2026-10-02",
+    "notes": "No fees published on any page fetched. Agent Pay for Machines (10 June 2026) mentions x402 and MPP compatibility and stablecoin/card/account settlement, but the wording read was too vague to list x402/MPP as supported. AP2/UCP come from the Verifiable Intent page ('aligned with')."
+  },
+  {
+    "name": "Shopify",
+    "company": "Shopify Inc.",
+    "website": "https://www.shopify.com",
+    "kind": "commerce_platform",
+    "one_liner": "Commerce platform that syndicates merchant catalogs to AI chats and lets shoppers check out in conversation via UCP.",
+    "agentic_product": "Agentic plan / Universal Commerce Protocol (UCP), Catalog API",
+    "protocols": [
+      "UCP",
+      "MCP"
+    ],
+    "protocol_sources": {
+      "UCP": "https://shopify.dev/docs/agents",
+      "MCP": "https://shopify.dev/docs/agents"
+    },
+    "rails": [
+      "card",
+      "wallet"
+    ],
+    "networks": [],
+    "fees": [
+      {
+        "label": "Agentic plan: online card rate",
+        "percent": 2.9,
+        "fixed": 0.3,
+        "currency": "USD",
+        "description": "No monthly fee. Card rates from 2.9% + 30¢ USD online",
+        "region": "US"
+      },
+      {
+        "label": "Basic: online card rate",
+        "percent": 2.9,
+        "fixed": 0.3,
+        "currency": "USD",
+        "description": "2.9% + 30¢ online",
+        "region": "US"
+      },
+      {
+        "label": "Grow: online card rate",
+        "percent": 2.7,
+        "fixed": 0.3,
+        "currency": "USD",
+        "description": "2.7% + 30¢ online",
+        "region": "US"
+      },
+      {
+        "label": "Advanced: online card rate",
+        "percent": 2.5,
+        "fixed": 0.3,
+        "currency": "USD",
+        "description": "2.5% + 30¢ online",
+        "region": "US"
+      },
+      {
+        "label": "Plus: online card rate",
+        "percent": 2.25,
+        "fixed": 0.3,
+        "currency": "USD",
+        "description": "2.25% + 30¢ online",
+        "region": "US"
+      },
+      {
+        "label": "Third-party payment provider fee (Basic)",
+        "percent": 2.0,
+        "fixed": null,
+        "currency": "USD",
+        "description": "2% (Grow 1%, Advanced 0.6%, Plus 0.2%) when not using Shopify Payments",
+        "region": "US"
+      }
+    ],
+    "pricing_public": true,
+    "pricing_url": "https://www.shopify.com/pricing",
+    "pricing_verified": true,
+    "kyc_required": null,
+    "regions": null,
+    "sources": [
+      "https://www.shopify.com/pricing",
+      "https://www.shopify.com/agentic-plan",
+      "https://shopify.dev/docs/agents",
+      "https://www.shopify.com/news/spring-26-edition-dev",
+      "https://developers.googleblog.com/under-the-hood-universal-commerce-protocol-ucp/"
+    ],
+    "checked_at": "2026-10-02",
+    "notes": "US rates; they vary by country. Agentic plan page lists ChatGPT, Google AI Mode and Gemini, Copilot, Perplexity and the Shop app as channels but names no protocol; UCP/MCP come from shopify.dev. Monthly plan prices were not captured."
+  },
+  {
+    "name": "Google (AP2 / UCP / Google Pay)",
+    "company": "Google LLC",
+    "website": "https://ap2-protocol.org",
+    "kind": "agent_payment_platform",
+    "one_liner": "Google created the open Agent Payments Protocol (AP2) and co-developed UCP, with Google Pay as the first UCP reference implementation.",
+    "agentic_product": "Agent Payments Protocol (AP2) / Universal Commerce Protocol (UCP)",
+    "protocols": [
+      "AP2",
+      "A2A",
+      "MCP",
+      "x402",
+      "UCP"
+    ],
+    "protocol_sources": {
+      "AP2": "https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol",
+      "A2A": "https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol",
+      "MCP": "https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol",
+      "x402": "https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol",
+      "UCP": "https://developers.googleblog.com/under-the-hood-universal-commerce-protocol-ucp/"
+    },
+    "rails": [
+      "card",
+      "stablecoin",
+      "bank_transfer",
+      "wallet"
+    ],
+    "networks": [],
+    "fees": [],
+    "pricing_public": false,
+    "pricing_url": null,
+    "pricing_verified": false,
+    "kyc_required": null,
+    "regions": null,
+    "sources": [
+      "https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol",
+      "https://ap2-protocol.org/faq/",
+      "https://developers.googleblog.com/under-the-hood-universal-commerce-protocol-ucp/"
+    ],
+    "checked_at": "2026-10-02",
+    "notes": "AP2 and UCP are open protocols; no fees are mentioned on any page fetched. Google Pay merchant pricing was not found or fetched. x402 support is via the A2A x402 extension built with Coinbase, Ethereum Foundation and MetaMask."
+  },
+  {
+    "name": "Cloudflare",
+    "company": "Cloudflare, Inc.",
+    "website": "https://www.cloudflare.com",
+    "kind": "agent_payment_platform",
+    "one_liner": "Edge network offering pay per crawl (HTTP 402 charges to AI crawlers, Cloudflare as merchant of record) and x402 tooling for Workers.",
+    "agentic_product": "Pay per crawl / x402 in the Agents SDK",
+    "protocols": [
+      "x402"
+    ],
+    "protocol_sources": {
+      "x402": "https://developers.cloudflare.com/agents/tools/payments/x402/charge-for-http-content/"
+    },
+    "rails": [
+      "stablecoin"
+    ],
+    "networks": [
+      "Base"
+    ],
+    "fees": [],
+    "pricing_public": false,
+    "pricing_url": null,
+    "pricing_verified": false,
+    "kyc_required": null,
+    "regions": "Pay per crawl is in closed beta",
+    "sources": [
+      "https://developers.cloudflare.com/agents/tools/payments/x402/charge-for-http-content/",
+      "https://developers.cloudflare.com/ai-crawl-control/features/pay-per-crawl/what-is-pay-per-crawl/",
+      "https://developers.cloudflare.com/ai-crawl-control/features/pay-per-crawl/use-pay-per-crawl-as-site-owner/set-a-pay-per-crawl-price/",
+      "https://developers.cloudflare.com/ai-crawl-control/features/pay-per-crawl/faq/",
+      "https://blog.cloudflare.com/introducing-pay-per-crawl/"
+    ],
+    "checked_at": "2026-10-02",
+    "notes": "Cloudflare's own cut is not disclosed on any page fetched. Documented price floor for site owners: 'The minimum price is $0.001 USD per crawl' (a price, not a Cloudflare fee). The x402 proxy template uses the x402.org facilitator on base-sepolia (test) / base (production). Pay per crawl settlement rail is not documented, so rails reflect the x402 tooling only."
+  },
+  {
+    "name": "Skyfire",
+    "company": "Skyfire Systems, Inc.",
+    "website": "https://skyfire.xyz",
+    "kind": "agent_payment_platform",
+    "one_liner": "Payment network for AI agents combining Know Your Agent identity with KYA-PAY tokens, funded by card, ACH, wire or USDC.",
+    "agentic_product": "KYA (Know Your Agent) + PAY tokens",
+    "protocols": [
+      "KYAPay"
+    ],
+    "protocol_sources": {
+      "KYAPay": "https://docs.skyfire.xyz/docs/token-schemas"
+    },
+    "rails": [
+      "card",
+      "bank_transfer",
+      "stablecoin",
+      "wallet"
+    ],
+    "networks": [],
+    "fees": [
+      {
+        "label": "Credits purchase / access authorization",
+        "percent": null,
+        "fixed": 0,
+        "currency": "USD",
+        "description": "Skyfire does not currently charge a fee for the purchase of Credits or the generation of Access Authorizations; it reserves the right to impose or revise fees",
+        "region": "global"
+      }
+    ],
+    "pricing_public": true,
+    "pricing_url": "https://skyfire.xyz/terms-of-service/",
+    "pricing_verified": true,
+    "kyc_required": true,
+    "regions": "Excludes high-risk jurisdictions (Cuba, Iran, North Korea, Syria, Crimea, Donetsk, Luhansk)",
+    "sources": [
+      "https://skyfire.xyz/product/",
+      "https://skyfire.xyz/terms-of-service/",
+      "https://docs.skyfire.xyz/docs/token-schemas"
+    ],
+    "checked_at": "2026-10-02",
+    "notes": "No dedicated pricing page; the only fee statement is in the Services Agreement. Sellers set their own access fees, paid in Skyfire Credits. kyc_required=true reflects identity/beneficial-owner verification described in the agreement. Legal entity name not verified on a fetched page."
+  },
+  {
+    "name": "Crossmint",
+    "company": "Crossmint",
+    "website": "https://www.crossmint.com",
+    "kind": "wallet_infrastructure",
+    "one_liner": "Wallet, stablecoin and checkout APIs for agents; supports x402 stablecoin payments and agent cards.",
+    "agentic_product": "Agentic payments (agent wallets, agentic cards)",
+    "protocols": [
+      "x402"
+    ],
+    "protocol_sources": {
+      "x402": "https://www.crossmint.com/learn/agentic-payments-protocols-compared"
+    },
+    "rails": [
+      "stablecoin",
+      "wallet",
+      "card"
+    ],
+    "networks": [],
+    "fees": [
+      {
+        "label": "Wallets: free tier",
+        "percent": null,
+        "fixed": 0,
+        "currency": "USD",
+        "description": "1,000 Monthly Active Wallets free",
+        "region": "global"
+      },
+      {
+        "label": "Wallets: overage",
+        "percent": null,
+        "fixed": 0.025,
+        "currency": "USD",
+        "description": "Starts at $0.025 per MAU",
+        "region": "global"
+      },
+      {
+        "label": "Tokenization",
+        "percent": null,
+        "fixed": 0.01,
+        "currency": "USD",
+        "description": "Starts at $0.01 per action; metadata uploads $0.002 each",
+        "region": "global"
+      }
+    ],
+    "pricing_public": true,
+    "pricing_url": "https://www.crossmint.com/pricing",
+    "pricing_verified": true,
+    "kyc_required": null,
+    "regions": null,
+    "sources": [
+      "https://www.crossmint.com/pricing",
+      "https://www.crossmint.com/learn/agentic-payments-protocols-compared",
+      "https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol"
+    ],
+    "checked_at": "2026-10-02",
+    "notes": "Payment products (onramp, checkout, stablecoin orchestration) show only 'per-transaction fees with volume-based discounts', no rates. Crossmint says its architecture is 'designed to support MPP, ACP and AP2 as they mature', so only x402 is listed. Card rail is from a search-result title for its agentic cards page, which was not fetched."
+  },
+  {
+    "name": "Nevermined",
+    "company": "Nevermined AG",
+    "website": "https://nevermined.ai",
+    "kind": "agent_payment_platform",
+    "one_liner": "Billing and settlement layer for AI agents with its own x402 facilitator, settling in USDC or via delegated cards.",
+    "agentic_product": "Nevermined x402 Facilitator",
+    "protocols": [
+      "x402",
+      "MPP",
+      "MCP",
+      "A2A"
+    ],
+    "protocol_sources": {
+      "x402": "https://nevermined.ai/pricing",
+      "MPP": "https://nevermined.ai/pricing",
+      "MCP": "https://nevermined.ai/pricing",
+      "A2A": "https://nevermined.ai/"
+    },
+    "rails": [
+      "stablecoin",
+      "card"
+    ],
+    "networks": [],
+    "fees": [
+      {
+        "label": "Merchant fee: stablecoin rails",
+        "percent": 1.0,
+        "fixed": null,
+        "currency": "USD",
+        "description": "1% on stablecoin rails, taken from settlement",
+        "region": "global"
+      },
+      {
+        "label": "Merchant fee: card rails",
+        "percent": 2.0,
+        "fixed": null,
+        "currency": "USD",
+        "description": "2% on card rails, taken from settlement; card processing passed through at cost",
+        "region": "global"
+      },
+      {
+        "label": "Buyer fee: external services",
+        "percent": 2.0,
+        "fixed": null,
+        "currency": "USD",
+        "description": "Buyers pay 2% flat on external services; no buyer fee on a Nevermined plan",
+        "region": "global"
+      },
+      {
+        "label": "Premium plan",
+        "percent": null,
+        "fixed": 250,
+        "currency": "USD",
+        "description": "$250/month: up to 100 agents, 50 plans, 5 team seats (Free plan $0; Enterprise $500/month)",
+        "region": "global"
+      }
+    ],
+    "pricing_public": true,
+    "pricing_url": "https://nevermined.ai/pricing",
+    "pricing_verified": true,
+    "kyc_required": null,
+    "regions": null,
+    "sources": [
+      "https://nevermined.ai/pricing",
+      "https://nevermined.ai/",
+      "https://nevermined.ai/facilitator/"
+    ],
+    "checked_at": "2026-10-02",
+    "notes": "No setup fees or minimums stated. A2A appears only in the homepage meta-description. Chain list not stated beyond ERC-4337 smart accounts and USDC. Legal entity name not verified on a fetched page."
+  },
+  {
+    "name": "Payman",
+    "company": "Payman AI, Inc.",
+    "website": "https://paymanai.com",
+    "kind": "agent_payment_platform",
+    "one_liner": "Lets AI move real money under policy controls; now marketed as agentic banking AI for banks and credit unions.",
+    "agentic_product": "Agentic banking",
+    "protocols": [],
+    "protocol_sources": {},
+    "rails": [
+      "bank_transfer",
+      "stablecoin",
+      "wallet"
+    ],
+    "networks": [],
+    "fees": [],
+    "pricing_public": false,
+    "pricing_url": null,
+    "pricing_verified": false,
+    "kyc_required": true,
+    "regions": null,
+    "sources": [
+      "https://paymanai.com/security",
+      "https://paymanai.com/agentic-banking"
+    ],
+    "checked_at": "2026-10-02",
+    "notes": "No pricing found; docs.paymanai.com was unreachable (robots/HTTP 526). Security page says KYC/KYB grants access to verified developers; USD wallets held at Stripe, USDC wallets at Bridge. Positioning has shifted toward banks and credit unions. Legal entity name not verified on a fetched page."
+  },
+  {
+    "name": "Tempo",
+    "company": "Tempo",
+    "website": "https://tempo.xyz",
+    "kind": "blockchain",
+    "one_liner": "Payments-first Layer 1 incubated by Stripe and Paradigm; co-author of MPP, with gas fees paid in stablecoins.",
+    "agentic_product": "Machine Payments Protocol (MPP) settlement",
+    "protocols": [
+      "MPP"
+    ],
+    "protocol_sources": {
+      "MPP": "https://tempo.xyz/faq/"
+    },
+    "rails": [
+      "stablecoin"
+    ],
+    "networks": [
+      "Tempo"
+    ],
+    "fees": [
+      {
+        "label": "Network fee: transfer (base-fee cap)",
+        "percent": null,
+        "fixed": 0.0006,
+        "currency": "USD",
+        "description": "Approx. $0.0006 base-fee cap for a 50,000 gas transfer; quiet-period floor around $0.00003; bounded dynamic base fee",
+        "region": "global"
+      }
+    ],
+    "pricing_public": true,
+    "pricing_url": "https://tempo.xyz/developers/docs/protocol/fees",
+    "pricing_verified": true,
+    "kyc_required": null,
+    "regions": null,
+    "sources": [
+      "https://tempo.xyz/developers/docs/protocol/fees",
+      "https://tempo.xyz/faq/",
+      "https://docs.stripe.com/payments/machine/mpp"
+    ],
+    "checked_at": "2026-10-02",
+    "notes": "Fees are network gas, payable in USD stablecoins, and vary with congestion. FAQ: mainnet live since 18 March 2026 (chain ID 4217). KYC not addressed."
+  },
+  {
+    "name": "Bridge",
+    "company": "Bridge (a Stripe company)",
+    "website": "https://www.bridge.xyz",
+    "kind": "stablecoin_issuer",
+    "one_liner": "Stablecoin platform for orchestration, issuance, cards and wallets; lets developers add their own per-transaction fees.",
+    "agentic_product": null,
+    "protocols": [],
+    "protocol_sources": {},
+    "rails": [
+      "stablecoin",
+      "bank_transfer",
+      "card",
+      "wallet"
+    ],
+    "networks": [],
+    "fees": [],
+    "pricing_public": false,
+    "pricing_url": null,
+    "pricing_verified": false,
+    "kyc_required": null,
+    "regions": "Non-EEA residents served by Bridge Ventures LLC; EEA residents by Bridge Building S.A.",
+    "sources": [
+      "https://www.bridge.xyz/",
+      "https://apidocs.bridge.xyz/platform/orchestration/fees-and-mins/devfees"
+    ],
+    "checked_at": "2026-10-02",
+    "notes": "Bridge's own fees are not disclosed on the pages fetched; the docs only describe developer fees that integrators charge their users. No agent-specific product or protocol found. Stripe ownership is shown as co-branding on the site, not verified in text."
+  },
+  {
+    "name": "PayAI",
+    "company": "PayAI Network",
+    "website": "https://payai.network",
+    "kind": "x402_facilitator",
+    "one_liner": "Solana-first, multi-network x402 facilitator for any SPL or ERC-20 token, usable without an API key.",
+    "agentic_product": "PayAI x402 Facilitator",
+    "protocols": [
+      "x402"
+    ],
+    "protocol_sources": {
+      "x402": "https://facilitator.payai.network/"
+    },
+    "rails": [
+      "stablecoin"
+    ],
+    "networks": [
+      "Solana",
+      "Base",
+      "Polygon",
+      "Avalanche",
+      "Arbitrum",
+      "Sei",
+      "XLayer",
+      "SKALE"
+    ],
+    "fees": [
+      {
+        "label": "Free tier",
+        "percent": null,
+        "fixed": 0,
+        "currency": "USD",
+        "description": "1,000 total settlements free (5 requests/second)",
+        "region": "global"
+      },
+      {
+        "label": "Pay-as-you-go",
+        "percent": null,
+        "fixed": 0.001,
+        "currency": "USD",
+        "description": "$0.001 per settlement, unlimited transactions (30 requests/second)",
+        "region": "global"
+      }
+    ],
+    "pricing_public": true,
+    "pricing_url": "https://facilitator.payai.network/",
+    "pricing_verified": true,
+    "kyc_required": null,
+    "regions": null,
+    "sources": [
+      "https://facilitator.payai.network/"
+    ],
+    "checked_at": "2026-10-02",
+    "notes": "Free tier is worded as 1,000 total, not monthly. Enterprise pricing is custom. KYC not addressed; no API key needed for basic use."
+  },
+  {
+    "name": "thirdweb",
+    "company": "thirdweb",
+    "website": "https://thirdweb.com",
+    "kind": "x402_facilitator",
+    "one_liner": "Web3 developer platform with an x402 client/server stack and facilitator covering 170+ EVM chains.",
+    "agentic_product": "thirdweb x402 facilitator",
+    "protocols": [
+      "x402"
+    ],
+    "protocol_sources": {
+      "x402": "https://portal.thirdweb.com/x402/facilitator"
+    },
+    "rails": [
+      "stablecoin"
+    ],
+    "networks": [
+      "170+ EVM chains"
+    ],
+    "fees": [
+      {
+        "label": "x402 facilitator",
+        "percent": 0.3,
+        "fixed": null,
+        "currency": "USD",
+        "description": "Fee % on each transaction executed through facilitator: 0.3% transaction fee",
+        "region": "global"
+      },
+      {
+        "label": "Bridge (crypto-to-crypto swap)",
+        "percent": 0.3,
+        "fixed": null,
+        "currency": "USD",
+        "description": "0.3% transaction fee on each swap",
+        "region": "global"
+      },
+      {
+        "label": "Growth plan",
+        "percent": null,
+        "fixed": 99,
+        "currency": "USD",
+        "description": "$99/month (Scale $499/month, Pro $1,499+/month)",
+        "region": "global"
+      }
+    ],
+    "pricing_public": true,
+    "pricing_url": "https://thirdweb.com/pricing",
+    "pricing_verified": true,
+    "kyc_required": null,
+    "regions": null,
+    "sources": [
+      "https://thirdweb.com/pricing",
+      "https://portal.thirdweb.com/x402/facilitator",
+      "https://portal.thirdweb.com/x402"
+    ],
+    "checked_at": "2026-10-02",
+    "notes": "Facilitator runs through your own server wallet and needs a thirdweb secret key. Tokens must support ERC-2612 permit or ERC-3009 (USDC). Whether a free plan exists was not captured."
+  },
+  {
+    "name": "Sponge",
+    "company": "Sponge",
+    "website": "https://paysponge.com",
+    "kind": "wallet_infrastructure",
+    "one_liner": "Agent accounts and wallets (card, bank, crypto) plus a gateway that lets businesses accept agent payments via x402 and MPP.",
+    "agentic_product": "Sponge Wallet / Sponge Gateway",
+    "protocols": [
+      "x402",
+      "MPP",
+      "MCP"
+    ],
+    "protocol_sources": {
+      "x402": "https://paysponge.com/",
+      "MPP": "https://paysponge.com/",
+      "MCP": "https://paysponge.com/"
+    },
+    "rails": [
+      "card",
+      "bank_transfer",
+      "stablecoin",
+      "wallet"
+    ],
+    "networks": [
+      "Base",
+      "Solana",
+      "Tempo"
+    ],
+    "fees": [],
+    "pricing_public": false,
+    "pricing_url": null,
+    "pricing_verified": false,
+    "kyc_required": null,
+    "regions": null,
+    "sources": [
+      "https://paysponge.com/"
+    ],
+    "checked_at": "2026-10-02",
+    "notes": "No pricing or KYC information on the homepage; no pricing page found. Sponge card is issued by Rain per the site. Only the homepage was fetched."
+  },
+  {
+    "name": "Natural",
+    "company": "Natural",
+    "website": "https://www.natural.co",
+    "kind": "agent_payment_platform",
+    "one_liner": "Agentic payments infrastructure for businesses whose agents make decisions and complete transactions, B2B first.",
+    "agentic_product": null,
+    "protocols": [],
+    "protocol_sources": {},
+    "rails": [],
+    "networks": [],
+    "fees": [],
+    "pricing_public": false,
+    "pricing_url": null,
+    "pricing_verified": false,
+    "kyc_required": null,
+    "regions": null,
+    "sources": [
+      "https://www.businesswire.com/news/home/20251023151615/en/Fintech-Natural-Launches-With-$9.8M-Seed-Round-to-Power-Agentic-Payments"
+    ],
+    "checked_at": "2026-10-02",
+    "notes": "Only the official launch press release (23 Oct 2025) could be fetched; natural.co redirects to natural.com, which could not be fetched, so rails, protocols, fees and KYC are unverified. A later $30M round appeared only in third-party search results."
+  },
+  {
+    "name": "Halliday",
+    "company": "Halliday",
+    "website": "https://www.halliday.xyz",
+    "kind": "wallet_infrastructure",
+    "one_liner": "Non-custodial onchain payments suite (onramps, swaps, bridging) built on its Agentic Workflow Protocol.",
+    "agentic_product": "Agentic Workflow Protocol",
+    "protocols": [],
+    "protocol_sources": {},
+    "rails": [
+      "stablecoin",
+      "card",
+      "wallet"
+    ],
+    "networks": [],
+    "fees": [],
+    "pricing_public": false,
+    "pricing_url": null,
+    "pricing_verified": false,
+    "kyc_required": null,
+    "regions": null,
+    "sources": [
+      "https://halliday.xyz/payments",
+      "https://docs.halliday.xyz/pages/faq"
+    ],
+    "checked_at": "2026-10-02",
+    "notes": "FAQ says 'Halliday only charges a fee for completion of onchain delivery of funds' but gives no rate; provider and gas fees are extra. Relevance to agent payments is indirect (workflow automation, not an agent pay protocol). Card rail is via third-party onramps."
+  },
+  {
+    "name": "Amazon Bedrock AgentCore Payments",
+    "company": "Amazon Web Services (with Coinbase)",
+    "website": "https://aws.amazon.com/bedrock/agentcore/",
+    "kind": "agent_payment_platform",
+    "one_liner": "AWS agent runtime feature letting agents discover services and make x402 micropayments in USDC using Coinbase wallet infrastructure.",
+    "agentic_product": "AgentCore Payments",
+    "protocols": [
+      "x402"
+    ],
+    "protocol_sources": {
+      "x402": "https://www.coinbase.com/blog/introducing-amazon-bedrock-agentcore-payments-powered-by-x402-and-coinbase"
+    },
+    "rails": [
+      "stablecoin",
+      "wallet"
+    ],
+    "networks": [
+      "Base",
+      "Solana"
+    ],
+    "fees": [],
+    "pricing_public": false,
+    "pricing_url": null,
+    "pricing_verified": false,
+    "kyc_required": null,
+    "regions": null,
+    "sources": [
+      "https://www.coinbase.com/blog/introducing-amazon-bedrock-agentcore-payments-powered-by-x402-and-coinbase"
+    ],
+    "checked_at": "2026-10-02",
+    "notes": "Sourced only from Coinbase's official blog (7 May 2026); no AWS page was fetched, so the website URL and AWS pricing are unverified. Blog says settlement costs 'less than a fraction of a cent per transaction' without a number."
+  }
+]

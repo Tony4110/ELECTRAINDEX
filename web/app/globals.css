@@ -263,3 +263,11 @@ footer.site .wrap { padding-block: 16px; gap: 8px 24px; }
 .rank-head .search button { border: 0; background: var(--accent); color: #fff; font-weight: 600; font-size: 14px; padding: 0 16px; min-height: 40px; cursor: pointer; font-family: var(--sans); }
 @media (max-width: 760px) { .rank-head .search { order: 5; flex-basis: 100%; margin: 4px 0 0; } }
 .rank-head h2 { font-size: 21px; }
+
+/* payments */
+.h1-md { font-size: clamp(28px, 3.2vw, 44px); }
+.tabs .soon { padding: 12px 16px; color: var(--faint); font-size: 13px; font-family: var(--mono); display: inline-flex; align-items: center; }
+.links { display: flex; gap: 12px; margin-top: 4px; font-size: 12px; flex-wrap: wrap; }
+.pills.wrap { flex-wrap: wrap; gap: 4px; }
+a.pill.on:hover { background: var(--accent); color: #fff; }
+ul.fees { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 3px; }
