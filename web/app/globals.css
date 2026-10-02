@@ -211,3 +211,25 @@ main { padding-block: 20px 56px; }
 .theme-bar { margin-top: 10px; padding: 10px 0 8px; }
 .theme-tab { min-height: 68px; }
 @media (min-width: 900px) { .hero .lede { white-space: nowrap; } }
+
+/* v3 hero: title left, search right, thin theme line */
+.hero { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px 32px; flex-wrap: wrap; padding-top: 4px; }
+.hero h1 { font-size: clamp(24px, 2.6vw, 34px); letter-spacing: -.025em; margin: 0 0 2px; }
+.hero .lede { font-size: 15px; white-space: normal; }
+.hero .search { margin-top: 0; width: 420px; max-width: 100%; border-width: 1px; border-color: #B8C0BB; border-radius: 8px; }
+.hero .search:focus-within { border-color: var(--accent); }
+.hero .search input { padding: 0 14px; font-size: 15px; min-height: 44px; }
+.hero .search button { min-height: 44px; padding: 0 18px; font-size: 14px; }
+.theme-line { display: flex; gap: 2px; margin-top: 18px; border-bottom: 1px solid var(--line); overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
+.theme-line::-webkit-scrollbar { display: none; }
+.theme-line a { padding: 10px 12px; min-height: 44px; display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: var(--muted); border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.theme-line a:hover { color: var(--ink); }
+.theme-line a.on { color: var(--ink); border-bottom-color: var(--accent); }
+.theme-line .n { font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--faint); }
+.rank-head { margin: 14px 0 10px; }
+.rank-head h2 { font-size: 18px; }
+footer.site .wrap { padding-block: 16px; gap: 8px 24px; }
+@media (max-width: 760px) { .hero .search { width: 100%; } .theme-line { margin-inline: -16px; padding-inline: 16px; } }
+.theme-line a { padding-inline: 9px; font-size: 13px; }
+@media (max-width: 760px) { .header .btn.dark { padding: 0 12px; min-height: 40px; font-size: 13px; } .header .logo { font-size: 19px; } .header .wrap { gap: 8px 8px; } }
+.theme-line a { padding-inline: 7px; gap: 5px; }

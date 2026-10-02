@@ -57,29 +57,22 @@ export default async function Home({ searchParams }: { searchParams: SP }) {
   return (
     <>
       <section className="hero">
-        <div className="eyebrow">Electra Index · the trust layer for the agent economy</div>
-        <h1>Know your agent. Trust your transaction.</h1>
-        <p className="lede">Which AI agent to use, whether it can be trusted, and what it really costs. Ranked on sourced, dated data.</p>
+        <div className="hero-text">
+          <h1>Know your agent. Trust your transaction.</h1>
+          <p className="lede">AI agents ranked on quality, price and trust.</p>
+        </div>
         <form action="/search" method="get" className="search" role="search">
           <label htmlFor="q" className="sr-only">What do you need an AI agent to do?</label>
-          <input id="q" name="q" type="search" placeholder="What do you need done? e.g. find leads, write SEO articles" autoComplete="off" />
-          <button type="submit">Search →</button>
+          <input id="q" name="q" type="search" placeholder="What do you need done?" autoComplete="off" />
+          <button type="submit" aria-label="Search">Search</button>
         </form>
-        <div className="stats-line" aria-label="Index at a glance">
-          <span><b>{num(cards.length)}</b> AI agents ranked</span>
-          <span><b>{num(stats?.mcp_servers)}</b> tools tracked</span>
-          <span><b>{num(stats?.tasks)}</b> tasks</span>
-          <span><b>{num(week)}</b> changes this week</span>
-        </div>
       </section>
 
-      <nav className="theme-bar" aria-label="Themes" id="ranking">
-        <Link href={href({ theme: null })} scroll={false} className={`theme-tab ${!current ? "on" : ""}`} aria-current={!current ? "true" : undefined}>
-          <span className="name">All themes</span><span className="meta">{cards.length} agents<br />{num(stats?.tasks)} tasks</span>
-        </Link>
+      <nav className="theme-line" aria-label="Themes" id="ranking">
+        <Link href={href({ theme: null })} scroll={false} className={!current ? "on" : ""} aria-current={!current ? "true" : undefined}>All <span className="n">{cards.length}</span></Link>
         {themes.map((t) => (
-          <Link key={t.theme_slug} href={href({ theme: t.theme_slug })} scroll={false} className={`theme-tab ${current?.theme_slug === t.theme_slug ? "on" : ""}`} aria-current={current?.theme_slug === t.theme_slug ? "true" : undefined}>
-            <span className="name">{t.theme}</span><span className="meta">{agentsIn(t.theme_slug)} agents<br />{t.tasks} tasks</span>
+          <Link key={t.theme_slug} href={href({ theme: t.theme_slug })} scroll={false} className={current?.theme_slug === t.theme_slug ? "on" : ""} aria-current={current?.theme_slug === t.theme_slug ? "true" : undefined}>
+            {t.theme} <span className="n">{agentsIn(t.theme_slug)}</span>
           </Link>
         ))}
       </nav>
@@ -94,7 +87,7 @@ export default async function Home({ searchParams }: { searchParams: SP }) {
       </div>
       {current && themeTasks.length > 0 ? (
         <div className="task-strip">
-          <span className="small muted">Tasks:</span>
+          <span className="small muted">{themeTasks.length} tasks:</span>
           {themeTasks.map((x) => <Link key={x.slug} href={`/tasks/${x.slug}`} className="chip">{x.name}</Link>)}
         </div>
       ) : null}
@@ -102,7 +95,7 @@ export default async function Home({ searchParams }: { searchParams: SP }) {
       <div className="card table-wrap">
         {rows.length === 0 ? <div className="card-body"><Empty title="No agent yet">Agents appear here once their vendor page has been read.</Empty></div> : (
           <table className="rank-table">
-            <thead><tr><th>#</th><th>Agent</th>{!current ? <th>Theme</th> : null}<th>Quality</th><th>From</th><th className="hide-sm">Value</th><th className="hide-sm">Trust</th></tr></thead>
+            <thead><tr><th>#</th><th>Agent</th>{!current ? <th className="hide-sm">Theme</th> : null}<th>Quality</th><th>From</th><th className="hide-sm">Value</th><th className="hide-sm">Trust</th></tr></thead>
             <tbody>
               {rows.map((a, i) => (
                 <tr key={a.id}>
@@ -113,7 +106,7 @@ export default async function Home({ searchParams }: { searchParams: SP }) {
                       <span><span className="strong ink">{a.name}</span><span className="small muted block">{a.company ?? ""}</span></span>
                     </Link>
                   </td>
-                  {!current ? <td className="small muted">{(a.themes ?? []).join(" · ")}</td> : null}
+                  {!current ? <td className="small muted hide-sm">{(a.themes ?? []).join(" · ")}</td> : null}
                   <td><Quality score={a.quality_score} /></td>
                   <td className="nowrap-sm"><Price from={a.from_usd_month} free={a.has_free} hasPricing /></td>
                   <td className="hide-sm"><Value label={a.value} /></td>
@@ -133,6 +126,12 @@ export default async function Home({ searchParams }: { searchParams: SP }) {
       <div className="card">
         {signals.length === 0 ? <div className="card-body"><Empty title="No signals yet">Changes appear here as soon as a robot detects them.</Empty></div>
           : <ul className="signals">{signals.map((s) => <SignalItem key={s.id} s={s} />)}</ul>}
+      </div>
+      <div className="stats-line" aria-label="Index at a glance" style={{ marginTop: 28 }}>
+        <span><b>{num(cards.length)}</b> AI agents ranked</span>
+        <span><b>{num(stats?.mcp_servers)}</b> tools tracked</span>
+        <span><b>{num(stats?.tasks)}</b> tasks</span>
+        <span><b>{num(week)}</b> changes this week</span>
       </div>
     </>
   );

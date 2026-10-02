@@ -35,8 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/sources">Methodology</Link>
             </nav>
             <span className="spacer" />
-            <Link href="/submit" className="btn list">List your agent</Link>
-            <Link href="/search" className="btn dark">Search</Link>
+            <Link href="/submit" className="btn dark">List your agent</Link>
           </div>
         </header>
         <main>
@@ -44,6 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </main>
         <footer className="site">
           <div className="wrap">
+            <span><b style={{ color: "var(--ink)" }}>Electra Index</b> · the trust layer for the agent economy</span>
             <span>Every fact has a source and a date · no source → no claim</span>
             <span className="spacer" />
             <span>Scores measure observable public data, not performance</span>
