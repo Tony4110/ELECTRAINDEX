@@ -1,6 +1,5 @@
 # Electra Index — Netlify deploy (site lives in /web, Next.js runtime auto-detected)
 [build]
-  base = "web"
   command = "npm run build"
   publish = ".next"
 
