@@ -253,3 +253,12 @@ footer.site .wrap { padding-block: 16px; gap: 8px 24px; }
 .hero .search input, .hero .search button { min-height: 40px; }
 .hero .search input { font-size: 14px; }
 @media (min-width: 900px) { .hero .search { flex: 0 1 300px; max-width: 300px; } }
+/* search lives in the ranking header, between the title and the sort chips */
+.hero { display: block; padding-top: 20px; }
+.hero h1 { white-space: normal; margin-bottom: 6px; }
+.rank-head { gap: 8px 12px; }
+.rank-head .search { flex: 1 1 280px; margin: 0 12px; display: flex; background: var(--panel); border: 1px solid #B8C0BB; border-radius: 8px; overflow: hidden; max-width: none; }
+.rank-head .search:focus-within { border-color: var(--accent); }
+.rank-head .search input { flex-grow: 1; min-width: 0; border: 0; padding: 0 14px; min-height: 40px; font-size: 14px; background: transparent; outline: none; font-family: var(--sans); color: var(--ink); }
+.rank-head .search button { border: 0; background: var(--accent); color: #fff; font-weight: 600; font-size: 14px; padding: 0 16px; min-height: 40px; cursor: pointer; font-family: var(--sans); }
+@media (max-width: 760px) { .rank-head .search { order: 5; flex-basis: 100%; margin: 4px 0 0; } }

@@ -58,11 +58,6 @@ export default async function Home({ searchParams }: { searchParams: SP }) {
     <>
       <section className="hero">
         <h1>Know your agent. Trust your transaction.</h1>
-        <form action="/search" method="get" className="search" role="search">
-          <label htmlFor="q" className="sr-only">What do you need an AI agent to do?</label>
-          <input id="q" name="q" type="search" placeholder="What do you need done?" autoComplete="off" />
-          <button type="submit" aria-label="Search">Search</button>
-        </form>
         <p className="lede">Which AI agent to use, whether it can be trusted, and what it really costs.</p>
       </section>
 
@@ -77,7 +72,11 @@ export default async function Home({ searchParams }: { searchParams: SP }) {
 
       <div className="rank-head">
         <h2>{current ? `Best AI agents for ${current.theme}` : "Top AI agents"}</h2>
-        <span className="spacer" />
+        <form action="/search" method="get" className="search" role="search">
+            <label htmlFor="q" className="sr-only">What do you need an AI agent to do?</label>
+            <input id="q" name="q" type="search" placeholder="What do you need done?" autoComplete="off" />
+            <button type="submit" aria-label="Search">Search</button>
+        </form>
         <span className="small muted">Sort by</span>
         <Link href={href({ sort: "quality" })} scroll={false} className={`chip ${sort === "quality" ? "on" : ""}`}>Quality</Link>
         <Link href={href({ sort: "value" })} scroll={false} className={`chip ${sort === "value" ? "on" : ""}`}>Best value</Link>
