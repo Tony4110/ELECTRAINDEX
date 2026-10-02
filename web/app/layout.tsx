@@ -9,13 +9,15 @@ import "@fontsource/ibm-plex-mono/latin-400.css";
 import "@fontsource/ibm-plex-mono/latin-500.css";
 import "./globals.css";
 
-export const dynamic = "force-dynamic";
+// pages are cached and refreshed at most once an hour (fast for visitors and for Google)
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://electraindex.com"),
   title: { default: "Electra Index — The trust layer for the agent economy", template: "%s · Electra Index" },
   description: "Know your agent. Trust your transaction. Electra Index ranks AI agents and the tools they use on quality, price and trust. Every fact sourced and dated.",
-  openGraph: { siteName: "Electra Index", type: "website" },
+  openGraph: { siteName: "Electra Index", type: "website", locale: "en_US" },
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -4,7 +4,7 @@ import { db, getThemes } from "@/lib/db";
 import { num } from "@/lib/format";
 import { SetupNotice } from "@/components/ui";
 
-export const metadata: Metadata = { title: "Themes", description: "AI agents and tools ranked by theme: sales, marketing, coding, finance, data and more." };
+export const metadata: Metadata = { title: "Themes", description: "AI agents and tools ranked by theme: sales, marketing, coding, finance, data and more.", alternates: { canonical: "/themes" } };
 
 export default async function Themes() {
   if (!db()) return <SetupNotice />;

@@ -4,7 +4,7 @@ import { db, type McpServer } from "@/lib/db";
 import { num, timeAgo } from "@/lib/format";
 import { Tri, Empty, SetupNotice } from "@/components/ui";
 
-export const metadata: Metadata = { title: "Tools for AI agents (MCP servers)", description: "Every public MCP server, sourced and dated, with version, access type and history." };
+export const metadata: Metadata = { title: "Tools for AI agents (MCP servers)", description: "Every public MCP server, sourced and dated, with version, access type and history.", alternates: { canonical: "/mcp" } };
 
 const PAGE = 50;
 type SP = Promise<{ q?: string; page?: string; access?: string; sort?: string }>;

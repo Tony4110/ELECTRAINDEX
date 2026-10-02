@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { db, type Task, type TaskRanking } from "@/lib/db";
-import { num, timeAgo } from "@/lib/format";
+import { num, timeAgo, lowerFirst } from "@/lib/format";
 import { Tri, Empty, SetupNotice } from "@/components/ui";
 import { Trust, Coverage, ProviderCell, Quality, Price, Value, KindTabs } from "@/components/rank";
 
@@ -19,7 +19,7 @@ async function load(slug: string) {
 
 export async function generateMetadata({ params }: { params: P }): Promise<Metadata> {
   const t = await load((await params).slug);
-  return t ? { title: `Best AI agents to ${t.name.toLowerCase()}`, description: `Which AI agents and tools can ${t.name.toLowerCase()}? Ranked by capability coverage, from sourced data.` } : { title: "Not found" };
+  return t ? { title: `Best AI agents to ${lowerFirst(t.name)}`, description: `Which AI agents and tools can ${lowerFirst(t.name)}? Ranked by capability coverage, quality and price, from sourced data.`, alternates: { canonical: `/tasks/${t.slug}` } } : { title: "Not found" };
 }
 
 export default async function TaskPage({ params, searchParams }: { params: P; searchParams: SP }) {
@@ -56,7 +56,7 @@ export default async function TaskPage({ params, searchParams }: { params: P; se
       <nav className="crumbs" aria-label="Breadcrumb"><Link href="/tasks">Tasks</Link><span>/</span>
         {t.category_slug ? <Link href={`/themes/${t.category_slug}`}>{t.category}</Link> : <span>{t.category}</span>}<span>/</span><span className="ink">{t.name}</span></nav>
       <div className="eyebrow">Task · {t.category}</div>
-      <h1>Best AI agents to {t.name.toLowerCase()}</h1>
+      <h1>Best AI agents to {lowerFirst(t.name)}</h1>
       <p className="lede">This task needs {t.capabilities.length} capabilities. {num(fullCount ?? 0)} {what} cover all of them; {num(count ?? 0)} {onlyFull ? "shown" : "cover at least one"}.</p>
       <div className="chips">
         <span className="small muted">Required capabilities:</span>

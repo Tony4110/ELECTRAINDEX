@@ -8,6 +8,8 @@ export function timeAgo(iso: string | null | undefined): string {
   return new Date(iso).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
 }
 
+export const lowerFirst = (s: string) => (/^[A-Z][a-z]/.test(s) ? s.charAt(0).toLowerCase() + s.slice(1) : s);
+
 export function num(n: number | null | undefined): string {
   return n == null ? "—" : new Intl.NumberFormat("en-US").format(n);
 }

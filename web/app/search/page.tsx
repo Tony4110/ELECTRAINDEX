@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { db } from "@/lib/db";
 import { Empty, SetupNotice } from "@/components/ui";
 
-export const metadata: Metadata = { title: "Search" };
+export const metadata: Metadata = { title: "Search", robots: { index: false, follow: true } };
 type SP = Promise<{ q?: string }>;
 type Hit = { id: string; type: string; slug: string; name: string; short_description: string | null; rank: number };
 

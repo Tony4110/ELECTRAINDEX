@@ -4,7 +4,7 @@ import { db, getThemes, type AgentCard } from "@/lib/db";
 import { SetupNotice, Empty } from "@/components/ui";
 import { Quality, Price, Trust } from "@/components/rank";
 
-export const metadata: Metadata = { title: "AI agents — ranked by quality and price", description: "Commercial AI agents ranked by Agent Score, with entry price from each vendor's pricing page." };
+export const metadata: Metadata = { title: "AI agents — ranked by quality and price", description: "Commercial AI agents ranked by Agent Score, with entry price from each vendor's pricing page.", alternates: { canonical: "/agents" } };
 type SP = Promise<{ theme?: string; sort?: string }>;
 
 export default async function AgentsPage({ searchParams }: { searchParams: SP }) {

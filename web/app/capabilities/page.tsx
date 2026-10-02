@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { db, getTasks, type Capability } from "@/lib/db";
 import { SetupNotice } from "@/components/ui";
 
-export const metadata: Metadata = { title: "Capabilities", description: "The 50 capabilities used to match AI agents to tasks." };
+export const metadata: Metadata = { title: "Capabilities", description: "The 50 capabilities used to match AI agents to tasks.", alternates: { canonical: "/capabilities" } };
 
 export default async function Capabilities() {
   const c = db();

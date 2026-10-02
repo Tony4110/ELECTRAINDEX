@@ -20,9 +20,16 @@ async function load(slug: string) {
   return data as McpServer | null;
 }
 
+// rendered on first visit, then cached and refreshed hourly
+export async function generateStaticParams() { return []; }
+
 export async function generateMetadata({ params }: { params: P }): Promise<Metadata> {
   const m = await load((await params).slug);
-  return m ? { title: `${m.name} — MCP server`, description: m.short_description ?? `${m.name} MCP server: version, access and history.` } : { title: "Not found" };
+  if (!m) return { title: "Not found" };
+  // thin pages (no real description) stay visible but out of search engines until enriched
+  const thin = (m.short_description ?? "").trim().length < 50;
+  return { title: `${m.name} — MCP server`, description: m.short_description ?? `${m.name} MCP server: version, access and history.`,
+    alternates: { canonical: `/mcp/${m.slug}` }, robots: thin ? { index: false, follow: true } : undefined };
 }
 
 export default async function McpPage({ params }: { params: P }) {

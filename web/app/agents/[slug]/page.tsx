@@ -24,9 +24,12 @@ async function load(slug: string) {
   return data as AgentCard | null;
 }
 
+// rendered on first visit, then cached and refreshed hourly
+export async function generateStaticParams() { return []; }
+
 export async function generateMetadata({ params }: { params: P }): Promise<Metadata> {
   const a = await load((await params).slug);
-  return a ? { title: `${a.name} — pricing, quality score and alternatives`, description: a.short_description ?? `${a.name}: price plans, Agent Score and capabilities.` } : { title: "Not found" };
+  return a ? { title: `${a.name} — pricing, quality score and alternatives`, description: a.short_description ?? `${a.name}: price plans, Agent Score and capabilities.`, alternates: { canonical: `/agents/${a.slug}` } } : { title: "Not found" };
 }
 
 function money(p: AgentPrice) {

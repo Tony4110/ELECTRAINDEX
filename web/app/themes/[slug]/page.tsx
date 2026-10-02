@@ -19,7 +19,7 @@ async function theme(slug: string) {
 
 export async function generateMetadata({ params }: { params: P }): Promise<Metadata> {
   const t = await theme((await params).slug);
-  return t ? { title: `Best AI agents & tools for ${t.theme}`, description: `${t.theme}: AI agents and tools ranked by how many ${t.theme.toLowerCase()} tasks they cover, from sourced data.` } : { title: "Not found" };
+  return t ? { title: `Best AI agents & tools for ${t.theme}`, description: `${t.theme}: AI agents and tools ranked by how many ${t.theme.toLowerCase()} tasks they cover, from sourced data.`, alternates: { canonical: `/themes/${t.theme_slug}` } } : { title: "Not found" };
 }
 
 export default async function ThemePage({ params, searchParams }: { params: P; searchParams: SP }) {

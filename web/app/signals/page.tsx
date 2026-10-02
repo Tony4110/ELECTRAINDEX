@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { db, getSignals } from "@/lib/db";
 import { SignalItem, Empty, SetupNotice } from "@/components/ui";
 
-export const metadata: Metadata = { title: "Signals", description: "Live changes detected across the agent economy: new versions, new servers, access changes, prices." };
+export const metadata: Metadata = { alternates: { canonical: "/new?tab=changes" }, robots: { index: false, follow: true }, title: "Signals", description: "Live changes detected across the agent economy: new versions, new servers, access changes, prices." };
 
 export default async function Signals() {
   if (!db()) return <SetupNotice />;

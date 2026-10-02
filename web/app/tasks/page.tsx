@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { getTasks, db } from "@/lib/db";
 import { SetupNotice } from "@/components/ui";
 
-export const metadata: Metadata = { title: "Tasks", description: "What do you need done? 100 tasks mapped to the capabilities an AI agent needs." };
+export const metadata: Metadata = { title: "Tasks", description: "What do you need done? 100 tasks mapped to the capabilities an AI agent needs.", alternates: { canonical: "/tasks" } };
 
 export default async function Tasks() {
   if (!db()) return <SetupNotice />;
