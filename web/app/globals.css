@@ -233,3 +233,8 @@ footer.site .wrap { padding-block: 16px; gap: 8px 24px; }
 .theme-line a { padding-inline: 9px; font-size: 13px; }
 @media (max-width: 760px) { .header .btn.dark { padding: 0 12px; min-height: 40px; font-size: 13px; } .header .logo { font-size: 19px; } .header .wrap { gap: 8px 8px; } }
 .theme-line a { padding-inline: 7px; gap: 5px; }
+.hero { align-items: center; padding-top: 12px; }
+.hero .search { width: 520px; }
+.hero .search { flex: 1 1 360px; width: auto; max-width: 520px; }
+@media (min-width: 900px) { .hero { flex-wrap: nowrap; } .hero-text { flex-shrink: 0; } }
+@media (max-width: 899px) { .hero .search { max-width: none; flex-basis: 100%; } }
