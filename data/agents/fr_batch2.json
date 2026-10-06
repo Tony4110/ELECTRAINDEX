@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Mistral Code",
+    "company": "Mistral AI",
+    "website": "https://mistral.ai",
+    "theme": "Coding",
+    "short_description": "Mistral's AI coding assistant (France) — in-IDE completion, chat and agentic multi-file edits powered by Codestral/Devstral, with private and on-prem deployment for enterprises.",
+    "capabilities": ["Code Completion", "Chat Assistant", "Agentic Code Edits", "Codebase Context", "Bug Fixing", "Test Generation", "IDE Integration"],
+    "pricing_url": "https://mistral.ai/pricing",
+    "pricing_verified": false,
+    "checked_at": "2026-10-06",
+    "plans": [],
+    "free_plan": true,
+    "free_trial": null,
+    "api": true,
+    "mcp": null,
+    "open_source": false,
+    "github_repo": null,
+    "notes": "source: mistral.ai. Mistral Code (ex-'Vibe') IDE plugin for VS Code/JetBrains; built on open-weight Codestral/Devstral; free tier for individuals + paid/enterprise with private deployment. Pricing to confirm."
+  }
+]
