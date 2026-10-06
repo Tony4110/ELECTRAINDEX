@@ -273,3 +273,14 @@ footer.site .wrap { padding-block: 16px; gap: 8px 24px; }
 .pills.wrap { flex-wrap: wrap; gap: 4px; }
 a.pill.on:hover { background: var(--accent); color: #fff; }
 ul.fees { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 3px; }
+
+/* Blog article typography */
+.article { max-width: 70ch; margin-top: 20px; color: var(--ink-2); font-size: 16px; line-height: 1.7; }
+.article h2 { font-size: 22px; line-height: 1.25; color: var(--ink); margin: 32px 0 10px; letter-spacing: -.01em; }
+.article h3 { font-size: 18px; color: var(--ink); margin: 24px 0 8px; }
+.article p { margin: 0 0 16px; }
+.article ul, .article ol { margin: 0 0 16px; padding-left: 22px; }
+.article li { margin: 6px 0; }
+.article strong { color: var(--ink); }
+.article a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+.article a:hover { color: var(--accent-ink); }

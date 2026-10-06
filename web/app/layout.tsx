@@ -72,6 +72,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/compare">Compare</Link>
               <Link href="/payments">Payments</Link>
               <Link href="/new">New</Link>
+              <Link href="/blog">Blog</Link>
               <Link href="/sources">Methodology</Link>
             </nav>
             <span className="spacer" />

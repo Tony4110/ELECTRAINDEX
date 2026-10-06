@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { db } from "@/lib/db";
 import { SITE, SITEMAP_CHUNK, MIN_DESC } from "@/lib/site";
 import { featuredPairsByTheme, pairSlug } from "@/lib/compare";
+import { allPosts } from "@/lib/posts";
 
 export const revalidate = 3600;
 
@@ -30,7 +31,8 @@ export default async function sitemap({ id }: { id: number }): Promise<MetadataR
     const comparePaths = Array.from(new Set(comparos.flatMap((g) => g.pairs).map((p) => pairSlug(p.a, p.b))));
     return [
       { url: SITE, lastModified: now, changeFrequency: "daily", priority: 1 },
-      ...["/compare", "/tasks", "/mcp", "/payments", "/new", "/sources", "/capabilities", "/submit"].map((p) => ({ url: SITE + p, lastModified: now, changeFrequency: "daily" as const, priority: 0.8 })),
+      ...["/compare", "/blog", "/tasks", "/mcp", "/payments", "/new", "/sources", "/capabilities", "/submit"].map((p) => ({ url: SITE + p, lastModified: now, changeFrequency: "daily" as const, priority: 0.8 })),
+      ...allPosts().map((p) => ({ url: `${SITE}/blog/${p.slug}`, lastModified: new Date(p.date), changeFrequency: "weekly" as const, priority: 0.7 })),
       ...comparePaths.map((slug) => ({ url: `${SITE}/compare/${slug}`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.7 })),
       ...((themes.data as { theme_slug: string }[] | null) ?? []).map((t) => ({ url: `${SITE}/themes/${t.theme_slug}`, lastModified: now, changeFrequency: "daily" as const, priority: 0.9 })),
       ...((tasks.data as { slug: string }[] | null) ?? []).map((t) => ({ url: `${SITE}/tasks/${t.slug}`, lastModified: now, changeFrequency: "daily" as const, priority: 0.9 })),
