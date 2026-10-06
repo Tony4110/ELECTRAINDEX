@@ -44,6 +44,6 @@ select (select count(*) from entities where type = 'agent' and is_published) as 
        (select count(*) from mv_theme_rankings where provider_type = 'agent') as agent_theme_rows;
 """
 (root / 'supabase/INSTALL_AGENTS_1.sql').write_text(
-    "-- ELECTRA INDEX — INSTALL_AGENTS_1 : 200 commercial agents + prices + value in rankings\n"
+    f"-- ELECTRA INDEX — INSTALL_AGENTS_1 : {len(agents)} commercial agents + prices + value in rankings\n"
     "-- Paste everything into Supabase > SQL Editor > Run.\n\n" + mig + "\n\n" + seed + check)
 print(len(agents), 'agents')
