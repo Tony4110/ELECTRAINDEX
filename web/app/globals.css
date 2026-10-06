@@ -40,6 +40,8 @@ h2 { margin: 0; font-size: 18px; font-weight: 700; }
 .crumbs { display: flex; gap: 8px; font-size: 13px; color: var(--muted); margin-bottom: 8px; flex-wrap: wrap; }
 .grid { display: grid; gap: 24px; }
 .cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 960px) { .cols-2 { grid-template-columns: minmax(0, 1fr); } }
 .span-2 { grid-column: span 2; }
 @media (max-width: 960px) { .cols-3 { grid-template-columns: minmax(0, 1fr); } .span-2 { grid-column: auto; } }
 

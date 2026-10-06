@@ -5,6 +5,7 @@ import { db, type AgentCard, type AgentPrice, type Signal } from "@/lib/db";
 import { shortDate, EVENT_LABEL, eventTone, describeSignal } from "@/lib/format";
 import { Tri, Badge, Empty, SetupNotice } from "@/components/ui";
 import { Quality, Price, Trust } from "@/components/rank";
+import { pairSlug } from "@/lib/compare";
 
 type P = Promise<{ slug: string }>;
 
@@ -142,7 +143,7 @@ export default async function AgentPage({ params }: { params: P }) {
               {alternatives.map((x) => (
                 <li className="signal" key={x.provider_slug}>
                   <div className="signal-top"><Link href={`/agents/${x.provider_slug}`} className="strong ink">{x.provider_name}</Link><span className="spacer" /><Quality score={x.quality_score} /></div>
-                  <div className="small"><Price from={x.from_usd_month} free={x.has_free} hasPricing={x.has_pricing} /></div>
+                  <div className="small"><Price from={x.from_usd_month} free={x.has_free} hasPricing={x.has_pricing} /> · <Link href={`/compare/${pairSlug(a.slug, x.provider_slug)}`}>Compare →</Link></div>
                 </li>
               ))}
             </ul>
