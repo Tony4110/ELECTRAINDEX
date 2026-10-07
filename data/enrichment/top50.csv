@@ -1,19 +1,19 @@
 slug,name,docs_url,llms_txt,capabilities_source_url,human_in_the_loop,integrations,pricing_verified,notes
-ramp-ai-agents,Ramp (AI agents),,,,,,,
-claude-code,Claude Code,,,,,,,
-notion-agent,Notion Agent,,,,,,,
-lindy,Lindy,,,,,,,
-jason-ai-sdr,Jason AI SDR,,,,,,,
-exa,Exa,,,,,,,
-jamie,Jamie,,,,,,,
-meetgeek,MeetGeek,,,,,,,
-browser-use,Browser Use,,,,,,,
-fireflies-ai,Fireflies.ai,,,,,,,
-relevance-ai,Relevance AI,,,,,,,
-apify,Apify,,,,,,,
-axiom-ai,Axiom.ai,,,,,,,
-crisp-ai-agent,Crisp AI Agent,,,,,,,
-granola,Granola,,,,,,,
+ramp-ai-agents,Ramp (AI agents),https://docs.ramp.com,,https://ramp.com/ai,yes,,yes,no money moves without human confirmation; agents.ramp.com
+claude-code,Claude Code,https://docs.claude.com/en/docs/claude-code/overview,,https://docs.claude.com/en/docs/claude-code/overview,,MCP;IDE;GitHub,yes,permission gate exists (add HIL later citing permissions page)
+notion-agent,Notion Agent,https://www.notion.com/help/notion-agent,,https://www.notion.com/help/notion-agent,yes,Slack;Gmail;Calendar;MCP,yes,confirms before write actions
+lindy,Lindy,https://docs.lindy.ai,,https://www.lindy.ai/use-cases,,4000+ apps,yes,Team $29.99/mo
+jason-ai-sdr,Jason AI SDR,https://docs.reply.io,,https://reply.io/jason-ai/,yes,,yes,by Reply.io; from $500/mo
+exa,Exa,https://exa.ai/docs,yes,https://exa.ai/docs,,,yes,API-first; usage-based pricing
+jamie,Jamie,https://docs.meetjamie.ai,,https://www.meetjamie.ai/,yes,,yes,on-device notetaker; API/webhooks/MCP
+meetgeek,MeetGeek,https://docs.meetgeek.ai,,https://meetgeek.ai/,yes,,yes,public API docs
+browser-use,Browser Use,https://docs.browser-use.com,yes,https://docs.browser-use.com/cloud/quickstart,,,yes,open-source MIT
+fireflies-ai,Fireflies.ai,https://docs.fireflies.ai,yes,https://fireflies.ai,,Zoom;Meet;Teams;Slack;CRM,yes,
+relevance-ai,Relevance AI,https://relevanceai.com/docs,yes,https://relevanceai.com/docs/build/introduction,yes,,yes,free plan retired for new signups
+apify,Apify,https://docs.apify.com,yes,https://docs.apify.com/,,MCP,yes,Actors for scraping/automation
+axiom-ai,Axiom.ai,https://axiom.ai/docs,,https://axiom.ai/,,Chrome;MCP,yes,no-code Chrome extension
+crisp-ai-agent,Crisp AI Agent,https://docs.crisp.chat,,https://docs.crisp.chat/guides/hugo,yes,MCP,yes,agent=Hugo; escalation to human documented
+granola,Granola,https://docs.granola.ai,yes,https://www.granola.ai/,,CRM;Slack;Notion;MCP,yes,notetaker; no outbound actions
 firecrawl,Firecrawl,,,,,,,
 fathom,Fathom,,,,,,,
 digits,Digits,,,,,,,
