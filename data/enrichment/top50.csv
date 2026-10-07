@@ -34,18 +34,18 @@ browserless,Browserless,https://docs.browserless.io,yes,https://docs.browserless
 thoughtspot-spotter,ThoughtSpot Spotter,https://docs.thoughtspot.com/spotter/latest,,https://docs.thoughtspot.com/cloud/26.6.0.cl/spotter-agents,yes,,,conversational BI agent; contact-sales pricing
 gpt-researcher,GPT Researcher,https://docs.gptr.dev,,https://docs.gptr.dev/docs/gpt-researcher/getting-started/introduction,no,MCP,,open-source Apache-2.0; autonomous
 creatify,Creatify,,,https://creatify.ai/,,,yes,AI video/ad gen; no formal docs
-scite-assistant,Scite Assistant,,,,,,,
-genspark-super-agent,Genspark Super Agent,,,,,,,
-apollo-io,Apollo.io,,,,,,,
-aisdr,AiSDR,,,,,,,
-fin-ai-agent,Fin AI Agent,,,,,,,
-skyvern,Skyvern,,,,,,,
-superhuman-mail,Superhuman Mail,,,,,,,
-browse-ai,Browse AI,,,,,,,
-browserbase,Browserbase,,,,,,,
-shortwave,Shortwave,,,,,,,
-cal-com,Cal.com,,,,,,,
-elicit,Elicit,,,,,,,
-perplexity-deep-research,Perplexity Deep Research,,,,,,,
-ribbon,Ribbon,,,,,,,
-ada,Ada,,,,,,,
+scite-assistant,Scite Assistant,https://docs.scite.ai,yes,https://scite.ai/assistant,,,no,research Q&A; free-trial pricing only
+genspark-super-agent,Genspark Super Agent,https://www.genspark.ai/helpcenter/super-agent,,https://www.genspark.ai/helpcenter/super-agent,no,,yes,autonomous; prices on /business
+apollo-io,Apollo.io,https://docs.apollo.io,yes,https://knowledge.apollo.io/hc/en-us/articles/39359204112397-AI-Assistant-Overview,yes,,no,confirm before credit actions; no public $
+aisdr,AiSDR,https://help.aisdr.com/,,https://aisdr.com/platform/,yes,,yes,review-and-launch step; Solo $250/mo
+fin-ai-agent,Fin AI Agent,https://developers.intercom.com,,https://fin.ai/learn/what-is-fin-ai-agent,yes,,yes,Intercom Fin; $0.99/resolution
+skyvern,Skyvern,https://www.skyvern.com/docs,yes,https://www.skyvern.com/docs/developers/getting-started/introduction,no,SDK,yes,open-source; autonomous browser automation
+superhuman-mail,Superhuman Mail,https://help.superhuman.com,,https://help.superhuman.com/article/519-ai,yes,,yes,AI email; drafts you accept
+browse-ai,Browse AI,https://developers.browse.ai,yes,https://www.browse.ai,,,yes,no-code scraper/monitor; passive
+browserbase,Browserbase,https://docs.browserbase.com,yes,https://docs.browserbase.com/reference/introduction,,SDK,yes,headless browser infra
+shortwave,Shortwave,https://www.shortwave.com/docs/,,https://www.shortwave.com/docs/guides/ai-assistant/,yes,MCP;Google Calendar,yes,AI email; in control each step
+cal-com,Cal.com,https://cal.com/docs,yes,https://cal.com/help/cal-ai,no,,yes,open-source scheduling; Cal.ai voice agent
+elicit,Elicit,https://support.elicit.com,,https://support.elicit.com/en/articles/14759154,yes,,yes,research assistant; override/verify checkpoints
+perplexity-deep-research,Perplexity Deep Research,,,https://www.perplexity.ai/hub/blog/introducing-perplexity-deep-research,no,,,autonomous research mode; no own docs/pricing loaded
+ribbon,Ribbon,https://docs.ribbon.ai,yes,https://docs.ribbon.ai/knowledge-base/overview,yes,ATS,yes,AI recruiter/interviewer; human final decision
+ada,Ada,https://docs.ada.cx/docs/welcome,,https://docs.ada.cx/docs/welcome,yes,,,customer-service agent; contact-sales pricing
