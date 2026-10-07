@@ -72,7 +72,7 @@ begin
     from reverify_checks rc
     join net._http_response resp on resp.id = rc.request_id
     where rc.applied = false
-      and rc.dispatched_at < now() - interval '1 minute'
+      and resp.status_code is not null   -- only act once a definitive HTTP code has arrived
   loop
     if rec.status_code in (404, 410) then
       -- preuve morte
