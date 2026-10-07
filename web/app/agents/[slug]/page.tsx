@@ -42,6 +42,13 @@ function money(p: AgentPrice) {
 }
 const per = (p: AgentPrice) => p.interval === "month" ? "/month" : p.interval === "year" ? "/year" : p.interval === "per_unit" ? (p.unit ? ` / ${p.unit}` : " per unit") : p.interval === "one_time" ? " one-time" : "";
 
+function EvidenceStatus({ status }: { status: "verified" | "declared" | "no" | "unknown" }) {
+  if (status === "verified") return <span className="badge pos">✓ Verified</span>;
+  if (status === "declared") return <span className="badge accent">Declared</span>;
+  if (status === "no") return <span className="badge">No</span>;
+  return <span className="mono faint small">— Unknown</span>;
+}
+
 export default async function AgentPage({ params }: { params: P }) {
   const c = db();
   if (!c) return <SetupNotice />;
@@ -63,6 +70,25 @@ export default async function AgentPage({ params }: { params: P }) {
   const alternatives = (alts as { provider_slug: string; provider_name: string; quality_score: number | null; from_usd_month: number | null; has_free: boolean; has_pricing: boolean }[] | null) ?? [];
   const comps = a.score_components ?? {};
   const lastChecked = prices.reduce<string | null>((m, p) => (!m || p.last_confirmed_at > m ? p.last_confirmed_at : m), null);
+
+  // "Why this score?" — a plain-English rationale + evidence, built only from data we hold.
+  const verifiedCaps = capabilities.filter((x) => x.evidence_level === "verified").length;
+  const declaredCaps = capabilities.filter((x) => x.evidence_level === "declared").length;
+  const measured = Object.entries(COMPONENT_LABEL)
+    .filter(([k]) => k in comps && !(a.score_missing ?? []).includes(k))
+    .map(([k, label]) => ({ label, v: Number(comps[k]) }));
+  const strengths = [...measured].sort((x, y) => y.v - x.v).filter((e) => e.v >= 65).slice(0, 2).map((e) => e.label);
+  const weak = [...measured].sort((x, y) => x.v - y.v).filter((e) => e.v <= 45).slice(0, 2).map((e) => e.label);
+  const missingLabels = Object.entries(COMPONENT_LABEL).filter(([k]) => (a.score_missing ?? []).includes(k)).map(([, l]) => l);
+  const pricingStatus: "verified" | "declared" | "unknown" = a.pricing_verified ? "verified" : prices.length ? "declared" : "unknown";
+  const boolStatus = (v: boolean | null | undefined): "declared" | "no" | "unknown" => (v === true ? "declared" : v === false ? "no" : "unknown");
+  const whyText = [
+    a.quality_score != null ? `Agent Score ${Math.round(a.quality_score)}/100.` : "Not scored yet.",
+    strengths.length ? `Strongest on ${strengths.join(" and ")}.` : "",
+    weak.length ? `Thinner on ${weak.join(" and ")}.` : "",
+    a.pricing_verified ? "Pricing read on the vendor's own page." : prices.length ? "Pricing stated by the vendor, not yet verified." : "No pricing published.",
+    missingLabels.length ? `${missingLabels.length} criteria not measured yet — shown as Unknown, never counted as a failure.` : "",
+  ].filter(Boolean).join(" ");
 
   const jsonLd = {
     "@context": "https://schema.org", "@type": "SoftwareApplication", name: a.name, description: a.short_description ?? undefined,
@@ -96,6 +122,29 @@ export default async function AgentPage({ params }: { params: P }) {
         <div><span className="small muted">API</span><span><Tri label={a.api === true ? "YES" : a.api === false ? "NO" : "NOT DOCUMENTED"} value={a.api} /></span></div>
         <div><span className="small muted">MCP server</span><span><Tri label={a.mcp === true ? "YES" : a.mcp === false ? "NO" : "NOT DOCUMENTED"} value={a.mcp} /></span></div>
         <div><span className="small muted">Open source</span><span><Tri label={a.open_source === true ? "YES" : a.open_source === false ? "NO" : "NOT DOCUMENTED"} value={a.open_source} /></span></div>
+      </div>
+
+      <div className="card" style={{ marginTop: 24 }}>
+        <div className="card-head">
+          <h2>Why this score?</h2>
+          <span className="small muted">Methodology {a.methodology_version ?? "1.0"} · confidence {a.score_confidence ?? "—"}{a.last_verified_at ? ` · verified ${shortDate(a.last_verified_at)}` : ""}</span>
+        </div>
+        <div className="card-body">
+          <p className="small" style={{ marginTop: 0 }}>{whyText}</p>
+          <div className="table-wrap">
+            <table>
+              <thead><tr><th>Claim</th><th>Evidence</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td className="strong">Pricing</td><td className="small muted">Vendor pricing page</td><td><EvidenceStatus status={pricingStatus} /></td></tr>
+                <tr><td className="strong">Capabilities</td><td className="small muted">{verifiedCaps} verified · {declaredCaps} declared</td><td><EvidenceStatus status={verifiedCaps > 0 ? "verified" : declaredCaps > 0 ? "declared" : "unknown"} /></td></tr>
+                <tr><td className="strong">Public API</td><td className="small muted">Vendor site / docs</td><td><EvidenceStatus status={boolStatus(a.api)} /></td></tr>
+                <tr><td className="strong">MCP support</td><td className="small muted">Vendor site / docs</td><td><EvidenceStatus status={boolStatus(a.mcp)} /></td></tr>
+                <tr><td className="strong">Open source</td><td className="small muted">Repository / vendor</td><td><EvidenceStatus status={boolStatus(a.open_source)} /></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="small faint" style={{ marginTop: 10 }}>No source → no claim. Criteria we can&apos;t evidence score 0 and read &ldquo;Unknown&rdquo; — never a guess. Unknown ≠ false.</p>
+        </div>
       </div>
 
       <div className="card" style={{ marginTop: 24 }}>
