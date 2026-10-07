@@ -25,29 +25,29 @@ begin
     -- Documentation URL (Documentation component: 70 pts)
     if coalesce(r->>'docs_url','') <> '' then
       perform record_observation(v_id, 'docs.url', to_jsonb(r->>'docs_url'),
-                                 'verified', 'SRC-049', 'high', r->>'docs_url', 'documentation review');
+                                 'observed', 'SRC-049', 'high', r->>'docs_url', 'documentation review');
     end if;
 
     -- llms.txt present? (Documentation component: +30 pts)
     v_llms := lower(coalesce(r->>'llms_txt',''));
     if v_llms in ('yes','y','true','oui') then
-      perform record_observation(v_id, 'llms_txt', to_jsonb(true),  'verified', 'SRC-049', 'high', r->>'docs_url');
+      perform record_observation(v_id, 'llms_txt', to_jsonb(true),  'observed', 'SRC-049', 'high', r->>'docs_url');
     elsif v_llms in ('no','n','false','non') then
-      perform record_observation(v_id, 'llms_txt', to_jsonb(false), 'verified', 'SRC-049', 'high', r->>'docs_url');
+      perform record_observation(v_id, 'llms_txt', to_jsonb(false), 'observed', 'SRC-049', 'high', r->>'docs_url');
     end if;
 
     -- Human-in-the-loop (Human oversight component)
     v_hil := lower(coalesce(r->>'human_in_the_loop',''));
     if v_hil in ('yes','y','true','oui') then
-      perform record_observation(v_id, 'human_approval', to_jsonb(true),  'verified', 'SRC-049', 'high', coalesce(r->>'capabilities_source_url', r->>'docs_url'));
+      perform record_observation(v_id, 'human_approval', to_jsonb(true),  'observed', 'SRC-049', 'high', coalesce(r->>'capabilities_source_url', r->>'docs_url'));
     elsif v_hil in ('no','n','false','non') then
-      perform record_observation(v_id, 'human_approval', to_jsonb(false), 'verified', 'SRC-049', 'high', coalesce(r->>'capabilities_source_url', r->>'docs_url'));
+      perform record_observation(v_id, 'human_approval', to_jsonb(false), 'observed', 'SRC-049', 'high', coalesce(r->>'capabilities_source_url', r->>'docs_url'));
     end if;
 
-    -- Capabilities confirmed on the cited page -> upgrade declared to VERIFIED
+    -- Capabilities confirmed on the cited page -> upgrade declared to observed (shown as Verified)
     if coalesce(r->>'capabilities_source_url','') <> '' then
       update relations
-         set evidence_level = 'verified', confidence = 'high',
+         set evidence_level = 'observed', confidence = 'high',
              source_id = source_id_of('SRC-049'),
              evidence = 'confirmed on vendor features/docs page',
              evidence_url = r->>'capabilities_source_url', last_seen_at = now()
