@@ -14,16 +14,16 @@ apify,Apify,https://docs.apify.com,yes,https://docs.apify.com/,,MCP,yes,Actors f
 axiom-ai,Axiom.ai,https://axiom.ai/docs,,https://axiom.ai/,,Chrome;MCP,yes,no-code Chrome extension
 crisp-ai-agent,Crisp AI Agent,https://docs.crisp.chat,,https://docs.crisp.chat/guides/hugo,yes,MCP,yes,agent=Hugo; escalation to human documented
 granola,Granola,https://docs.granola.ai,yes,https://www.granola.ai/,,CRM;Slack;Notion;MCP,yes,notetaker; no outbound actions
-firecrawl,Firecrawl,,,,,,,
-fathom,Fathom,,,,,,,
-digits,Digits,,,,,,,
-otter-ai,Otter.ai,,,,,,,
-clay-claygent,Clay (Claygent),,,,,,,
-zapier-agents,Zapier Agents,,,,,,,
-jasper,Jasper,,,,,,,
-read-ai,Read AI,,,,,,,
-parallel-task-api,Parallel Task API,,,,,,,
-unify,Unify,,,,,,,
+firecrawl,Firecrawl,https://docs.firecrawl.dev,yes,https://docs.firecrawl.dev,,Webhooks;MCP,yes,web-data API; /agent autonomous
+fathom,Fathom,https://developers.fathom.ai,,https://www.fathom.ai/overview,,CRM;MCP,yes,fathom.ai (fathom.video redirects); API+MCP
+digits,Digits,https://developer.digits.com,,https://digits.com/features/,yes,,yes,confidence-gated; exceptions routed to human review
+otter-ai,Otter.ai,https://help.otter.ai,,https://otter.ai/,,CRM;MCP,yes,no official dev API docs found
+clay-claygent,Clay (Claygent),https://docs.clay.com,,https://www.clay.com/claygent,yes,CRM;warehouse;MCP,yes,writes human-approved; glass box
+zapier-agents,Zapier Agents,https://docs.zapier.com,,https://zapier.com/blog/zapier-agents/,yes,7000+ apps,,activity-tiered; approval before critical actions; no public $
+jasper,Jasper,https://developers.jasper.ai,yes,https://www.jasper.ai/agents,yes,MCP,yes,API on Business plan
+read-ai,Read AI,https://support.read.ai/hc/en-us,,https://read.ai/,,CRM;MCP,yes,notetaker; API ref in help center
+parallel-task-api,Parallel Task API,https://docs.parallel.ai,yes,https://parallel.ai/ai/products/task,,,yes,usage-based per request
+unify,Unify,https://docs.unifygtm.com,yes,https://unifygtm.com/product/plays,,CRM;Slack,yes,credit-based; Mintlify docs
 persana-ai,Persana AI,,,,,,,
 tipalti,Tipalti,,,,,,,
 outreach-ai-agents,Outreach AI Agents,,,,,,,
