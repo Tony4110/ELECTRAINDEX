@@ -1,0 +1,2 @@
+slug,name,docs_url,llms_txt,capabilities_source_url,human_in_the_loop,integrations,pricing_verified,notes
+cursor,Cursor,https://docs.cursor.com,no,https://www.cursor.com/features,yes,GitHub;GitLab;Slack,yes,example row — delete me
