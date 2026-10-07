@@ -24,16 +24,16 @@ jasper,Jasper,https://developers.jasper.ai,yes,https://www.jasper.ai/agents,yes,
 read-ai,Read AI,https://support.read.ai/hc/en-us,,https://read.ai/,,CRM;MCP,yes,notetaker; API ref in help center
 parallel-task-api,Parallel Task API,https://docs.parallel.ai,yes,https://parallel.ai/ai/products/task,,,yes,usage-based per request
 unify,Unify,https://docs.unifygtm.com,yes,https://unifygtm.com/product/plays,,CRM;Slack,yes,credit-based; Mintlify docs
-persana-ai,Persana AI,,,,,,,
-tipalti,Tipalti,,,,,,,
-outreach-ai-agents,Outreach AI Agents,,,,,,,
-bright-data,Bright Data,,,,,,,
-you-com-research-api,You.com Research API,,,,,,,
-frase,Frase,,,,,,,
-browserless,Browserless,,,,,,,
-thoughtspot-spotter,ThoughtSpot Spotter,,,,,,,
-gpt-researcher,GPT Researcher,,,,,,,
-creatify,Creatify,,,,,,,
+persana-ai,Persana AI,,,https://persana.ai/features/ai-signals,,,yes,no docs site; autopilot AI SDR; joining Rox
+tipalti,Tipalti,,,https://tipalti.com/accounts-payable-software/finance-ai/,yes,,yes,~9 finance agents; prices on EU page
+outreach-ai-agents,Outreach AI Agents,https://support.outreach.io/support/solutions/articles/159000433239-agents-ai-overview,,https://www.outreach.ai/ai-agents,yes,MCP,no,pricing request-quote; agent suite + Agent Studio
+bright-data,Bright Data,https://docs.brightdata.com,yes,https://docs.brightdata.com/introduction,,MCP;SDK,yes,web-data platform; PAYG $4/GB
+you-com-research-api,You.com Research API,https://you.com/docs/quickstart,yes,https://you.com/docs/examples/research,,,yes,usage-based $12-1200/1k
+frase,Frase,https://docs.frase.io,,https://frase.io/seo-content-optimization,yes,WordPress;Webflow,,docs app non-renderable; nothing changes without you
+browserless,Browserless,https://docs.browserless.io,yes,https://docs.browserless.io/docs,,,yes,headless browser APIs; stealth+CAPTCHA
+thoughtspot-spotter,ThoughtSpot Spotter,https://docs.thoughtspot.com/spotter/latest,,https://docs.thoughtspot.com/cloud/26.6.0.cl/spotter-agents,yes,,,conversational BI agent; contact-sales pricing
+gpt-researcher,GPT Researcher,https://docs.gptr.dev,,https://docs.gptr.dev/docs/gpt-researcher/getting-started/introduction,no,MCP,,open-source Apache-2.0; autonomous
+creatify,Creatify,,,https://creatify.ai/,,,yes,AI video/ad gen; no formal docs
 scite-assistant,Scite Assistant,,,,,,,
 genspark-super-agent,Genspark Super Agent,,,,,,,
 apollo-io,Apollo.io,,,,,,,
