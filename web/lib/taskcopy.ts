@@ -35,5 +35,5 @@ export function taskIntro(
   } else {
     middle = `No AI agent covers ${all} yet; the list below is ordered by how much of the task each one covers.`;
   }
-  return `To ${lowerFirst(name)}, an AI agent needs ${capList(caps)}. ${middle} Agents are ranked by capability coverage first, then by Electra's evidence-based Agent Score.`;
+  return `To ${lowerFirst(name)}, an AI agent needs ${capList(caps)}. ${middle} Agents are ranked by how completely and how reliably they cover the task, then by Electra's evidence-based Agent Score.`;
 }
