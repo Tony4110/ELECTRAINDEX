@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { db, type Task, type TaskRanking } from "@/lib/db";
+import { db, providerHref, type Task, type TaskRanking } from "@/lib/db";
 import { num, timeAgo, lowerFirst } from "@/lib/format";
+import { pairSlug } from "@/lib/compare";
+import { taskIntro, taskMetaDescription } from "@/lib/taskcopy";
 import { Tri, Empty, SetupNotice } from "@/components/ui";
 import { Trust, Coverage, ProviderCell, Quality, Price, Value, KindTabs } from "@/components/rank";
 
@@ -19,7 +21,7 @@ async function load(slug: string) {
 
 export async function generateMetadata({ params }: { params: P }): Promise<Metadata> {
   const t = await load((await params).slug);
-  return t ? { title: `Best AI agents to ${lowerFirst(t.name)}`, description: `Which AI agents and tools can ${lowerFirst(t.name)}? Ranked by capability coverage, quality and price, from sourced data.`, alternates: { canonical: `/tasks/${t.slug}` } } : { title: "Not found" };
+  return t ? { title: `Best AI agents to ${lowerFirst(t.name)}`, description: taskMetaDescription(t.name, t.capabilities), alternates: { canonical: `/tasks/${t.slug}` } } : { title: "Not found" };
 }
 
 export default async function TaskPage({ params, searchParams }: { params: P; searchParams: SP }) {
@@ -50,6 +52,12 @@ export default async function TaskPage({ params, searchParams }: { params: P; se
   const pages = Math.max(1, Math.ceil((count ?? 0) / PAGE));
   const link = (p: number, full = onlyFull) => `/tasks/${t.slug}?${new URLSearchParams({ ...(kind === "tools" ? { kind } : {}), ...(p > 1 ? { page: String(p) } : {}), ...(full ? { full: "1" } : {}) })}`;
   const what = kind === "agents" ? "AI agents" : "tools";
+  const fullRows = page === 1 ? rows.filter((r) => r.coverage_pct === 100) : [];
+  const leaders = fullRows.slice(0, 2).map((r) => r.provider_name);
+  const cmp = kind === "agents" ? fullRows.filter((r) => r.quality_score != null).slice(0, 2) : [];
+  const comparePair = cmp.length === 2
+    ? { href: `/compare/${pairSlug(cmp[0].provider_slug, cmp[1].provider_slug)}`, a: cmp[0].provider_name, b: cmp[1].provider_name }
+    : null;
 
   return (
     <>
@@ -57,11 +65,14 @@ export default async function TaskPage({ params, searchParams }: { params: P; se
         {t.category_slug ? <Link href={`/themes/${t.category_slug}`}>{t.category}</Link> : <span>{t.category}</span>}<span>/</span><span className="ink">{t.name}</span></nav>
       <div className="eyebrow">Task · {t.category}</div>
       <h1>Best AI agents to {lowerFirst(t.name)}</h1>
-      <p className="lede">This task needs {t.capabilities.length} capabilities. {num(fullCount ?? 0)} {what} cover all of them; {num(count ?? 0)} {onlyFull ? "shown" : "cover at least one"}.</p>
+      <p className="lede">{kind === "agents"
+        ? taskIntro(t.name, t.capabilities, fullCount ?? 0, leaders)
+        : `This task needs ${t.capabilities.length} capabilities. ${num(fullCount ?? 0)} ${what} cover all of them; ${num(count ?? 0)} ${onlyFull ? "shown" : "cover at least one"}.`}</p>
       <div className="chips">
         <span className="small muted">Required capabilities:</span>
         {t.capabilities.map((x) => <Link key={x.slug} href={`/capabilities#${x.slug}`} className="chip acc">{x.name}</Link>)}
       </div>
+      {comparePair ? <p className="small"><Link href={comparePair.href}>Compare the top two: {comparePair.a} vs {comparePair.b} →</Link></p> : null}
       <KindTabs base={`/tasks/${t.slug}`} kind={kind} counts={{ agents: nAgents ?? 0, tools: nTools ?? 0 }} />
       <div className="filters">
         <Link href={link(1, false)} className={`chip ${!onlyFull ? "on" : ""}`}>All matches</Link>
@@ -84,7 +95,12 @@ export default async function TaskPage({ params, searchParams }: { params: P; se
                   <tr key={r.provider_id}>
                     <td className="rank-num">{(page - 1) * PAGE + i + 1}</td>
                     <ProviderCell type={r.provider_type} slug={r.provider_slug} name={r.provider_name} desc={r.short_description} />
-                    <td title={(r.matched_capabilities ?? []).join(", ")}><Coverage pct={r.coverage_pct} /></td>
+                    <td>
+                      <Coverage pct={r.coverage_pct} />
+                      {(r.matched_capabilities?.length ?? 0) > 0
+                        ? <div className="small muted">{r.matched_capabilities.join(" · ")}{r.match_confidence && r.match_confidence !== "high" ? ` · ${r.match_confidence} match` : ""}</div>
+                        : null}
+                    </td>
                     {kind === "agents" ? <>
                       <td><Quality score={r.quality_score} /></td>
                       <td><Price from={r.from_usd_month} free={r.has_free} hasPricing={r.has_pricing} /></td>
@@ -92,7 +108,7 @@ export default async function TaskPage({ params, searchParams }: { params: P; se
                     </> : <>
                       <td><span className="pills"><Tri label="REMOTE" value={r.remote} /><Tri label="LOCAL" value={r.local} /></span></td>
                     </>}
-                    <td><Trust level={r.trust_level} /></td>
+                    <td><Trust level={r.trust_level} />{kind === "agents" ? <> <Link className="small faint" href={providerHref("agent", r.provider_slug)}>why →</Link></> : null}</td>
                     {kind === "tools" ? <td className="mono small muted">{timeAgo(r.last_seen_at)}</td> : null}
                   </tr>
                 ))}
@@ -114,7 +130,7 @@ export default async function TaskPage({ params, searchParams }: { params: P; se
         <span className="mono small muted">Page {page} / {pages}</span>
         {page < pages ? <Link className="btn" href={link(page + 1)}>Next →</Link> : null}
       </div>
-      <p className="note">Coverage = share of this task&apos;s required capabilities that an agent or tool documents. For AI agents, capabilities are those stated on the vendor&apos;s website; for tools, they are matched automatically from the publisher&apos;s description (keyword method, low confidence).</p>
+      <p className="note">Coverage = share of this task&apos;s required capabilities that an agent or tool documents. Agents are ranked by coverage first, then by Agent Score. For AI agents, capabilities are those stated on the vendor&apos;s website; for tools, they are matched automatically from the publisher&apos;s description (keyword method, low confidence). Each agent&apos;s capabilities, trust level, sources and verification dates are shown on its own page.</p>
     </>
   );
 }
