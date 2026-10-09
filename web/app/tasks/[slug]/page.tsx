@@ -49,6 +49,16 @@ export default async function TaskPage({ params, searchParams }: { params: P; se
     c.from("v_task_rankings").select("provider_id", { count: "exact", head: true }).eq("task_slug", t.slug).neq("provider_type", "agent"),
   ]);
   const rows = (data as TaskRanking[] | null) ?? [];
+  // Display tie-break: at equal coverage, a well-verified (high-confidence) match
+  // ranks above a keyword-guessed (medium/low) one, then by Agent Score.
+  // Scores and the ranking formula are unchanged; this only orders the display.
+  if (kind === "agents") {
+    const CONF: Record<string, number> = { high: 3, medium: 2, low: 1 };
+    rows.sort((a, b) =>
+      b.coverage_pct - a.coverage_pct
+      || (CONF[b.match_confidence] ?? 0) - (CONF[a.match_confidence] ?? 0)
+      || (b.quality_score ?? -1) - (a.quality_score ?? -1));
+  }
   const pages = Math.max(1, Math.ceil((count ?? 0) / PAGE));
   const link = (p: number, full = onlyFull) => `/tasks/${t.slug}?${new URLSearchParams({ ...(kind === "tools" ? { kind } : {}), ...(p > 1 ? { page: String(p) } : {}), ...(full ? { full: "1" } : {}) })}`;
   const what = kind === "agents" ? "AI agents" : "tools";
@@ -130,7 +140,7 @@ export default async function TaskPage({ params, searchParams }: { params: P; se
         <span className="mono small muted">Page {page} / {pages}</span>
         {page < pages ? <Link className="btn" href={link(page + 1)}>Next →</Link> : null}
       </div>
-      <p className="note">Coverage = share of this task&apos;s required capabilities that an agent or tool documents. Agents are ranked by coverage first, then by Agent Score. For AI agents, capabilities are those stated on the vendor&apos;s website; for tools, they are matched automatically from the publisher&apos;s description (keyword method, low confidence). Each agent&apos;s capabilities, trust level, sources and verification dates are shown on its own page.</p>
+      <p className="note">Coverage = share of this task&apos;s required capabilities that an agent or tool documents. Agents are ranked by coverage, then by how well-verified the capability match is, then by Agent Score. For AI agents, capabilities are those stated on the vendor&apos;s website; for tools, they are matched automatically from the publisher&apos;s description (keyword method, low confidence). Each agent&apos;s capabilities, trust level, sources and verification dates are shown on its own page.</p>
     </>
   );
 }
