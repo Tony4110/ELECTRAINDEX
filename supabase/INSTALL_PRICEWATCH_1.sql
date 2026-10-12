@@ -33,16 +33,19 @@ create index if not exists idx_price_watch_pending on price_watch_checks(applied
 create index if not exists idx_price_watch_entity on price_watch_checks(entity_id, dispatched_at desc);
 alter table price_watch_checks enable row level security;
 
--- price-like tokens visible in a page: "$29", "$1,200", "€12.50", "2.9%"
-create or replace function price_tokens(p_html text) returns text[] language sql immutable as $$
-  with t as (
-    select regexp_replace(
-             regexp_replace(
-               regexp_replace(
-                 regexp_replace(coalesce(p_html, ''), '<(script|style|noscript)[^>]*>[\s\S]*?</\1>', ' ', 'gi'),
-               '<[^>]+>', ' ', 'g'),
-             '&nbsp;|&#160;| ', ' ', 'g'),
-           '&#36;|&dollar;', '$', 'g') as txt
+-- price-like tokens in a page: "$29", "$1,200", "€12.50", "2.9%"
+--   p_visible_only = true : visible text only (scripts and styles removed) -> page fingerprint
+--   p_visible_only = false: also prices embedded in the page's data (JavaScript sites often ship them as JSON)
+-- note: each removal pattern starts with a lazy quantifier so the whole pattern stays lazy in PostgreSQL
+create or replace function price_tokens(p_html text, p_visible_only boolean default true) returns text[] language sql immutable as $$
+  with t0 as (
+    select case when p_visible_only then
+             regexp_replace(regexp_replace(regexp_replace(coalesce(p_html, ''),
+               '<script.*?</script>', ' ', 'gi'), '<style.*?</style>', ' ', 'gi'), '<noscript.*?</noscript>', ' ', 'gi')
+           else replace(replace(coalesce(p_html, ''), '\u0024', '$'), '\u20ac', '€') end as txt
+  ), t as (
+    select regexp_replace(regexp_replace(regexp_replace(txt, '<[^>]+>', ' ', 'g'),
+             '&nbsp;|&#160;|\u00a0', ' ', 'g'), '&#36;|&dollar;', '$', 'g') as txt from t0
   ), t2 as (select replace(replace(replace(txt, '&euro;', '€'), '&pound;', '£'), '&#8364;', '€') as txt from t)
   select coalesce(array_agg(distinct tok order by tok), '{}')
     from (
@@ -51,9 +54,11 @@ create or replace function price_tokens(p_html text) returns text[] language sql
       union
       select regexp_replace(m[1], '\s', '', 'g') || '%'
         from t2, regexp_matches(t2.txt, '(\d{1,2}(?:\.\d{1,2})?)\s?%', 'g') m
+       where p_visible_only
     ) x
    where length(tok) between 2 and 14
 $$;
+drop function if exists price_tokens(text);
 
 create or replace function price_watch_dispatch(p_batch int default 300, p_stale interval default interval '20 hours')
 returns int language plpgsql security definer set search_path = public, net as $$
@@ -86,7 +91,7 @@ $$;
 
 create or replace function price_watch_apply() returns jsonb language plpgsql security definer set search_path = public, net as $$
 declare
-  rec record; v_tokens text[]; v_prev jsonb; v_hash text; v_missing jsonb; v_ids uuid[]; v_res jsonb;
+  rec record; v_tokens text[]; v_all text[]; v_prev jsonb; v_hash text; v_missing jsonb; v_ids uuid[]; v_res jsonb;
   n_conf int := 0; n_mis int := 0; n_chg int := 0; n_gone int := 0; n_unread int := 0; n_skip int := 0;
   v_src uuid := source_id_of('SRC-049');
 begin
@@ -103,19 +108,21 @@ begin
       v_res := v_res || '{"status":"gone"}'; n_gone := n_gone + 1;
 
     elsif rec.status_code between 200 and 299 then
-      v_tokens := price_tokens(rec.content);
-      if coalesce(array_length(v_tokens, 1), 0) = 0 then
-        v_res := v_res || '{"status":"unreadable"}'; n_unread := n_unread + 1;     -- page built by JavaScript
+      v_tokens := price_tokens(rec.content, true);
+      v_all := price_tokens(rec.content, false);
+      if coalesce(array_length(v_tokens, 1), 0) = 0 and coalesce(array_length(v_all, 1), 0) = 0 then
+        v_res := v_res || '{"status":"unreadable"}'; n_unread := n_unread + 1;     -- no price anywhere in the HTML
       else
-        v_hash := md5(array_to_string(v_tokens, '|'));
+        v_hash := md5(array_to_string(coalesce(nullif(v_tokens, '{}'), v_all), '|'));
         select value into v_prev from observations
          where entity_id = rec.entity_id and field = 'pricing.fingerprint' order by observed_at desc limit 1;
         perform record_observation(rec.entity_id, 'pricing.fingerprint',
-                                   jsonb_build_object('hash', v_hash, 'tokens', to_jsonb(v_tokens)),
+                                   jsonb_build_object('hash', v_hash, 'tokens', to_jsonb(coalesce(nullif(v_tokens, '{}'), v_all))),
                                    'observed', 'SRC-049', 'medium', rec.url, null, 'price-watch-v1');
         insert into snapshots(source_id, entity_id, url, http_status, content_type, content_hash, bytes)
         values (v_src, rec.entity_id, rec.url, rec.status_code, 'text/html', v_hash, length(rec.content));
 
+        v_tokens := coalesce(nullif(v_tokens, '{}'), v_all);
         if v_prev is not null and v_prev->>'hash' <> v_hash then
           perform price_watch_flag(rec.entity_id, 'pricing_page_changed',
             jsonb_build_object('url', rec.url, 'added',
@@ -135,7 +142,7 @@ begin
               from cur where amount > 0 and currency in ('USD','EUR','GBP')
           ), page as (
             select left(t, 1) as sym, substring(t from 2)::numeric as amount
-              from unnest(v_tokens) t where left(t, 1) in ('$','€','£')
+              from unnest(v_tokens || v_all) t where left(t, 1) in ('$','€','£')
           )
           select coalesce(jsonb_agg(paid.sym || trim(trailing '.' from trim(trailing '0' from to_char(paid.amount, 'FM999999990.00'))))
                             filter (where not exists (select 1 from page where page.sym = paid.sym and page.amount = paid.amount)), '[]'),
