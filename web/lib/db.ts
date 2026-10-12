@@ -28,6 +28,9 @@ export type McpServer = {
   repository_url: string | null;
   registry_status: string | null;
   registry_name: string | null;
+  description?: string | null;
+  remotes?: { type: string | null; url: string }[] | null;
+  package_list?: { registry: string | null; identifier: string; version: string | null; transport: string | null }[] | null;
 };
 
 export type SiteStats = {
