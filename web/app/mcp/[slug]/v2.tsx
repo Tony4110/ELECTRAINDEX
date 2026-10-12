@@ -1,5 +1,6 @@
 /** Tool page, version 2 (richer template). Shown to the rollout sample only, see lib/rollout.ts. */
 import Link from "next/link";
+import { Out } from "@/components/out";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { db, type McpServer, type Signal, type TaskRanking } from "@/lib/db";
@@ -151,8 +152,8 @@ export async function ToolPageV2({ params }: { params: P }) {
       </div>
       <p className="lede" style={{ marginTop: 16, maxWidth: "80ch" }}>{desc || "No description published."}</p>
       <div className="chips" style={{ marginTop: 16 }}>
-        {m.website ? <a className="btn primary" href={m.website} target="_blank" rel="noopener noreferrer">Website ↗</a> : null}
-        {m.repository_url ? <a className="btn" href={m.repository_url} target="_blank" rel="noopener noreferrer">Source code ↗</a> : null}
+        {m.website ? <Out type="mcp" slug={m.slug} to="website" from={`/mcp/${m.slug}`} className="btn primary">Website ↗</Out> : null}
+        {m.repository_url ? <Out type="mcp" slug={m.slug} to="repository" from={`/mcp/${m.slug}`} className="btn">Source code ↗</Out> : null}
         {remotes.length || pkgs.length ? <a className="btn" href="#connect">How to connect ↓</a> : null}
       </div>
 

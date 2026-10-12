@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Out } from "@/components/out";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { db, type AgentCard, type AgentPrice, type Signal } from "@/lib/db";
@@ -111,8 +112,8 @@ export default async function AgentPage({ params }: { params: P }) {
       </div>
       <p className="lede" style={{ marginTop: 16 }}>{a.short_description ?? "No description published."}</p>
       <div className="chips" style={{ marginTop: 16 }}>
-        {a.website ? <a className="btn primary" href={a.website} target="_blank" rel="noopener noreferrer">Visit website ↗</a> : null}
-        {a.pricing_url ? <a className="btn" href={a.pricing_url} target="_blank" rel="noopener noreferrer">Official pricing ↗</a> : null}
+        {a.website ? <Out type="agent" slug={a.slug} to="website" from={`/agents/${a.slug}`} className="btn primary">Visit website ↗</Out> : null}
+        {a.pricing_url ? <Out type="agent" slug={a.slug} to="pricing" from={`/agents/${a.slug}`} className="btn">Official pricing ↗</Out> : null}
       </div>
 
       <div className="kv" style={{ marginTop: 28 }}>

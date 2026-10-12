@@ -1,5 +1,6 @@
 /** Tool page, version 1 (kept for progressive rollout and rollback). */
 import Link from "next/link";
+import { Out } from "@/components/out";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { db, type McpServer, type Signal } from "@/lib/db";
@@ -66,8 +67,8 @@ export async function ToolPageV1({ params }: { params: P }) {
       </div>
       <p className="lede" style={{ marginTop: 16 }}>{m.short_description ?? "No description published."}</p>
       <div className="chips" style={{ marginTop: 16 }}>
-        {m.website ? <a className="btn primary" href={m.website} target="_blank" rel="noopener noreferrer">Website ↗</a> : null}
-        {m.repository_url ? <a className="btn" href={m.repository_url} target="_blank" rel="noopener noreferrer">Repository ↗</a> : null}
+        {m.website ? <Out type="mcp" slug={m.slug} to="website" from={`/mcp/${m.slug}`} className="btn primary">Website ↗</Out> : null}
+        {m.repository_url ? <Out type="mcp" slug={m.slug} to="repository" from={`/mcp/${m.slug}`} className="btn">Repository ↗</Out> : null}
       </div>
 
       <div className="kv" style={{ marginTop: 28 }}>
