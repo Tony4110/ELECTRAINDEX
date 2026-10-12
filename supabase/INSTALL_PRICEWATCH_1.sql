@@ -46,11 +46,14 @@ create or replace function price_tokens(p_html text, p_visible_only boolean defa
   ), t as (
     select regexp_replace(regexp_replace(regexp_replace(txt, '<[^>]+>', ' ', 'g'),
              '&nbsp;|&#160;|\u00a0', ' ', 'g'), '&#36;|&dollar;', '$', 'g') as txt from t0
-  ), t2 as (select replace(replace(replace(txt, '&euro;', '€'), '&pound;', '£'), '&#8364;', '€') as txt from t)
+  ), t2 as (select regexp_replace(replace(replace(replace(txt, '&euro;', '€'), '&pound;', '£'), '&#8364;', '€'), '\s+', ' ', 'g') as txt from t)
   select coalesce(array_agg(distinct tok order by tok), '{}')
     from (
-      select m[1] || regexp_replace(m[2], '[,\s]', '', 'g') as tok
-        from t2, regexp_matches(t2.txt, '([$€£])\s?(\d{1,3}(?:,\d{3})+(?:\.\d{1,2})?|\d+(?:\.\d{1,2})?)', 'g') m
+      select m[1] || case when m[2] ~ '^\d+,\d{2}$' then replace(m[2], ',', '.') else regexp_replace(m[2], '[,\s]', '', 'g') end as tok
+        from t2, regexp_matches(t2.txt, '([$€£])\s*(\d+,\d{2}(?![\d,])|\d{1,3}(?:,\d{3})+(?:\.\d{1,2})?|\d+(?:\.\d{1,2})?)', 'g') m
+      union
+      select '$' || regexp_replace(coalesce(m[1], m[2]), ',', '', 'g')
+        from t2, regexp_matches(t2.txt, '(?:USD\s*(\d{1,3}(?:,\d{3})+(?:\.\d{1,2})?|\d+(?:\.\d{1,2})?))|(?:(\d{1,3}(?:,\d{3})+(?:\.\d{1,2})?|\d+(?:\.\d{1,2})?)\s*USD)', 'g') m
       union
       select regexp_replace(m[1], '\s', '', 'g') || '%'
         from t2, regexp_matches(t2.txt, '(\d{1,2}(?:\.\d{1,2})?)\s?%', 'g') m
