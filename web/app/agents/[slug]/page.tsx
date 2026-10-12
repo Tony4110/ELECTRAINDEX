@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Out } from "@/components/out";
+import { Out, AffiliateNote } from "@/components/out";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { db, type AgentCard, type AgentPrice, type Signal } from "@/lib/db";
@@ -56,14 +56,16 @@ export default async function AgentPage({ params }: { params: P }) {
   const a = await load((await params).slug);
   if (!a) notFound();
 
-  const [{ data: pr }, { data: caps }, { data: hist }, { data: alts }] = await Promise.all([
+  const [{ data: pr }, { data: caps }, { data: hist }, { data: alts }, { data: aff }] = await Promise.all([
     c.from("v_agent_prices").select("*").eq("agent_slug", a.slug),
     c.from("v_provider_capabilities").select("capability_slug,capability,evidence_level,confidence").eq("provider_slug", a.slug).eq("provider_type", "agent").order("capability"),
     c.from("v_signals").select("*").eq("entity_slug", a.slug).eq("entity_type", "agent").order("detected_at", { ascending: false }).limit(20),
     a.theme_slugs?.length
       ? c.from("v_theme_rankings").select("provider_slug,provider_name,quality_score,from_usd_month,has_free,has_pricing").eq("theme_slug", a.theme_slugs[0]).eq("provider_type", "agent").eq("listed_in_theme", true).neq("provider_slug", a.slug).order("quality_score", { ascending: false, nullsFirst: false }).limit(6)
       : Promise.resolve({ data: [] }),
+    c.from("v_affiliate_flags").select("slug").eq("type", "agent").eq("slug", a.slug).maybeSingle().then((r) => (r.error ? { data: null } : r)),
   ]);
+  const affiliate = !!aff;
   const prices = ((pr as AgentPrice[] | null) ?? []).sort((x, y) => (x.amount == null ? 1e12 : Number(x.amount)) - (y.amount == null ? 1e12 : Number(y.amount)));
   const capabilities = (caps as { capability_slug: string; capability: string; evidence_level: string }[] | null) ?? [];
   const declared = capabilities.filter((x) => x.evidence_level !== "derived");
@@ -112,9 +114,10 @@ export default async function AgentPage({ params }: { params: P }) {
       </div>
       <p className="lede" style={{ marginTop: 16 }}>{a.short_description ?? "No description published."}</p>
       <div className="chips" style={{ marginTop: 16 }}>
-        {a.website ? <Out type="agent" slug={a.slug} to="website" from={`/agents/${a.slug}`} className="btn primary">Visit website ↗</Out> : null}
+        {a.website ? <Out type="agent" slug={a.slug} to="website" from={`/agents/${a.slug}`} className="btn primary" sponsored={affiliate}>Visit website ↗</Out> : null}
         {a.pricing_url ? <Out type="agent" slug={a.slug} to="pricing" from={`/agents/${a.slug}`} className="btn">Official pricing ↗</Out> : null}
       </div>
+      {affiliate && a.website ? <AffiliateNote /> : null}
 
       <div className="kv" style={{ marginTop: 28 }}>
         <div><span className="small muted">Agent Score</span><span><Quality score={a.quality_score} /></span></div>
