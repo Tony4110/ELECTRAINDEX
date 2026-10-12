@@ -4,8 +4,13 @@
 --    hosted endpoints (mcp.remotes) and install packages (mcp.packages),
 --    plus the full publisher description.
 --  * v_mcp_servers exposes them to the site.
---  * A full re-crawl is requested so existing tools get the new facts
---    (the robot works through the registry in the background, ~1 hour).
+--  * No schema change: no new table, no new column on any table, no data deleted.
+--  * Re-runnable: function and view are replaced in place; observations are
+--    append-only (same value = only last_confirmed_at moves).
+--  * This file does NOT start a re-crawl. Existing tools get the new facts when
+--    the robot next sees them: tools updated in the registry (every 15 min) and
+--    all tools at the weekly full re-crawl (Monday 03:00 UTC). To start it now,
+--    run INSTALL_TOOLPAGES_2_RECRAWL.sql once the sample has been checked.
 -- =====================================================================
 create or replace function ingest_mcp_server(p_item jsonb, p_run uuid)
 returns text language plpgsql as $$     -- returns 'new' | 'changed' | 'same' | 'skipped'
@@ -81,14 +86,20 @@ begin
   -- how to connect: hosted endpoints and installable packages (shown on the tool page)
   if jsonb_array_length(coalesce(s->'remotes','[]'::jsonb)) > 0 then
     perform record_observation(v_id, 'mcp.remotes',
-            (select jsonb_agg(jsonb_build_object('type', x->>'type', 'url', x->>'url') order by x->>'url')
+            (select jsonb_agg(jsonb_build_object('type', x->>'type', 'url', x->>'url',
+                    'headers', (select jsonb_agg(jsonb_build_object('name', h->>'name', 'required', coalesce((h->>'isRequired')::boolean, false), 'secret', coalesce((h->>'isSecret')::boolean, false)))
+                                  from jsonb_array_elements(coalesce(x->'headers','[]'::jsonb)) h where coalesce(h->>'name','') <> '')) order by x->>'url')
                from jsonb_array_elements(s->'remotes') x where coalesce(x->>'url','') <> ''),
             'declared', 'SRC-001', 'high', null, null, 'mcp-registry-v0.1', null, p_run);
   end if;
   if jsonb_array_length(coalesce(s->'packages','[]'::jsonb)) > 0 then
     perform record_observation(v_id, 'mcp.packages',
             (select jsonb_agg(jsonb_build_object('registry', x->>'registryType', 'identifier', x->>'identifier',
-                    'version', x->>'version', 'transport', x->'transport'->>'type') order by x->>'registryType', x->>'identifier')
+                    'version', x->>'version', 'transport', x->'transport'->>'type',
+                    'env', (select jsonb_agg(jsonb_build_object('name', v->>'name', 'required', coalesce((v->>'isRequired')::boolean, false), 'secret', coalesce((v->>'isSecret')::boolean, false)))
+                              from jsonb_array_elements(coalesce(x->'environmentVariables','[]'::jsonb)) v where coalesce(v->>'name','') <> ''),
+                    'required_args', (select count(*) from jsonb_array_elements(coalesce(x->'packageArguments','[]'::jsonb)) a where coalesce((a->>'isRequired')::boolean, false)),
+                    'runtime_args', jsonb_array_length(coalesce(x->'runtimeArguments','[]'::jsonb))) order by x->>'registryType', x->>'identifier')
                from jsonb_array_elements(s->'packages') x where coalesce(x->>'identifier','') <> ''),
             'declared', 'SRC-001', 'high', null, null, 'mcp-registry-v0.1', null, p_run);
   end if;
@@ -127,4 +138,3 @@ from entities e
 where e.type = 'mcp_server' and e.is_published;
 grant select on v_mcp_servers to anon, authenticated;
 
-select request_full_recrawl('bot.mcp_registry');

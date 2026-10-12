@@ -29,8 +29,9 @@ export type McpServer = {
   registry_status: string | null;
   registry_name: string | null;
   description?: string | null;
-  remotes?: { type: string | null; url: string }[] | null;
-  package_list?: { registry: string | null; identifier: string; version: string | null; transport: string | null }[] | null;
+  remotes?: { type: string | null; url: string; headers?: { name: string; required: boolean; secret: boolean }[] | null }[] | null;
+  package_list?: { registry: string | null; identifier: string; version: string | null; transport: string | null;
+    env?: { name: string; required: boolean; secret: boolean }[] | null; required_args?: number | null; runtime_args?: number | null }[] | null;
 };
 
 export type SiteStats = {
