@@ -134,3 +134,11 @@ export async function getThemes(): Promise<Theme[]> {
 }
 
 export const providerHref = (type: string, slug: string) => (type === "agent" ? `/agents/${slug}` : `/mcp/${slug}`);
+
+export type CapabilityOverview = { capability_slug: string; capability: string; tools: number; hosted_tools: number; open_source_tools: number; agents: number };
+export type CapabilityTool = {
+  capability_slug: string; capability: string; tool_id: string; tool_slug: string; tool_name: string; short_description: string | null;
+  keywords: string | null; name_match: boolean; remote: boolean; local: boolean; has_source: boolean; last_seen_at: string;
+};
+/** Decision pages are indexed only when there are enough tools to choose from. */
+export const MIN_TOOLS_FOR_INDEX = 5;

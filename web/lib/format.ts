@@ -66,3 +66,6 @@ export function describeSignal(s: { event_type: string; field: string | null; ol
     default: return s.field ? `${s.field}: ${show(s.old_value)} → ${show(s.new_value)}` : show(s.new_value);
   }
 }
+
+/** "SEO Optimization" → "SEO optimization", "Knowledge Base QA" → "knowledge base QA" (acronyms kept). */
+export const useCase = (s: string) => s.split(" ").map((w) => (/^[A-Z0-9]{2,}$/.test(w) ? w : w.toLowerCase())).join(" ");

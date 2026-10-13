@@ -42,7 +42,7 @@ export default async function McpIndex({ searchParams }: { searchParams: SP }) {
     <>
       <div className="eyebrow">Index · Tools</div>
       <h1>Tools for AI agents</h1>
-      <p className="lede">{num(count)} tools that AI agents plug into (MCP servers), from the Official MCP Registry, refreshed every 15 minutes. Facts are declared by publishers unless marked observed.</p>
+      <p className="lede">{num(count)} tools that AI agents plug into (MCP servers), from the Official MCP Registry, refreshed every 15 minutes. Facts are declared by publishers unless marked observed. <Link href="/mcp/best">Browse the best tools by use case →</Link></p>
 
       <form className="filters" action="/mcp" method="get">
         <label htmlFor="mq" className="sr-only">Search MCP servers</label>

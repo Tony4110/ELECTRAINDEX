@@ -190,7 +190,7 @@ export default async function AgentPage({ params }: { params: P }) {
           </div>
         </div>
         <div className="card">
-          <div className="card-head"><h2>Alternatives</h2></div>
+          <div className="card-head"><h2>Alternatives</h2><Link className="small" href={`/agents/${a.slug}/alternatives`}>See all →</Link></div>
           {alternatives.length === 0 ? <div className="card-body"><span className="muted">None listed yet.</span></div> : (
             <ul className="signals">
               {alternatives.map((x) => (
