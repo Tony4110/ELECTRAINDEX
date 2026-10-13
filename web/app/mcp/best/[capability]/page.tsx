@@ -52,7 +52,9 @@ export default async function BestFor({ params, searchParams }: { params: P; sea
     c.from("v_tasks").select("slug,name").contains("capabilities", [{ slug: o.capability_slug }]).limit(8),
     c.from("v_capability_overview").select("capability_slug,capability,tools").gte("tools", MIN_TOOLS_FOR_INDEX).neq("capability_slug", o.capability_slug).order("tools", { ascending: false }).limit(8),
   ]);
-  const tools = (tl as CapabilityTool[] | null) ?? [];
+  // the registry has several entries with the same name (forks, re-publishes): show each name once per page
+  const seen = new Set<string>();
+  const tools = ((tl as CapabilityTool[] | null) ?? []).filter((t) => { const k = t.tool_name.trim().toLowerCase(); if (seen.has(k)) return false; seen.add(k); return true; });
   const agentSlugs = ((ag as { provider_slug: string }[] | null) ?? []).map((x) => x.provider_slug);
   const { data: ac } = agentSlugs.length
     ? await c.from("v_agent_cards").select("slug,name,short_description,quality_score,from_usd_month,has_free").in("slug", agentSlugs).order("quality_score", { ascending: false, nullsFirst: false }).limit(6)
