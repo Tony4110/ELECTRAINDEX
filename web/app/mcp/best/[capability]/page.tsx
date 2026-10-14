@@ -7,8 +7,7 @@ import { num, timeAgo, useCase, lowerFirst } from "@/lib/format";
 import { Tri, Empty, SetupNotice } from "@/components/ui";
 import { Quality, Price } from "@/components/rank";
 
-export const revalidate = 3600;
-export async function generateStaticParams() { return []; }
+// rendered on each request (reads ?page=), like the task pages
 
 type P = Promise<{ capability: string }>;
 type SP = Promise<{ page?: string }>;
