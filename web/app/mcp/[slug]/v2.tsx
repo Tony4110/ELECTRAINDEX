@@ -189,13 +189,20 @@ export async function ToolPageV2({ params }: { params: P }) {
               {remotes.some(usableRemote) && !(remotes.find(usableRemote)?.headers ?? []).some((h) => h.required) ? <p className="small muted">In Claude Code: <code>claude mcp add --transport {remotes.find(usableRemote)!.type === "sse" ? "sse" : "http"} {m.slug} {remotes.find(usableRemote)!.url}</code></p> : null}
               {remotes.some((r) => /[{}]/.test(r.url)) ? <p className="small muted">The endpoint contains a placeholder to replace with your own value (see the publisher&apos;s docs).</p> : null}</> : null}
             {pkgs.length ? <><p className="strong">Install package{pkgs.length > 1 ? "s" : ""}</p>
-              <ul className="plain">{pkgs.map((p) => <li key={`${p.registry}${p.identifier}`}><span className="badge">{(REGISTRY[p.registry ?? ""] ?? p.registry ?? "").toUpperCase()}</span> <code>{p.identifier}</code>{p.version ? <span className="small muted"> v{p.version}</span> : null}</li>)}</ul></> : null}
+              <ul className="plain">{pkgs.map((p, i) => <li key={`${p.registry}${p.identifier}${p.transport ?? ""}${i}`}><span className="badge">{(REGISTRY[p.registry ?? ""] ?? p.registry ?? "").toUpperCase()}</span> <code>{p.identifier}</code>{p.version ? <span className="small muted"> v{p.version}</span> : null}{p.transport ? <span className="small muted"> · {p.transport === "stdio" ? "runs locally (stdio)" : `runs as a server (${p.transport})`}</span> : null}</li>)}</ul></> : null}
             {secrets.length ? <p className="small"><span className="strong">Required:</span> {secrets.map((x, i) => <span key={x}>{i ? ", " : ""}<code>{x}</code></span>)} <span className="muted">(get {secrets.length === 1 ? "it" : "them"} from the publisher)</span></p> : null}
             {cfg ? <><p className="strong">MCP settings (Claude Desktop, Cursor and other MCP clients)</p><pre className="code">{JSON.stringify(cfg, null, 2)}</pre>{conf?.placeholders.length ? <p className="small muted">Replace the values in &lt;angle brackets&gt;.</p> : null}</>
               : <p className="small muted">{needsArgs ? "This package needs arguments specific to your setup, so no ready-made settings are generated: follow the publisher's instructions." : "No ready-made settings: the registry entry does not contain everything needed. Follow the publisher's instructions."}</p>}
           </div>
         </div>
-      ) : null}
+      ) : (
+        <div className="card" style={{ marginTop: 24 }} id="connect">
+          <div className="card-head"><h2>How to connect</h2><span className="small muted">Official MCP Registry</span></div>
+          <div className="card-body prose">
+            <p className="small muted" style={{ margin: 0 }}>The registry entry lists no hosted endpoint and no installable package yet, so we cannot say how to connect it. {m.repository_url || m.website ? <>Check the publisher&apos;s {m.repository_url ? <Out type="mcp" slug={m.slug} to="repository" from={`/mcp/${m.slug}`}>source code</Out> : null}{m.repository_url && m.website ? " or " : null}{m.website ? <Out type="mcp" slug={m.slug} to="website" from={`/mcp/${m.slug}`}>website</Out> : null}.</> : <>We will show it here as soon as the publisher adds it.</>}</p>
+          </div>
+        </div>
+      )}
 
       {tasks.length ? (
         <div className="card" style={{ marginTop: 24 }}>
