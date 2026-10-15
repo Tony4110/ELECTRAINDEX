@@ -322,3 +322,13 @@ tbody tr:nth-child(-n+3) .rank-num::before { content: ""; position: absolute; le
 .report-box .report-note { width: 100%; margin-top: 6px; min-height: 64px; padding: 10px 12px; border: 1px solid #C9D0CB; border-radius: 8px; font-family: var(--sans); font-size: 15px; background: var(--panel); color: var(--ink); }
 .report-box .report-ok { margin: 0; padding: 12px 14px; border-radius: 8px; background: var(--sun-soft); color: var(--ink); }
 .report-box .hp { position: absolute; left: -9999px; }
+
+/* Sponsor slot (AdContext) — outside the ranking, always labelled */
+.sponsor-slot { margin: 14px 0 24px; max-width: 720px; }
+.sponsor-slot a { display: flex; gap: 16px; align-items: center; padding: 14px 16px; border: 1px solid var(--line); border-left: 3px solid var(--sun); border-radius: 10px; background: var(--panel); color: var(--ink); text-decoration: none; }
+.sponsor-slot a:hover { border-color: var(--sun); box-shadow: 0 0 0 3px var(--sun-soft); }
+.sponsor-slot img { width: 120px; height: auto; max-height: 100px; object-fit: cover; border-radius: 6px; flex: none; }
+.sponsor-slot .sponsor-text { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.sponsor-slot .sponsor-label { font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--sun-ink); }
+.sponsor-slot .sponsor-body { font-size: 14px; color: var(--muted); }
+@media (max-width: 560px) { .sponsor-slot img { width: 84px; } }

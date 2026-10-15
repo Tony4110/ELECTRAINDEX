@@ -4,6 +4,7 @@ import { db, getSignals, getStats, getThemes, getTasks, type AgentCard } from "@
 import { num } from "@/lib/format";
 import { SignalItem, Empty, SetupNotice } from "@/components/ui";
 import { Quality, Price, Value, Trust, Logo, valueOf } from "@/components/rank";
+import { SponsorSlot } from "@/components/sponsor-slot";
 
 // Themes in order of market interest (most searched first)
 const ORDER = ["coding", "research", "customer-support", "sales", "marketing", "productivity", "data", "finance", "browser-computer-use", "business-operations"];
@@ -60,6 +61,8 @@ export default async function Home({ searchParams }: { searchParams: SP }) {
         <h1>Know your agent. Trust your transaction.</h1>
         <p className="lede">Which AI agent to use, whether it can be trusted, and what it really costs.</p>
       </section>
+
+      <SponsorSlot site="electra" slot="home-sponsor" />
 
       <nav className="theme-line" aria-label="Themes" id="ranking">
         <Link href={href({ theme: null })} scroll={false} className={!current ? "on" : ""} aria-current={!current ? "true" : undefined}>All <span className="n">{cards.length}</span></Link>
