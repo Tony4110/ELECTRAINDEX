@@ -36,7 +36,7 @@ export default async function SubmitPage({ searchParams }: { searchParams: SP })
     <>
       <div className="eyebrow">List your agent</div>
       <h1>Thank you. We received it.</h1>
-      <p className="lede">Our robots will read your website and pricing page. Once the facts are sourced, your agent appears in New listings and in its theme ranking.</p>
+      <p className="lede">We check every submission against the index, then read your website and pricing page. Once the facts are sourced, your agent appears in New listings and in its theme ranking. If you left an email, we only use it about this listing.</p>
       <div className="chips" style={{ marginTop: 20 }}><Link href="/new" className="btn primary">See new listings →</Link><Link href="/" className="btn">Back to the ranking</Link></div>
     </>
   );
@@ -46,6 +46,7 @@ export default async function SubmitPage({ searchParams }: { searchParams: SP })
       <div className="eyebrow">List your agent</div>
       <h1>List your AI agent</h1>
       <p className="lede">Free. We read your public pages, source every fact, and list your agent with its price and score. A listing or a partnership never changes a score.</p>
+      <p className="small muted" style={{ maxWidth: 860 }}>Listing an MCP server? Publish it on the <a href="https://registry.modelcontextprotocol.io" rel="noopener">Official MCP Registry</a>: our robot lists every registry server automatically, usually within 15 minutes. Use this form for AI agents and for tools that are not in the registry.</p>
       {sp.error ? <p className="form-error" role="alert">{sp.error === "setup" ? "The site is not connected yet. Please try again later." : "Please check the form: a name, a valid website (https://…) and a valid email are required."}</p> : null}
       <form action={submit} className="form card">
         <div className="card-body form-grid">

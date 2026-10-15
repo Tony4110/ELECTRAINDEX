@@ -1,4 +1,8 @@
 import Link from "next/link";
+import { Out, AffiliateNote } from "@/components/out";
+import { StatusBadges } from "@/components/status";
+import { ReportBox, type ReportStatus } from "@/components/report-box";
+import { timeAgo } from "@/lib/format";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { db, type AgentCard, type AgentPrice, type Signal } from "@/lib/db";
@@ -56,14 +60,18 @@ export default async function AgentPage({ params }: { params: P }) {
   const a = await load((await params).slug);
   if (!a) notFound();
 
-  const [{ data: pr }, { data: caps }, { data: hist }, { data: alts }] = await Promise.all([
+  const [{ data: pr }, { data: caps }, { data: hist }, { data: alts }, { data: aff }, { data: rep }] = await Promise.all([
     c.from("v_agent_prices").select("*").eq("agent_slug", a.slug),
     c.from("v_provider_capabilities").select("capability_slug,capability,evidence_level,confidence").eq("provider_slug", a.slug).eq("provider_type", "agent").order("capability"),
     c.from("v_signals").select("*").eq("entity_slug", a.slug).eq("entity_type", "agent").order("detected_at", { ascending: false }).limit(20),
     a.theme_slugs?.length
       ? c.from("v_theme_rankings").select("provider_slug,provider_name,quality_score,from_usd_month,has_free,has_pricing").eq("theme_slug", a.theme_slugs[0]).eq("provider_type", "agent").eq("listed_in_theme", true).neq("provider_slug", a.slug).order("quality_score", { ascending: false, nullsFirst: false }).limit(6)
       : Promise.resolve({ data: [] }),
+    c.from("v_affiliate_flags").select("slug").eq("type", "agent").eq("slug", a.slug).maybeSingle().then((r) => (r.error ? { data: null } : r)),
+    c.from("v_report_status").select("open_reports,under_review,last_rechecked_ok_at").eq("entity_type", "agent").eq("slug", a.slug).maybeSingle().then((r) => (r.error ? { data: null } : r)),
   ]);
+  const reportStatus = rep as ReportStatus;
+  const affiliate = !!aff;
   const prices = ((pr as AgentPrice[] | null) ?? []).sort((x, y) => (x.amount == null ? 1e12 : Number(x.amount)) - (y.amount == null ? 1e12 : Number(y.amount)));
   const capabilities = (caps as { capability_slug: string; capability: string; evidence_level: string }[] | null) ?? [];
   const declared = capabilities.filter((x) => x.evidence_level !== "derived");
@@ -110,11 +118,14 @@ export default async function AgentPage({ params }: { params: P }) {
           <div className="small muted">{a.company ? <>by <span className="ink strong">{a.company}</span> · </> : null}{(a.themes ?? []).join(" · ")}</div>
         </div>
       </div>
+      <StatusBadges verifiedAt={a.last_verified_at} sourceChecked={!!a.pricing_verified}
+        changedAt={history.find((h) => /price|plan/.test(h.event_type))?.detected_at} changedLabel="Price change" />
       <p className="lede" style={{ marginTop: 16 }}>{a.short_description ?? "No description published."}</p>
       <div className="chips" style={{ marginTop: 16 }}>
-        {a.website ? <a className="btn primary" href={a.website} target="_blank" rel="noopener noreferrer">Visit website ↗</a> : null}
-        {a.pricing_url ? <a className="btn" href={a.pricing_url} target="_blank" rel="noopener noreferrer">Official pricing ↗</a> : null}
+        {a.website ? <Out type="agent" slug={a.slug} to="website" from={`/agents/${a.slug}`} className="btn primary" sponsored={affiliate}>Visit website ↗</Out> : null}
+        {a.pricing_url ? <Out type="agent" slug={a.slug} to="pricing" from={`/agents/${a.slug}`} className="btn">Official pricing ↗</Out> : null}
       </div>
+      {affiliate && a.website ? <AffiliateNote /> : null}
 
       <div className="kv" style={{ marginTop: 28 }}>
         <div><span className="small muted">Agent Score</span><span><Quality score={a.quality_score} /></span></div>
@@ -193,7 +204,7 @@ export default async function AgentPage({ params }: { params: P }) {
           <SponsorSlot site="electra" slot="agent-page" variant="halfpage" />
         </div>
         <div className="card">
-          <div className="card-head"><h2>Alternatives</h2></div>
+          <div className="card-head"><h2>Alternatives</h2><Link className="small" href={`/agents/${a.slug}/alternatives`}>See all →</Link></div>
           {alternatives.length === 0 ? <div className="card-body"><span className="muted">None listed yet.</span></div> : (
             <ul className="signals">
               {alternatives.map((x) => (
@@ -218,6 +229,8 @@ export default async function AgentPage({ params }: { params: P }) {
         </div>
       </div>
       </div>
+      <ReportBox type="agent" slug={a.slug} status={reportStatus}
+        recheckedAgo={reportStatus?.last_rechecked_ok_at && Date.now() - new Date(reportStatus.last_rechecked_ok_at).getTime() < 14 * 86_400_000 ? timeAgo(reportStatus.last_rechecked_ok_at) : null} />
     </>
   );
 }

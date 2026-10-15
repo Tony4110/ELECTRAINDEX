@@ -15,15 +15,16 @@ type Ad = {
 const URL_ = (process.env.NEXT_PUBLIC_ADCONTEXT_URL ?? "").replace(/\/+$/, "");
 const KEY = process.env.NEXT_PUBLIC_ADCONTEXT_KEY ?? "";
 
-function isHttps(u: string | null): u is string {
+function isHttps(u: string | null | undefined): u is string {
   if (!u) return false;
   try { return new URL(u).protocol === "https:"; } catch { return false; }
 }
 
-function rpc(name: string, body: unknown, keepalive = false) {
+function rpc(name: string, body: unknown, keepalive = false, signal?: AbortSignal) {
   return fetch(`${URL_}/rest/v1/rpc/${name}`, {
     method: "POST",
     keepalive,
+    signal,
     headers: {
       "content-type": "application/json",
       apikey: KEY,
@@ -41,12 +42,16 @@ export default function SponsorSlot({ site, slot, variant }: { site: string; slo
   useEffect(() => {
     if (asked.current || !URL_ || !KEY) return;
     asked.current = true;
-    rpc("ad_serve", { p_site: site, p_slot: slot })
+    const ctl = new AbortController();
+    const t = setTimeout(() => ctl.abort(), 4000);
+    rpc("ad_serve", { p_site: site, p_slot: slot }, false, ctl.signal)
       .then((res) => (res.ok ? res.json() : null))
       .then((data: Ad | null) => {
-        if (data && isHttps(data.click_url)) setAd(data);
+        if (data && data.creative_id && data.headline && isHttps(data.click_url)) setAd(data);
       })
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => clearTimeout(t));
+    return () => { clearTimeout(t); ctl.abort(); };
   }, [site, slot]);
 
   if (!ad) return null;

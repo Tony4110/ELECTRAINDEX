@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { db } from "@/lib/db";
+import { db, MIN_TOOLS_FOR_INDEX } from "@/lib/db";
 import { SITE, SITEMAP_CHUNK, MIN_DESC } from "@/lib/site";
 import { featuredPairsByTheme, pairSlug } from "@/lib/compare";
 import { allPosts } from "@/lib/posts";
@@ -35,11 +35,12 @@ export default async function sitemap({ id }: { id: number }): Promise<MetadataR
 
   if (n === 0) {
     try {
-      const [themes, tasks, agents, comparos] = await Promise.all([
+      const [themes, tasks, agents, comparos, best] = await Promise.all([
         c.from("v_theme_overview").select("theme_slug"),
         c.from("v_tasks").select("slug"),
         c.from("v_agent_cards").select("slug,last_verified_at").limit(1000),
         featuredPairsByTheme(6).catch(() => []),
+        c.from("v_capability_overview").select("capability_slug").gte("tools", MIN_TOOLS_FOR_INDEX),
       ]);
       const comparePaths = Array.from(new Set((comparos ?? []).flatMap((g) => g.pairs).map((p) => pairSlug(p.a, p.b))));
       return [
@@ -48,6 +49,9 @@ export default async function sitemap({ id }: { id: number }): Promise<MetadataR
         ...((themes.data as { theme_slug: string }[] | null) ?? []).map((t) => ({ url: `${SITE}/themes/${t.theme_slug}`, lastModified: now, changeFrequency: "daily" as const, priority: 0.9 })),
         ...((tasks.data as { slug: string }[] | null) ?? []).map((t) => ({ url: `${SITE}/tasks/${t.slug}`, lastModified: now, changeFrequency: "daily" as const, priority: 0.9 })),
         ...((agents.data as { slug: string; last_verified_at: string | null }[] | null) ?? []).map((a) => ({ url: `${SITE}/agents/${a.slug}`, lastModified: a.last_verified_at ? new Date(a.last_verified_at) : now, changeFrequency: "weekly" as const, priority: 0.8 })),
+        ...((agents.data as { slug: string }[] | null) ?? []).map((a) => ({ url: `${SITE}/agents/${a.slug}/alternatives`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.7 })),
+        ...(best.error ? [] : [{ url: `${SITE}/mcp/best`, lastModified: now, changeFrequency: "daily" as const, priority: 0.8 }]),
+        ...((best.data as { capability_slug: string }[] | null) ?? []).map((b) => ({ url: `${SITE}/mcp/best/${b.capability_slug}`, lastModified: now, changeFrequency: "daily" as const, priority: 0.9 })),
       ];
     } catch {
       return core; // on any DB error, still serve a valid sitemap

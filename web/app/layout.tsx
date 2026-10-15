@@ -90,6 +90,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <span>Scores measure observable public data, not performance</span>
             <Link href="/advertise" style={{ color: "var(--muted)" }}>Advertise</Link>
           </div>
+          <div className="wrap small" style={{ paddingTop: 8 }}>
+            <span>Published by <a href="https://dreamotion.io" rel="noopener">Dreamotion OÜ</a> (Estonia) · Contact: <a href="mailto:contact@electraindex.com">contact@electraindex.com</a></span>
+          </div>
         </footer>
       </body>
     </html>
