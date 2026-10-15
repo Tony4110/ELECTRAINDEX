@@ -1,0 +1,51 @@
+[
+ {
+  "name": "roompano",
+  "company": "roompano",
+  "website": "https://roompano.com/en",
+  "theme": "Marketing",
+  "short_description": "AI tool for real estate agents that turns phone photos into virtual home staging and 360 tours, with no 360 camera needed.",
+  "capabilities": [
+   "Image Generation"
+  ],
+  "pricing_url": "https://roompano.com/en/pricing",
+  "pricing_verified": true,
+  "checked_at": "2026-10-15",
+  "plans": [
+   {
+    "plan": "Starter",
+    "billing_model": "free",
+    "amount": 0,
+    "currency": "USD",
+    "interval": null,
+    "unit": "2 free credits",
+    "is_trial": false
+   },
+   {
+    "plan": "Independent",
+    "billing_model": "subscription",
+    "amount": 19,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "40 credits per month",
+    "is_trial": false
+   },
+   {
+    "plan": "Pro",
+    "billing_model": "subscription",
+    "amount": 39,
+    "currency": "USD",
+    "interval": "month",
+    "unit": "120 credits per month",
+    "is_trial": false
+   }
+  ],
+  "free_plan": true,
+  "free_trial": false,
+  "api": null,
+  "mcp": null,
+  "open_source": null,
+  "github_repo": null,
+  "notes": "Submitted via List your agent (2026-10-10). Pricing read on the official page 2026-10-15: monthly billing only, prices excl. VAT, credits roll over. No API or MCP mentioned."
+ }
+]
