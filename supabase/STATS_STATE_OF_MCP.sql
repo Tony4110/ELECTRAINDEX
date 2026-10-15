@@ -1,8 +1,8 @@
 -- ELECTRA INDEX — read-only figures for the monthly report "State of MCP".
 -- Changes nothing. One table: section | label | value. Paste into SQL Editor > Run, send the result.
 with t as (select * from v_mcp_servers),
-pk as (select t.id, p->>'registry' as registry, p->>'transport' as transport from t, jsonb_array_elements(coalesce(t.package_list, '[]')) p),
-rm as (select t.id, r->>'type' as rtype, r->'headers' as headers from t, jsonb_array_elements(coalesce(t.remotes, '[]')) r),
+pk as (select t.id, p->>'registry' as registry, p->>'transport' as transport from t, jsonb_array_elements((case when jsonb_typeof(t.package_list) = 'array' then t.package_list else '[]'::jsonb end)) p),
+rm as (select t.id, r->>'type' as rtype, r->'headers' as headers from t, jsonb_array_elements((case when jsonb_typeof(t.remotes) = 'array' then t.remotes else '[]'::jsonb end)) r),
 rows as (
   select 1 as o, 'size' as section, 'tools listed (active)' as label, count(*)::text as value from t where coalesce(registry_status,'active') = 'active'
   union all select 2, 'size', 'tools listed (all statuses)', count(*)::text from t
@@ -20,8 +20,8 @@ rows as (
   union all select 20, 'packages', 'registry: ' || coalesce(registry,'?'), count(distinct id)::text from pk group by registry
   union all select 30, 'transport', 'hosted endpoint type: ' || coalesce(rtype,'?'), count(distinct id)::text from rm group by rtype
   union all select 31, 'transport', 'package transport: ' || coalesce(transport,'?'), count(distinct id)::text from pk group by transport
-  union all select 40, 'security', 'hosted endpoints requiring a header (API key/token)', count(distinct id)::text from rm, jsonb_array_elements(coalesce(headers,'[]')) h where (h->>'required')::boolean
-  union all select 41, 'security', 'packages requiring a secret env variable', count(distinct t.id)::text from t, jsonb_array_elements(coalesce(t.package_list,'[]')) p, jsonb_array_elements(coalesce(p->'env','[]')) e where (e->>'required')::boolean and (e->>'secret')::boolean
+  union all select 40, 'security', 'hosted endpoints requiring a header (API key/token)', count(distinct id)::text from rm, jsonb_array_elements((case when jsonb_typeof(headers) = 'array' then headers else '[]'::jsonb end)) h where (h->>'required')::boolean
+  union all select 41, 'security', 'packages requiring a secret env variable', count(distinct t.id)::text from t, jsonb_array_elements((case when jsonb_typeof(t.package_list) = 'array' then t.package_list else '[]'::jsonb end)) p, jsonb_array_elements((case when jsonb_typeof(p->'env') = 'array' then p->'env' else '[]'::jsonb end)) e where (e->>'required')::boolean and (e->>'secret')::boolean
   union all select 50, 'use cases', capability, tools::text || ' tools · ' || hosted_tools || ' hosted · ' || agents || ' agents' from v_capability_overview where tools > 0
   union all select 60, 'payments', 'protocol mentioned: ' || protocol_slug, tools::text || ' tools · ' || agents || ' agents' from protocol_mentions
   union all select 61, 'payments', 'payment providers listed', count(*)::text from v_payment_providers
