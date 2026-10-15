@@ -315,3 +315,10 @@ ul.plain { list-style: none; padding: 0; margin: 0 0 12px; display: flex; flex-d
 /* podium: the first three ranks get a small yellow marker */
 tbody tr:nth-child(-n+3) .rank-num { position: relative; font-weight: 700; color: var(--ink); }
 tbody tr:nth-child(-n+3) .rank-num::before { content: ""; position: absolute; left: 4px; top: 50%; width: 3px; height: 22px; transform: translateY(-50%); border-radius: 2px; background: var(--sun); }
+/* community report box */
+.report-box .report-chip { cursor: pointer; font-family: var(--sans); }
+.report-box .report-chip:hover { border-color: var(--sun); }
+.report-box .report-chip.on { background: var(--sun-soft); border-color: var(--sun); color: var(--ink); }
+.report-box .report-note { width: 100%; margin-top: 6px; min-height: 64px; padding: 10px 12px; border: 1px solid #C9D0CB; border-radius: 8px; font-family: var(--sans); font-size: 15px; background: var(--panel); color: var(--ink); }
+.report-box .report-ok { margin: 0; padding: 12px 14px; border-radius: 8px; background: var(--sun-soft); color: var(--ink); }
+.report-box .hp { position: absolute; left: -9999px; }

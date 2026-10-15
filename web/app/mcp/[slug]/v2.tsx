@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { Out } from "@/components/out";
 import { StatusBadges } from "@/components/status";
+import { ReportBox, type ReportStatus } from "@/components/report-box";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { db, type McpServer, type Signal, type TaskRanking } from "@/lib/db";
@@ -84,11 +85,12 @@ export async function ToolPageV2({ params }: { params: P }) {
   const m = await load((await params).slug);
   if (!m) notFound();
 
-  const [{ data: obs }, { data: hist }, { data: caps }, { data: tr }] = await Promise.all([
+  const [{ data: obs }, { data: hist }, { data: caps }, { data: tr }, { data: rep }] = await Promise.all([
     c.from("observations").select("field,value,evidence_level,confidence,observed_at,last_confirmed_at,sources(code,name)").eq("entity_id", m.id).order("observed_at", { ascending: false }),
     c.from("v_signals").select("*").eq("entity_slug", m.slug).eq("entity_type", "mcp_server").order("detected_at", { ascending: false }).limit(30),
     c.from("v_provider_capabilities").select("capability_slug,capability,evidence_level,confidence,evidence").eq("provider_slug", m.slug).eq("provider_type", "mcp_server").order("capability"),
     c.from("v_task_rankings").select("task_slug,task_name,coverage_pct,matched_capabilities").eq("provider_id", m.id).order("coverage_pct", { ascending: false }).limit(30),
+    c.from("v_report_status").select("open_reports,under_review,last_rechecked_ok_at").eq("entity_type", "mcp_server").eq("slug", m.slug).maybeSingle().then((r) => (r.error ? { data: null } : r)),
   ]);
   const capabilities = (caps as { capability_slug: string; capability: string; evidence: string | null }[] | null) ?? [];
   // at equal coverage, prefer tasks whose words or matched capabilities appear in the tool's own description
@@ -276,6 +278,8 @@ export async function ToolPageV2({ params }: { params: P }) {
           )}
         </div>
       </section>
+
+      <ReportBox type="mcp" slug={m.slug} status={rep as ReportStatus} />
 
       {faq.length ? <div className="card faq" style={{ marginTop: 24 }}>
         <div className="card-head"><h2>Questions about {m.name}</h2></div>
