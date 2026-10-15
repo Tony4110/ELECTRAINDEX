@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Out, AffiliateNote } from "@/components/out";
+import { StatusBadges } from "@/components/status";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { db, type AgentCard, type AgentPrice, type Signal } from "@/lib/db";
@@ -112,6 +113,8 @@ export default async function AgentPage({ params }: { params: P }) {
           <div className="small muted">{a.company ? <>by <span className="ink strong">{a.company}</span> · </> : null}{(a.themes ?? []).join(" · ")}</div>
         </div>
       </div>
+      <StatusBadges verifiedAt={a.last_verified_at} sourceChecked={!!a.pricing_verified}
+        changedAt={history.find((h) => /price|plan/.test(h.event_type))?.detected_at} changedLabel="Price change" />
       <p className="lede" style={{ marginTop: 16 }}>{a.short_description ?? "No description published."}</p>
       <div className="chips" style={{ marginTop: 16 }}>
         {a.website ? <Out type="agent" slug={a.slug} to="website" from={`/agents/${a.slug}`} className="btn primary" sponsored={affiliate}>Visit website ↗</Out> : null}

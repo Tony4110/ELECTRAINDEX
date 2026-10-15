@@ -1,6 +1,7 @@
 /** Tool page, version 2 (richer template). Shown to the rollout sample only, see lib/rollout.ts. */
 import Link from "next/link";
 import { Out } from "@/components/out";
+import { StatusBadges } from "@/components/status";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { db, type McpServer, type Signal, type TaskRanking } from "@/lib/db";
@@ -150,6 +151,8 @@ export async function ToolPageV2({ params }: { params: P }) {
           <div className="small muted">MCP server{m.remote ? " · hosted" : ""}{m.local ? " · installable" : ""}{m.version ? ` · v${m.version}` : ""} <span className="mono faint">· {m.registry_name}</span></div>
         </div>
       </div>
+      <StatusBadges verifiedAt={m.last_seen_at} verifiedLabel="Seen in the registry" firstSeenAt={m.first_seen_at}
+        changedAt={history.find((h) => h.event_type === "new_version")?.detected_at} changedLabel="New version" />
       <p className="lede" style={{ marginTop: 16, maxWidth: "80ch" }}>{desc || "No description published."}</p>
       <div className="chips" style={{ marginTop: 16 }}>
         {m.website ? <Out type="mcp" slug={m.slug} to="website" from={`/mcp/${m.slug}`} className="btn primary">Website ↗</Out> : null}
