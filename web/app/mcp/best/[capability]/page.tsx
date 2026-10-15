@@ -20,6 +20,19 @@ async function load(slug: string) {
   return data as CapabilityOverview | null;
 }
 
+/** Ordered tool list; falls back to the previous order if the "breadth" column is not installed yet. */
+async function toolList(cap: string, page: number) {
+  const c = db()!;
+  const q = (withBreadth: boolean) => {
+    let x = c.from("v_capability_tools").select("*").eq("capability_slug", cap).order("name_match", { ascending: false });
+    if (withBreadth) x = x.order("breadth", { ascending: false, nullsFirst: false });
+    return x.order("remote", { ascending: false }).order("has_source", { ascending: false }).order("last_seen_at", { ascending: false })
+      .range((page - 1) * PAGE, page * PAGE - 1);
+  };
+  const r = await q(true);
+  return r.error ? q(false) : r;
+}
+
 const list = (names: string[]) => names.length <= 1 ? names.join("") : `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}`;
 
 export async function generateMetadata({ params, searchParams }: { params: P; searchParams: SP }): Promise<Metadata> {
@@ -44,9 +57,7 @@ export default async function BestFor({ params, searchParams }: { params: P; sea
   const uc = useCase(o.capability);
 
   const [{ data: tl }, { data: ag }, { data: tk }, { data: rel }] = await Promise.all([
-    c.from("v_capability_tools").select("*").eq("capability_slug", o.capability_slug)
-      .order("name_match", { ascending: false }).order("remote", { ascending: false }).order("has_source", { ascending: false }).order("last_seen_at", { ascending: false })
-      .range((page - 1) * PAGE, page * PAGE - 1),
+    toolList(o.capability_slug, page),
     c.from("v_provider_capabilities").select("provider_slug").eq("capability_slug", o.capability_slug).eq("provider_type", "agent").limit(200),
     c.from("v_tasks").select("slug,name").contains("capabilities", [{ slug: o.capability_slug }]).limit(8),
     c.from("v_capability_overview").select("capability_slug,capability,tools").gte("tools", MIN_TOOLS_FOR_INDEX).neq("capability_slug", o.capability_slug).order("tools", { ascending: false }).limit(8),
@@ -145,7 +156,7 @@ export default async function BestFor({ params, searchParams }: { params: P; sea
         <div className="card-head"><h2>FAQ</h2></div>
         <div className="card-body">{faq.map((f) => <details key={f.q} open><summary>{f.q}</summary><p>{f.a}</p></details>)}</div>
       </div>
-      <p className="note">How this list is ordered: a tool comes first when the use case appears in its name rather than only in its description, then when it offers a hosted endpoint, then when its source code is public, then by how recently our robot saw it in the Official MCP Registry. The match to {lowerFirst(o.capability)} comes from the publisher&apos;s description (keyword method), not from a test of the tool. Only active tools with a real description are listed. No tool pays to appear here.</p>
+      <p className="note">How this list is ordered: a tool comes first when the use case appears in its name rather than only in its description, then when its description covers more aspects of the use case, then when it offers a hosted endpoint, then when its source code is public, then by how recently our robot saw it in the Official MCP Registry. The match to {lowerFirst(o.capability)} comes from the publisher&apos;s description (keyword method), not from a test of the tool. Only active tools with a real description are listed. No tool pays to appear here.</p>
     </>
   );
 }
