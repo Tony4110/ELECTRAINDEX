@@ -5,6 +5,7 @@ import { db, type AgentCard, type AgentPrice, type Signal } from "@/lib/db";
 import { shortDate, EVENT_LABEL, eventTone, describeSignal } from "@/lib/format";
 import { Tri, Badge, Empty, SetupNotice } from "@/components/ui";
 import { Quality, Price, Trust } from "@/components/rank";
+import SponsorSlot from "@/components/sponsor-slot";
 import { pairSlug } from "@/lib/compare";
 
 type P = Promise<{ slug: string }>;
@@ -124,7 +125,9 @@ export default async function AgentPage({ params }: { params: P }) {
         <div><span className="small muted">Open source</span><span><Tri label={a.open_source === true ? "YES" : a.open_source === false ? "NO" : "NOT DOCUMENTED"} value={a.open_source} /></span></div>
       </div>
 
-      <div className="card" style={{ marginTop: 24 }}>
+      <div className="agent-bottom">
+      <div className="agent-left">
+      <div className="card">
         <div className="card-head">
           <h2>Why this score?</h2>
           <span className="small muted">Methodology {a.methodology_version ?? "1.0"} · confidence {a.score_confidence ?? "—"}{a.last_verified_at ? ` · verified ${shortDate(a.last_verified_at)}` : ""}</span>
@@ -147,7 +150,7 @@ export default async function AgentPage({ params }: { params: P }) {
         </div>
       </div>
 
-      <div className="card" style={{ marginTop: 24 }}>
+      <div className="card">
         <div className="card-head"><h2>Pricing</h2><span className="small muted">{a.pricing_verified ? "Read on the vendor's pricing page" : "Stated by the vendor, not yet verified"}{lastChecked ? ` · checked ${shortDate(lastChecked)}` : ""}</span></div>
         <div className="card-body">
           {prices.length === 0 ? <span className="muted">No price published.</span> : (
@@ -164,8 +167,7 @@ export default async function AgentPage({ params }: { params: P }) {
         </div>
       </div>
 
-      <section className="grid cols-3" style={{ marginTop: 24 }}>
-        <div className="card span-2">
+        <div className="card">
           <div className="card-head"><h2>Capabilities</h2><span className="small muted">As stated on the vendor&apos;s website</span></div>
           <div className="card-body">
             {declared.length === 0 ? <span className="muted">No capability documented yet.</span> : (
@@ -184,6 +186,11 @@ export default async function AgentPage({ params }: { params: P }) {
               </tbody>
             </table>
           </div>
+        </div>
+      </div>
+      <div className="agent-right">
+        <div className="agent-sponsor-zone">
+          <SponsorSlot site="electra" slot="agent-page" variant="halfpage" />
         </div>
         <div className="card">
           <div className="card-head"><h2>Alternatives</h2></div>
@@ -209,7 +216,8 @@ export default async function AgentPage({ params }: { params: P }) {
             </ul>
           )}
         </div>
-      </section>
+      </div>
+      </div>
     </>
   );
 }

@@ -4,6 +4,7 @@ import { db, getSignals, type AgentCard, type McpServer } from "@/lib/db";
 import { timeAgo } from "@/lib/format";
 import { SignalItem, Empty, SetupNotice, Tri } from "@/components/ui";
 import { Quality, Price, Logo } from "@/components/rank";
+import SponsorSlot from "@/components/sponsor-slot";
 
 export const metadata: Metadata = {
   title: "New listings — latest AI agents and tools",
@@ -48,6 +49,11 @@ export default async function NewPage({ searchParams }: { searchParams: SP }) {
       <p className="lede">The latest AI agents and tools added to the index, day by day. Built an agent? Listing is free and never changes a score.</p>
       <div className="chips" style={{ marginTop: 16 }}>
         <Link href="/submit" className="btn primary">List your agent →</Link>
+      </div>
+
+      <div className="featured-launch">
+        <p className="featured-launch-kicker">Featured launch</p>
+        <SponsorSlot site="electra" slot="new-featured" />
       </div>
 
       <div className="tabs" role="tablist">

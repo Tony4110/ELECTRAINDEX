@@ -4,6 +4,7 @@ import { db } from "@/lib/db";
 import { shortDate } from "@/lib/format";
 import { SetupNotice, Empty } from "@/components/ui";
 import { Logo } from "@/components/rank";
+import SponsorSlot from "@/components/sponsor-slot";
 
 export const metadata: Metadata = {
   title: "Payment Index — how AI agents pay, compared",
@@ -63,11 +64,14 @@ export default async function PaymentsPage({ searchParams }: { searchParams: SP 
   const nProviders = (vd as Provider[] | null)?.length ?? 0;
 
   return (
-    <>
-      <div className="eyebrow">Electra Payment Index</div>
-      <h1 className="h1-md">How AI agents pay, compared</h1>
-      <p className="lede">The protocols and providers that let an agent pay or get paid: what each one does, who supports it, and what it costs. Read on official pages and dated. Electra Index does not process payments.</p>
-
+    <div className="pay-layout">
+      <div className="pay-intro">
+        <div className="eyebrow">Electra Payment Index</div>
+        <h1 className="h1-md">How AI agents pay, compared</h1>
+        <p className="lede">The protocols and providers that let an agent pay or get paid: what each one does, who supports it, and what it costs. Read on official pages and dated. Electra Index does not process payments.</p>
+      </div>
+      <SponsorSlot site="electra" slot="payments" />
+      <div className="pay-body">
       <div className="tabs" role="tablist">
         <Link role="tab" aria-selected={tab === "protocols"} href="/payments" className={tab === "protocols" ? "on" : ""}>Protocols <span className="mono faint">{protocols.length}</span></Link>
         <Link role="tab" aria-selected={tab === "providers"} href="/payments?tab=providers" className={tab === "providers" ? "on" : ""}>Providers &amp; fees <span className="mono faint">{nProviders}</span></Link>
@@ -137,6 +141,7 @@ export default async function PaymentsPage({ searchParams }: { searchParams: SP 
           <p className="note">Fees are the public list prices on each provider&apos;s own pricing page (mostly US rates); negotiated and regional rates differ. A protocol is listed only when the provider states support on its own page: click a protocol to open that page. No ranking, no &quot;winner&quot;: partnerships never change what is shown.</p>
         </>
       )}
-    </>
+      </div>
+    </div>
   );
 }

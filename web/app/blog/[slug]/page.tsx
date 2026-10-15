@@ -6,6 +6,7 @@ import remarkGfm from "remark-gfm";
 import { getPost, allPosts } from "@/lib/posts";
 import { shortDate } from "@/lib/format";
 import { SITE } from "@/lib/site";
+import SponsorSlot from "@/components/sponsor-slot";
 
 type P = Promise<{ slug: string }>;
 
@@ -50,6 +51,7 @@ export default async function Article({ params }: { params: P }) {
       <article className="article">
         <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.body}</ReactMarkdown>
       </article>
+      <SponsorSlot site="electra" slot="blog-article" />
       <p className="lede" style={{ marginTop: 24 }}>
         Ready to compare? <Link href="/compare">Put two agents head to head</Link> · <Link href="/agents">browse the index</Link> · <Link href="/blog">more articles</Link>.
       </p>

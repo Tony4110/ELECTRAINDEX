@@ -88,6 +88,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <span>Every fact has a source and a date · no source → no claim</span>
             <span className="spacer" />
             <span>Scores measure observable public data, not performance</span>
+            <Link href="/advertise" style={{ color: "var(--muted)" }}>Advertise</Link>
           </div>
         </footer>
       </body>
