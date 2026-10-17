@@ -399,3 +399,11 @@ tbody tr:nth-child(-n+3) .rank-num::before { content: ""; position: absolute; le
 .report-box .report-note { width: 100%; margin-top: 6px; min-height: 64px; padding: 10px 12px; border: 1px solid #C9D0CB; border-radius: 8px; font-family: var(--sans); font-size: 15px; background: var(--panel); color: var(--ink); }
 .report-box .report-ok { margin: 0; padding: 12px 14px; border-radius: 8px; background: var(--sun-soft); color: var(--ink); }
 .report-box .hp { position: absolute; left: -9999px; }
+
+/* Live check (tool pages) */
+.badge.live-ok { background: var(--pos-soft); color: var(--pos); }
+.dot.live { background: var(--pos); }
+.live-card .tool-list { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 6px; }
+.live-card .tool-list li { line-height: 1.5; overflow-wrap: anywhere; }
+.live-card .tool-more { margin-top: 10px; }
+.live-card .tool-more summary { cursor: pointer; color: var(--accent); }

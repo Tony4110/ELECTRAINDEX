@@ -34,6 +34,23 @@ export type McpServer = {
     env?: { name: string; required: boolean; secret: boolean }[] | null; required_args?: number | null; runtime_args?: number | null }[] | null;
 };
 
+export type LiveCheck = {
+  slug: string;
+  status: "online" | "auth_required" | "down" | "unconfirmed";
+  last_result: string;
+  http: number | null;
+  protocol_version: string | null;
+  server_name: string | null;
+  server_version: string | null;
+  tool_count: number | null;
+  tools_more: boolean;
+  tools: { name: string; description: string | null }[] | null;
+  checked_at: string;
+  last_online_at: string | null;
+  status_changed_at: string;
+  url: string;
+};
+
 export type SiteStats = {
   mcp_servers: number;
   agents: number;

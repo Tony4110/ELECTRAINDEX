@@ -3,9 +3,10 @@ import Link from "next/link";
 import { Out } from "@/components/out";
 import { StatusBadges } from "@/components/status";
 import { ReportBox, type ReportStatus } from "@/components/report-box";
+import { LiveBadge, LiveCheckCard } from "@/components/live-check";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { db, type McpServer, type Signal, type TaskRanking } from "@/lib/db";
+import { db, type McpServer, type Signal, type TaskRanking, type LiveCheck } from "@/lib/db";
 import { shortDate, timeAgo, show, EVENT_LABEL, eventTone, describeSignal, lowerFirst } from "@/lib/format";
 import { Tri, Badge, Empty, SetupNotice } from "@/components/ui";
 import { Coverage, Quality, Price, Logo } from "@/components/rank";
@@ -85,13 +86,16 @@ export async function ToolPageV2({ params }: { params: P }) {
   const m = await load((await params).slug);
   if (!m) notFound();
 
-  const [{ data: obs }, { data: hist }, { data: caps }, { data: tr }, { data: rep }] = await Promise.all([
+  const [{ data: obs }, { data: hist }, { data: caps }, { data: tr }, { data: rep }, { data: liveData }] = await Promise.all([
     c.from("observations").select("field,value,evidence_level,confidence,observed_at,last_confirmed_at,sources(code,name)").eq("entity_id", m.id).order("observed_at", { ascending: false }),
     c.from("v_signals").select("*").eq("entity_slug", m.slug).eq("entity_type", "mcp_server").order("detected_at", { ascending: false }).limit(30),
     c.from("v_provider_capabilities").select("capability_slug,capability,evidence_level,confidence,evidence").eq("provider_slug", m.slug).eq("provider_type", "mcp_server").order("capability"),
     c.from("v_task_rankings").select("task_slug,task_name,coverage_pct,matched_capabilities").eq("provider_id", m.id).order("coverage_pct", { ascending: false }).limit(30),
     c.from("v_report_status").select("open_reports,under_review,last_rechecked_ok_at").eq("entity_type", "mcp_server").eq("slug", m.slug).maybeSingle().then((r) => (r.error ? { data: null } : r)),
+    c.from("v_mcp_live").select("*").eq("slug", m.slug).maybeSingle().then((r) => (r.error ? { data: null } : r)),
   ]);
+  const live = (liveData as LiveCheck | null) ?? null;
+  const liveTools = live?.tools ?? [];
   const capabilities = (caps as { capability_slug: string; capability: string; evidence: string | null }[] | null) ?? [];
   // at equal coverage, prefer tasks whose words or matched capabilities appear in the tool's own description
   const text = `${m.name} ${m.description ?? m.short_description ?? ""}`.toLowerCase();
@@ -126,12 +130,15 @@ export async function ToolPageV2({ params }: { params: P }) {
   const faq: { q: string; a: React.ReactNode }[] = [];
   if (remotes.length || pkgs.length) faq.push({ q: `How do I connect ${m.name}?`, a: <>{remotes.length ? <>Use the hosted endpoint <code>{remotes[0].url}</code> in your assistant&apos;s MCP settings</> : <>Install the {REGISTRY[pkgs[0].registry ?? ""] ?? pkgs[0].registry} package <code>{pkgs[0].identifier}</code></>}. The exact settings are in &quot;How to connect&quot; above, as declared in the Official MCP Registry.</> });
   if (secrets.length) faq.push({ q: `Does ${m.name} need an API key or token?`, a: <>Yes. The registry entry lists {secrets.length === 1 ? "a required value" : "required values"}: {secrets.map((x, i) => <span key={x}>{i ? ", " : ""}<code>{x}</code></span>)}. Get {secrets.length === 1 ? "it" : "them"} from the publisher.</> });
+  if (liveTools.length) faq.push({ q: `What tools does ${m.name} offer?`, a: <>When Electra Index connected on {shortDate(live!.checked_at)}, it listed {live!.tools_more ? `more than ${live!.tool_count}` : live!.tool_count} tool{liveTools.length === 1 ? "" : "s"}: {liveTools.slice(0, 8).map((t, i) => <span key={t.name}>{i ? ", " : ""}<code>{t.name}</code></span>)}{liveTools.length > 8 ? " and more" : ""}. The full list is in &quot;Live check&quot; above.</> });
+  if (live?.status === "online" || live?.status === "down") faq.push({ q: `Is ${m.name} online?`, a: live.status === "online" ? <>Yes. Its hosted endpoint answered an MCP connection from Electra Index {timeAgo(live.checked_at)}.</> : <>Not at our last checks: the hosted endpoint did not answer {live.last_online_at ? <>(last answer on {shortDate(live.last_online_at)})</> : null}. We keep checking every few days.</> });
   if (tasks.length) faq.push({ q: `What can I use ${m.name} for?`, a: <>Based on its description, it is most relevant to: {tasks.slice(0, 4).map((t, i) => <span key={t.task_slug}>{i ? ", " : ""}<Link href={`/tasks/${t.task_slug}`}>{lowerFirst(t.task_name)}</Link></span>)}.</> });
 
   const jsonLd = {
     "@context": "https://schema.org", "@type": "SoftwareApplication", name: m.name, description: desc || undefined,
     applicationCategory: "DeveloperApplication", softwareVersion: m.version ?? undefined, url: m.website ?? m.repository_url ?? undefined,
     dateModified: m.last_seen_at,
+    featureList: liveTools.length ? liveTools.slice(0, 30).map((t) => t.name) : undefined,
   };
   const crumbsLd = {
     "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
@@ -154,7 +161,7 @@ export async function ToolPageV2({ params }: { params: P }) {
         </div>
       </div>
       <StatusBadges verifiedAt={m.last_seen_at} verifiedLabel="Seen in the registry" firstSeenAt={m.first_seen_at}
-        changedAt={history.find((h) => h.event_type === "new_version")?.detected_at} changedLabel="New version" />
+        changedAt={history.find((h) => h.event_type === "new_version")?.detected_at} changedLabel="New version" extra={<LiveBadge live={live} />} />
       <p className="lede" style={{ marginTop: 16, maxWidth: "80ch" }}>{desc || "No description published."}</p>
       <div className="chips" style={{ marginTop: 16 }}>
         {m.website ? <Out type="mcp" slug={m.slug} to="website" from={`/mcp/${m.slug}`} className="btn primary">Website ↗</Out> : null}
@@ -176,6 +183,7 @@ export async function ToolPageV2({ params }: { params: P }) {
           <div className="glance">
             <div><span className="muted small">Hosted (remote)</span><Tri label={m.remote === true ? "YES" : m.remote === false ? "NO" : "NOT DOCUMENTED"} value={m.remote} /></div>
             <div><span className="muted small">Local install</span><Tri label={m.local === true ? "YES" : m.local === false ? "NO" : "NOT DOCUMENTED"} value={m.local} /></div>
+            {live && live.status !== "unconfirmed" ? <div><span className="muted small">Live check</span><a href="#live-check" className="small strong">{live.status === "online" ? `Online${live.tool_count ? ` · ${live.tool_count}${live.tools_more ? "+" : ""} tools` : ""}` : live.status === "auth_required" ? "Key or sign-in required" : "Not responding"}</a></div> : null}
             <div><span className="muted small">Version</span><b className="mono">{m.version ?? "—"}</b></div>
             {pkgs.length ? <div><span className="muted small">Packages</span><b className="small">{[...new Set(pkgs.map((p) => REGISTRY[p.registry ?? ""] ?? p.registry))].join(", ")}</b></div> : null}
             <div><span className="muted small">Price</span><span className="small muted">Not in the registry</span></div>
@@ -187,7 +195,7 @@ export async function ToolPageV2({ params }: { params: P }) {
 
       {remotes.length || pkgs.length ? (
         <div className="card" style={{ marginTop: 24 }} id="connect">
-          <div className="card-head"><h2>How to connect</h2><span className="small muted">As declared in the Official MCP Registry · not tested by Electra Index</span></div>
+          <div className="card-head"><h2>How to connect</h2><span className="small muted">As declared in the Official MCP Registry · {live?.status === "online" ? <>hosted endpoint tested by Electra Index {timeAgo(live.checked_at)} (<a href="#live-check">live check</a>)</> : "not tested by Electra Index"}</span></div>
           <div className="card-body prose">
             {remotes.length ? <><p className="strong" style={{ marginTop: 0 }}>Hosted endpoint{remotes.length > 1 ? "s" : ""}</p>
               <ul className="plain">{remotes.map((r) => <li key={r.url}><code>{r.url}</code> <span className="small muted">{r.type ?? ""}</span></li>)}</ul>
@@ -208,6 +216,8 @@ export async function ToolPageV2({ params }: { params: P }) {
           </div>
         </div>
       )}
+
+      {live ? <LiveCheckCard live={live} name={m.name} /> : null}
 
       {tasks.length ? (
         <div className="card" style={{ marginTop: 24 }}>
