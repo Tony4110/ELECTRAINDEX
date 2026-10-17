@@ -52,6 +52,7 @@ export function LiveCheckCard({ live, name }: { live: LiveCheck; name: string })
                 <ul className="tool-list">{rest.map((t) => <li key={t.name}><code>{t.name}</code>{t.description ? <span className="small muted"> · {t.description}</span> : null}</li>)}</ul>
               </details>
             ) : null}
+            {(live.tool_count ?? 0) > tools.length ? <p className="small muted">The first {tools.length} are shown.</p> : null}
           </>
         ) : live.status === "online" ? <p className="small muted">The server did not list its tools to an anonymous client.</p> : null}
 
