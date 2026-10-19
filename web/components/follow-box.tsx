@@ -16,7 +16,7 @@ export function ProgramBenefits({ type }: { type: "agent" | "mcp" }) {
     <ul className="program-list">
       <li><b>Monthly report</b>: how many visitors clicked from Electra Index to your site.</li>
       <li><b>Founding pilot</b>: free live testing of your {type === "mcp" ? "server" : "agent"} for the first 10 publishers, results published on your page.</li>
-      <li><b>First access</b> to sponsored placements, always labelled and outside every ranking.</li>
+      <li><b>Priority booking</b> of ad slots on Electra Index (clearly marked as ads, never inside rankings).</li>
     </ul>
   );
 }
