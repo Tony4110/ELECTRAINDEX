@@ -1,6 +1,6 @@
 /**
  * Progressive rollout of the tool page template v2.
- *   TOOLPAGE_V2        off | sample | all     (default: sample)
+ *   TOOLPAGE_V2        off | sample | all     (default: all since 19 Oct 2026)
  *   TOOLPAGE_V2_PCT    share of tools in the sample, 0-100 (default: 20)
  *   TOOLPAGE_V2_SLUGS  extra tools always in the sample, comma separated
  * The sample is stable: a tool is in or out based on a hash of its slug.
@@ -15,7 +15,7 @@ function bucket(slug: string): number {
 }
 
 export function toolPageV2(slug: string): boolean {
-  const mode = (process.env.TOOLPAGE_V2 ?? "sample").toLowerCase();
+  const mode = (process.env.TOOLPAGE_V2 ?? "all").trim().toLowerCase();
   if (mode === "off") return false;
   if (mode === "all") return true;
   const extra = (process.env.TOOLPAGE_V2_SLUGS ?? "").split(",").map((s) => s.trim()).filter(Boolean);
