@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { db, getThemes } from "@/lib/db";
 import { SetupNotice } from "@/components/ui";
+import { ProgramBenefits } from "@/components/follow-box";
 
 export const metadata: Metadata = {
   title: "List your AI agent",
@@ -37,7 +38,7 @@ export default async function SubmitPage({ searchParams }: { searchParams: SP })
     <>
       <div className="eyebrow">List your agent</div>
       <h1>Thank you. We received it.</h1>
-      <p className="lede">We check every submission against the index, then read your website and pricing page. Once the facts are sourced, your agent appears in New listings and in its theme ranking. We use your email about this listing, and for offers only if you ticked the box.</p>
+      <p className="lede">We check every submission against the index, then read your website and pricing page. Once the facts are sourced, your agent appears in New listings and in its theme ranking. We use your email about this listing, and for the Publisher Program only if you joined it.</p>
       <div className="chips" style={{ marginTop: 20 }}><Link href="/new" className="btn primary">See new listings →</Link><Link href="/" className="btn">Back to the ranking</Link></div>
     </>
   );
@@ -62,7 +63,12 @@ export default async function SubmitPage({ searchParams }: { searchParams: SP })
           </label>
           <label>Your email *<input name="contact_email" type="email" required maxLength={200} placeholder="you@company.com" /><span className="small muted">Used to contact you about this listing. Never published. <a href="/privacy">Privacy</a></span></label>
           <label className="full">What does it do? (one or two sentences)<textarea name="description" maxLength={600} rows={3} placeholder="e.g. Finds B2B leads, enriches them and sends personalised outreach." /></label>
-          <label className="full check-line"><input type="checkbox" name="offers_opt_in" /> Also send me Electra Index offers for publishers (sponsored placements, live testing of my agent). At most twice a month, unsubscribe in one click.</label>
+          <div className="full program-box">
+            <p className="program-title">Join the free Publisher Program</p>
+            <ProgramBenefits type="agent" />
+            <label className="check-line strong-check"><input type="checkbox" name="offers_opt_in" /> Yes, add me. At most two emails a month, unsubscribe in one click.</label>
+            <p className="small muted" style={{ margin: "4px 0 0" }}>Optional: your listing is free and reviewed the same way either way. The program never changes a score.</p>
+          </div>
           <label className="hp" aria-hidden="true">Company site<input name="company_site" tabIndex={-1} autoComplete="off" /></label>
           <div className="full"><button type="submit" className="btn primary">Submit for listing →</button></div>
         </div>
