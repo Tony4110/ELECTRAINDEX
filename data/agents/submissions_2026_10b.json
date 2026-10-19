@@ -1,0 +1,96 @@
+[
+ {
+  "name": "HRBridge",
+  "company": "HRBridge",
+  "website": "https://hrbridge.app/amazon-dsps",
+  "theme": "Business Operations",
+  "short_description": "AI recruiter for Amazon Delivery Service Partners that calls every eligible driver applicant, screens them with the DSP's own questions, follows up and moves hires through paperwork and training.",
+  "capabilities": [
+   "Voice Calls",
+   "Resume Screening",
+   "Outreach Sequencing",
+   "Appointment Scheduling",
+   "Automated Reminders"
+  ],
+  "pricing_url": null,
+  "pricing_verified": false,
+  "checked_at": "2026-10-19",
+  "plans": [],
+  "free_plan": null,
+  "free_trial": null,
+  "api": null,
+  "mcp": null,
+  "open_source": null,
+  "github_repo": null,
+  "notes": "Submitted via List your agent (2026-10-16). Official page read 2026-10-19: no public pricing (ROI calculator only), managers keep final hiring decisions. Company country not stated.",
+  "themes": [
+   "Business Operations"
+  ],
+  "aliases": [
+   {
+    "type": "domain",
+    "value": "https://hrbridge.app"
+   }
+  ]
+ },
+ {
+  "name": "AnswerDojo",
+  "company": "AnswerDojo",
+  "website": "https://answerdojo.com",
+  "theme": "Productivity",
+  "short_description": "AI mock interview coach for new graduates: builds stories from your résumé, runs live voice mock interviews tailored to a company and role, and scores each answer with feedback.",
+  "capabilities": [
+   "Chat Assistant",
+   "Document Generation",
+   "Speech Transcription"
+  ],
+  "pricing_url": "https://answerdojo.com/en/pricing",
+  "pricing_verified": true,
+  "checked_at": "2026-10-19",
+  "plans": [
+   {
+    "plan": "Free",
+    "billing_model": "free",
+    "amount": 0,
+    "currency": "USD",
+    "interval": null,
+    "unit": "2 voice mock interviews (lifetime)",
+    "is_trial": false
+   },
+   {
+    "plan": "7-Day Sprint",
+    "billing_model": "one_time",
+    "amount": 19,
+    "currency": "USD",
+    "interval": null,
+    "unit": "10 voice mock interviews over 7 days",
+    "is_trial": false
+   },
+   {
+    "plan": "Pro",
+    "billing_model": "subscription",
+    "amount": 99,
+    "currency": "USD",
+    "interval": "year",
+    "unit": "20 voice mock interviews per month",
+    "is_trial": false
+   }
+  ],
+  "free_plan": true,
+  "free_trial": false,
+  "api": null,
+  "mcp": null,
+  "open_source": null,
+  "github_repo": null,
+  "notes": "Submitted via List your agent (2026-10-16). Pricing read on the official page 2026-10-19: Pro shown at $99/year; a monthly toggle exists but no monthly price is displayed. Company country not stated.",
+  "themes": [
+   "Productivity"
+  ],
+  "aliases": [
+   {
+    "type": "domain",
+    "value": "https://answerdojo.com"
+   }
+  ]
+ }
+]
