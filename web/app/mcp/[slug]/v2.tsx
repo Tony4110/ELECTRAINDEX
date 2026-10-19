@@ -4,6 +4,7 @@ import { Out } from "@/components/out";
 import { StatusBadges } from "@/components/status";
 import { ReportBox, type ReportStatus } from "@/components/report-box";
 import { LiveBadge, LiveCheckCard } from "@/components/live-check";
+import { FollowBox } from "@/components/follow-box";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { db, type McpServer, type Signal, type TaskRanking, type LiveCheck } from "@/lib/db";
@@ -290,6 +291,7 @@ export async function ToolPageV2({ params }: { params: P }) {
       </section>
 
       <ReportBox type="mcp" slug={m.slug} status={rep as ReportStatus} />
+      <FollowBox type="mcp" slug={m.slug} name={m.name} />
 
       {faq.length ? <div className="card faq" style={{ marginTop: 24 }}>
         <div className="card-head"><h2>Questions about {m.name}</h2></div>

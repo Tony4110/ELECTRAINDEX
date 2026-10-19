@@ -407,3 +407,13 @@ tbody tr:nth-child(-n+3) .rank-num::before { content: ""; position: absolute; le
 .live-card .tool-list li { line-height: 1.5; overflow-wrap: anywhere; }
 .live-card .tool-more { margin-top: 10px; }
 .live-card .tool-more summary { cursor: pointer; color: var(--accent); }
+
+/* Follow this page */
+.follow-box .follow-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0; }
+.follow-box .follow-row input { flex: 1 1 220px; min-height: 42px; padding: 0 12px; border: 1px solid var(--line); border-radius: 8px; font: inherit; background: var(--panel); color: var(--ink); }
+.follow-box .follow-row input:focus { outline: 2px solid var(--sun); outline-offset: 1px; }
+.follow-box .check { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; color: var(--ink-2); margin: 6px 0; line-height: 1.45; }
+.follow-box .check input { margin-top: 3px; accent-color: var(--sun-ink); }
+.follow-box .hp, .form .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.form-grid .check-line { display: flex; flex-direction: row; gap: 8px; align-items: flex-start; font-weight: 400; font-size: 14px; color: var(--ink-2); }
+.form-grid .check-line input { width: auto; margin-top: 3px; accent-color: var(--sun-ink); }

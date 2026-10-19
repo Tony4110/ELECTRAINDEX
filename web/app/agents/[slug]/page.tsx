@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Out, AffiliateNote } from "@/components/out";
 import { StatusBadges } from "@/components/status";
 import { ReportBox, type ReportStatus } from "@/components/report-box";
+import { FollowBox } from "@/components/follow-box";
 import { timeAgo } from "@/lib/format";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -231,6 +232,7 @@ export default async function AgentPage({ params }: { params: P }) {
       </div>
       <ReportBox type="agent" slug={a.slug} status={reportStatus}
         recheckedAgo={reportStatus?.last_rechecked_ok_at && Date.now() - new Date(reportStatus.last_rechecked_ok_at).getTime() < 14 * 86_400_000 ? timeAgo(reportStatus.last_rechecked_ok_at) : null} />
+      <FollowBox type="agent" slug={a.slug} name={a.name} />
     </>
   );
 }

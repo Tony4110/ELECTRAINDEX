@@ -20,6 +20,7 @@ async function submit(form: FormData) {
     kind: s("kind") === "tool" ? "tool" : "agent",
     name: s("name"), website: url(s("website")), pricing_url: url(s("pricing_url")) || null,
     theme: s("theme") || null, description: s("description") || null, contact_email: s("contact_email"),
+    offers_opt_in: form.get("offers_opt_in") === "on",
   };
   const c = db();
   if (!c) redirect("/submit?error=setup");
@@ -36,7 +37,7 @@ export default async function SubmitPage({ searchParams }: { searchParams: SP })
     <>
       <div className="eyebrow">List your agent</div>
       <h1>Thank you. We received it.</h1>
-      <p className="lede">We check every submission against the index, then read your website and pricing page. Once the facts are sourced, your agent appears in New listings and in its theme ranking. If you left an email, we only use it about this listing.</p>
+      <p className="lede">We check every submission against the index, then read your website and pricing page. Once the facts are sourced, your agent appears in New listings and in its theme ranking. We use your email about this listing, and for offers only if you ticked the box.</p>
       <div className="chips" style={{ marginTop: 20 }}><Link href="/new" className="btn primary">See new listings →</Link><Link href="/" className="btn">Back to the ranking</Link></div>
     </>
   );
@@ -59,8 +60,9 @@ export default async function SubmitPage({ searchParams }: { searchParams: SP })
           <label>Theme
             <select name="theme" defaultValue=""><option value="">Choose a theme</option>{themes.map((t) => <option key={t.theme_slug} value={t.theme}>{t.theme}</option>)}</select>
           </label>
-          <label>Your email *<input name="contact_email" type="email" required maxLength={200} placeholder="you@company.com" /><span className="small muted">Only used to contact you about this listing. Never published.</span></label>
+          <label>Your email *<input name="contact_email" type="email" required maxLength={200} placeholder="you@company.com" /><span className="small muted">Used to contact you about this listing. Never published. <a href="/privacy">Privacy</a></span></label>
           <label className="full">What does it do? (one or two sentences)<textarea name="description" maxLength={600} rows={3} placeholder="e.g. Finds B2B leads, enriches them and sends personalised outreach." /></label>
+          <label className="full check-line"><input type="checkbox" name="offers_opt_in" /> Also send me Electra Index offers for publishers (sponsored placements, live testing of my agent). At most twice a month, unsubscribe in one click.</label>
           <label className="hp" aria-hidden="true">Company site<input name="company_site" tabIndex={-1} autoComplete="off" /></label>
           <div className="full"><button type="submit" className="btn primary">Submit for listing →</button></div>
         </div>
