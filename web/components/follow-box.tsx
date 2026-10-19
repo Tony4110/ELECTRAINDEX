@@ -47,7 +47,7 @@ export function FollowBox({ type, slug, name }: { type: "agent" | "mcp"; slug: s
               <div className="program-box">
                 <p className="program-title">Join the free Publisher Program</p>
                 <ProgramBenefits type={type} />
-                <label className="check strong-check"><input type="checkbox" name="offers" checked={program} onChange={(e) => setProgram(e.target.checked)} /> Yes, add me. At most two emails a month, unsubscribe in one click.</label>
+                <label className="check strong-check"><input type="checkbox" name="offers" checked={program} onChange={(e) => setProgram(e.target.checked)} /> Yes, add me. Unsubscribe in one click.</label>
                 <p className="small muted" style={{ margin: "4px 0 0" }}>Alerts work either way. The program never changes a score.</p>
               </div>
             ) : null}

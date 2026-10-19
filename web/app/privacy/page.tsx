@@ -16,7 +16,7 @@ export default function PrivacyPage() {
       <ul>
         <li><b>No account, no advertising cookie.</b> You can read every page without giving any personal data.</li>
         <li><b>Email you give us</b>, only when you choose to: in &quot;List your agent&quot; (to handle your listing) or in &quot;Follow&quot; on a page (to tell you when our robots detect a change on it).</li>
-        <li><b>Publisher Program</b>: monthly click report, founding offers (live testing, sponsored placements). Only if you joined it, at most two emails a month. Alerts never depend on it.</li>
+        <li><b>Publisher Program</b>: monthly click report, founding offers (live testing, sponsored placements). Only if you joined it. Alerts never depend on it.</li>
         <li><b>Reports and follows</b>: your connection address is turned into a one-way code that changes every day, used only to limit abuse. We do not store the address itself.</li>
         <li><b>Visit statistics</b>: when enabled, cookieless and aggregated, without advertising profiles.</li>
       </ul>

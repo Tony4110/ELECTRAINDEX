@@ -66,7 +66,7 @@ export default async function SubmitPage({ searchParams }: { searchParams: SP })
           <div className="full program-box">
             <p className="program-title">Join the free Publisher Program</p>
             <ProgramBenefits type="agent" />
-            <label className="check-line strong-check"><input type="checkbox" name="offers_opt_in" /> Yes, add me. At most two emails a month, unsubscribe in one click.</label>
+            <label className="check-line strong-check"><input type="checkbox" name="offers_opt_in" /> Yes, add me. Unsubscribe in one click.</label>
             <p className="small muted" style={{ margin: "4px 0 0" }}>Optional: your listing is free and reviewed the same way either way. The program never changes a score.</p>
           </div>
           <label className="hp" aria-hidden="true">Company site<input name="company_site" tabIndex={-1} autoComplete="off" /></label>
