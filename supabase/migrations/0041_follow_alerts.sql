@@ -29,7 +29,15 @@ insert into alert_state(id) values (1) on conflict do nothing;
 alter table alert_state enable row level security;
 
 -- generic sender (same Vault key and log as notify_email)
-create or replace function send_email(p_kind text, p_to text, p_subject text, p_text text, p_daily_cap int default 80)
+-- sends a plain-text and a simple HTML version, plus List-Unsubscribe headers (Gmail / Outlook one-click)
+drop function if exists send_email(text, text, text, text, int);
+create or replace function email_html(p_text text) returns text language sql immutable as $$
+  select '<div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.55;color:#121816;max-width:560px">'
+      || replace(regexp_replace(replace(replace(replace(coalesce(p_text, ''), '&', '&amp;'), '<', '&lt;'), '>', '&gt;'),
+                                '(https://[^\s<]+)', '<a href="\1" style="color:#1F3FD1">\1</a>', 'g'), chr(10), '<br>')
+      || '</div>'
+$$;
+create or replace function send_email(p_kind text, p_to text, p_subject text, p_text text, p_daily_cap int default 80, p_unsub_token uuid default null)
 returns boolean language plpgsql security definer set search_path = public, net, vault as $$
 declare v_key text; rid bigint;
 begin
@@ -50,7 +58,11 @@ begin
                                   'to', jsonb_build_array(p_to),
                                   'reply_to', 'contact@electraindex.com',
                                   'subject', left(p_subject, 200),
-                                  'text', p_text),
+                                  'text', p_text,
+                                  'html', email_html(p_text))
+               || case when p_unsub_token is null then '{}'::jsonb else jsonb_build_object('headers', jsonb_build_object(
+                    'List-Unsubscribe', '<https://electraindex.com/api/unsubscribe?t=' || p_unsub_token || '>, <mailto:contact@electraindex.com?subject=unsubscribe>',
+                    'List-Unsubscribe-Post', 'List-Unsubscribe=One-Click')) end,
     timeout_milliseconds := 10000) into rid;
   insert into notify_log(kind, subject, recipient, request_id) values (p_kind, p_subject, p_to, rid);
   return true;
@@ -58,7 +70,7 @@ exception when others then
   insert into notify_log(kind, subject, recipient, skipped) values (p_kind, p_subject, p_to, left(sqlerrm, 200));
   return false;
 end $$;
-revoke execute on function send_email(text, text, text, text, int) from public, anon, authenticated;
+revoke execute on function send_email(text, text, text, text, int, uuid) from public, anon, authenticated;
 
 create or replace function page_url(p_entity uuid) returns text language sql stable as $$
   select 'https://electraindex.com/' || case type when 'agent' then 'agents/' else 'mcp/' end || slug from entities where id = p_entity
@@ -83,7 +95,7 @@ begin
     case when new.offers_opt_in then chr(10) || 'You also joined the free Publisher Program. Thank you!' || chr(10) else '' end ||
     chr(10) || 'Did not ask for this? Unsubscribe in one click:' || chr(10) ||
     'https://electraindex.com/unsubscribe?t=' || new.unsub_token || chr(10) || chr(10) ||
-    'Electra Index, published by Dreamotion OÜ' || chr(10) || 'Estonia & Switzerland' || chr(10) || 'contact@electraindex.com', 200);
+    'Electra Index, published by Dreamotion OÜ' || chr(10) || 'Estonia & Switzerland' || chr(10) || 'contact@electraindex.com', 200, new.unsub_token);
   return null;
 end $$;
 drop trigger if exists page_followers_confirm on page_followers;
@@ -152,7 +164,7 @@ begin
          'Hi,' || chr(10) || chr(10) || 'Our robots detected:' || chr(10) || chr(10) || rec.body || chr(10) || chr(10) ||
          'Every fact on Electra Index shows its source and the date it was checked.' || chr(10) || chr(10) ||
          'Stop these emails: https://electraindex.com/unsubscribe?t=' || rec.token || chr(10) || chr(10) ||
-         'Electra Index, published by Dreamotion OÜ' || chr(10) || 'Estonia & Switzerland' || chr(10) || 'contact@electraindex.com') then
+         'Electra Index, published by Dreamotion OÜ' || chr(10) || 'Estonia & Switzerland' || chr(10) || 'contact@electraindex.com', 80, rec.token) then
       n_sent := n_sent + 1;
     end if;
   end loop;
