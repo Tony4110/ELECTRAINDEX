@@ -12,7 +12,7 @@ const FAIL: Record<string, string> = {
 /** Badge under the page title. */
 export function LiveBadge({ live }: { live: LiveCheck | null }) {
   if (!live) return null;
-  if (live.status === "online") return <span className="badge live-ok"><span className="dot live" />Online · tested {timeAgo(live.checked_at)}</span>;
+  if (live.status === "online") return <span className="badge live-ok" title="Answered an MCP connection at the last check. Not a guarantee of security or quality."><span className="dot live" />Online · tested {timeAgo(live.checked_at)}</span>;
   if (live.status === "auth_required") return <span className="badge trust">Reachable · key or sign-in required</span>;
   if (live.status === "down") return <span className="badge attn"><span className="dot ember" />Not responding · {timeAgo(live.checked_at)}</span>;
   return null;
@@ -56,7 +56,7 @@ export function LiveCheckCard({ live, name }: { live: LiveCheck; name: string })
           </>
         ) : live.status === "online" ? <p className="small muted">The server did not list its tools to an anonymous client.</p> : null}
 
-        <p className="small muted" style={{ marginBottom: 0 }}>How we test: we open an MCP session and ask for the tool list, as an AI assistant would. We never run a tool and never send a key. Checked every few days. <a href="/sources#live-check">Method</a></p>
+        <p className="small muted" style={{ marginBottom: 0 }}>What &quot;online&quot; means: the server answered an MCP connection at the time of the check. It is not a guarantee of security, quality or continuous uptime. How we test: we open an MCP session and ask for the tool list, as an AI assistant would. We never run a tool and never send a key. Checked every few days. <a href="/sources#live-check">Method</a></p>
       </div>
     </div>
   );

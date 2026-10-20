@@ -27,7 +27,12 @@ async function load(slug: string) {
   const c = db();
   if (!c) return null;
   const { data } = await c.from("v_mcp_servers").select("*").eq("slug", slug).maybeSingle();
-  return data as McpServer | null;
+  const m = data as McpServer | null;
+  if (m) { // registry values are JSON: never trust their shape
+    if (!Array.isArray(m.remotes)) m.remotes = null;
+    if (!Array.isArray(m.package_list)) m.package_list = null;
+  }
+  return m;
 }
 
 function cut(s: string, n: number) {
