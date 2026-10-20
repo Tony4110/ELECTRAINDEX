@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const sub = e ? `${weekLabel(e.week)} (${rangeLabel(e.data.from, e.data.to)})` : "weekly";
   return {
     title: "MCP & Agent Pulse — this week in the agent economy",
-    description: e ? `${sub}: ${e.data.totals.new_servers} new MCP servers, live check results, agent price changes and new AI agents. Counted from the Electra Index database.` : "Weekly edition: new MCP servers, live check results, price changes and new AI agents.",
+    description: e ? `${sub}: ${e.data.totals.new_servers} new MCP servers, live check results, agent price updates and new AI agents. Counted from the Electra Index database.` : "Weekly edition: new MCP servers, live check results, price changes and new AI agents.",
     alternates: { canonical: "/pulse" },
   };
 }

@@ -49,6 +49,8 @@ begin
       from change_events ev join entities e on e.id = ev.entity_id and e.is_published and e.type = 'agent'
      where ev.is_published and ev.detected_at >= t0 and ev.detected_at < t1
        and ev.event_type in ('price_increase','price_decrease','plan_added','plan_removed','discontinued')
+       and e.first_seen_at < t0                                                     -- not the first plans of a newly listed agent
+       and not (ev.event_type = 'plan_added' and (ev.new_value->>'amount') is null) -- no empty plan
   ), new_ag as (
     select e.slug, e.name, e.short_description, e.first_seen_at
       from entities e

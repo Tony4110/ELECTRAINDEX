@@ -28,7 +28,7 @@ export function PulseView({ e, editions }: { e: PulseEdition; editions: { week: 
         <span><b>{num(d.totals.new_servers)}</b> new MCP servers</span>
         <span><b>{num(d.totals.new_versions)}</b> new versions</span>
         <span><b>{num(d.totals.new_agents)}</b> new AI agents</span>
-        <span><b>{num(d.totals.price_changes)}</b> price changes</span>
+        <span><b>{num(d.totals.price_changes)}</b> price updates</span>
         <span><b>{num(d.totals.servers_listed)}</b> servers listed in total</span>
       </div>
 
@@ -65,12 +65,13 @@ export function PulseView({ e, editions }: { e: PulseEdition; editions: { week: 
       </section>
 
       <section className="pulse-section">
-        <div className="section-title"><h2>Agent price changes</h2><span className="spacer" /><Link href="/new?tab=changes" className="strong">All changes →</Link></div>
+        <div className="section-title"><h2>Price updates on Electra Index</h2><span className="spacer" /><Link href="/new?tab=changes" className="strong">All changes →</Link></div>
         {d.prices.length ? (
           <div className="card"><ul className="signals">{d.prices.map((p, i) => (
             <li key={p.slug + p.at + i}><span className="badge attn">{(PRICE_LABEL[p.event] ?? p.event).toUpperCase()}</span> <Link href={`/agents/${p.slug}`} className="strong">{p.name}</Link> <span className="small muted">{priceText(p)} · {shortDate(p.at)}</span></li>
           ))}</ul></div>
-        ) : <p className="muted">No price change confirmed on an official pricing page this week.</p>}
+        ) : <p className="muted">No price update this week.</p>}
+        <p className="small muted">Every update was checked on the vendor&apos;s official pricing page. It can be a change by the vendor or a correction of our data after a review: the agent page keeps the full price history.</p>
       </section>
 
       {d.new_agents.length ? (

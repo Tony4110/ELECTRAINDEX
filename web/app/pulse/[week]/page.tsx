@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: P }): Promise<Metad
   if (!e) return { title: "Not found" };
   return {
     title: `MCP & Agent Pulse, ${weekLabel(e.week)}`,
-    description: `${rangeLabel(e.data.from, e.data.to)}: ${e.data.totals.new_servers} new MCP servers, ${e.data.totals.new_agents} new AI agents, ${e.data.totals.price_changes} price changes, live check results.`,
+    description: `${rangeLabel(e.data.from, e.data.to)}: ${e.data.totals.new_servers} new MCP servers, ${e.data.totals.new_agents} new AI agents, ${e.data.totals.price_changes} price updates, live check results.`,
     alternates: { canonical: `/pulse/${e.week}` },
   };
 }
