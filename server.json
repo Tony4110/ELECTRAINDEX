@@ -1,0 +1,11 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
+  "name": "com.electraindex/electra-index",
+  "title": "Electra Index",
+  "description": "Find MCP servers and AI agents: live-tested status, use-case rankings, verified agent prices. Read-only.",
+  "version": "1.0.0",
+  "websiteUrl": "https://electraindex.com/mcp-server",
+  "remotes": [
+    { "type": "streamable-http", "url": "https://electraindex.com/api/mcp" }
+  ]
+}
