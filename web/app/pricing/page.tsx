@@ -30,6 +30,15 @@ export default function PricingPage() {
               <li>The <Link href="/mcp-server">Electra Index MCP server</Link>: search, server facts, use-case rankings, agent prices</li>
               <li>Weekly <Link href="/pulse">MCP &amp; Agent Pulse</Link></li>
             </ul>
+            <div className="program-box">
+              <p className="program-title">Publisher Program · free</p>
+              <ul className="price-list" style={{ flex: "none" }}>
+                <li>Alert when your MCP server stops responding</li>
+                <li>Monthly report of clicks from Electra Index to your site</li>
+                <li>Founding pilot: free live testing for the first 10 publishers</li>
+              </ul>
+              <p className="small" style={{ margin: "6px 0 0" }}>Join from your tool or agent page: tick <i>&quot;I built it&quot;</i> in the <b>Follow</b> box. Not listed yet? <Link href="/submit">List your agent</Link>.</p>
+            </div>
             <Link href="/mcp-server" className="btn">Connect the MCP server</Link>
           </div>
         </div>
@@ -45,29 +54,22 @@ export default function PricingPage() {
               <li>{x402On ? "Or pay per call ($0.01) with x402, no account" : "Pay per call ($0.01) with x402: coming soon"}</li>
             </ul>
             {packOn ? <a href={PACK_URL} className="btn primary" rel="noopener">Buy a developer pack</a> : <p className="small muted">Coming soon.</p>}
-            <p className="small muted" style={{ marginBottom: 0 }}>Then follow the <Link href="/mcp-server#setup">setup</Link> for your tool.</p>
+            <p className="small muted" style={{ marginBottom: 0 }}>For people who <b>choose</b> MCP servers. Then follow the <Link href="/mcp-server#setup">setup</Link> for your tool.</p>
           </div>
         </div>
 
-        <div className="card price-card">
+        <div className="card price-card" id="monitoring">
           <div className="card-body">
-            <p className="price-name">Publishers</p>
-            <p className="price-amount">Free <span className="small muted">program</span></p>
+            <p className="price-name">Monitoring Pro</p>
+            <p className="price-amount">$9.99 <span className="small muted">per month</span></p>
             <ul className="price-list">
-              <li>Alert when your MCP server stops responding</li>
-              <li>Monthly report of clicks from Electra Index to your site</li>
-              <li>Founding pilot: free live testing for the first 10 publishers</li>
+              <li>Your hosted MCP server checked <b>every 30 minutes</b></li>
+              <li>Email <b>within the hour</b> when it stops answering, and when it is back</li>
+              <li>Private 90-day report: answer rate, outages, every check</li>
+              <li>Status badge for your README or website, with your answer rate</li>
             </ul>
-            <p className="small" style={{ margin: 0 }}>Join from your tool or agent page: tick <i>&quot;I built it&quot;</i> in the <b>Follow</b> box. Not listed yet? <Link href="/submit">List your agent</Link>.</p>
-            <div className="program-box" id="monitoring">
-              <p className="program-title">Monitoring Pro · $9.99/month</p>
-              <ul className="price-list" style={{ flex: "none" }}>
-                <li>Your hosted server checked <b>every 30 minutes</b></li>
-                <li>Email <b>within the hour</b> when it stops answering, and when it is back</li>
-                <li>Private 90-day report and a status badge with your answer rate</li>
-              </ul>
-              <Link href="/monitor" className="btn primary" style={{ marginTop: 8 }}>Monitor my server</Link>
-            </div>
+            <Link href="/monitor" className="btn primary">Monitor my server</Link>
+            <p className="small muted" style={{ marginBottom: 0 }}>For people who <b>publish</b> an MCP server. Cancel anytime.</p>
           </div>
         </div>
       </div>
