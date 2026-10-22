@@ -54,7 +54,7 @@ export const TOOLS: ToolDef[] = [
   {
     name: "get_mcp_server",
     title: "Get an MCP server",
-    description: "Everything Electra Index knows about one MCP server: description, hosted endpoints and required headers (names only), install packages and required environment variables, live check result, capabilities. Use the slug returned by search_mcp_servers.",
+    description: "Everything Electra Index knows about one MCP server: description, hosted endpoints and required headers (names only), install packages and required environment variables, live check result, the tools it listed to our robot, capabilities. Use the slug returned by search_mcp_servers.",
     inputSchema: { type: "object", properties: { slug: { type: "string" } }, required: ["slug"] },
     async run(a) {
       const slug = slugOf(a.slug); if (!slug) throw new Error("slug is required");
@@ -62,9 +62,10 @@ export const TOOLS: ToolDef[] = [
       const { data: m } = await c.from("v_mcp_servers").select("*").eq("slug", slug).maybeSingle();
       if (!m) throw new Error(`No MCP server with slug "${slug}" on Electra Index.`);
       const s = m as Json;
-      const [{ data: caps }, live] = await Promise.all([
+      const [{ data: caps }, live, { data: lt }] = await Promise.all([
         c.from("v_provider_capabilities").select("capability_slug,capability").eq("provider_slug", slug).eq("provider_type", "mcp_server"),
         liveFor([slug]),
+        c.from("v_mcp_live").select("tools").eq("slug", slug).maybeSingle(),
       ]);
       const remotes = Array.isArray(s.remotes) ? (s.remotes as Json[]) : [];
       const pkgs = Array.isArray(s.package_list) ? (s.package_list as Json[]) : [];
@@ -75,6 +76,7 @@ export const TOOLS: ToolDef[] = [
         packages: pkgs.map((p) => ({ registry: p.registry, identifier: p.identifier, version: p.version, transport: p.transport, required_env: ((p.env as Json[] | null) ?? []).filter((e) => e.required).map((e) => e.name) })),
         live_check: liveSummary(live.get(slug)),
         capabilities: ((caps as Json[] | null) ?? []).map((x) => x.capability),
+        tools_listed_at_last_check: ((lt as Json | null)?.tools as Json[] | null) ?? [],
         first_seen: s.first_seen_at, last_seen_in_registry: s.last_seen_at,
         page: `${SITE}/mcp/${slug}`,
         note: "Facts as declared in the Official MCP Registry; live check = the server answered an MCP connection at that time, not a guarantee of quality or security.",
@@ -143,19 +145,19 @@ export const TOOLS: ToolDef[] = [
     },
   },
   {
-    name: "get_mcp_server_tools",
-    title: "List an MCP server's tools (live)",
-    description: "The tools an MCP server actually offers, as listed to Electra Index's robot during its last live connection (names and descriptions, up to 100), with the date. Saves you connecting to the server yourself. Paid per call (x402, USDC on Base).",
-    inputSchema: { type: "object", properties: { slug: { type: "string" } }, required: ["slug"] },
+    name: "get_mcp_server_history",
+    title: "Availability history of an MCP server",
+    description: "Timestamped history of Electra Index's live checks for one MCP server: every check result, status transitions (stopped answering / back online), answer rate, last time online, tool count over time and version changes. Use it before relying on a server in production. Paid per call (x402, USDC on Base).",
+    inputSchema: { type: "object", properties: { slug: { type: "string" }, days: { type: "integer", minimum: 1, maximum: 365, default: 90 } }, required: ["slug"] },
     paid: true,
-    priceUsd: 0.002,
+    priceUsd: 0.01,
     async run(a) {
       const slug = slugOf(a.slug); if (!slug) throw new Error("slug is required");
-      const { data } = await client().from("v_mcp_live").select("status,tool_count,tools_more,tools,checked_at,protocol_version,server_name,server_version").eq("slug", slug).maybeSingle();
-      if (!data) throw new Error(`No live check yet for "${slug}". Hosted servers are tested every few days.`);
-      const l = data as Json;
-      return { slug, status: l.status, checked_at: l.checked_at, protocol_version: l.protocol_version, server: { name: l.server_name, version: l.server_version },
-        tool_count: l.tool_count, more_tools_not_listed: l.tools_more, tools: l.tools ?? [], page: `${SITE}/mcp/${slug}` };
+      const secret = process.env.MCP_API_SECRET ?? "";
+      const { data, error } = await client().rpc("mcp_server_history", { p_slug: slug, p_secret: secret, p_days: int(a.days, 90, 1, 365) });
+      if (error) throw new Error("History is temporarily unavailable.");
+      if (!data) throw new Error(`No MCP server with slug "${slug}" on Electra Index.`);
+      return { ...(data as Json), page: `${SITE}/mcp/${slug}` };
     },
   },
 ];

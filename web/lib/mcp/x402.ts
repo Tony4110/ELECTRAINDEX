@@ -12,6 +12,7 @@ const USDC: Record<string, { asset: string; name: string }> = {
 };
 
 export function x402Config() {
+  if (!(process.env.MCP_API_SECRET ?? "")) return null;   // paid data needs the server secret too
   const payTo = (process.env.X402_PAY_TO ?? "").trim();
   if (!/^0x[0-9a-fA-F]{40}$/.test(payTo)) return null;
   const network = process.env.X402_NETWORK === "base" ? "base" : "base-sepolia";

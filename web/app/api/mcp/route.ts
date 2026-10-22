@@ -5,6 +5,7 @@
  */
 import { TOOLS } from "@/lib/mcp/tools";
 import { requirements, paymentRequired, verify, settle, x402Config } from "@/lib/mcp/x402";
+import { db } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
 const VERSIONS = ["2025-06-18", "2025-03-26", "2024-11-05"];
@@ -30,7 +31,14 @@ function visibleTools() {
   }));
 }
 
-async function handle(msg: Rpc, payment: string | null): Promise<{ body: unknown; status?: number; headers?: Record<string, string>; raw?: Response } | null> {
+async function gate(tool: string, client: string, paid: boolean) {
+  const c = db();
+  if (!c) return "ok";
+  const { data, error } = await c.rpc("mcp_gate", { p_tool: tool, p_client: client || null, p_paid: paid });
+  return error ? "ok" : String(data);   // never block on a logging failure
+}
+
+async function handle(msg: Rpc, payment: string | null, clientIp = ""): Promise<{ body: unknown; status?: number; headers?: Record<string, string>; raw?: Response } | null> {
   const id = msg.id;
   switch (msg.method) {
     case "initialize": {
@@ -49,6 +57,7 @@ async function handle(msg: Rpc, payment: string | null): Promise<{ body: unknown
       const args = (msg.params?.arguments ?? {}) as Record<string, unknown>;
       const tool = TOOLS.find((t) => t.name === name);
       if (!tool || (tool.paid && !x402Config())) return { body: error(id, -32602, `Unknown tool: ${name}`) };
+      if ((await gate(tool.name, clientIp, !!tool.paid && !!payment)) === "rate_limited") return { body: error(id, -32000, "Rate limit reached (60 calls per minute, 2,000 per day). Please slow down.") };
       let paid: { payload: unknown; req: Record<string, unknown> } | null = null;
       if (tool.paid) {
         const req = requirements(tool.priceUsd ?? 0.001, `${ENDPOINT}#${tool.name}`, tool.title)!;
@@ -79,12 +88,13 @@ export async function POST(req: Request) {
   let body: unknown;
   try { body = await req.json(); } catch { return json(error(null, -32700, "Parse error"), 400); }
   const payment = req.headers.get("x-payment");
+  const ip = (req.headers.get("x-nf-client-connection-ip") ?? req.headers.get("x-forwarded-for") ?? "").split(",")[0].trim();
   if (Array.isArray(body)) {   // batch (older clients): no paid tools in batches
     const out = [];
-    for (const m of body.slice(0, 20) as Rpc[]) { const r = await handle(m, null); if (r?.body) out.push(r.body); }
+    for (const m of body.slice(0, 20) as Rpc[]) { const r = await handle(m, null, ip); if (r?.body) out.push(r.body); }
     return out.length ? json(out) : new Response(null, { status: 202, headers: CORS });
   }
-  const r = await handle(body as Rpc, payment);
+  const r = await handle(body as Rpc, payment, ip);
   if (!r) return new Response(null, { status: 202, headers: CORS });
   if (r.raw) return r.raw;
   return json(r.body, r.status ?? 200, r.headers ?? {});
