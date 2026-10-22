@@ -3,6 +3,8 @@ import Link from "next/link";
 import { TOOLS } from "@/lib/mcp/tools";
 import { x402Config } from "@/lib/mcp/x402";
 
+const PACK_URL = process.env.NEXT_PUBLIC_STRIPE_PACK_URL ?? "";
+
 export const metadata: Metadata = {
   title: "Electra Index MCP server — find MCP servers and AI agents from your assistant",
   description: "Connect Claude, Cursor or any MCP client to Electra Index: search 40,000 MCP servers, check which ones are online, compare AI agents and verified prices. Free, read-only.",
@@ -12,7 +14,8 @@ export const metadata: Metadata = {
 const URL = "https://electraindex.com/api/mcp";
 
 export default function McpServerPage() {
-  const paidOn = !!x402Config();
+  const paidOn = !!(process.env.MCP_API_SECRET ?? "");
+  const x402On = !!x402Config();
   const tools = TOOLS.filter((t) => !t.paid || paidOn);
   const cfg = JSON.stringify({ mcpServers: { "electra-index": { url: URL } } }, null, 2);
   return (
@@ -56,11 +59,24 @@ export default function McpServerPage() {
         </div>
       </div>
 
-      <div className="card" style={{ marginTop: 24 }}>
-        <div className="card-head"><h2>Payments for agents (x402)</h2></div>
+      <div className="card" style={{ marginTop: 24 }} id="pricing">
+        <div className="card-head"><h2>Pricing</h2><span className="small muted">Search and facts are free</span></div>
         <div className="card-body prose">
-          <p style={{ marginTop: 0 }}>Search and facts are free. {paidOn ? "Some data-rich tools are paid per call with" : "Data-rich tools will be paid per call with"} <a href="https://docs.base.org/ai-agents/guides/x402-payments" rel="noopener">x402</a>: the server answers <code>402 Payment Required</code> with the price, your agent pays in USDC on Base and retries. No account, no subscription. Payments go directly to Electra Index&apos;s wallet; we never hold your funds or keys.</p>
-          <p className="small muted" style={{ marginBottom: 0 }}>Neutrality: we sell access to data, never positions. Rankings returned by the server are the same as on the website and are never paid. <Link href="/sources">Methodology</Link></p>
+          <p style={{ marginTop: 0 }}>Five tools are free, with no account and no key (fair use: 60 calls per minute, 2,000 per day). The availability history is paid, two ways:</p>
+          <div className="grid cols-2" style={{ marginTop: 12 }}>
+            <div className="card"><div className="card-body">
+              <p className="strong" style={{ marginTop: 0 }}>Pay per call · $0.01</p>
+              <p className="small">For autonomous agents, no account. The server answers <code>402 Payment Required</code> with the price; your agent pays in USDC on Base with <a href="https://docs.base.org/ai-agents/guides/x402-payments" rel="noopener">x402</a> and retries.</p>
+              <p className="small muted" style={{ marginBottom: 0 }}>{x402On ? "Available now." : "Coming soon."}</p>
+            </div></div>
+            <div className="card"><div className="card-body">
+              <p className="strong" style={{ marginTop: 0 }}>Developer pack · $5</p>
+              <p className="small">600 calls, valid 6 months. Paid by card, the key arrives by email. Add it as a header: <code>Authorization: Bearer ei_…</code></p>
+              {paidOn && PACK_URL ? <a href={PACK_URL} className="btn primary" rel="noopener">Buy a developer pack</a> : <p className="small muted" style={{ marginBottom: 0 }}>Coming soon.</p>}
+            </div></div>
+          </div>
+          <pre className="code" style={{ marginTop: 12 }}>claude mcp add --transport http electra-index {URL} --header &quot;Authorization: Bearer ei_your_key&quot;</pre>
+          <p className="small muted" style={{ marginBottom: 0 }}>Neutrality: we sell access to data, never positions. Rankings returned by the server are the same as on the website and are never paid. We never hold your funds or keys. <Link href="/sources#what-we-sell">What we sell</Link></p>
         </div>
       </div>
     </div>

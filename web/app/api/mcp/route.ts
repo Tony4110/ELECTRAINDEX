@@ -14,7 +14,7 @@ const CORS = {
   "access-control-allow-origin": "*",
   "access-control-allow-methods": "POST, GET, OPTIONS, DELETE",
   "access-control-allow-headers": "content-type, accept, mcp-protocol-version, mcp-session-id, x-payment, authorization",
-  "access-control-expose-headers": "mcp-session-id, x-payment-response",
+  "access-control-expose-headers": "mcp-session-id, x-payment-response, x-credits-remaining",
 };
 type Rpc = { jsonrpc?: string; id?: string | number | null; method?: string; params?: Record<string, unknown> };
 
@@ -23,10 +23,27 @@ const json = (body: unknown, status = 200, extra: Record<string, string> = {}) =
 const result = (id: Rpc["id"], r: unknown) => ({ jsonrpc: "2.0", id: id ?? null, result: r });
 const error = (id: Rpc["id"], code: number, message: string) => ({ jsonrpc: "2.0", id: id ?? null, error: { code, message } });
 
+const paidEnabled = () => !!(process.env.MCP_API_SECRET ?? "");
+const PACK = "Or use a developer pack key (USD 5 = 600 calls, 6 months): https://electraindex.com/mcp-server#pricing";
+
+function bearer(req: Request) {
+  const a = req.headers.get("authorization") ?? req.headers.get("x-api-key") ?? "";
+  const k = a.replace(/^Bearer\s+/i, "").trim();
+  return /^ei_[0-9a-f]{48}$/.test(k) ? k : null;
+}
+
+async function useKey(key: string, tool: string) {
+  const c = db();
+  if (!c) return { ok: false, reason: "service unavailable" };
+  const { data, error } = await c.rpc("api_key_use", { p_secret: process.env.MCP_API_SECRET ?? "", p_key: key, p_tool: tool });
+  if (error || !data) return { ok: false, reason: "key check failed" };
+  return data as { ok: boolean; remaining?: number; reason?: string };
+}
+
 function visibleTools() {
-  const paidOn = !!x402Config();
+  const paidOn = paidEnabled();
   return TOOLS.filter((t) => !t.paid || paidOn).map((t) => ({
-    name: t.name, title: t.title, description: t.paid ? `${t.description} Price: $${t.priceUsd} per call.` : t.description,
+    name: t.name, title: t.title, description: t.paid ? `${t.description} Price: $${t.priceUsd} per call with x402, or 1 credit of a developer pack.` : t.description,
     inputSchema: t.inputSchema, annotations: { readOnlyHint: true, openWorldHint: false },
   }));
 }
@@ -38,7 +55,7 @@ async function gate(tool: string, client: string, paid: boolean) {
   return error ? "ok" : String(data);   // never block on a logging failure
 }
 
-async function handle(msg: Rpc, payment: string | null, clientIp = ""): Promise<{ body: unknown; status?: number; headers?: Record<string, string>; raw?: Response } | null> {
+async function handle(msg: Rpc, payment: string | null, clientIp = "", apiKey: string | null = null): Promise<{ body: unknown; status?: number; headers?: Record<string, string>; raw?: Response } | null> {
   const id = msg.id;
   switch (msg.method) {
     case "initialize": {
@@ -56,14 +73,22 @@ async function handle(msg: Rpc, payment: string | null, clientIp = ""): Promise<
       const name = String(msg.params?.name ?? "");
       const args = (msg.params?.arguments ?? {}) as Record<string, unknown>;
       const tool = TOOLS.find((t) => t.name === name);
-      if (!tool || (tool.paid && !x402Config())) return { body: error(id, -32602, `Unknown tool: ${name}`) };
-      if ((await gate(tool.name, clientIp, !!tool.paid && !!payment)) === "rate_limited") return { body: error(id, -32000, "Rate limit reached (60 calls per minute, 2,000 per day). Please slow down.") };
+      if (!tool || (tool.paid && !paidEnabled())) return { body: error(id, -32602, `Unknown tool: ${name}`) };
+      if ((await gate(tool.name, clientIp, !!tool.paid && !!(payment || apiKey))) === "rate_limited") return { body: error(id, -32000, "Rate limit reached (60 calls per minute, 2,000 per day). Please slow down.") };
       let paid: { payload: unknown; req: Record<string, unknown> } | null = null;
+      let credits: number | undefined;
       if (tool.paid) {
-        const req = requirements(tool.priceUsd ?? 0.001, `${ENDPOINT}#${tool.name}`, tool.title)!;
-        const v = await verify(payment, req);
-        if (!v.ok) return { body: null, raw: paymentRequired(req, v.error) };
-        paid = { payload: v.payload, req };
+        if (apiKey) {                                   // developer pack
+          const u = await useKey(apiKey, tool.name);
+          if (!u.ok) return { body: error(id, -32001, `Developer key refused: ${u.reason}. ${PACK}`) };
+          credits = u.remaining;
+        } else {                                        // x402 pay per call
+          const req = requirements(tool.priceUsd ?? 0.01, `${ENDPOINT}#${tool.name}`, `${tool.title}. ${PACK}`);
+          if (!req) return { body: error(id, -32001, "This tool needs a developer pack key (USD 5 = 600 calls, 6 months): https://electraindex.com/mcp-server#pricing") };
+          const v = await verify(payment, req);
+          if (!v.ok) return { body: null, raw: paymentRequired(req, v.error) };
+          paid = { payload: v.payload, req };
+        }
       }
       try {
         const out = await tool.run(args);
@@ -73,6 +98,7 @@ async function handle(msg: Rpc, payment: string | null, clientIp = ""): Promise<
           if (!receipt) return { body: null, raw: paymentRequired(paid.req, "Payment settlement failed") };
           headers["x-payment-response"] = receipt;
         }
+        if (credits !== undefined) headers["x-credits-remaining"] = String(credits);
         return { body: result(id, { content: [{ type: "text", text: JSON.stringify(out, null, 2) }], structuredContent: out, isError: false }), headers };
       } catch (e) {
         return { body: result(id, { content: [{ type: "text", text: e instanceof Error ? e.message : "Error" }], isError: true }) };
@@ -88,13 +114,14 @@ export async function POST(req: Request) {
   let body: unknown;
   try { body = await req.json(); } catch { return json(error(null, -32700, "Parse error"), 400); }
   const payment = req.headers.get("x-payment");
+  const apiKey = bearer(req);
   const ip = (req.headers.get("x-nf-client-connection-ip") ?? req.headers.get("x-forwarded-for") ?? "").split(",")[0].trim();
   if (Array.isArray(body)) {   // batch (older clients): no paid tools in batches
     const out = [];
     for (const m of body.slice(0, 20) as Rpc[]) { const r = await handle(m, null, ip); if (r?.body) out.push(r.body); }
     return out.length ? json(out) : new Response(null, { status: 202, headers: CORS });
   }
-  const r = await handle(body as Rpc, payment, ip);
+  const r = await handle(body as Rpc, payment, ip, apiKey);
   if (!r) return new Response(null, { status: 202, headers: CORS });
   if (r.raw) return r.raw;
   return json(r.body, r.status ?? 200, r.headers ?? {});
