@@ -3,7 +3,7 @@
  * Off until X402_PAY_TO is set in Netlify. Non-custodial: the agent pays the wallet directly,
  * a facilitator verifies and settles the USDC transfer. Electra Index never holds funds or keys.
  *   X402_PAY_TO           public receiving address (0x…) — never a private key
- *   X402_NETWORK          base | base-sepolia (default base-sepolia = test network)
+ *   X402_NETWORK          base | base-sepolia (default base = real network; base-sepolia only on request)
  *   X402_FACILITATOR_URL  default https://x402.org/facilitator
  */
 const USDC: Record<string, { asset: string; name: string }> = {
@@ -15,7 +15,7 @@ export function x402Config() {
   if (!(process.env.MCP_API_SECRET ?? "")) return null;   // paid data needs the server secret too
   const payTo = (process.env.X402_PAY_TO ?? "").trim();
   if (!/^0x[0-9a-fA-F]{40}$/.test(payTo)) return null;
-  const network = process.env.X402_NETWORK === "base" ? "base" : "base-sepolia";
+  const network = process.env.X402_NETWORK === "base-sepolia" ? "base-sepolia" : "base";
   const facilitator = (process.env.X402_FACILITATOR_URL ?? "https://x402.org/facilitator").replace(/\/+$/, "");
   return { payTo, network, facilitator };
 }
