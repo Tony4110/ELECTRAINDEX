@@ -4,7 +4,7 @@ import { x402Config } from "@/lib/mcp/x402";
 
 export const metadata: Metadata = {
   title: "Pricing — Electra Index for developers, publishers and sponsors",
-  description: "Free index, alerts and MCP server. Developer pack: $5 for 600 calls to the paid tools. Free Publisher Program. Sponsored placements that never change a ranking.",
+  description: "Free index, alerts and MCP server. Developer pack: $5 for 600 calls to the paid tools. Free Publisher Program and Monitoring Pro at $9.99/month. Sponsored placements that never change a ranking.",
   alternates: { canonical: "/pricing" },
 };
 
@@ -57,9 +57,17 @@ export default function PricingPage() {
               <li>Alert when your MCP server stops responding</li>
               <li>Monthly report of clicks from Electra Index to your site</li>
               <li>Founding pilot: free live testing for the first 10 publishers</li>
-              <li>Monitoring Pro (hourly checks, history, embeddable badge): coming soon</li>
             </ul>
-            <p className="small" style={{ marginBottom: 0 }}>Join from your tool or agent page: tick <i>&quot;I built it&quot;</i> in the <b>Follow</b> box. Not listed yet? <Link href="/submit">List your agent</Link>.</p>
+            <p className="small" style={{ margin: 0 }}>Join from your tool or agent page: tick <i>&quot;I built it&quot;</i> in the <b>Follow</b> box. Not listed yet? <Link href="/submit">List your agent</Link>.</p>
+            <div className="program-box" id="monitoring">
+              <p className="program-title">Monitoring Pro · $9.99/month</p>
+              <ul className="price-list" style={{ flex: "none" }}>
+                <li>Your hosted server checked <b>every 30 minutes</b></li>
+                <li>Email <b>within the hour</b> when it stops answering, and when it is back</li>
+                <li>Private 90-day report and a status badge with your answer rate</li>
+              </ul>
+              <Link href="/monitor" className="btn primary" style={{ marginTop: 8 }}>Monitor my server</Link>
+            </div>
           </div>
         </div>
       </div>
@@ -77,6 +85,7 @@ export default function PricingPage() {
           <details><summary>Where do I find my developer key?</summary><p>In the email sent right after your purchase, from alerts@electraindex.com (check your spam folder). The key starts with <code>ei_</code> and is shown only once: keep it private, like a password.</p></details>
           <details><summary>Where do I enter the key?</summary><p>In your MCP client, as the header <code>Authorization: Bearer ei_…</code>. Step-by-step for Claude Code, Cursor, VS Code and others: <Link href="/mcp-server#setup">setup</Link>.</p></details>
           <details><summary>I lost my key or used all my calls.</summary><p>Write to contact@electraindex.com from the email you used to buy. We can send a new key for the calls you have left.</p></details>
+          <details><summary>What is the difference between the developer pack and Monitoring Pro?</summary><p>The developer pack is for people who <b>choose</b> MCP servers: it lets your AI assistant read the availability history of any server. Monitoring Pro is for people who <b>publish</b> a server: we check yours every 30 minutes and email you when it stops answering. <Link href="/monitor">Monitoring Pro</Link></p></details>
           <details><summary>Can I pay to rank higher?</summary><p>No. We sell access to data, its history and its monitoring, and clearly labelled sponsored placements. We never sell a score, a rank or the removal of a fact. <Link href="/sources#what-we-sell">What we sell</Link></p></details>
         </div>
       </div>

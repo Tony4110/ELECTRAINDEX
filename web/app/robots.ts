@@ -12,7 +12,7 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
     chunks = Math.max(1, Math.ceil((count ?? 0) / SITEMAP_CHUNK));
   }
   return {
-    rules: [{ userAgent: "*", allow: "/", disallow: ["/search", "/submit?", "/go/"] }],
+    rules: [{ userAgent: "*", allow: "/", disallow: ["/search", "/submit?", "/go/", "/monitor/r/", "/monitor?"] }],
     sitemap: [`${SITE}/sitemap/0.xml`, ...Array.from({ length: chunks }, (_, i) => `${SITE}/sitemap/${i + 1}.xml`)],
     host: SITE,
   };

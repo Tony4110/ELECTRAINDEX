@@ -437,3 +437,16 @@ tbody tr:nth-child(-n+3) .rank-num::before { content: ""; position: absolute; le
 .price-list { margin: 0; padding-left: 18px; font-size: 14px; color: var(--ink-2); line-height: 1.5; flex: 1; }
 .price-list li { margin: 5px 0; }
 .price-card .btn { align-self: flex-start; }
+
+/* Monitoring Pro */
+.ok-box { margin: 16px 0 0; padding: 12px 14px; border-radius: 8px; background: var(--pos-soft); color: var(--ink); }
+.mon-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0; }
+@media (max-width: 720px) { .mon-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.mon-stats div { padding: 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
+.mon-stats dt { font-size: 12px; color: var(--muted); margin: 0; }
+.mon-stats dd { font-size: 22px; font-weight: 800; margin: 2px 0 0; color: var(--ink); }
+.mon-bar { display: flex; gap: 2px; height: 26px; align-items: stretch; margin: 8px 0 4px; overflow: hidden; }
+.mon-bar span { flex: 1 1 0; min-width: 2px; border-radius: 2px; background: var(--soft); }
+.mon-bar span.up { background: var(--pos); } .mon-bar span.down { background: var(--neg); }
+.mon-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.mon-table td, .mon-table th { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); }
