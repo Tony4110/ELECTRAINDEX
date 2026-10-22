@@ -428,3 +428,12 @@ tbody tr:nth-child(-n+3) .rank-num::before { content: ""; position: absolute; le
 .pulse-section { margin-top: 36px; }
 .pulse-section .card-head h3 { margin: 0; font-size: 15px; }
 .pulse-section .plain li { margin: 6px 0; }
+
+/* Pricing */
+.price-card .card-body { display: flex; flex-direction: column; gap: 10px; height: 100%; }
+.price-card.featured { box-shadow: 0 0 0 2px var(--sun); }
+.price-name { margin: 0; font-weight: 700; font-size: 15px; letter-spacing: .02em; text-transform: uppercase; color: var(--ink-2); }
+.price-amount { margin: 0; font-size: 34px; font-weight: 800; color: var(--ink); line-height: 1.1; }
+.price-list { margin: 0; padding-left: 18px; font-size: 14px; color: var(--ink-2); line-height: 1.5; flex: 1; }
+.price-list li { margin: 5px 0; }
+.price-card .btn { align-self: flex-start; }

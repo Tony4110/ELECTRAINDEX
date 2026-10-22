@@ -52,11 +52,18 @@ begin
     'Hi,' || chr(10) || chr(10) ||
     'Thank you for your Electra Index developer pack: ' || greatest(p_credits, 1) || ' calls to the paid tools of the Electra Index MCP server' ||
     case when p_days > 0 then ', valid until ' || to_char(now() + make_interval(days => p_days), 'DD Mon YYYY') else '' end || '.' || chr(10) || chr(10) ||
-    'Your key (shown only once, keep it private):' || chr(10) || v_key || chr(10) || chr(10) ||
-    'Claude Code:' || chr(10) ||
+    'YOUR KEY (shown only once, keep it private like a password):' || chr(10) || v_key || chr(10) || chr(10) ||
+    'HOW TO USE IT (pick your tool)' || chr(10) || chr(10) ||
+    '1) Claude Code, in the Terminal:' || chr(10) ||
     'claude mcp add --transport http electra-index https://electraindex.com/api/mcp --header "Authorization: Bearer ' || v_key || '"' || chr(10) || chr(10) ||
-    'Other MCP clients: add the header  Authorization: Bearer <your key>  to the server https://electraindex.com/api/mcp' || chr(10) ||
-    'Docs: https://electraindex.com/mcp-server' || chr(10) || chr(10) ||
+    '2) Cursor, in the file ~/.cursor/mcp.json:' || chr(10) ||
+    '{ "mcpServers": { "electra-index": { "url": "https://electraindex.com/api/mcp", "headers": { "Authorization": "Bearer ' || v_key || '" } } } }' || chr(10) || chr(10) ||
+    '3) VS Code, in the file .vscode/mcp.json:' || chr(10) ||
+    '{ "servers": { "electra-index": { "type": "http", "url": "https://electraindex.com/api/mcp", "headers": { "Authorization": "Bearer ' || v_key || '" } } } }' || chr(10) || chr(10) ||
+    '4) Any other client or your own agent: endpoint https://electraindex.com/api/mcp with the HTTP header' || chr(10) ||
+    'Authorization: Bearer ' || v_key || chr(10) || chr(10) ||
+    'Then ask your assistant, for example: "Show the availability history of the kinocut MCP server".' || chr(10) ||
+    'Each paid call uses one credit. Step-by-step guide: https://electraindex.com/mcp-server#setup' || chr(10) || chr(10) ||
     'Lost key or question? Reply to this email.' || chr(10) || chr(10) ||
     'Electra Index, published by Dreamotion OÜ' || chr(10) || 'Estonia & Switzerland' || chr(10) || 'contact@electraindex.com', 200);
   -- copy to contact@ (without the key)

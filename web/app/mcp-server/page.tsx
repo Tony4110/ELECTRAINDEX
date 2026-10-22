@@ -35,6 +35,22 @@ export default function McpServerPage() {
         </div>
       </div>
 
+      <div className="card" style={{ marginTop: 24 }} id="setup">
+        <div className="card-head"><h2>Setup with a developer key</h2><span className="small muted">For the paid tools · replace ei_your_key with your key</span></div>
+        <div className="card-body prose">
+          <p style={{ marginTop: 0 }}>Your key arrives by email after <Link href="/pricing#developer-pack">buying a developer pack</Link>. It starts with <code>ei_</code>. Send it as the header <code>Authorization: Bearer ei_your_key</code>:</p>
+          <p className="strong">Claude Code (Terminal)</p>
+          <pre className="code">{`claude mcp add --transport http electra-index ${URL} --header "Authorization: Bearer ei_your_key"`}</pre>
+          <p className="strong">Cursor · file ~/.cursor/mcp.json</p>
+          <pre className="code">{JSON.stringify({ mcpServers: { "electra-index": { url: URL, headers: { Authorization: "Bearer ei_your_key" } } } }, null, 2)}</pre>
+          <p className="strong">VS Code · file .vscode/mcp.json</p>
+          <pre className="code">{JSON.stringify({ servers: { "electra-index": { type: "http", url: URL, headers: { Authorization: "Bearer ei_your_key" } } } }, null, 2)}</pre>
+          <p className="strong">Any other client or your own agent</p>
+          <p>Use the endpoint <code>{URL}</code> and add the HTTP header <code>Authorization: Bearer ei_your_key</code>. Apps that only accept a URL (no header) can still use all free tools.</p>
+          <p className="small muted" style={{ marginBottom: 0 }}>Each paid call uses one credit; the response header <code>x-credits-remaining</code> shows what is left. Lost key? Write to contact@electraindex.com.</p>
+        </div>
+      </div>
+
       <div className="card" style={{ marginTop: 24 }}>
         <div className="card-head"><h2>Tools</h2><span className="small muted">{tools.length} tools · all read-only</span></div>
         <div className="table-wrap"><table><tbody>
@@ -71,7 +87,7 @@ export default function McpServerPage() {
             </div></div>
             <div className="card"><div className="card-body">
               <p className="strong" style={{ marginTop: 0 }}>Developer pack · $5</p>
-              <p className="small">600 calls, valid 6 months. Paid by card, the key arrives by email. Add it as a header: <code>Authorization: Bearer ei_…</code></p>
+              <p className="small">600 calls, valid 6 months. Paid by card, the key arrives by email. Then follow the <a href="#setup">setup</a> for your tool.</p>
               {paidOn && PACK_URL ? <a href={PACK_URL} className="btn primary" rel="noopener">Buy a developer pack</a> : <p className="small muted" style={{ marginBottom: 0 }}>Coming soon.</p>}
             </div></div>
           </div>

@@ -73,6 +73,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/payments">Payments</Link>
               <Link href="/new">New</Link>
               <Link href="/pulse">Pulse</Link>
+              <Link href="/pricing">Pricing</Link>
               <Link href="/blog">Blog</Link>
               <Link href="/sources">Methodology</Link>
             </nav>
@@ -92,7 +93,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Link href="/advertise" style={{ color: "var(--muted)" }}>Advertise</Link>
           </div>
           <div className="wrap small" style={{ paddingTop: 8 }}>
-            <span>Published by <a href="https://dreamotion.io" rel="noopener">Dreamotion OÜ</a> (Estonia) · Contact: <a href="mailto:contact@electraindex.com">contact@electraindex.com</a> · <a href="/privacy">Privacy</a> · <a href="/mcp-server">MCP server</a></span>
+            <span>Published by <a href="https://dreamotion.io" rel="noopener">Dreamotion OÜ</a> (Estonia) · Contact: <a href="mailto:contact@electraindex.com">contact@electraindex.com</a> · <a href="/privacy">Privacy</a> · <a href="/mcp-server">MCP server</a> · <a href="/pricing">Pricing</a></span>
           </div>
         </footer>
       </body>
