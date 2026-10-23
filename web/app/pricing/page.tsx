@@ -64,9 +64,9 @@ export default function PricingPage() {
             <p className="price-name">Monitoring Pro</p>
             {lifetimeOn ? (
               <>
-                <p className="offer-tag" style={{ margin: 0 }}>Exclusive launch offer</p>
+                <p style={{ margin: 0 }}><span className="offer-tag" style={{ margin: 0 }}>Exclusive launch offer</span></p>
                 <p className="price-amount">$39.99 <span className="small muted">once, for life</span></p>
-                <p className="small muted" style={{ margin: 0 }}>Instead of $9.99/month. No subscription.</p>
+                <p className="small" style={{ margin: 0 }}>Instead of <span className="offer-strike">$9.99/month</span> · <b>No subscription</b></p>
               </>
             ) : <p className="price-amount">$9.99 <span className="small muted">per month</span></p>}
             <ul className="price-list">

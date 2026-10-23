@@ -45,8 +45,9 @@ export default async function MonitorPage({ searchParams }: { searchParams: Prom
 
       {offer ? (
         <div className="offer-box" style={{ marginTop: 20 }}>
-          <p className="offer-tag">Exclusive launch offer</p>
-          <p className="offer-price"><b>$39.99 once</b>, monitoring for life <span className="offer-was">instead of $9.99/month (about $120 a year)</span></p>
+          <span className="offer-tag">Exclusive launch offer</span>
+          <p className="offer-price"><b>$39.99 once</b>, monitoring for life</p>
+          <p className="offer-was" style={{ margin: "4px 0 0" }}>Instead of <span className="offer-strike">$9.99/month</span> (about $120 a year) <span className="offer-save">Save 67% in year one</span></p>
           <p className="small" style={{ margin: "4px 0 12px" }}>One payment, no subscription, nothing more to pay. Available during the launch only.</p>
           <a className="btn primary" href="#start">Check my server ↓</a>
         </div>
