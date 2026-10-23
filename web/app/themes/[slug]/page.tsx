@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SpotlightBox } from "@/components/spotlight";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { db, getTasks, type ThemeRanking, type Theme } from "@/lib/db";
@@ -71,6 +72,8 @@ export default async function ThemePage({ params, searchParams }: { params: P; s
         <span className="small muted">Tasks in this theme:</span>
         {themeTasks.map((x) => <Link key={x.slug} href={`/tasks/${x.slug}`} className="chip">{x.name}</Link>)}
       </div>
+
+      <SpotlightBox path={`/themes/${slug}`} />
 
       <KindTabs base={`/themes/${slug}`} kind={kind} counts={{ agents: nAgents ?? 0, tools: nTools ?? 0 }} />
       {kind === "agents" ? (

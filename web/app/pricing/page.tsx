@@ -13,6 +13,7 @@ const PACK_URL = process.env.NEXT_PUBLIC_STRIPE_PACK_URL ?? "";
 export default function PricingPage() {
   const packOn = !!(process.env.MCP_API_SECRET ?? "") && !!PACK_URL;
   const x402On = !!x402Config();
+  const spotlightUrl = (process.env.NEXT_PUBLIC_STRIPE_SPOTLIGHT_URL ?? "") && (process.env.MCP_API_SECRET ?? "") ? process.env.NEXT_PUBLIC_STRIPE_SPOTLIGHT_URL : "";
   const lifetimeOn = !!(process.env.NEXT_PUBLIC_STRIPE_MONITOR_LIFETIME_URL ?? "") && !!(process.env.MCP_API_SECRET ?? "");
   return (
     <>
@@ -83,8 +84,15 @@ export default function PricingPage() {
 
       <div className="card" style={{ marginTop: 24 }}>
         <div className="card-body" style={{ display: "flex", gap: 16, alignItems: "center", flexWrap: "wrap", justifyContent: "space-between" }}>
-          <span><b>Sponsors</b> · reach people choosing AI agents. Always labelled, never inside a ranking.</span>
-          <Link href="/advertise" className="btn">Advertise</Link>
+          <span>
+            <span className="offer-tag" style={{ marginRight: 10 }}>Launch offer</span>
+            <b>Launch Spotlight · $14.99</b> <span className="offer-instead">instead of <span className="offer-strike">$79</span></span>
+            <span className="small" style={{ display: "block", marginTop: 4 }}>60 days of Sponsored visibility for your agent or MCP server on the pages where people compare. No subscription. No click? The next 60 days are free.</span>
+          </span>
+          <span style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+            {spotlightUrl ? <a href={spotlightUrl} className="btn primary" rel="noopener">Get it for $14.99</a> : null}
+            <Link href="/spotlight" className="btn">Details</Link>
+          </span>
         </div>
       </div>
 

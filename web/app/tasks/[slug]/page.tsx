@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SpotlightBox } from "@/components/spotlight";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { db, providerHref, type Task, type TaskRanking } from "@/lib/db";
@@ -88,6 +89,8 @@ export default async function TaskPage({ params, searchParams }: { params: P; se
         <Link href={link(1, false)} className={`chip ${!onlyFull ? "on" : ""}`}>All matches</Link>
         <Link href={link(1, true)} className={`chip ${onlyFull ? "on" : ""}`}>Full coverage only</Link>
       </div>
+
+      <SpotlightBox path={`/tasks/${t.slug}`} />
 
       <section className="grid cols-3">
         <div className="card span-2 table-wrap">

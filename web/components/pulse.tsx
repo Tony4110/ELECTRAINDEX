@@ -90,6 +90,16 @@ export function PulseView({ e, editions }: { e: PulseEdition; editions: { week: 
         </section>
       ) : null}
 
+      {d.sponsors?.length ? (
+        <section className="pulse-section">
+          <div className="section-title"><h2>Launch Spotlight</h2><span className="badge">SPONSORED</span><span className="spacer" /><Link href="/spotlight" className="small faint">What is this?</Link></div>
+          <div className="launches">{d.sponsors.map((a) => (
+            <Link key={`${a.type}-${a.slug}`} href={a.type === "agent" ? `/agents/${a.slug}` : `/mcp/${a.slug}`} className="launch"><span className="body"><span className="strong ink">{a.name}</span><span className="desc2">{cut(a.description)}</span></span></Link>
+          ))}</div>
+          <p className="small muted">Paid placements, listed separately. They never change a score or a rank.</p>
+        </section>
+      ) : null}
+
       <p className="note" style={{ marginTop: 32 }}>Method: weeks run Monday to Sunday (UTC). &quot;New&quot; means first seen by Electra Index in the Official MCP Registry. Use cases are matched automatically from each publisher&apos;s description. Prices come from official pricing pages. <Link href="/sources">Methodology</Link></p>
 
       {editions.length > 1 ? (

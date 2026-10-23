@@ -5,6 +5,8 @@
  *     (server given by client_reference_id = Electra Index slug, set by /monitor, or a custom text field)
  *   - "Monitoring Pro" launch offer, paid once (mode "payment", amount = MONITOR_LIFETIME_CENTS, default 3999)
  *     -> starts lifetime monitoring of the buyer's server
+ *   - "Launch Spotlight" paid once (mode "payment", amount = SPOTLIGHT_CENTS, default 1499)
+ *     -> 60 days of sponsored visibility for the buyer's agent or MCP server (custom field = its page or website)
  *   - customer.subscription.deleted -> ends Monitoring Pro
  *   STRIPE_WEBHOOK_SECRET  whsec_… (Netlify, secret)    MCP_API_SECRET  same value as Vault 'mcp_api_secret'
  *   PACK_PRICE_CENTS (default 599) · PACK_CALLS (default 600) · PACK_DAYS (default 183)
@@ -65,6 +67,14 @@ export async function POST(req: Request) {
   if (s.payment_status !== "paid" && s.payment_status !== "no_payment_required") return new Response("not paid", { status: 200 });
   const email = String((s.customer_details as Obj | undefined)?.email ?? s.customer_email ?? "");
   if (!c || !email) return new Response("cannot process", { status: 500 });      // Stripe retries
+
+  // Launch Spotlight (paid once)
+  const paid = Number(s.amount_subtotal ?? s.amount_total);
+  if (s.mode === "payment" && paid === Number(process.env.SPOTLIGHT_CENTS ?? 1499)) {
+    const { data, error } = await c.rpc("spotlight_buy", { p_secret: apiSecret, p_email: email, p_ref: serverRef(s), p_session: str(s.id) || null });
+    if (error) return new Response("spotlight failed", { status: 500 });     // Stripe retries; idempotent on session id
+    return new Response(String(data), { status: 200 });
+  }
 
   // Monitoring Pro started: monthly subscription, or the launch offer paid once ("lifetime")
   const lifetime = s.mode === "payment" && Number(s.amount_subtotal ?? s.amount_total) === Number(process.env.MONITOR_LIFETIME_CENTS ?? 3999);

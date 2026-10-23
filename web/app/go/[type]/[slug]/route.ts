@@ -1,16 +1,40 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { createHash } from "node:crypto";
 import { db } from "@/lib/db";
 
 /**
- * /go/<type>/<slug>?to=website|pricing|repository&from=<page path>
- * Records an outbound click (no personal data) and redirects to the destination stored in the database.
+ * /go/<type>/<slug>?to=website|pricing|repository&from=<page path>[&s=1 for a sponsored placement]
+ * Records an outbound click and redirects to the destination stored in the database.
+ * A click counts as human only if it comes from one of our pages and does not look like a robot;
+ * the database also keeps one human click per visitor and product per day (see 0048).
+ * Visitor = one-way hash of connection + browser + day: no address, no cookie is stored.
  * The destination never comes from the URL, so this cannot be used as an open redirect.
  */
 const TYPES: Record<string, { entity: string; view: string; cols: Record<string, string> }> = {
   agent: { entity: "agent", view: "v_agent_cards", cols: { website: "website", pricing: "pricing_url" } },
   mcp: { entity: "mcp_server", view: "v_mcp_servers", cols: { website: "website", repository: "repository_url" } },
 };
-const BOT = /bot|crawl|spider|slurp|preview|facebookexternalhit|embedly|headless/i;
+const BOT = /bot|crawl|spider|slurp|preview|facebookexternalhit|embedly|headless|python|curl|wget|httpclient|axios|node-fetch|go-http|java\/|okhttp|scrapy|phantom|selenium|playwright|puppeteer/i;
+const OUR_HOSTS = /(^|\.)electraindex\.com$|\.netlify\.app$|^localhost$/i;
+
+/** Does this request look like a person who clicked a button on one of our pages? */
+function looksHuman(req: NextRequest) {
+  const ua = req.headers.get("user-agent") ?? "";
+  if (!ua || BOT.test(ua) || !/Mozilla\//.test(ua)) return false;
+  if (!req.headers.get("accept-language")) return false;
+  let refHost = "";
+  try { refHost = new URL(req.headers.get("referer") ?? "").hostname; } catch { return false; }
+  if (!OUR_HOSTS.test(refHost)) return false;
+  const site = req.headers.get("sec-fetch-site");
+  if (site && site !== "same-origin" && site !== "same-site") return false;
+  return true;
+}
+
+function visitorHash(req: NextRequest) {
+  const ip = req.headers.get("x-nf-client-connection-ip") ?? (req.headers.get("x-forwarded-for") ?? "").split(",")[0].trim();
+  const day = new Date().toISOString().slice(0, 10);
+  return createHash("sha256").update(`${ip}|${req.headers.get("user-agent") ?? ""}|${day}|electra-clicks`).digest("hex").slice(0, 32);
+}
 
 export const dynamic = "force-dynamic";
 
@@ -24,9 +48,13 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ type
   if (!t || !c || !(to in t.cols)) return NextResponse.redirect(home, 302);
 
   let url: string | null = null;
-  // humans only: crawlers and link previews are redirected without being counted
+  // declared crawlers and link previews are redirected without being logged; everything else is logged,
+  // and marked human only when it looks like a real visitor coming from our pages
   if (!BOT.test(req.headers.get("user-agent") ?? "")) {
-    const { data, error } = await c.rpc("go_outbound", { p_type: t.entity, p_slug: slug, p_target: to, p_path: from });
+    const { data, error } = await c.rpc("go_outbound", {
+      p_type: t.entity, p_slug: slug, p_target: to, p_path: from,
+      p_visitor: visitorHash(req), p_human: looksHuman(req), p_sponsored: req.nextUrl.searchParams.get("s") === "1",
+    });
     if (!error && typeof data === "string") url = data;
   }
   if (!url) {

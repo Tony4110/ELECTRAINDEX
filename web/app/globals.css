@@ -462,3 +462,8 @@ tbody tr:nth-child(-n+3) .rank-num::before { content: ""; position: absolute; le
 .offer-instead { font-size: 15px; color: var(--muted); }
 .steps-mini { margin: 0 0 14px; padding-left: 22px; font-size: 14px; color: var(--ink-2); line-height: 1.5; }
 .steps-mini li { margin: 4px 0; } .steps-mini li.now::marker { color: var(--sun-ink); font-weight: 800; } .steps-mini li.done { color: var(--muted); }
+/* Launch Spotlight */
+.spotlight-box { margin: 16px 0 20px; padding: 14px 16px; border-radius: 10px; background: var(--panel); border: 1px dashed var(--line); }
+.spotlight-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.spotlight-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.spotlight-item { padding: 10px 12px; border-radius: 8px; background: var(--soft); }

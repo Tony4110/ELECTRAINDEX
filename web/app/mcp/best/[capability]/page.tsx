@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SpotlightBox } from "@/components/spotlight";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { db, MIN_TOOLS_FOR_INDEX, type AgentCard, type CapabilityOverview, type CapabilityTool } from "@/lib/db";
@@ -103,6 +104,8 @@ export default async function BestFor({ params, searchParams }: { params: P; sea
         {num(o.tools)} MCP servers in the Official MCP Registry do {uc}. {num(o.hosted_tools)} can be used as a hosted endpoint, with nothing to install, and {num(o.open_source_tools)} publish their source code.
         {top.length ? <> First by relevance and readiness: {top.map((t, i) => <span key={t.tool_slug}>{i ? (i === top.length - 1 ? " and " : ", ") : ""}<Link href={`/mcp/${t.tool_slug}`}>{t.tool_name}</Link></span>)}.</> : null}
       </p>
+
+      <SpotlightBox path={`/mcp/best/${o.capability_slug}`} />
 
       <section className="grid cols-3">
         <div className="card span-2 table-wrap">

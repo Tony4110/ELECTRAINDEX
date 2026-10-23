@@ -5,6 +5,7 @@ import { timeAgo } from "@/lib/format";
 import { SignalItem, Empty, SetupNotice, Tri } from "@/components/ui";
 import { Quality, Price, Logo } from "@/components/rank";
 import SponsorSlot from "@/components/sponsor-slot";
+import { SpotlightBox } from "@/components/spotlight";
 
 export const metadata: Metadata = {
   title: "New listings — latest AI agents and tools",
@@ -50,6 +51,8 @@ export default async function NewPage({ searchParams }: { searchParams: SP }) {
       <div className="chips" style={{ marginTop: 16 }}>
         <Link href="/submit" className="btn primary">List your agent →</Link>
       </div>
+
+      <SpotlightBox path="/new" />
 
       <div className="featured-launch">
         <p className="featured-launch-kicker">Featured launch</p>

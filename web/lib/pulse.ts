@@ -8,6 +8,7 @@ export type PulseData = {
   live: { tested: number; online: number; auth_required: number; down: number; stopped_answering: PulseItem[]; back_online: PulseItem[]; most_tools: PulseItem[] };
   new_servers: PulseItem[]; prices: PulsePrice[]; new_agents: PulseItem[];
   use_cases: { slug: string; name: string; new_servers: number }[];
+  sponsors?: { type: "agent" | "mcp"; slug: string; name: string; description?: string | null }[];
 };
 export type PulseEdition = { week: string; week_start: string; data: PulseData; built_at: string };
 
