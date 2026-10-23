@@ -66,7 +66,7 @@ export default function PricingPage() {
               <>
                 <p style={{ margin: 0 }}><span className="offer-tag" style={{ margin: 0 }}>Exclusive launch offer</span></p>
                 <p className="price-amount">$39.99 <span className="small muted">once, for life</span></p>
-                <p className="offer-instead" style={{ margin: 0 }}>Instead of <span className="offer-strike">$9.99/month</span> · <b style={{ color: "var(--ink)" }}>No subscription</b></p>
+                <p className="offer-instead" style={{ margin: 0 }}>Instead of <span className="offer-strike">$9.99/month</span> (<span className="offer-strike">$120 a year</span>)</p>
               </>
             ) : <p className="price-amount">$9.99 <span className="small muted">per month</span></p>}
             <ul className="price-list">
@@ -75,7 +75,7 @@ export default function PricingPage() {
               <li>Private 90-day report: answer rate, outages, every check</li>
               <li>Status badge for your README or website, with your answer rate</li>
             </ul>
-            <Link href="/monitor" className="btn primary">Monitor my server</Link>
+            <Link href="/monitor#start" className="btn primary">Monitor my server</Link>
             <p className="small muted" style={{ marginBottom: 0 }}>For people who <b>publish</b> a hosted MCP server.{lifetimeOn ? null : " Cancel anytime."}</p>
           </div>
         </div>

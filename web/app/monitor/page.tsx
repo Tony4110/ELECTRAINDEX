@@ -49,7 +49,7 @@ export default async function MonitorPage({ searchParams }: { searchParams: Prom
           <p className="offer-price"><b>$39.99 once</b>, monitoring for life</p>
           <p className="offer-was" style={{ margin: "4px 0 0" }}>Instead of <span className="offer-strike">$9.99/month</span> (about $120 a year) <span className="offer-save">Save 67% in year one</span></p>
           <p className="small" style={{ margin: "4px 0 12px" }}>One payment, no subscription, nothing more to pay. Available during the launch only.</p>
-          <a className="btn primary" href="#start">Check my server ↓</a>
+          <a className="btn primary" href="#start">Get the launch offer ↓</a>
         </div>
       ) : null}
 
@@ -91,13 +91,17 @@ export default async function MonitorPage({ searchParams }: { searchParams: Prom
       </div>
 
       <div className="card follow-box" style={{ marginTop: 24 }} id="start">
-        <div className="card-head"><h2>Start with your server</h2><span className="small muted">Step 1 of 2 · then pay by card with Stripe</span></div>
+        <div className="card-head"><h2>{offer ? "Get your launch offer" : "Start with your server"}</h2><span className="small muted">2 steps · about 1 minute</span></div>
         <div className="card-body">
           <form method="get" action="/monitor#start" className="follow-form">
-            <label className="small" htmlFor="server">Your server&apos;s name, its Electra Index page, or its endpoint URL</label>
+            <ol className="steps-mini">
+              <li className={check?.found && check.hosted && !check.active ? "done" : "now"}><b>Tell us which server</b> to monitor: its name, its Electra Index page or its endpoint URL. We check that it can be monitored, so you never pay for nothing.</li>
+              <li className={check?.found && check.hosted && !check.active ? "now" : ""}><b>Pay by card</b> with Stripe{offer ? " ($39.99 once)" : ""}. Your welcome email arrives within a minute.</li>
+            </ol>
+            <label className="small" htmlFor="server">Your server</label>
             <div className="follow-row">
               <input id="server" name="server" defaultValue={q} required maxLength={300} placeholder="e.g. https://mcp.example.com/mcp" />
-              <button type="submit" className="btn dark">Find my server</button>
+              <button type="submit" className="btn dark">Find my server →</button>
             </div>
           </form>
 
