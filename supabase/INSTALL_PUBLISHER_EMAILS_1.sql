@@ -254,10 +254,11 @@ begin
 end $$;
 
 -- one-off: everyone we already have. Dry run first: select * from publisher_campaign(false);
-create or replace function publisher_campaign(p_send boolean default false)
+drop function if exists publisher_campaign(boolean);
+create or replace function publisher_campaign(p_send boolean default false, p_max int default 8)
 returns table(email text, product text, kind text, profile text, offer text, result text)
 language plpgsql security definer set search_path = public as $$
-declare r record; v_res text; m jsonb;
+declare r record; v_res text; m jsonb; n_sent int := 0;
 begin
   for r in
     with c as (
@@ -276,8 +277,11 @@ begin
       from c order by lower(c.email), coalesce(c.entity_id::text, c.name), c.offers desc, c.created_at
   loop
     m := case when r.k = 'rejected' then null else publisher_message(r.k, r.entity_id, r.name, r.offers) end;
-    if p_send then
+    if p_send and n_sent >= p_max then
+      v_res := 'next batch';   -- Resend accepts 10 emails per second: run again for the next batch
+    elsif p_send then
       v_res := publisher_send(r.k, r.email, case when r.k = 'rejected' then null else r.entity_id end, r.name, r.offers, r.unsub);
+      if v_res = 'sent' then n_sent := n_sent + 1; end if;
     elsif exists (select 1 from notify_log n where n.kind = 'publisher_' || r.k and lower(n.recipient) = lower(r.email)
                    and (n.entity_id is not distinct from case when r.k = 'rejected' then null else r.entity_id end) and n.skipped is null) then
       v_res := 'already sent';
@@ -289,7 +293,7 @@ begin
     return next;
   end loop;
 end $$;
-revoke execute on function publisher_campaign(boolean) from public, anon, authenticated;
+revoke execute on function publisher_campaign(boolean, int) from public, anon, authenticated;
 
 -- preview any email in the SQL Editor:
 --   select publisher_message('listed', (select id from entities where slug = 'bottally' and type = 'agent'), null, true)->>'text';
