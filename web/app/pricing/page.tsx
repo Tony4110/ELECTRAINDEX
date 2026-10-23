@@ -66,7 +66,7 @@ export default function PricingPage() {
               <>
                 <p style={{ margin: 0 }}><span className="offer-tag" style={{ margin: 0 }}>Exclusive launch offer</span></p>
                 <p className="price-amount">$39.99 <span className="small muted">once, for life</span></p>
-                <p className="small" style={{ margin: 0 }}>Instead of <span className="offer-strike">$9.99/month</span> · <b>No subscription</b></p>
+                <p className="offer-instead" style={{ margin: 0 }}>Instead of <span className="offer-strike">$9.99/month</span> · <b style={{ color: "var(--ink)" }}>No subscription</b></p>
               </>
             ) : <p className="price-amount">$9.99 <span className="small muted">per month</span></p>}
             <ul className="price-list">
