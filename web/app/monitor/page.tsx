@@ -49,7 +49,10 @@ export default async function MonitorPage({ searchParams }: { searchParams: Prom
           <p className="offer-price"><b>$39.99 once</b>, monitoring for life</p>
           <p className="offer-was" style={{ margin: "4px 0 0" }}>Instead of <span className="offer-strike">$9.99/month</span> (about $120 a year) <span className="offer-save">Save 67% in year one</span></p>
           <p className="small" style={{ margin: "4px 0 12px" }}>One payment, no subscription, nothing more to pay. Available during the launch only.</p>
-          <a className="btn primary" href="#start">Get the launch offer ↓</a>
+          <div style={{ display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap" }}>
+            <a className="btn primary" href={LIFETIME_URL} rel="noopener">Get it for $39.99 →</a>
+            <span className="small">You enter your server address at checkout. Not sure it can be monitored? <a href="#start">Check it first ↓</a></span>
+          </div>
         </div>
       ) : null}
 
@@ -91,7 +94,7 @@ export default async function MonitorPage({ searchParams }: { searchParams: Prom
       </div>
 
       <div className="card follow-box" style={{ marginTop: 24 }} id="start">
-        <div className="card-head"><h2>{offer ? "Get your launch offer" : "Start with your server"}</h2><span className="small muted">2 steps · about 1 minute</span></div>
+        <div className="card-head"><h2>{offer ? "Check your server first" : "Start with your server"}</h2><span className="small muted">Optional · then pay by card</span></div>
         <div className="card-body">
           <form method="get" action="/monitor#start" className="follow-form">
             <ol className="steps-mini">

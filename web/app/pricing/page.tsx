@@ -75,8 +75,8 @@ export default function PricingPage() {
               <li>Private 90-day report: answer rate, outages, every check</li>
               <li>Status badge for your README or website, with your answer rate</li>
             </ul>
-            <Link href="/monitor#start" className="btn primary">Monitor my server</Link>
-            <p className="small muted" style={{ marginBottom: 0 }}>For people who <b>publish</b> a hosted MCP server.{lifetimeOn ? null : " Cancel anytime."}</p>
+            {lifetimeOn ? <a href={process.env.NEXT_PUBLIC_STRIPE_MONITOR_LIFETIME_URL} className="btn primary" rel="noopener">Get it for $39.99</a> : <Link href="/monitor#start" className="btn primary">Monitor my server</Link>}
+            <p className="small muted" style={{ marginBottom: 0 }}>For people who <b>publish</b> a hosted MCP server.{lifetimeOn ? <> Pay by card, enter your server address at checkout. <Link href="/monitor">Details</Link></> : " Cancel anytime."}</p>
           </div>
         </div>
       </div>
