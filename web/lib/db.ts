@@ -29,6 +29,8 @@ export type McpServer = {
   registry_status: string | null;
   registry_name: string | null;
   description?: string | null;
+  docs_url?: string | null;
+  mcp_setup_url?: string | null;
   remotes?: { type: string | null; url: string; headers?: { name: string; required: boolean; secret: boolean }[] | null }[] | null;
   package_list?: { registry: string | null; identifier: string; version: string | null; transport: string | null;
     env?: { name: string; required: boolean; secret: boolean }[] | null; required_args?: number | null; runtime_args?: number | null }[] | null;

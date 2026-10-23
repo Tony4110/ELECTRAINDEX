@@ -212,6 +212,10 @@ export async function ToolPageV2({ params }: { params: P }) {
             {secrets.length ? <p className="small"><span className="strong">Required:</span> {secrets.map((x, i) => <span key={x}>{i ? ", " : ""}<code>{x}</code></span>)} <span className="muted">(get {secrets.length === 1 ? "it" : "them"} from the publisher)</span></p> : null}
             {cfg ? <><p className="strong">MCP settings (Claude Desktop, Cursor and other MCP clients)</p><pre className="code">{JSON.stringify(cfg, null, 2)}</pre>{conf?.placeholders.length ? <p className="small muted">Replace the values in &lt;angle brackets&gt;.</p> : null}</>
               : <p className="small muted">{needsArgs ? "This package needs arguments specific to your setup, so no ready-made settings are generated: follow the publisher's instructions." : "No ready-made settings: the registry entry does not contain everything needed. Follow the publisher's instructions."}</p>}
+            {m.mcp_setup_url || m.docs_url ? <p className="small" style={{ marginBottom: 0 }}><span className="strong">From the publisher:</span>{" "}
+              {m.mcp_setup_url ? <a href={m.mcp_setup_url} target="_blank" rel="nofollow noopener">MCP setup guide ↗</a> : null}
+              {m.mcp_setup_url && m.docs_url ? " · " : null}
+              {m.docs_url ? <a href={m.docs_url} target="_blank" rel="nofollow noopener">API documentation ↗</a> : null}</p> : null}
           </div>
         </div>
       ) : (
