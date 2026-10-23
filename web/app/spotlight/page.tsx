@@ -42,7 +42,7 @@ export default async function SpotlightPage({ searchParams }: { searchParams: Pr
       <div className="offer-box" style={{ marginTop: 20 }}>
         <span className="offer-tag">Exclusive launch offer</span>
         <p className="offer-price"><b>$14.99 once</b>, 60 days of visibility</p>
-        <p className="offer-was" style={{ margin: "4px 0 0" }}>Instead of <span className="offer-strike">$79</span> <span className="offer-save">No subscription</span></p>
+        <p className="offer-was" style={{ margin: "4px 0 0" }}>Instead of <span className="offer-strike">$69.99</span> <span className="offer-save">No subscription</span></p>
         <p className="small" style={{ margin: "6px 0 12px" }}>Want more time? Buy another 60 days anytime, at the same launch price.</p>
         <div style={{ display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap" }}>
           {on ? <a className="btn primary" href={BUY_URL} rel="noopener">Get it for $14.99 →</a> : <span className="small muted">Opening very soon.</span>}

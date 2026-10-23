@@ -86,7 +86,7 @@ export default function PricingPage() {
         <div className="card-body" style={{ display: "flex", gap: 16, alignItems: "center", flexWrap: "wrap", justifyContent: "space-between" }}>
           <span>
             <span className="offer-tag" style={{ marginRight: 10 }}>Launch offer</span>
-            <b>Launch Spotlight · $14.99</b> <span className="offer-instead">instead of <span className="offer-strike">$79</span></span>
+            <b>Launch Spotlight · $14.99</b> <span className="offer-instead">instead of <span className="offer-strike">$69.99</span></span>
             <span className="small" style={{ display: "block", marginTop: 4 }}>60 days of Sponsored visibility for your agent or MCP server on the pages where people compare. No subscription. No click? The next 60 days are free.</span>
           </span>
           <span style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
