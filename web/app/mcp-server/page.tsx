@@ -86,7 +86,7 @@ export default function McpServerPage() {
               <p className="small muted" style={{ marginBottom: 0 }}>{x402On ? "Available now." : "Coming soon."}</p>
             </div></div>
             <div className="card"><div className="card-body">
-              <p className="strong" style={{ marginTop: 0 }}>Developer pack · $5</p>
+              <p className="strong" style={{ marginTop: 0 }}>Developer pack · $5.99</p>
               <p className="small">600 calls, valid 6 months. Paid by card, the key arrives by email. Then follow the <a href="#setup">setup</a> for your tool.</p>
               {paidOn && PACK_URL ? <a href={PACK_URL} className="btn primary" rel="noopener">Buy a developer pack</a> : <p className="small muted" style={{ marginBottom: 0 }}>Coming soon.</p>}
             </div></div>

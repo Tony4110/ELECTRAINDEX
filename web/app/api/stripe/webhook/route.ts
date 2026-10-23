@@ -7,7 +7,7 @@
  *     -> starts lifetime monitoring of the buyer's server
  *   - customer.subscription.deleted -> ends Monitoring Pro
  *   STRIPE_WEBHOOK_SECRET  whsec_… (Netlify, secret)    MCP_API_SECRET  same value as Vault 'mcp_api_secret'
- *   PACK_PRICE_CENTS (default 500) · PACK_CALLS (default 600) · PACK_DAYS (default 183)
+ *   PACK_PRICE_CENTS (default 599) · PACK_CALLS (default 600) · PACK_DAYS (default 183)
  * The signature is checked by hand (HMAC-SHA256), so no Stripe SDK is needed.
  */
 import { createHmac, timingSafeEqual } from "node:crypto";
@@ -79,7 +79,7 @@ export async function POST(req: Request) {
   }
 
   // Developer pack (one-off payment)
-  const unit = Number(process.env.PACK_PRICE_CENTS ?? 500);
+  const unit = Number(process.env.PACK_PRICE_CENTS ?? 599);
   const packs = Math.max(1, Math.floor(Number(s.amount_subtotal ?? s.amount_total ?? unit) / unit));   // quantity bought
   const { data, error } = await c.rpc("dev_pack_issue", {
     p_secret: apiSecret, p_email: email,

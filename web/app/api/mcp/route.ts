@@ -24,7 +24,7 @@ const result = (id: Rpc["id"], r: unknown) => ({ jsonrpc: "2.0", id: id ?? null,
 const error = (id: Rpc["id"], code: number, message: string) => ({ jsonrpc: "2.0", id: id ?? null, error: { code, message } });
 
 const paidEnabled = () => !!(process.env.MCP_API_SECRET ?? "");
-const PACK = "Or use a developer pack key (USD 5 = 600 calls, 6 months): https://electraindex.com/mcp-server#pricing";
+const PACK = "Or use a developer pack key (USD 5.99 = 600 calls, 6 months): https://electraindex.com/mcp-server#pricing";
 
 function bearer(req: Request) {
   const a = req.headers.get("authorization") ?? req.headers.get("x-api-key") ?? "";
@@ -84,7 +84,7 @@ async function handle(msg: Rpc, payment: string | null, clientIp = "", apiKey: s
           credits = u.remaining;
         } else {                                        // x402 pay per call
           const req = requirements(tool.priceUsd ?? 0.01, `${ENDPOINT}#${tool.name}`, `${tool.title}. ${PACK}`);
-          if (!req) return { body: error(id, -32001, "This tool needs a developer pack key (USD 5 = 600 calls, 6 months): https://electraindex.com/mcp-server#pricing") };
+          if (!req) return { body: error(id, -32001, "This tool needs a developer pack key (USD 5.99 = 600 calls, 6 months): https://electraindex.com/mcp-server#pricing") };
           const v = await verify(payment, req);
           if (!v.ok) return { body: null, raw: paymentRequired(req, v.error) };
           paid = { payload: v.payload, req };

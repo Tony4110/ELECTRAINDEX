@@ -4,7 +4,7 @@ import { x402Config } from "@/lib/mcp/x402";
 
 export const metadata: Metadata = {
   title: "Pricing — Electra Index for developers, publishers and sponsors",
-  description: "Free index, alerts and MCP server. Developer pack: $5 for 600 calls to the paid tools. Free Publisher Program and Monitoring Pro (launch offer: $39.99 once, for life). Sponsored placements that never change a ranking.",
+  description: "Free index, alerts and MCP server. Developer pack: $5.99 for 600 calls to the paid tools. Free Publisher Program and Monitoring Pro (launch offer: $39.99 once, for life). Sponsored placements that never change a ranking.",
   alternates: { canonical: "/pricing" },
 };
 
@@ -47,7 +47,7 @@ export default function PricingPage() {
         <div className="card price-card featured" id="developer-pack">
           <div className="card-body">
             <p className="price-name">Developer pack</p>
-            <p className="price-amount">$5 <span className="small muted">one-off</span></p>
+            <p className="price-amount">$5.99 <span className="small muted">one-off</span></p>
             <ul className="price-list">
               <li><b>600 calls</b> to the paid tools of the MCP server, valid <b>6 months</b></li>
               <li>Availability history of any MCP server: every live check, outages, answer rate, versions</li>
