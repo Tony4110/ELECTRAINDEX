@@ -8,10 +8,9 @@
 --  Offer boxes:
 --   * Publisher Program members (ticked the box): Monitoring Pro (hosted MCP)
 --     or Launch Spotlight (agents, local MCP).
---   * Everyone else gets one single email about their listing; for a hosted
---     MCP server it also presents Monitoring Pro (a service for that server),
---     never advertising, and says clearly that nothing else will be sent
---     without their consent.
+--   * Everyone else gets one single email about their listing, with the offer
+--     that fits their product, and a clear line saying nothing else will be
+--     sent without their consent.
 --  Sent automatically when a submission becomes "listed" or "rejected",
 --  and once to existing contacts with publisher_campaign(true) after a
 --  dry run: select * from publisher_campaign(false);
@@ -118,7 +117,7 @@ begin
     chr(10) || 'Something wrong or missing on your page? Just reply to this email.' || chr(10) ||
     case when p_unsub is not null then 'Stop these emails in one click: https://electraindex.com/unsubscribe?t=' || p_unsub || chr(10) else '' end;
 
-  if p_offers or (v_prof = 'mcp_hosted' and p_kind = 'listed') then
+  if p_offers or p_kind = 'listed' then   -- one single listing email: everyone listed sees the offer that fits their product
     if v_prof = 'mcp_hosted' then
       v_box_title := 'Monitoring Pro for life';
       v_box_lines := array['<b>$39.99 once</b>, instead of $9.99/month ($120 a year). No subscription.',
