@@ -450,3 +450,10 @@ tbody tr:nth-child(-n+3) .rank-num::before { content: ""; position: absolute; le
 .mon-bar span.up { background: var(--pos); } .mon-bar span.down { background: var(--neg); }
 .mon-table { width: 100%; border-collapse: collapse; font-size: 13px; }
 .mon-table td, .mon-table th { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+.offer-box { padding: 18px 20px; border-radius: 12px; background: var(--sun-soft); box-shadow: inset 0 0 0 2px var(--sun); }
+.offer-tag { margin: 0 0 6px; font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--sun-ink); font-weight: 700; }
+.offer-price { margin: 0; font-size: 22px; color: var(--ink); line-height: 1.35; }
+.offer-was { display: inline-block; font-size: 15px; color: var(--muted); }
+.story { padding: 14px 16px; border-radius: 10px; font-size: 15px; line-height: 1.55; }
+.story-bad { background: var(--neg-soft); } .story-good { background: var(--pos-soft); }
+.story .price-name { margin-bottom: 6px; }

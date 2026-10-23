@@ -4,24 +4,27 @@ import { db } from "@/lib/db";
 
 export const metadata: Metadata = {
   title: "Monitoring Pro — know within the hour when your MCP server stops answering",
-  description: "For publishers of hosted MCP servers: a check every 30 minutes, an email when it stops answering and when it is back, a private 90-day report and a status badge. USD 9.99/month, cancel anytime.",
+  description: "For publishers of hosted MCP servers: a check every 30 minutes, an email when it stops answering and when it is back, a private 90-day report and a status badge. Launch offer: USD 39.99 once, for life, instead of USD 9.99/month.",
   alternates: { canonical: "/monitor" },
 };
 export const dynamic = "force-dynamic";
 
 const MONITOR_URL = process.env.NEXT_PUBLIC_STRIPE_MONITOR_URL ?? "";
+const LIFETIME_URL = process.env.NEXT_PUBLIC_STRIPE_MONITOR_LIFETIME_URL ?? "";   // launch offer, paid once
 
 type Check = { found: boolean; slug?: string; name?: string; url?: string | null; hosted?: boolean; active?: boolean };
 
-function checkoutLink(slug: string) {
-  const u = new URL(MONITOR_URL);
+function checkoutLink(slug: string, base = MONITOR_URL) {
+  const u = new URL(base);
   u.searchParams.set("client_reference_id", slug);
   return u.toString();
 }
 
 export default async function MonitorPage({ searchParams }: { searchParams: Promise<{ server?: string }> }) {
   const q = ((await searchParams).server ?? "").trim().slice(0, 300);
-  const on = !!MONITOR_URL && !!(process.env.MCP_API_SECRET ?? "");
+  const secretOn = !!(process.env.MCP_API_SECRET ?? "");
+  const on = !!MONITOR_URL && secretOn;
+  const offer = !!LIFETIME_URL && secretOn;
   const c = db();
   let check: Check | null = null;
   let suggestions: { slug: string; name: string }[] = [];
@@ -38,7 +41,32 @@ export default async function MonitorPage({ searchParams }: { searchParams: Prom
     <div style={{ maxWidth: 860 }}>
       <div className="eyebrow">For MCP server publishers</div>
       <h1>Monitoring Pro</h1>
-      <p className="lede">Know within the hour when your hosted MCP server stops answering, before your users tell you. <b>USD 9.99/month</b>, cancel anytime.</p>
+      <p className="lede">Know within the hour when your hosted MCP server stops answering, before your users tell you.</p>
+
+      {offer ? (
+        <div className="offer-box" style={{ marginTop: 20 }}>
+          <p className="offer-tag">Exclusive launch offer</p>
+          <p className="offer-price"><b>$39.99 once</b>, monitoring for life <span className="offer-was">instead of $9.99/month (about $120 a year)</span></p>
+          <p className="small" style={{ margin: "4px 0 12px" }}>One payment, no subscription, nothing more to pay. Available during the launch only.</p>
+          <a className="btn primary" href="#start">Check my server ↓</a>
+        </div>
+      ) : null}
+
+      <div className="card" style={{ marginTop: 24 }}>
+        <div className="card-head"><h2>Why it matters</h2></div>
+        <div className="card-body">
+          <div className="grid cols-2" style={{ gap: 16 }}>
+            <div className="story story-bad">
+              <p className="price-name">Without monitoring</p>
+              <p style={{ margin: 0 }}>Your MCP server stops answering at 3 a.m. The AI assistants of your users (Claude, ChatGPT, Cursor…) fail silently: no error page, no alert. Your users switch to another tool. You find out three days later, from an unhappy customer.</p>
+            </div>
+            <div className="story story-good">
+              <p className="price-name">With Monitoring Pro</p>
+              <p style={{ margin: 0 }}>We connect to your server every 30 minutes, exactly like an AI assistant does. If it stops answering twice in a row, you get an email within the hour, and another one when it is back. Your report shows every check, and your badge proves your reliability.</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div className="grid cols-2" style={{ marginTop: 24 }}>
         <div className="card"><div className="card-body">
@@ -79,7 +107,12 @@ export default async function MonitorPage({ searchParams }: { searchParams: Prom
               ) : (
                 <div style={{ marginTop: 16 }}>
                   <p style={{ marginTop: 0 }}><span className="badge live-ok">FOUND</span> <b>{check.name}</b> · we will check <code>{check.url}</code></p>
-                  {on ? <a className="btn primary" href={checkoutLink(check.slug!)} rel="noopener">Subscribe for {check.name} · $9.99/month</a>
+                  {offer ? (
+                    <>
+                      <a className="btn primary" href={checkoutLink(check.slug!, LIFETIME_URL)} rel="noopener">Monitor {check.name} for life · $39.99 once</a>
+                      <p className="small" style={{ margin: "8px 0 0" }}><b>Launch offer</b>: one payment, no subscription.{on ? <> Prefer monthly? <a href={checkoutLink(check.slug!)} rel="noopener">$9.99/month</a>, cancel anytime.</> : null}</p>
+                    </>
+                  ) : on ? <a className="btn primary" href={checkoutLink(check.slug!)} rel="noopener">Subscribe for {check.name} · $9.99/month</a>
                       : <p className="small muted">Subscriptions open very soon.</p>}
                   <p className="small muted" style={{ marginBottom: 0 }}>Your welcome email arrives within a minute, with your private report link and your badge. Not your endpoint? <Link href={`/mcp/${check.slug}`}>See its page</Link>.</p>
                 </div>
@@ -100,7 +133,9 @@ export default async function MonitorPage({ searchParams }: { searchParams: Prom
       <div className="card faq" style={{ marginTop: 24 }}>
         <div className="card-head"><h2>Questions</h2></div>
         <div className="card-body">
-          <details><summary>How do I cancel?</summary><p>Reply to any Monitoring Pro email or write to contact@electraindex.com. No further payment is taken after cancellation.</p></details>
+          {offer ? <details open><summary>What does &quot;for life&quot; mean?</summary><p>You pay $39.99 once, with no subscription and no renewal. We monitor your server for as long as Electra Index runs the Monitoring Pro service. This price is a launch offer and will end; once you have it, it is yours.</p></details> : null}
+          {offer ? <details><summary>Can I move it to another server later?</summary><p>Yes, one server at a time: write to contact@electraindex.com and we switch it.</p></details> : null}
+          <details><summary>How do I cancel?</summary><p>The launch offer has nothing to cancel: it is paid once. For the monthly plan, reply to any Monitoring Pro email or write to contact@electraindex.com; no further payment is taken after cancellation.</p></details>
           <details><summary>Does it make my server rank higher?</summary><p>No. We sell monitoring and data, never a score, a rank or the removal of a fact. <Link href="/sources#what-we-sell">What we sell</Link></p></details>
           <details><summary>What if my server asks for a key or a sign-in?</summary><p>It counts as answering: we check that the endpoint is up and speaks MCP. We never send credentials.</p></details>
           <details><summary>Is the badge free?</summary><p>Every listed server can show its live status with the badge <code>https://electraindex.com/api/badge/your-slug</code>. With Monitoring Pro the badge also shows your 30-day answer rate.</p></details>

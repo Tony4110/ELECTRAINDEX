@@ -3,6 +3,8 @@
  *   - "Developer pack" one-off checkout (mode "payment")  -> issues an API key by email
  *   - "Monitoring Pro" subscription checkout (mode "subscription") -> starts monitoring the buyer's server
  *     (server given by client_reference_id = Electra Index slug, set by /monitor, or a custom text field)
+ *   - "Monitoring Pro" launch offer, paid once (mode "payment", amount = MONITOR_LIFETIME_CENTS, default 3999)
+ *     -> starts lifetime monitoring of the buyer's server
  *   - customer.subscription.deleted -> ends Monitoring Pro
  *   STRIPE_WEBHOOK_SECRET  whsec_… (Netlify, secret)    MCP_API_SECRET  same value as Vault 'mcp_api_secret'
  *   PACK_PRICE_CENTS (default 500) · PACK_CALLS (default 600) · PACK_DAYS (default 183)
@@ -64,11 +66,13 @@ export async function POST(req: Request) {
   const email = String((s.customer_details as Obj | undefined)?.email ?? s.customer_email ?? "");
   if (!c || !email) return new Response("cannot process", { status: 500 });      // Stripe retries
 
-  // Monitoring Pro started
-  if (s.mode === "subscription") {
+  // Monitoring Pro started: monthly subscription, or the launch offer paid once ("lifetime")
+  const lifetime = s.mode === "payment" && Number(s.amount_subtotal ?? s.amount_total) === Number(process.env.MONITOR_LIFETIME_CENTS ?? 3999);
+  if (s.mode === "subscription" || lifetime) {
     const { data, error } = await c.rpc("monitor_subscribe", {
       p_secret: apiSecret, p_email: email, p_ref: serverRef(s),
       p_subscription: str(s.subscription) || null, p_customer: str(s.customer) || null, p_session: str(s.id) || null,
+      ...(lifetime ? { p_plan: "lifetime" } : {}),
     });
     if (error) return new Response("subscribe failed", { status: 500 });      // Stripe retries; idempotent on session id
     return new Response(String(data), { status: 200 });

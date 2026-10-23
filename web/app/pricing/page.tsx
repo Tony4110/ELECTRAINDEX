@@ -4,7 +4,7 @@ import { x402Config } from "@/lib/mcp/x402";
 
 export const metadata: Metadata = {
   title: "Pricing — Electra Index for developers, publishers and sponsors",
-  description: "Free index, alerts and MCP server. Developer pack: $5 for 600 calls to the paid tools. Free Publisher Program and Monitoring Pro at $9.99/month. Sponsored placements that never change a ranking.",
+  description: "Free index, alerts and MCP server. Developer pack: $5 for 600 calls to the paid tools. Free Publisher Program and Monitoring Pro (launch offer: $39.99 once, for life). Sponsored placements that never change a ranking.",
   alternates: { canonical: "/pricing" },
 };
 
@@ -13,6 +13,7 @@ const PACK_URL = process.env.NEXT_PUBLIC_STRIPE_PACK_URL ?? "";
 export default function PricingPage() {
   const packOn = !!(process.env.MCP_API_SECRET ?? "") && !!PACK_URL;
   const x402On = !!x402Config();
+  const lifetimeOn = !!(process.env.NEXT_PUBLIC_STRIPE_MONITOR_LIFETIME_URL ?? "") && !!(process.env.MCP_API_SECRET ?? "");
   return (
     <>
       <div className="eyebrow">Pricing</div>
@@ -61,7 +62,13 @@ export default function PricingPage() {
         <div className="card price-card" id="monitoring">
           <div className="card-body">
             <p className="price-name">Monitoring Pro</p>
-            <p className="price-amount">$9.99 <span className="small muted">per month</span></p>
+            {lifetimeOn ? (
+              <>
+                <p className="offer-tag" style={{ margin: 0 }}>Exclusive launch offer</p>
+                <p className="price-amount">$39.99 <span className="small muted">once, for life</span></p>
+                <p className="small muted" style={{ margin: 0 }}>Instead of $9.99/month. No subscription.</p>
+              </>
+            ) : <p className="price-amount">$9.99 <span className="small muted">per month</span></p>}
             <ul className="price-list">
               <li>Your hosted MCP server checked <b>every 30 minutes</b></li>
               <li>Email <b>within the hour</b> when it stops answering, and when it is back</li>
@@ -69,7 +76,7 @@ export default function PricingPage() {
               <li>Status badge for your README or website, with your answer rate</li>
             </ul>
             <Link href="/monitor" className="btn primary">Monitor my server</Link>
-            <p className="small muted" style={{ marginBottom: 0 }}>For people who <b>publish</b> an MCP server. Cancel anytime.</p>
+            <p className="small muted" style={{ marginBottom: 0 }}>For people who <b>publish</b> a hosted MCP server.{lifetimeOn ? null : " Cancel anytime."}</p>
           </div>
         </div>
       </div>
