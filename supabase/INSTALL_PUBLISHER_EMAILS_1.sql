@@ -9,9 +9,13 @@
 --   * listed local MCP      -> page + what we track + Launch Spotlight offer
 --   * listed hosted MCP     -> page + live check + badge + Monitoring Pro for life offer
 --   * not listed            -> polite decline with our concrete criteria (no offer)
---  The offer box is only included for people who ticked the Publisher
---  Program box (that is what our forms promised). The others only hear
---  about their own listing.
+--  Offer boxes:
+--   * Publisher Program members (ticked the box): Monitoring Pro (hosted MCP)
+--     or Launch Spotlight (agents, local MCP).
+--   * Everyone else gets one single email about their listing; for a hosted
+--     MCP server it also presents Monitoring Pro (a service for that server),
+--     never advertising, and says clearly that nothing else will be sent
+--     without their consent.
 --  Sent automatically when a submission becomes "listed" or "rejected",
 --  and once to existing contacts with publisher_campaign(true) after a
 --  dry run: select * from publisher_campaign(false);
@@ -70,7 +74,7 @@ create or replace function publisher_message(p_kind text, p_entity uuid, p_name 
 returns jsonb language plpgsql stable set search_path = public as $$
 declare
   e record; v_prof text; v_page text; v_url text; l record;
-  v_subject text; v_body text; v_box_title text; v_box_lines text[]; v_cta text; v_cta_url text; v_after text := '';
+  v_subject text; v_body text; v_after2 text; v_box_title text; v_box_lines text[]; v_cta text; v_cta_url text; v_after text := '';
   t text; h text; li text;
   v_sig_t text := chr(10) || 'Best regards,' || chr(10) || chr(10) || 'Tony Nelson' || chr(10) || 'Electra Index, published by Dreamotion OÜ' || chr(10) || 'Estonia & Switzerland' || chr(10) || 'contact@electraindex.com';
 begin
@@ -118,7 +122,7 @@ begin
     chr(10) || 'Something wrong or missing on your page? Just reply to this email.' || chr(10) ||
     case when p_unsub is not null then 'Stop these emails in one click: https://electraindex.com/unsubscribe?t=' || p_unsub || chr(10) else '' end;
 
-  if p_offers then
+  if p_offers or (v_prof = 'mcp_hosted' and p_kind = 'listed') then
     if v_prof = 'mcp_hosted' then
       v_box_title := 'Monitoring Pro for life';
       v_box_lines := array['<b>$39.99 once</b>, instead of $9.99/month ($120 a year). No subscription.',
@@ -126,7 +130,7 @@ begin
                            'An email within the hour if it stops answering, and when it is back',
                            'A private 90-day report and a badge with your answer rate'];
       v_cta := 'Get the launch offer'; v_cta_url := 'https://electraindex.com/monitor?server=' || e.slug || '#start';
-      v_after := 'Prefer visibility? Our Launch Spotlight puts ' || e.name || ' on the pages where people compare MCP servers: $14.99 for 60 days, https://electraindex.com/spotlight?product=' || e.slug || '#preview';
+      v_after := case when p_offers then 'Prefer visibility? Our Launch Spotlight puts ' || e.name || ' on the pages where people compare MCP servers: $14.99 for 60 days, https://electraindex.com/spotlight?product=' || e.slug || '#preview' else '' end;
     else
       v_box_title := 'Launch Spotlight';
       v_box_lines := array['<b>$14.99 once</b> for 60 days, instead of $69.99. No subscription.',
@@ -146,6 +150,10 @@ begin
          '→ ' || v_cta || ': ' || v_cta_url || chr(10) || '━━━━━━━━━━━━━━━━━━━━━━━━━━━━' || chr(10) ||
          case when v_after <> '' then chr(10) || v_after || chr(10) else '' end;
   end if;
+  if not p_offers then
+    v_after2 := 'This is the only email you will receive about your listing. We will not send you offers unless you join our free Publisher Program: https://electraindex.com/pricing';
+    t := t || chr(10) || v_after2 || chr(10);
+  end if;
   t := t || v_sig_t;
 
   -- HTML: same text, with the offer as a highlighted box and a button
@@ -163,6 +171,9 @@ begin
     if v_after <> '' then
       h := h || '<p style="font-size:14px;color:#4a5550">' || regexp_replace(html_esc(v_after), '(https://[^\s<]+)', '<a href="\1" style="color:#1F3FD1">\1</a>', 'g') || '</p>';
     end if;
+  end if;
+  if not p_offers then
+    h := h || '<p style="font-size:13px;color:#6b7570">' || regexp_replace(html_esc(v_after2), '(https://[^\s<]+)', '<a href="\1" style="color:#1F3FD1">\1</a>', 'g') || '</p>';
   end if;
   h := h || replace(html_esc(v_sig_t), chr(10), '<br>') || '</div>';
   return jsonb_build_object('subject', v_subject, 'text', t, 'html', h, 'profile', v_prof, 'offer', v_box_title);
