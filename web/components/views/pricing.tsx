@@ -38,7 +38,7 @@ export function PricingView({ lang = "en" }: { lang?: Lang }) {
             <p className="price-name">{T("Free", "Gratuit")}</p>
             <p className="price-amount">{T("$0", "0 $")}</p>
             <ul className="price-list">
-              <li>{T("The full index: 210 AI agents, 40,000 MCP servers, verified prices", "L'index complet : 210 agents IA, 40 000 serveurs MCP, des prix vérifiés")}</li>
+              <li>{T("The full index: nearly 250 AI agents, 40,000 MCP servers, verified prices", "L'index complet : près de 250 agents IA, 40 000 serveurs MCP, des prix vérifiés")}</li>
               <li>{T("Alerts by email when a tool or agent changes", "Des alertes par e-mail quand un outil ou un agent change")}</li>
               <li>{T(<>The <Link href="/mcp-server">Electra Index MCP server</Link>: search, server facts, use-case rankings, agent prices</>,
                 <>Le <Link href="/mcp-server">serveur MCP d&apos;Electra Index</Link> : recherche, informations sur les serveurs, classements par usage, prix des agents</>)}</li>
