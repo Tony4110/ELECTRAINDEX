@@ -13,7 +13,7 @@ export const OG_LOCALE: Record<Lang, string> = { en: "en_US", fr: "fr_FR", es: "
 /** Pages available in every language (step by step). */
 export const LOCALIZED = ["/", "/submit"];
 /** Page families translated per language (French first). An agent page without its translation falls back to English. */
-const LOCALIZED_PATTERNS: Record<Lang, RegExp[]> = { en: [], fr: [/^\/agents\/[a-z0-9-]+$/], es: [], de: [] };
+const LOCALIZED_PATTERNS: Record<Lang, RegExp[]> = { en: [], fr: [/^\/agents\/[a-z0-9-]+$/, /^\/agents\/[a-z0-9-]+\/alternatives$/], es: [], de: [] };
 
 /** Does this page exist in this language? */
 export function isLocalized(lang: Lang, path: string): boolean {

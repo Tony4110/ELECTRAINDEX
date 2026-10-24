@@ -121,6 +121,7 @@ export async function HomeView({ searchParams, lang = "en" }: { searchParams: SP
         {current ? <><Link href={lhref(lang, `/themes/${current.theme_slug}`)} className="strong">{t.fullRanking(tn(current.theme_slug, current.theme))}</Link><br /></> : null}
         {t.note} <Link href="/sources">{t.methodology}</Link>
       </p>
+      {lang === "fr" ? <p className="note" style={{ marginTop: 4 }}>Guides : <Link href="/fr/meilleurs-agents-ia" className="strong">Meilleurs agents IA</Link> · <Link href="/fr/comparer-prix-agents-ia" className="strong">Comparer les prix des agents IA</Link> · <Link href={lhref(lang, "/tasks")} className="strong">Agents IA par tâche</Link></p> : null}
 
       <div className="section-title"><h2>{t.weekTitle}</h2><span className="spacer" /><Link href="/pulse" className="strong">{t.pulse}</Link></div>
       <div className="card">

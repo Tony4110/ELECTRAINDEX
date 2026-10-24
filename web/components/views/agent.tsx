@@ -48,7 +48,8 @@ function money(p: AgentPrice, t: AgentDict) {
   if (Number(p.amount) === 0) return t.free;
   const sym = p.currency === "USD" ? "$" : p.currency === "EUR" ? "€" : p.currency === "GBP" ? "£" : `${p.currency} `;
   const n = Number(p.amount);
-  return `${sym}${n % 1 === 0 ? n.toFixed(0) : n < 1 ? n.toFixed(4).replace(/0+$/, "") : n.toFixed(2)}`;
+  const v = n % 1 === 0 ? n.toFixed(0) : n < 1 ? n.toFixed(4).replace(/0+$/, "") : n.toFixed(2);
+  return t === agentT("fr") ? `${v.replace(".", ",")}\u00a0${sym.trim()}` : `${sym}${v}`;
 }
 const per = (p: AgentPrice, t: AgentDict) => p.interval === "month" ? t.month : p.interval === "year" ? t.year : p.interval === "per_unit" ? (p.unit ? ` / ${p.unit}` : t.perUnit) : p.interval === "one_time" ? t.oneTime : "";
 
@@ -214,7 +215,7 @@ export async function AgentView({ a, lang = "en", text }: { a: AgentCard; lang?:
           <SponsorSlot site="electra" slot="agent-page" variant="halfpage" lang={lang} />
         </div>
         <div className="card">
-          <div className="card-head"><h2>{t.alternatives}</h2><Link className="small" href={`/agents/${a.slug}/alternatives`}>{t.seeAll}</Link></div>
+          <div className="card-head"><h2>{t.alternatives}</h2><Link className="small" href={L(`/agents/${a.slug}/alternatives`)}>{t.seeAll}</Link></div>
           {alternatives.length === 0 ? <div className="card-body"><span className="muted">{t.noneListed}</span></div> : (
             <ul className="signals">
               {alternatives.map((x) => (

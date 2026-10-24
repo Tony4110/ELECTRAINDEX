@@ -125,7 +125,11 @@ export function taskNameFr(english: string, slug?: string): string {
 }
 
 /** English path -> French path, or null if the page has no French version. */
+const STATIC_FR: Record<string, string> = { "/pricing": "/tarifs", "/spotlight": "/spotlight", "/monitor": "/monitoring" };
+const STATIC_FR_TO_EN = invert(STATIC_FR);
+
 export function toFrPath(base: string): string | null {
+  if (STATIC_FR[base]) return STATIC_FR[base];
   if (base === "/tasks") return "/taches";
   if (base === "/themes") return "/themes";
   let m = base.match(/^\/tasks\/([a-z0-9-]+)$/);
@@ -137,6 +141,8 @@ export function toFrPath(base: string): string | null {
 
 /** French path (without /fr) -> English path. */
 export function fromFrPath(base: string): string {
+  if (base === "/meilleurs-agents-ia" || base === "/comparer-prix-agents-ia") return "/agents"; // French-only guides
+  if (STATIC_FR_TO_EN[base]) return STATIC_FR_TO_EN[base];
   if (base === "/taches") return "/tasks";
   let m = base.match(/^\/taches\/([a-z0-9-]+)$/);
   if (m) return TASK_FR_TO_EN[m[1]] ? `/tasks/${TASK_FR_TO_EN[m[1]]}` : base;

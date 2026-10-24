@@ -41,7 +41,8 @@ export function Quality({ score, lang = "en" }: { score: number | null | undefin
 
 export function Price({ from, free, hasPricing, lang = "en" }: { from: number | null | undefined; free?: boolean; hasPricing?: boolean; lang?: Lang }) {
   const t = dict(lang).rank;
-  if (from != null) return <span className="mono">${Number(from) % 1 === 0 ? Number(from).toFixed(0) : Number(from).toFixed(2)}<span className="faint small">{t.perMonth}</span>{free ? <span className="small pos-ink"> · {t.freePlanShort}</span> : null}</span>;
+  const amt = from != null ? (Number(from) % 1 === 0 ? Number(from).toFixed(0) : Number(from).toFixed(2)) : "";
+  if (from != null) return <span className="mono">{lang === "fr" ? `${amt.replace(".", ",")}\u00a0$` : `$${amt}`}<span className="faint small">{t.perMonth}</span>{free ? <span className="small pos-ink"> · {t.freePlanShort}</span> : null}</span>;
   if (free) return <span className="small pos-ink strong">{t.freePlan}</span>;
   if (hasPricing) return <span className="small muted">{t.onQuote}</span>;
   return <span className="small faint" title={t.noPrice}>—</span>;

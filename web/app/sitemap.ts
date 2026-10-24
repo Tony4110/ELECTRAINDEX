@@ -14,12 +14,16 @@ async function frUrls(c: NonNullable<ReturnType<typeof dbType>>, now: Date) {
     c.from("v_theme_overview").select("theme_slug"),
   ]);
   const paths = [
-    "/tasks", "/themes",
+    "/tasks", "/themes", "/pricing", "/spotlight", "/monitor",
     ...((th as { theme_slug: string }[] | null) ?? []).map((t) => `/themes/${t.theme_slug}`),
     ...((tk as { slug: string }[] | null) ?? []).map((t) => `/tasks/${t.slug}`),
     ...((ag as { slug: string }[] | null) ?? []).map((a) => `/agents/${a.slug}`),
   ].filter((p) => isLocalized("fr", p));
-  return paths.map((p) => ({ url: `${SITE}${lhref("fr", p)}`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.7 }));
+  const alts = ((ag as { slug: string }[] | null) ?? []).map((a) => `/agents/${a.slug}/alternatives`);
+  return [
+    ...["/fr/meilleurs-agents-ia", "/fr/comparer-prix-agents-ia"].map((u) => ({ url: `${SITE}${u}`, lastModified: now, changeFrequency: "daily" as const, priority: 0.9 })),
+    ...[...paths, ...alts].map((p) => ({ url: `${SITE}${lhref("fr", p)}`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.7 })),
+  ];
 }
 
 export const revalidate = 3600;
