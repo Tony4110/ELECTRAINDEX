@@ -3,6 +3,7 @@ import { db, MIN_TOOLS_FOR_INDEX } from "@/lib/db";
 import { SITE, SITEMAP_CHUNK, MIN_DESC } from "@/lib/site";
 import { featuredPairsByTheme, pairSlug } from "@/lib/compare";
 import { allPosts } from "@/lib/posts";
+import { I18N_PUBLIC } from "@/lib/i18n";
 
 export const revalidate = 3600;
 
@@ -27,7 +28,7 @@ export default async function sitemap({ id }: { id: number }): Promise<MetadataR
   const core: MetadataRoute.Sitemap = [
     { url: SITE, lastModified: now, changeFrequency: "daily", priority: 1 },
     ...["/compare", "/blog", "/tasks", "/mcp", "/payments", "/new", "/pulse", "/mcp-server", "/pricing", "/monitor", "/spotlight", "/sources", "/capabilities", "/submit", "/advertise"].map((p) => ({ url: SITE + p, lastModified: now, changeFrequency: "daily" as const, priority: 0.8 })),
-    ...["fr", "es", "de"].flatMap((l) => ["", "/submit"].map((p) => ({ url: `${SITE}/${l}${p}`, lastModified: now, changeFrequency: "daily" as const, priority: 0.7 }))),
+    ...(I18N_PUBLIC ? ["fr", "es", "de"] : []).flatMap((l) => ["", "/submit"].map((p) => ({ url: `${SITE}/${l}${p}`, lastModified: now, changeFrequency: "daily" as const, priority: 0.7 }))),
     ...allPosts().map((p) => ({ url: `${SITE}/blog/${p.slug}`, lastModified: new Date(p.date), changeFrequency: "weekly" as const, priority: 0.7 })),
   ];
 
