@@ -474,3 +474,15 @@ tbody tr:nth-child(-n+3) .rank-num::before { content: ""; position: absolute; le
 .share-btn:hover { border-color: var(--ink); }
 .kit-code { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 12px; }
 .kit-code code { flex: 1 1 320px; font-size: 12px; padding: 8px 10px; background: var(--soft); border-radius: 6px; word-break: break-all; }
+/* language switcher */
+.lang-switch { display: flex; gap: 2px; margin-right: 10px; font: 600 12px var(--mono); }
+.lang-switch a { padding: 4px 6px; border-radius: 6px; color: var(--muted); text-decoration: none; }
+.lang-switch a.on { background: var(--soft); color: var(--ink); }
+@media (max-width: 720px) { .lang-switch { margin-right: 4px; } .lang-switch a { padding: 3px 4px; } }
+/* header fits longer translations: tighter gaps on medium screens, less important links move out */
+@media (min-width: 961px) and (max-width: 1420px) {
+  .header .wrap { gap: 20px; }
+  .nav { gap: 16px; }
+  .nav a.nav-opt { display: none; }
+}
+@media (min-width: 961px) and (max-width: 1200px) { .nav a.nav-opt2 { display: none; } .header .wrap { gap: 14px; } .nav { gap: 14px; } }

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { Analytics } from "@/components/analytics";
 import { SITE } from "@/lib/site";
 import "@fontsource/archivo/latin-400.css";
@@ -60,42 +60,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(LD) }} />
         <Analytics />
-        <header className="header">
-          <div className="wrap">
-            <Link href="/" className="logo" aria-label="Electra Index — home">
-              ELECTRA<span className="sub">INDEX</span>
-            </Link>
-            <nav className="nav" aria-label="Main">
-              <Link href="/">Agents</Link>
-              <Link href="/tasks">Tasks</Link>
-              <Link href="/mcp">Tools</Link>
-              <Link href="/compare">Compare</Link>
-              <Link href="/payments">Payments</Link>
-              <Link href="/new">New</Link>
-              <Link href="/pulse">Pulse</Link>
-              <Link href="/pricing">Pricing</Link>
-              <Link href="/blog">Blog</Link>
-              <Link href="/sources">Methodology</Link>
-            </nav>
-            <span className="spacer" />
-            <Link href="/submit" className="btn dark">List your agent</Link>
-          </div>
-        </header>
+        <SiteHeader />
         <main>
           <div className="wrap">{children}</div>
         </main>
-        <footer className="site">
-          <div className="wrap">
-            <span><b style={{ color: "var(--ink)" }}>Electra Index</b> · the trust layer for the agent economy</span>
-            <span>Every fact has a source and a date · no source → no claim</span>
-            <span className="spacer" />
-            <span>Scores measure observable public data, not performance</span>
-            <Link href="/advertise" style={{ color: "var(--muted)" }}>Advertise</Link>
-          </div>
-          <div className="wrap small" style={{ paddingTop: 8 }}>
-            <span>Published by <a href="https://dreamotion.io" rel="noopener">Dreamotion OÜ</a> (Estonia) · Contact: <a href="mailto:contact@electraindex.com">contact@electraindex.com</a> · <a href="/privacy">Privacy</a> · <a href="/mcp-server">MCP server</a> · <a href="/pricing">Pricing</a></span>
-          </div>
-        </footer>
+        <SiteFooter />
       </body>
     </html>
   );

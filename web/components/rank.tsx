@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { providerHref } from "@/lib/db";
 import { Favicon } from "@/components/favicon";
+import { dict, type Lang } from "@/lib/i18n";
 
-export function Trust({ level }: { level: string }) {
-  if (level === "proven") return <span className="badge pos" title="Proven: measured over time">✓✓ PROVEN</span>;
-  if (level === "verified") return <span className="badge accent" title="Verified by our robots">✓ VERIFIED</span>;
-  return <span className="badge" title="Declared by the publisher, not yet verified by us">DECLARED</span>;
+export function Trust({ level, lang = "en" }: { level: string; lang?: Lang }) {
+  const t = dict(lang).rank;
+  if (level === "proven") return <span className="badge pos" title={t.provenTitle}>{t.proven}</span>;
+  if (level === "verified") return <span className="badge accent" title={t.verifiedTitle}>{t.verified}</span>;
+  return <span className="badge" title={t.declaredTitle}>{t.declared}</span>;
 }
 
 export function Coverage({ pct }: { pct: number }) {
@@ -37,11 +39,12 @@ export function Quality({ score }: { score: number | null | undefined }) {
   );
 }
 
-export function Price({ from, free, hasPricing }: { from: number | null | undefined; free?: boolean; hasPricing?: boolean }) {
-  if (from != null) return <span className="mono">${Number(from) % 1 === 0 ? Number(from).toFixed(0) : Number(from).toFixed(2)}<span className="faint small">/mo</span>{free ? <span className="small pos-ink"> · free plan</span> : null}</span>;
-  if (free) return <span className="small pos-ink strong">Free plan</span>;
-  if (hasPricing) return <span className="small muted">On quote</span>;
-  return <span className="small faint" title="No price published">—</span>;
+export function Price({ from, free, hasPricing, lang = "en" }: { from: number | null | undefined; free?: boolean; hasPricing?: boolean; lang?: Lang }) {
+  const t = dict(lang).rank;
+  if (from != null) return <span className="mono">${Number(from) % 1 === 0 ? Number(from).toFixed(0) : Number(from).toFixed(2)}<span className="faint small">{t.perMonth}</span>{free ? <span className="small pos-ink"> · {t.freePlanShort}</span> : null}</span>;
+  if (free) return <span className="small pos-ink strong">{t.freePlan}</span>;
+  if (hasPricing) return <span className="small muted">{t.onQuote}</span>;
+  return <span className="small faint" title={t.noPrice}>—</span>;
 }
 
 const VALUE: Record<string, { label: string; tone: string; title: string }> = {
@@ -50,10 +53,11 @@ const VALUE: Record<string, { label: string; tone: string; title: string }> = {
   free: { label: "FREE PLAN", tone: "plain", title: "A free plan exists" },
   fair: { label: "FAIR", tone: "plain", title: "Price published, below the best-value bar" },
 };
-export function Value({ label }: { label: string | null | undefined }) {
+export function Value({ label, lang = "en" }: { label: string | null | undefined; lang?: Lang }) {
   if (!label) return <span className="faint small">—</span>;
   const v = VALUE[label];
-  return <span className={`badge ${v.tone}`} title={v.title}>{v.label}</span>;
+  const name = (dict(lang).rank.value as Record<string, string>)[label] ?? v.label;
+  return <span className={`badge ${v.tone}`} title={v.title}>{name}</span>;
 }
 
 export function KindTabs({ base, kind, counts, extra = {} }: { base: string; kind: string; counts: { agents: number; tools: number }; extra?: Record<string, string> }) {
