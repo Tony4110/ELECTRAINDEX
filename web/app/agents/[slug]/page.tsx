@@ -216,6 +216,10 @@ export default async function AgentPage({ params }: { params: P }) {
               ))}
             </ul>
           )}
+          <div className="card-body list-cta">
+            <p className="small" style={{ margin: 0 }}><b>Built an alternative to {a.name}?</b> List it for free: we check its official pricing and rank it next to {a.name}.</p>
+            <Link href="/submit" className="btn primary" style={{ marginTop: 8 }}>List your agent →</Link>
+          </div>
           <div className="card-head" style={{ borderTop: "1px solid var(--line)" }}><h2>Price history</h2></div>
           {history.length === 0 ? <div className="card-body"><Empty title="Baseline">No change yet. Every price change will appear here with its date.</Empty></div> : (
             <ul className="signals">

@@ -467,3 +467,4 @@ tbody tr:nth-child(-n+3) .rank-num::before { content: ""; position: absolute; le
 .spotlight-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
 .spotlight-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
 .spotlight-item { padding: 10px 12px; border-radius: 8px; background: var(--soft); }
+.list-cta { border-top: 1px solid var(--line); background: var(--sun-soft); }

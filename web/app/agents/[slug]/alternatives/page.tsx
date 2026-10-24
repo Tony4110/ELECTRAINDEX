@@ -100,6 +100,7 @@ export default async function Alternatives({ params }: { params: P }) {
           ? <>{alts.length} AI agents do some of what <Link href={`/agents/${agent.slug}`}>{agent.name}</Link> does. Closest: {alts.slice(0, 3).map((x, i) => <span key={x.slug}>{i ? (i === Math.min(3, alts.length) - 1 ? " and " : ", ") : ""}<Link href={`/agents/${x.slug}`}>{x.name}</Link></span>)}.{priced[0] ? <> Lowest listed starting price: {priced[0].name} at {usd(Number(priced[0].from_usd_month))}/month.</> : null}</>
           : <>No other agent in the index documents the same capabilities as {agent.name} yet.</>}
       </p>
+      <p className="small" style={{ marginTop: 10 }}>Your agent is an alternative to {agent.name} and is missing here? <Link href="/submit" className="strong">List it for free →</Link></p>
       {caps.length ? <div className="chips"><span className="small muted">{agent.name} capabilities:</span>{caps.map((x) => <Link key={x.capability_slug} href={`/capabilities#${x.capability_slug}`} className="chip acc">{x.capability}</Link>)}</div> : null}
 
       <div className="card table-wrap" style={{ marginTop: 16 }}>
