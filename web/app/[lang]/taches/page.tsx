@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getTasks, db } from "@/lib/db";
 import { SetupNotice } from "@/components/ui";
-import { I18N_ROBOTS, alternatesFor, lhref, OG_LOCALE, themeName } from "@/lib/i18n";
+import { robotsFor, alternatesFor, lhref, OG_LOCALE, themeName } from "@/lib/i18n";
 import { capName } from "@/lib/i18n-agent";
 import { TASKS_FR } from "@/lib/i18n-paths";
 
@@ -13,7 +13,7 @@ export async function generateStaticParams() { return [{ lang: "fr" }]; }
 export const dynamicParams = false;
 
 export async function generateMetadata(): Promise<Metadata> {
-  return { title: "Tâches", description: "De quoi avez-vous besoin ? 100 tâches reliées aux fonctionnalités dont un agent IA a besoin.", alternates: alternatesFor("/tasks", "fr"), robots: I18N_ROBOTS, openGraph: { locale: OG_LOCALE.fr } };
+  return { title: "Tâches", description: "De quoi avez-vous besoin ? 100 tâches reliées aux fonctionnalités dont un agent IA a besoin.", alternates: alternatesFor("/tasks", "fr"), robots: robotsFor("fr"), openGraph: { locale: OG_LOCALE.fr } };
 }
 
 export default async function FrTasks({ params }: { params: P }) {

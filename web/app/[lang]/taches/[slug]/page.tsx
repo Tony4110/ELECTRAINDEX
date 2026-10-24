@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { taskMetaDescriptionFr } from "@/lib/taskcopy";
 import { TaskView, loadTask, taskTitle, type TaskSP } from "@/components/views/task";
-import { I18N_ROBOTS, alternatesFor, OG_LOCALE } from "@/lib/i18n";
+import { robotsFor, alternatesFor, OG_LOCALE } from "@/lib/i18n";
 import { frTaskToEn } from "@/lib/i18n-paths";
 import { capName } from "@/lib/i18n-agent";
 
@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: { params: P }): Promise<Metad
   if (!t) return {};
   return {
     title: taskTitle(t, "fr"), description: taskMetaDescriptionFr(taskTitle(t, "fr").replace(/^Meilleurs agents IA pour /, ""), t.capabilities.map((x) => capName("fr", x.slug, x.name))),
-    alternates: alternatesFor(`/tasks/${t.slug}`, "fr"), robots: I18N_ROBOTS, openGraph: { locale: OG_LOCALE.fr },
+    alternates: alternatesFor(`/tasks/${t.slug}`, "fr"), robots: robotsFor("fr"), openGraph: { locale: OG_LOCALE.fr },
   };
 }
 

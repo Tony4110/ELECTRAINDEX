@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { HomeView, type HomeSP } from "@/components/views/home";
-import { I18N_ROBOTS, alternatesFor, dict, isLang, OG_LOCALE, OTHER_LANGS } from "@/lib/i18n";
+import { robotsFor, alternatesFor, dict, isLang, OG_LOCALE, OTHER_LANGS } from "@/lib/i18n";
 
 type P = Promise<{ lang: string }>;
 export const dynamicParams = false;
@@ -15,7 +15,7 @@ export async function generateMetadata({ params, searchParams }: { params: P; se
   return {
     title: { absolute: t.metaTitle }, description: t.metaDesc,
     alternates: sp.theme || sp.sort ? { canonical: `/${lang}` } : alternatesFor("/", lang),
-    robots: I18N_ROBOTS, openGraph: { locale: OG_LOCALE[lang], title: t.metaTitle, description: t.metaDesc },
+    robots: robotsFor(lang), openGraph: { locale: OG_LOCALE[lang], title: t.metaTitle, description: t.metaDesc },
   };
 }
 

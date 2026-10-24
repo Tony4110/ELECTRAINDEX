@@ -55,14 +55,16 @@ export function lhref(lang: Lang, path: string): string {
 }
 
 /** hreflang alternates for a localized page (metadata.alternates). */
-/** false = FR/ES/DE are hidden from Google (noindex, no hreflang, not in sitemap) until the whole site is translated. */
-export const I18N_PUBLIC = false;
-export const I18N_ROBOTS = I18N_PUBLIC ? undefined : { index: false, follow: true };
+/** Languages open to Google. The others stay hidden (noindex, no hreflang, not in sitemap) until fully translated. */
+export const PUBLIC_LANGS: Lang[] = ["en", "fr"];
+export const isPublic = (lang: Lang) => PUBLIC_LANGS.includes(lang);
+export const I18N_PUBLIC = PUBLIC_LANGS.length > 1;
+export const robotsFor = (lang: Lang) => (isPublic(lang) ? undefined : { index: false, follow: true });
 
 export function alternatesFor(path: string, lang: Lang) {
-  if (!I18N_PUBLIC) return { canonical: lhref(lang, path) };
   const languages: Record<string, string> = { "x-default": path };
-  for (const l of LANGS) if (isLocalized(l, path)) languages[l] = lhref(l, path);
+  for (const l of LANGS) if (isPublic(l) && isLocalized(l, path)) languages[l] = lhref(l, path);
+  if (Object.keys(languages).length <= 2) return { canonical: lhref(lang, path) };
   return { canonical: lhref(lang, path), languages };
 }
 

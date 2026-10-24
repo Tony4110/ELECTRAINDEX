@@ -2,7 +2,7 @@ import { notFound, redirect } from "next/navigation";
 import type { Metadata } from "next";
 import { AlternativesView, alternativesMeta, buildAlternatives } from "@/components/views/alternatives";
 import { loadAgentText } from "@/components/views/agent";
-import { I18N_ROBOTS, alternatesFor, isLang, isLocalized, OG_LOCALE } from "@/lib/i18n";
+import { robotsFor, alternatesFor, isLang, isLocalized, OG_LOCALE } from "@/lib/i18n";
 
 export const revalidate = 3600;
 export async function generateStaticParams() { return []; }
@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: P }): Promise<Metad
   const r = await buildAlternatives(slug, lang);
   if (!r) return {};
   const m = alternativesMeta(r, lang);
-  return { ...m, alternates: alternatesFor(`/agents/${slug}/alternatives`, lang), robots: I18N_ROBOTS ?? m.robots, openGraph: { locale: OG_LOCALE[lang] } };
+  return { ...m, alternates: alternatesFor(`/agents/${slug}/alternatives`, lang), robots: robotsFor(lang) ?? m.robots, openGraph: { locale: OG_LOCALE[lang] } };
 }
 
 export default async function LocalizedAlternatives({ params }: { params: P }) {

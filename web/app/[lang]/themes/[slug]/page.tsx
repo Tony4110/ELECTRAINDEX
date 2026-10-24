@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ThemeView, loadTheme, themeTitle, type ThemeSP } from "@/components/views/theme";
-import { I18N_ROBOTS, alternatesFor, OG_LOCALE, themeName } from "@/lib/i18n";
+import { robotsFor, alternatesFor, OG_LOCALE, themeName } from "@/lib/i18n";
 import { frThemeToEn } from "@/lib/i18n-paths";
 
 type P = Promise<{ lang: string; slug: string }>;
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: P }): Promise<Metad
   const n = themeName("fr", t.theme_slug, t.theme);
   return {
     title: themeTitle(t, "fr"), description: `${n} : les agents IA classés par qualité, prix vérifiés et rapport qualité-prix, à partir de données sourcées.`,
-    alternates: alternatesFor(`/themes/${t.theme_slug}`, "fr"), robots: I18N_ROBOTS, openGraph: { locale: OG_LOCALE.fr },
+    alternates: alternatesFor(`/themes/${t.theme_slug}`, "fr"), robots: robotsFor("fr"), openGraph: { locale: OG_LOCALE.fr },
   };
 }
 

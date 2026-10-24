@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { db, getThemes } from "@/lib/db";
 import { num } from "@/lib/format";
 import { SetupNotice } from "@/components/ui";
-import { I18N_ROBOTS, alternatesFor, lhref, OG_LOCALE, themeName } from "@/lib/i18n";
+import { robotsFor, alternatesFor, lhref, OG_LOCALE, themeName } from "@/lib/i18n";
 
 type P = Promise<{ lang: string }>;
 export const revalidate = 3600;
@@ -12,7 +12,7 @@ export async function generateStaticParams() { return [{ lang: "fr" }]; }
 export const dynamicParams = false;
 
 export async function generateMetadata(): Promise<Metadata> {
-  return { title: "Thèmes", description: "Les agents IA classés par thème : ventes, marketing, développement, finance, données et plus.", alternates: alternatesFor("/themes", "fr"), robots: I18N_ROBOTS, openGraph: { locale: OG_LOCALE.fr } };
+  return { title: "Thèmes", description: "Les agents IA classés par thème : ventes, marketing, développement, finance, données et plus.", alternates: alternatesFor("/themes", "fr"), robots: robotsFor("fr"), openGraph: { locale: OG_LOCALE.fr } };
 }
 
 export default async function FrThemes({ params }: { params: P }) {
