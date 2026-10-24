@@ -10,6 +10,14 @@ export const OG_LOCALE: Record<Lang, string> = { en: "en_US", fr: "fr_FR", es: "
 
 /** Pages available in every language (step by step). */
 export const LOCALIZED = ["/", "/submit"];
+/** Page families translated per language (French first). An agent page without its translation falls back to English. */
+const LOCALIZED_PATTERNS: Record<Lang, RegExp[]> = { en: [], fr: [/^\/agents\/[a-z0-9-]+$/], es: [], de: [] };
+
+/** Does this page exist in this language? */
+export function isLocalized(lang: Lang, path: string): boolean {
+  const base = path.split(/[?#]/)[0] || "/";
+  return lang === "en" || LOCALIZED.includes(base) || LOCALIZED_PATTERNS[lang].some((r) => r.test(base));
+}
 
 export function isLang(x: string | undefined | null): x is Lang {
   return !!x && (LANGS as readonly string[]).includes(x);
@@ -37,7 +45,7 @@ function baseOf(path: string) {
 export function lhref(lang: Lang, path: string): string {
   if (lang === "en") return path;
   const base = baseOf(path);
-  if (!LOCALIZED.includes(base)) return path;
+  if (!isLocalized(lang, base)) return path;
   const suffix = path.slice(base.length);
   return `/${lang}${base === "/" ? "" : base}${suffix}`;
 }
@@ -50,7 +58,7 @@ export const I18N_ROBOTS = I18N_PUBLIC ? undefined : { index: false, follow: tru
 export function alternatesFor(path: string, lang: Lang) {
   if (!I18N_PUBLIC) return { canonical: lhref(lang, path) };
   const languages: Record<string, string> = { "x-default": path };
-  for (const l of LANGS) languages[l] = lhref(l, path);
+  for (const l of LANGS) if (isLocalized(l, path)) languages[l] = lhref(l, path);
   return { canonical: lhref(lang, path), languages };
 }
 

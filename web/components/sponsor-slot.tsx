@@ -1,5 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import type { Lang } from "@/lib/i18n";
+import { boxT } from "@/lib/i18n-agent";
 
 type Ad = {
   creative_id: string;
@@ -34,7 +36,8 @@ function rpc(name: string, body: unknown, keepalive = false, signal?: AbortSigna
   });
 }
 
-export default function SponsorSlot({ site, slot, variant }: { site: string; slot: string; variant?: "halfpage" }) {
+export default function SponsorSlot({ site, slot, variant, lang = "en" }: { site: string; slot: string; variant?: "halfpage"; lang?: Lang }) {
+  const st = boxT(lang);
   const [ad, setAd] = useState<Ad | null>(null);
   const asked = useRef(false);
   const half = variant === "halfpage";
@@ -69,7 +72,7 @@ export default function SponsorSlot({ site, slot, variant }: { site: string; slo
           rpc("ad_click", { p_creative: ad.creative_id }, true).catch(() => {});
         }}
       >
-        <span className="sponsor-slot-label">Sponsored</span>
+        <span className="sponsor-slot-label">{st.sponsored}</span>
         {image && (
           <img
             src={imageUrl}
@@ -81,7 +84,7 @@ export default function SponsorSlot({ site, slot, variant }: { site: string; slo
         )}
         {!(half && image) && <strong>{ad.headline}</strong>}
         {!(half && image) && ad.body && <span className="sponsor-slot-body">{ad.body}</span>}
-        {half && !image && <span className="sponsor-slot-cta">Learn more</span>}
+        {half && !image && <span className="sponsor-slot-cta">{st.learnMore}</span>}
       </a>
     </aside>
   );

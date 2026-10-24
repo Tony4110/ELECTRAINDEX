@@ -3,9 +3,10 @@ import { EVENT_LABEL, eventTone, describeSignal, timeAgo } from "@/lib/format";
 import type { Signal } from "@/lib/db";
 
 /** Tri-state pill: true = documented, false = confirmed absent, null = not documented */
-export function Tri({ label, value }: { label: string; value: boolean | null | undefined }) {
+export function Tri({ label, value, lang = "en" }: { label: string; value: boolean | null | undefined; lang?: "en" | "fr" | "es" | "de" }) {
+  const fr = lang === "fr";
   const cls = value === true ? "pill on" : value === false ? "pill off" : "pill unk";
-  const title = value === true ? `${label}: yes` : value === false ? `${label}: no` : `${label}: not documented`;
+  const title = fr ? (value === true ? `${label} : oui` : value === false ? `${label} : non` : `${label} : non documenté`) : value === true ? `${label}: yes` : value === false ? `${label}: no` : `${label}: not documented`;
   return <span className={cls} title={title}>{label}</span>;
 }
 

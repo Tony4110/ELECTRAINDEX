@@ -29,11 +29,11 @@ export function ProviderCell({ type, slug, name, desc }: { type: string; slug: s
   );
 }
 
-export function Quality({ score }: { score: number | null | undefined }) {
+export function Quality({ score, lang = "en" }: { score: number | null | undefined; lang?: Lang }) {
   if (score == null) return <span className="mono faint">—</span>;
   const n = Math.round(Number(score));
   return (
-    <span className="q" title="Agent Score (0–100): capability, integration, documentation, pricing clarity, transparency, freshness">
+    <span className="q" title={lang === "fr" ? "Score Agent (0–100) : fonctionnalités, intégrations, documentation, clarté des prix, transparence, fraîcheur" : "Agent Score (0–100): capability, integration, documentation, pricing clarity, transparency, freshness"}>
       <b className="mono">{n}</b><span className="q-bar"><span style={{ width: `${n}%` }} /></span>
     </span>
   );

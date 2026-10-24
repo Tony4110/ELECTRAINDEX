@@ -100,13 +100,13 @@ export async function HomeView({ searchParams, lang = "en" }: { searchParams: SP
                 <tr key={a.id}>
                   <td className="rank-num">{i + 1}</td>
                   <td>
-                    <Link href={`/agents/${a.slug}`} className="agent-cell">
+                    <Link href={lhref(lang, `/agents/${a.slug}`)} className="agent-cell">
                       <Logo name={a.name} website={a.website} />
                       <span><span className="strong ink">{a.name}</span><span className="small muted block">{a.company ?? ""}</span></span>
                     </Link>
                   </td>
                   {!current ? <td className="small muted hide-sm">{(a.themes ?? []).map((x, k) => tn(a.theme_slugs?.[k] ?? "", x)).join(" · ")}</td> : null}
-                  <td><Quality score={a.quality_score} /></td>
+                  <td><Quality score={a.quality_score} lang={lang} /></td>
                   <td className="nowrap-sm"><Price from={a.from_usd_month} free={a.has_free} hasPricing lang={lang} /></td>
                   <td className="hide-sm"><Value label={a.value} lang={lang} /></td>
                   <td className="hide-sm"><Trust level={a.pricing_verified ? "verified" : "declared"} lang={lang} /></td>
