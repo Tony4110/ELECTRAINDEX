@@ -1,7 +1,7 @@
 {
 "11x-alice-julian": "SDR IA : « Alice » prospecte et mène des campagnes multicanales ; « Julian » répond aux appels entrants et prend les rendez-vous.",
 "abacum": "Plateforme de FP&A conçue pour l'IA : prévisions, scénarios et synthèses de performance automatisées.",
-"ada": "Agent IA de service client pour les grandes entreprises, par téléphone, messagerie et e-mail, qui agit directement dans vos systèmes métier.",
+"ada": "Agent de service client IA d'entreprise opérant par voix, messagerie et e-mail et effectuant des actions dans les systèmes d'entreprise.",
 "adcreative-ai": "Génère des visuels publicitaires, des vidéos et des photos produit, note leur potentiel de performance et analyse les publicités des concurrents.",
 "agent-frank": "SDR IA autonome qui prospecte, rédige des e-mails personnalisés et mène vos campagnes 24h/24, en mode pilote automatique ou copilote.",
 "agentforce-sales-sdr-agent": "Agents IA de Salesforce qui suivent et qualifient les leads, répondent aux questions, prennent les rendez-vous et mettent à jour les opportunités.",
@@ -98,7 +98,7 @@
 "harvey": "Plateforme d'IA juridique avec des agents pour l'analyse de contrats, la recherche juridique et les dossiers juridiques de bout en bout.",
 "hebbia": "Plateforme d'agents IA pour les professionnels de l'investissement : analyse de rapports financiers, de data rooms et de documents.",
 "help-scout-ai-answers": "Agent IA de Help Scout qui répond automatiquement aux questions des clients à partir de votre documentation, facturé à la résolution.",
-"hex-agent": "Espace de notebooks de données et de BI avec un agent IA qui écrit le SQL/Python et construit les analyses.",
+"hex-agent": "Carnet de données et espace de travail BI avec un agent d'IA qui écrit du SQL/Python et génère des analyses.",
 "howie": "Secrétaire d'agenda IA qui planifie vos réunions par e-mail, SMS et iMessage.",
 "hrbridge": "Recruteur IA pour les Delivery Service Partners d'Amazon : il appelle chaque candidat chauffeur éligible, le présélectionne avec les questions du DSP, relance et accompagne les recrues jusqu'aux formalités et à la formation.",
 "hubspot-customer-agent": "Agent IA du Service Hub qui répond aux questions des clients et résout les tickets, payé en crédits HubSpot.",
