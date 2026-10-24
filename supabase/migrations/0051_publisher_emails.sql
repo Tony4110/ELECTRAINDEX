@@ -114,6 +114,8 @@ begin
         '- ' || e.name || ' appears on the use-case pages that match what it does.' || chr(10)
     end ||
     case when p_kind = 'welcome' then '- A monthly report of the visitors who clicked from Electra Index to your site.' || chr(10) else '' end ||
+    chr(10) || 'Show your listing: announce it on LinkedIn in one click and add the Electra Index badge to your site:' || chr(10) ||
+    v_page || '#share' || chr(10) ||
     chr(10) || 'Something wrong or missing on your page? Just reply to this email.' || chr(10) ||
     case when p_unsub is not null then 'Stop these emails in one click: https://electraindex.com/unsubscribe?t=' || p_unsub || chr(10) else '' end;
 
@@ -293,3 +295,70 @@ revoke execute on function publisher_campaign(boolean, int) from public, anon, a
 
 -- preview any email in the SQL Editor:
 --   select publisher_message('listed', (select id from entities where slug = 'bottally' and type = 'agent'), null, true)->>'text';
+
+
+-- ---------------------------------------------------------------------
+-- "Show your listing": one short, non-commercial email to Publisher Program members
+-- (LinkedIn post in one click + badge). Dry run: select * from publisher_share_campaign(false);
+-- ---------------------------------------------------------------------
+create or replace function publisher_share_message(p_entity uuid) returns jsonb language plpgsql stable set search_path = public as $$
+declare e record; v_page text; v_badge text; t text; h text; v_post text; v_li text;
+begin
+  select id, type, slug, name into e from entities where id = p_entity;
+  if e.id is null then return null; end if;
+  v_page := 'https://electraindex.com/' || case e.type when 'agent' then 'agents/' else 'mcp/' end || e.slug;
+  v_badge := 'https://electraindex.com/api/badge/' || case e.type when 'agent' then 'agent/' else '' end || e.slug;
+  v_post := e.name || ' is now listed on Electra Index, the independent index of ' ||
+            case e.type when 'agent' then 'AI agents with verified prices and rankings. See how we compare: ' else 'MCP servers, tested live and ranked by use case. See it here: ' end ||
+            v_page || case e.type when 'agent' then ' #AIagents' else ' #MCP #AIagents' end;
+  v_li := 'https://www.linkedin.com/feed/?shareActive=true&text=' || replace(replace(replace(replace(replace(replace(v_post, '%', '%25'), ' ', '%20'), '#', '%23'), ':', '%3A'), '/', '%2F'), ',', '%2C');
+  t := 'Hi,' || chr(10) || chr(10) ||
+       'A quick one about your page on Electra Index: ' || v_page || chr(10) || chr(10) ||
+       'An independent listing builds trust with your buyers. If it helps you, here is everything to show it:' || chr(10) || chr(10) ||
+       '1. Announce it on LinkedIn in one click (the post is ready, edit it as you like):' || chr(10) || v_page || '#share' || chr(10) || chr(10) ||
+       '2. Add the badge to your website or README (it links to your page):' || chr(10) ||
+       '<a href="' || v_page || '"><img src="' || v_badge || '" alt="Listed on Electra Index"></a>' || chr(10) || chr(10) ||
+       'Nothing to buy, nothing else will follow from this email.' || chr(10) || chr(10) ||
+       'Best regards,' || chr(10) || chr(10) || 'Tony Nelson' || chr(10) || 'Electra Index, published by Dreamotion OÜ' || chr(10) || 'Estonia & Switzerland' || chr(10) || 'contact@electraindex.com';
+  h := '<div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.55;color:#121816;max-width:580px">' ||
+       'Hi,<br><br>A quick one about your page on Electra Index: <a href="' || v_page || '" style="color:#1F3FD1">' || html_esc(v_page) || '</a><br><br>' ||
+       'An independent listing builds trust with your buyers. If it helps you, here is everything to show it:' ||
+       '<p style="margin:18px 0"><a href="' || v_li || '" style="display:inline-block;padding:11px 18px;border-radius:8px;background:#0A66C2;color:#fff;font-weight:700;text-decoration:none">Announce it on LinkedIn →</a></p>' ||
+       '<p style="margin:0 0 6px">Add the badge to your website or README (it links to your page):</p>' ||
+       '<p style="margin:0 0 6px"><a href="' || v_page || '"><img src="' || v_badge || '" alt="Listed on Electra Index" height="20"></a></p>' ||
+       '<p style="margin:0 0 16px;font:12px monospace;background:#F3F4F1;padding:8px 10px;border-radius:6px;word-break:break-all">' ||
+       html_esc('<a href="' || v_page || '"><img src="' || v_badge || '" alt="Listed on Electra Index"></a>') || '</p>' ||
+       '<p style="font-size:13px;color:#6b7570">Nothing to buy, nothing else will follow from this email.</p>' ||
+       'Best regards,<br><br>Tony Nelson<br>Electra Index, published by Dreamotion OÜ<br>Estonia &amp; Switzerland<br>contact@electraindex.com</div>';
+  return jsonb_build_object('subject', 'Show your listing: ' || e.name || ' on Electra Index', 'text', t, 'html', h);
+end $$;
+
+create or replace function publisher_share_campaign(p_send boolean default false, p_max int default 8)
+returns table(email text, product text, result text) language plpgsql security definer set search_path = public as $$
+declare r record; m jsonb; n int := 0;
+begin
+  for r in
+    select distinct on (lower(x.email), x.entity_id) x.email, x.entity_id
+      -- Publisher Program members only: the others were promised a single email about their listing
+      from (select s.contact_email as email, s.entity_id from submissions s where s.status in ('listed','duplicate') and s.entity_id is not null and s.offers_opt_in
+            union all
+            select f.email, f.entity_id from page_followers f where f.role = 'publisher' and f.offers_opt_in and f.unsubscribed_at is null) x
+     where not exists (select 1 from page_followers u where lower(u.email) = lower(x.email) and u.unsubscribed_at is not null)
+     order by lower(x.email), x.entity_id
+  loop
+    email := r.email; product := (select name from entities where id = r.entity_id);
+    if exists (select 1 from notify_log l where l.kind = 'publisher_share' and lower(l.recipient) = lower(r.email) and l.entity_id = r.entity_id and l.skipped is null) then
+      result := 'already sent';
+    elsif not p_send then
+      result := 'would send';
+    elsif n >= p_max then
+      result := 'next batch';
+    else
+      m := publisher_share_message(r.entity_id);
+      perform send_email_html('publisher_share', r.email, m->>'subject', m->>'text', m->>'html', 200, r.entity_id);
+      n := n + 1; result := 'sent';
+    end if;
+    return next;
+  end loop;
+end $$;
+revoke execute on function publisher_share_campaign(boolean, int) from public, anon, authenticated;

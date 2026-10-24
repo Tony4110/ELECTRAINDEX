@@ -5,6 +5,7 @@ import { StatusBadges } from "@/components/status";
 import { ReportBox, type ReportStatus } from "@/components/report-box";
 import { LiveBadge, LiveCheckCard } from "@/components/live-check";
 import { FollowBox } from "@/components/follow-box";
+import { ShareRow, PublisherKit } from "@/components/share";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { db, type McpServer, type Signal, type TaskRanking, type LiveCheck } from "@/lib/db";
@@ -174,6 +175,7 @@ export async function ToolPageV2({ params }: { params: P }) {
         {m.repository_url ? <Out type="mcp" slug={m.slug} to="repository" from={`/mcp/${m.slug}`} className="btn">Source code ↗</Out> : null}
         {remotes.length || pkgs.length ? <a className="btn" href="#connect">How to connect ↓</a> : null}
       </div>
+      <ShareRow kind="mcp" slug={m.slug} name={m.name} />
 
       <section className="grid cols-3" style={{ marginTop: 28 }}>
         <div className="card span-2">
@@ -301,6 +303,7 @@ export async function ToolPageV2({ params }: { params: P }) {
 
       <ReportBox type="mcp" slug={m.slug} status={rep as ReportStatus} />
       <FollowBox type="mcp" slug={m.slug} name={m.name} />
+      <PublisherKit kind="mcp" slug={m.slug} name={m.name} />
 
       {faq.length ? <div className="card faq" style={{ marginTop: 24 }}>
         <div className="card-head"><h2>Questions about {m.name}</h2></div>
