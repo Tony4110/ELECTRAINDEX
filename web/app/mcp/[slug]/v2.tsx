@@ -102,7 +102,7 @@ export async function ToolPageV2({ params }: { params: P }) {
   ]);
   const live = (liveData as LiveCheck | null) ?? null;
   const liveTools = live?.tools ?? [];
-  const capabilities = (caps as { capability_slug: string; capability: string; evidence: string | null }[] | null) ?? [];
+  const capabilities = (caps as { capability_slug: string; capability: string; evidence: string | null; evidence_level?: string }[] | null) ?? [];
   // at equal coverage, prefer tasks whose words or matched capabilities appear in the tool's own description
   const text = `${m.name} ${m.description ?? m.short_description ?? ""}`.toLowerCase();
   const hits = (t: { task_name: string; matched_capabilities: string[] | null }) =>
@@ -180,8 +180,8 @@ export async function ToolPageV2({ params }: { params: P }) {
           <div className="card-head"><h2>What it does</h2></div>
           <div className="card-body prose">
             <p><b>{m.name}</b> is an MCP server, a connector that lets an AI assistant use it as a tool{access ? <>. It {access}</> : null}.</p>
-            {capabilities.length ? <p>From the publisher&apos;s description, Electra Index matched it to {capabilities.length === 1 ? "one capability" : `${capabilities.length} capabilities`}: {capabilities.map((x, i) => <span key={x.capability_slug}>{i ? (i === capabilities.length - 1 ? " and " : ", ") : ""}<Link href={`/mcp/best/${x.capability_slug}`}>{x.capability.toLowerCase()}</Link></span>)}.{best ? <> That makes it a candidate for tasks such as <Link href={`/tasks/${best.task_slug}`}>{lowerFirst(best.task_name)}</Link>{tasks[1] ? <> or <Link href={`/tasks/${tasks[1].task_slug}`}>{lowerFirst(tasks[1].task_name)}</Link></> : null}.</> : null}</p> : <p className="muted">No capability identified yet from its description.</p>}
-            <p className="small muted">Facts come from the Official MCP Registry, as declared by the publisher. Capabilities are matched automatically (low confidence) and are not a test of the tool.</p>
+            {capabilities.length ? <p>{capabilities.every((x) => x.evidence_level === "declared") ? <>Its publisher describes it with</> : <>From the publisher&apos;s description, Electra Index matched it to</>} {capabilities.length === 1 ? "one capability" : `${capabilities.length} capabilities`}: {capabilities.map((x, i) => <span key={x.capability_slug}>{i ? (i === capabilities.length - 1 ? " and " : ", ") : ""}<Link href={`/mcp/best/${x.capability_slug}`}>{x.capability.toLowerCase()}</Link></span>)}.{best ? <> That makes it a candidate for tasks such as <Link href={`/tasks/${best.task_slug}`}>{lowerFirst(best.task_name)}</Link>{tasks[1] ? <> or <Link href={`/tasks/${tasks[1].task_slug}`}>{lowerFirst(tasks[1].task_name)}</Link></> : null}.</> : null}</p> : <p className="muted">No capability identified yet from its description.</p>}
+            <p className="small muted">Facts come from the Official MCP Registry, as declared by the publisher. {capabilities.some((x) => x.evidence_level === "declared") ? "Capabilities confirmed by the publisher are marked as declared; the others are matched automatically (low confidence)." : "Capabilities are matched automatically (low confidence)."} None of this is a test of the tool.</p>
           </div>
         </div>
         <div className="card">
