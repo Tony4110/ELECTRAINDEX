@@ -1,9 +1,10 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { alternatesFor } from "@/lib/i18n";
 import { getTasks, db } from "@/lib/db";
 import { SetupNotice } from "@/components/ui";
 
-export const metadata: Metadata = { title: "Tasks", description: "What do you need done? 100 tasks mapped to the capabilities an AI agent needs.", alternates: { canonical: "/tasks" } };
+export const metadata: Metadata = { title: "Tasks", description: "What do you need done? 100 tasks mapped to the capabilities an AI agent needs.", alternates: alternatesFor("/tasks", "en") };
 
 export default async function Tasks() {
   if (!db()) return <SetupNotice />;

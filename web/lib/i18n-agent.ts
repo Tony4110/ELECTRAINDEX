@@ -81,6 +81,12 @@ const CAP_FR: Record<string, string> = {
   "resume-screening": "Tri de CV", "competitor-monitoring": "Veille concurrentielle",
 };
 export function capName(lang: Lang, slug: string, english: string) { return lang === "fr" ? CAP_FR[slug] ?? english : english; }
+/** Same, from the English name only ("Web Research"). */
+export function capNameEn(lang: Lang, english: string) {
+  if (lang !== "fr") return english;
+  const slug = english.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  return CAP_FR[slug] ?? english;
+}
 
 /** Small shared boxes (status, report, follow, share, affiliate, sponsor). */
 const boxEn = {

@@ -2,6 +2,8 @@
  * Languages of Electra Index. English lives at the root (/pricing); the others under a prefix (/fr/pricing).
  * Only the pages listed in LOCALIZED exist in every language; every other link stays in English.
  */
+import { toFrPath, fromFrPath } from "@/lib/i18n-paths";
+
 export const LANGS = ["en", "fr", "es", "de"] as const;
 export type Lang = (typeof LANGS)[number];
 export const OTHER_LANGS = ["fr", "es", "de"] as const;
@@ -16,7 +18,7 @@ const LOCALIZED_PATTERNS: Record<Lang, RegExp[]> = { en: [], fr: [/^\/agents\/[a
 /** Does this page exist in this language? */
 export function isLocalized(lang: Lang, path: string): boolean {
   const base = path.split(/[?#]/)[0] || "/";
-  return lang === "en" || LOCALIZED.includes(base) || LOCALIZED_PATTERNS[lang].some((r) => r.test(base));
+  return lang === "en" || LOCALIZED.includes(base) || LOCALIZED_PATTERNS[lang].some((r) => r.test(base)) || (lang === "fr" && toFrPath(base) != null);
 }
 
 export function isLang(x: string | undefined | null): x is Lang {
@@ -34,7 +36,8 @@ export function stripLang(path: string): string {
   const l = langOfPath(path);
   if (l === "en") return path || "/";
   const rest = path.slice(l.length + 1);
-  return rest === "" ? "/" : rest;
+  if (rest === "") return "/";
+  return l === "fr" ? fromFrPath(rest) : rest;
 }
 
 function baseOf(path: string) {
@@ -47,7 +50,8 @@ export function lhref(lang: Lang, path: string): string {
   const base = baseOf(path);
   if (!isLocalized(lang, base)) return path;
   const suffix = path.slice(base.length);
-  return `/${lang}${base === "/" ? "" : base}${suffix}`;
+  const local = lang === "fr" ? toFrPath(base) ?? base : base;
+  return `/${lang}${local === "/" ? "" : local}${suffix}`;
 }
 
 /** hreflang alternates for a localized page (metadata.alternates). */

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { providerHref } from "@/lib/db";
 import { Favicon } from "@/components/favicon";
-import { dict, type Lang } from "@/lib/i18n";
+import { dict, lhref, type Lang } from "@/lib/i18n";
 
 export function Trust({ level, lang = "en" }: { level: string; lang?: Lang }) {
   const t = dict(lang).rank;
@@ -19,10 +19,10 @@ export function Coverage({ pct }: { pct: number }) {
   );
 }
 
-export function ProviderCell({ type, slug, name, desc }: { type: string; slug: string; name: string; desc: string | null }) {
+export function ProviderCell({ type, slug, name, desc, lang = "en" }: { type: string; slug: string; name: string; desc: string | null; lang?: Lang }) {
   return (
     <td>
-      <Link href={providerHref(type, slug)} className="strong ink">{name}</Link>
+      <Link href={lhref(lang, providerHref(type, slug))} className="strong ink">{name}</Link>
       <span className="mono faint small" style={{ marginLeft: 8 }}>{type === "agent" ? "AGENT" : "MCP"}</span>
       {desc ? <div className="desc">{desc}</div> : null}
     </td>
@@ -60,12 +60,13 @@ export function Value({ label, lang = "en" }: { label: string | null | undefined
   return <span className={`badge ${v.tone}`} title={v.title}>{name}</span>;
 }
 
-export function KindTabs({ base, kind, counts, extra = {} }: { base: string; kind: string; counts: { agents: number; tools: number }; extra?: Record<string, string> }) {
-  const href = (k: string) => `${base}?${new URLSearchParams({ ...extra, ...(k === "agents" ? {} : { kind: k }) })}`;
+export function KindTabs({ base, kind, counts, extra = {}, lang = "en", toolsBase }: { base: string; kind: string; counts: { agents: number; tools: number }; extra?: Record<string, string>; lang?: Lang; toolsBase?: string }) {
+  const href = (k: string) => `${k === "tools" && toolsBase ? toolsBase : base}?${new URLSearchParams({ ...extra, ...(k === "agents" ? {} : { kind: k }) })}`;
+  const fr = lang === "fr";
   return (
     <div className="tabs" role="tablist">
-      <Link role="tab" aria-selected={kind === "agents"} href={href("agents")} className={kind === "agents" ? "on" : ""}>AI agents <span className="mono faint">{counts.agents}</span></Link>
-      <Link role="tab" aria-selected={kind === "tools"} href={href("tools")} className={kind === "tools" ? "on" : ""}>Tools <span className="mono faint">{counts.tools.toLocaleString("en-US")}</span></Link>
+      <Link role="tab" aria-selected={kind === "agents"} href={href("agents")} className={kind === "agents" ? "on" : ""}>{fr ? "Agents IA" : "AI agents"} <span className="mono faint">{counts.agents}</span></Link>
+      <Link role="tab" aria-selected={kind === "tools"} href={href("tools")} className={kind === "tools" ? "on" : ""}>{fr ? "Outils" : "Tools"} <span className="mono faint">{counts.tools.toLocaleString(fr ? "fr-FR" : "en-US")}</span></Link>
     </div>
   );
 }

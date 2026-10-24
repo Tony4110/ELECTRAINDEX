@@ -1,10 +1,11 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { alternatesFor } from "@/lib/i18n";
 import { db, getThemes } from "@/lib/db";
 import { num } from "@/lib/format";
 import { SetupNotice } from "@/components/ui";
 
-export const metadata: Metadata = { title: "Themes", description: "AI agents and tools ranked by theme: sales, marketing, coding, finance, data and more.", alternates: { canonical: "/themes" } };
+export const metadata: Metadata = { title: "Themes", description: "AI agents and tools ranked by theme: sales, marketing, coding, finance, data and more.", alternates: alternatesFor("/themes", "en") };
 
 export default async function Themes() {
   if (!db()) return <SetupNotice />;

@@ -3,7 +3,24 @@ import { db, MIN_TOOLS_FOR_INDEX } from "@/lib/db";
 import { SITE, SITEMAP_CHUNK, MIN_DESC } from "@/lib/site";
 import { featuredPairsByTheme, pairSlug } from "@/lib/compare";
 import { allPosts } from "@/lib/posts";
-import { I18N_PUBLIC } from "@/lib/i18n";
+import { I18N_PUBLIC, lhref, isLocalized } from "@/lib/i18n";
+import { db as dbType } from "@/lib/db";
+
+/** French pages (only those that exist: translated agents, mapped tasks and themes). */
+async function frUrls(c: NonNullable<ReturnType<typeof dbType>>, now: Date) {
+  const [{ data: ag }, { data: tk }, { data: th }] = await Promise.all([
+    c.from("v_agent_i18n").select("slug").eq("lang", "fr").limit(5000),
+    c.from("v_tasks").select("slug"),
+    c.from("v_theme_overview").select("theme_slug"),
+  ]);
+  const paths = [
+    "/tasks", "/themes",
+    ...((th as { theme_slug: string }[] | null) ?? []).map((t) => `/themes/${t.theme_slug}`),
+    ...((tk as { slug: string }[] | null) ?? []).map((t) => `/tasks/${t.slug}`),
+    ...((ag as { slug: string }[] | null) ?? []).map((a) => `/agents/${a.slug}`),
+  ].filter((p) => isLocalized("fr", p));
+  return paths.map((p) => ({ url: `${SITE}${lhref("fr", p)}`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.7 }));
+}
 
 export const revalidate = 3600;
 
@@ -52,6 +69,7 @@ export default async function sitemap({ id }: { id: number }): Promise<MetadataR
         ...((tasks.data as { slug: string }[] | null) ?? []).map((t) => ({ url: `${SITE}/tasks/${t.slug}`, lastModified: now, changeFrequency: "daily" as const, priority: 0.9 })),
         ...((agents.data as { slug: string; last_verified_at: string | null }[] | null) ?? []).map((a) => ({ url: `${SITE}/agents/${a.slug}`, lastModified: a.last_verified_at ? new Date(a.last_verified_at) : now, changeFrequency: "weekly" as const, priority: 0.8 })),
         ...((agents.data as { slug: string }[] | null) ?? []).map((a) => ({ url: `${SITE}/agents/${a.slug}/alternatives`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.7 })),
+        ...(I18N_PUBLIC ? await frUrls(c, now) : []),
         ...(best.error ? [] : [{ url: `${SITE}/mcp/best`, lastModified: now, changeFrequency: "daily" as const, priority: 0.8 }]),
         ...((best.data as { capability_slug: string }[] | null) ?? []).map((b) => ({ url: `${SITE}/mcp/best/${b.capability_slug}`, lastModified: now, changeFrequency: "daily" as const, priority: 0.9 })),
       ];

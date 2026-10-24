@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { dict, lhref, themeName, type Lang } from "@/lib/i18n";
+import { taskNameFr } from "@/lib/i18n-paths";
 import { db, getSignals, getStats, getThemes, getTasks, type AgentCard } from "@/lib/db";
 import { num } from "@/lib/format";
 import { SignalItem, Empty, SetupNotice } from "@/components/ui";
@@ -87,7 +88,7 @@ export async function HomeView({ searchParams, lang = "en" }: { searchParams: SP
       {current && themeTasks.length > 0 ? (
         <div className="task-strip">
           <span className="small muted">{t.tasksN(themeTasks.length)}</span>
-          {themeTasks.map((x) => <Link key={x.slug} href={`/tasks/${x.slug}`} className="chip">{x.name}</Link>)}
+          {themeTasks.map((x) => <Link key={x.slug} href={lhref(lang, `/tasks/${x.slug}`)} className="chip">{lang === "fr" ? taskNameFr(x.name, x.slug) : x.name}</Link>)}
         </div>
       ) : null}
 
@@ -117,7 +118,7 @@ export async function HomeView({ searchParams, lang = "en" }: { searchParams: SP
         )}
       </div>
       <p className="note">
-        {current ? <><Link href={`/themes/${current.theme_slug}`} className="strong">{t.fullRanking(tn(current.theme_slug, current.theme))}</Link><br /></> : null}
+        {current ? <><Link href={lhref(lang, `/themes/${current.theme_slug}`)} className="strong">{t.fullRanking(tn(current.theme_slug, current.theme))}</Link><br /></> : null}
         {t.note} <Link href="/sources">{t.methodology}</Link>
       </p>
 

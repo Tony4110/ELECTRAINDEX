@@ -32,6 +32,17 @@ export async function loadAgentText(slug: string, lang: Lang) {
   return (data as { short_description: string } | null)?.short_description ?? null;
 }
 
+/** All translated agent descriptions of a language (slug -> text), for ranking tables. */
+export async function loadAgentTexts(lang: Lang): Promise<Map<string, string>> {
+  const m = new Map<string, string>();
+  if (lang === "en") return m;
+  const c = db();
+  if (!c) return m;
+  const { data } = await c.from("v_agent_i18n").select("slug,short_description").eq("lang", lang).limit(5000);
+  for (const r of (data as { slug: string; short_description: string }[] | null) ?? []) m.set(r.slug, r.short_description);
+  return m;
+}
+
 function money(p: AgentPrice, t: AgentDict) {
   if (p.billing_model === "enterprise_quote" || p.amount == null) return t.onQuote;
   if (Number(p.amount) === 0) return t.free;
@@ -107,7 +118,7 @@ export async function AgentView({ a, lang = "en", text }: { a: AgentCard; lang?:
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <nav className="crumbs" aria-label="Breadcrumb"><Link href={lang === "en" ? "/agents" : L("/")}>{t.crumbAgents}</Link><span>/</span>
-        {a.theme_slugs?.[0] ? <><Link href={`/themes/${a.theme_slugs[0]}`}>{themeName(lang, a.theme_slugs[0], a.themes?.[0] ?? "")}</Link><span>/</span></> : null}
+        {a.theme_slugs?.[0] ? <><Link href={L(`/themes/${a.theme_slugs[0]}`)}>{themeName(lang, a.theme_slugs[0], a.themes?.[0] ?? "")}</Link><span>/</span></> : null}
         <span className="ink">{a.name}</span></nav>
       <div style={{ display: "flex", gap: 20, alignItems: "center", flexWrap: "wrap" }}>
         <span style={{ width: 64, height: 64, borderRadius: 14, background: "var(--ink)", color: "#fff", fontSize: 28, fontWeight: 800, display: "flex", alignItems: "center", justifyContent: "center" }}>{a.name.charAt(0).toUpperCase()}</span>
