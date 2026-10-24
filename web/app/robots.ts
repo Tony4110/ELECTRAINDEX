@@ -13,7 +13,7 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
   }
   return {
     rules: [{ userAgent: "*", allow: "/", disallow: ["/search", "/submit?", "/go/", "/monitor/r/", "/monitor?", "/spotlight/r/", "/spotlight?"] }],
-    sitemap: [`${SITE}/sitemap/0.xml`, ...Array.from({ length: chunks }, (_, i) => `${SITE}/sitemap/${i + 1}.xml`)],
+    sitemap: [`${SITE}/sitemap.xml`, `${SITE}/sitemap/0.xml`, ...Array.from({ length: chunks }, (_, i) => `${SITE}/sitemap/${i + 1}.xml`)],
     host: SITE,
   };
 }
