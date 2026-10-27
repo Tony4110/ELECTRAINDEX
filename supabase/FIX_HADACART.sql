@@ -3,7 +3,7 @@
 -- (find_buying_guides, search_products, get_product, find_purchase_candidates); the page states it has
 -- no cart, payment, fraud-detection, refund or order-execution tool.
 -- -> remove payment / fraud / refund / reconciliation use cases, add product search & price comparison.
--- Paste everything into Supabase > SQL Editor > Run. Re-runnable.
+-- Paste all in Supabase > SQL Editor > Run. Re-runnable.
 
 select publisher_correction('mcp_server', 'hadacart-public-catalog-snapshots',
          array['payments', 'invoicing', 'bookkeeping', 'procurement'],
