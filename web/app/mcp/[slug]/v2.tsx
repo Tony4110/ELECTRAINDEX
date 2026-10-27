@@ -47,13 +47,21 @@ export async function metadataV2({ params }: { params: P }): Promise<Metadata> {
   if (!m) return { title: "Not found" };
   const desc = (m.description ?? m.short_description ?? "").trim();
   const thin = desc.length < MIN_DESC;
-  // Google shows ~60 characters: name + "MCP Server" first, then as much of the description as fits
+  const c = db();
+  const { data: lv } = c ? await c.from("v_mcp_live").select("status,tool_count,tools_more,checked_at").eq("slug", m.slug).maybeSingle().then((r) => (r.error ? { data: null } : r)) : { data: null };
+  const live = lv as { status: string; tool_count: number | null; tools_more: boolean; checked_at: string } | null;
+  const online = live?.status === "online";
+  const nTools = online && live?.tool_count ? `${live.tool_count}${live.tools_more ? "+" : ""} tool${live.tool_count === 1 && !live.tools_more ? "" : "s"}` : null;
+  // Searchers want: what it is, does it work, how to set it up. Google shows ~60 characters.
+  const facts = nTools ? `${nTools}, setup & live status` : "setup, tools & status";
   const room = 60 - (m.name.length + 13);
-  const title = desc && room >= 20 ? `${m.name} MCP Server: ${cut(desc, room)}` : `${m.name} MCP Server`;
+  const title = `${m.name} MCP Server: ${facts}`.length <= 66 ? `${m.name} MCP Server: ${facts}`
+    : desc && room >= 20 ? `${m.name} MCP Server: ${cut(desc, room)}` : `${m.name} MCP Server`;
   const access = [m.remote ? "hosted" : null, m.local ? "installable" : null].filter(Boolean).join(" and ");
+  const status = online ? `Online when tested ${shortDate(live!.checked_at)}${nTools ? ` (${nTools})` : ""}. ` : "";
   return {
     title,
-    description: cut(`${desc ? desc + " " : ""}${access ? `${access[0].toUpperCase()}${access.slice(1)} MCP server. ` : ""}How to connect it, capabilities, alternatives and change history.`, 158),
+    description: cut(`${desc ? cut(desc, 95) + ". " : ""}${status}${access ? `${access[0].toUpperCase()}${access.slice(1)} MCP server: ` : ""}copy-paste setup for Claude, Cursor and VS Code, alternatives and changes.`, 158),
     alternates: { canonical: `/mcp/${m.slug}` },
     robots: thin ? { index: false, follow: true } : undefined,
   };
