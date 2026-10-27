@@ -32,6 +32,27 @@ export async function loadAgentText(slug: string, lang: Lang) {
   return (data as { short_description: string } | null)?.short_description ?? null;
 }
 
+/** Search-result title and description: lead with what people search for ("X pricing"): price, free plan, score. */
+export function agentMeta(a: AgentCard, lang: Lang = "en", text?: string | null): { title: string; description: string } {
+  const fr = lang === "fr";
+  const y = new Date().getFullYear();
+  const amt = a.from_usd_month != null ? (Number(a.from_usd_month) % 1 === 0 ? Number(a.from_usd_month).toFixed(0) : Number(a.from_usd_month).toFixed(2)) : null;
+  const price = amt ? (fr ? `dès ${amt.replace(".", ",")} $/mois` : `from $${amt}/mo`) : null;
+  const free = a.has_free ? (fr ? "offre gratuite" : "free plan") : null;
+  const facts = [price, free].filter(Boolean).join(fr ? ", " : " · ");
+  const options = fr
+    ? [facts ? `Prix de ${a.name} en ${y} : ${facts}, score et alternatives` : null, facts ? `${a.name} : ${facts}, alternatives` : null, `Prix de ${a.name} en ${y}, score et alternatives`, `${a.name} — prix et alternatives`]
+    : [facts ? `${a.name} pricing ${y}: ${facts}, score & alternatives` : null, facts ? `${a.name} pricing: ${facts} & alternatives` : null, `${a.name} pricing ${y}, score & alternatives`, `${a.name} — pricing & alternatives`];
+  const title = options.filter((x): x is string => !!x).find((x) => x.length <= 68) ?? `${a.name}`;
+  const d = (text ?? a.short_description ?? "").trim().replace(/\.$/, "");
+  const score = a.quality_score != null ? (fr ? ` Score Agent ${Math.round(a.quality_score)}/100.` : ` Agent Score ${Math.round(a.quality_score)}/100.`) : "";
+  const p = price ? (fr ? ` Prix ${price}${a.pricing_verified ? ", relevé sur la page officielle" : ""}.` : ` Pricing ${price}${a.pricing_verified ? ", read on the official page" : ""}.`) : "";
+  const tail = fr ? " Offres, fonctionnalités et alternatives comparées." : " Plans, capabilities and alternatives compared.";
+  let description = `${d ? d + "." : a.name + "."}${p}${score}${tail}`;
+  if (description.length > 160) description = `${d.slice(0, Math.max(60, 160 - (p + score).length - 2)).replace(/\s+\S*$/, "")}…${p}${score}`;
+  return { title, description: description.slice(0, 165) };
+}
+
 /** All translated agent descriptions of a language (slug -> text), for ranking tables. */
 export async function loadAgentTexts(lang: Lang): Promise<Map<string, string>> {
   const m = new Map<string, string>();
