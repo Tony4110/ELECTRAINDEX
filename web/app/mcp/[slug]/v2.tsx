@@ -124,7 +124,7 @@ export async function ToolPageV2({ params }: { params: P }) {
   const best = tasks[0];
   const [{ data: simData }, { data: agData }] = best ? await Promise.all([
     c.from("v_task_rankings").select("provider_slug,provider_name,short_description,coverage_pct,remote,local").eq("task_slug", best.task_slug).eq("provider_type", "mcp_server").neq("provider_id", m.id).order("coverage_pct", { ascending: false }).order("last_seen_at", { ascending: false }).limit(6),
-    c.from("v_task_rankings").select("provider_slug,provider_name,quality_score,from_usd_month,has_free,has_pricing,coverage_pct").eq("task_slug", best.task_slug).eq("provider_type", "agent").order("coverage_pct", { ascending: false }).order("quality_score", { ascending: false, nullsFirst: false }).limit(3),
+    c.from("v_task_rankings").select("provider_slug,provider_name,quality_score,from_usd_month,has_free,has_pricing,coverage_pct").eq("task_slug", best.task_slug).eq("provider_type", "agent").order("coverage_pct", { ascending: false }).order("quality_score", { ascending: false, nullsFirst: false }).limit(4),
   ]) : [{ data: [] }, { data: [] }];
   const similar = (simData as { provider_slug: string; provider_name: string; short_description: string | null; coverage_pct: number; remote: boolean | null; local: boolean | null }[] | null) ?? [];
   const agents = (agData as { provider_slug: string; provider_name: string; quality_score: number | null; from_usd_month: number | null; has_free: boolean; has_pricing: boolean }[] | null) ?? [];
@@ -267,8 +267,9 @@ export async function ToolPageV2({ params }: { params: P }) {
               <ul className="signals">{agents.map((a) => (
                 <li className="signal" key={a.provider_slug}>
                   <div className="signal-top"><Link href={`/agents/${a.provider_slug}`} className="strong ink">{a.provider_name}</Link><span className="spacer" /><Quality score={a.quality_score} /></div>
-                  <div className="small"><Price from={a.from_usd_month} free={a.has_free} hasPricing={a.has_pricing} /></div>
+                  <div className="small"><Price from={a.from_usd_month} free={a.has_free} hasPricing={a.has_pricing} /> · <Link href={`/agents/${a.provider_slug}`}>Prices &amp; score →</Link></div>
                 </li>))}</ul>
+              {best ? <div className="card-body small" style={{ paddingTop: 0 }}><Link href={`/tasks/${best.task_slug}`} className="strong">All AI agents to {lowerFirst(best.task_name)}, ranked →</Link></div> : null}
             </div>
           ) : null}
         </section>
@@ -311,6 +312,31 @@ export async function ToolPageV2({ params }: { params: P }) {
 
       <ReportBox type="mcp" slug={m.slug} status={rep as ReportStatus} />
       <FollowBox type="mcp" slug={m.slug} name={m.name} />
+      {m.remote ? (
+        <div className="card publisher-offer" style={{ marginTop: 24 }} id="monitor">
+          <div className="card-head"><h2>Do you run {m.name}? Know when it stops answering</h2><span className="small muted">For publishers · optional</span></div>
+          <div className="card-body">
+            <p className="small" style={{ marginTop: 0 }}>Its hosted endpoint can be monitored. <b>Monitoring Pro</b> connects every 30 minutes like an AI assistant, emails you within the hour when it stops answering, keeps a 90-day availability history and adds your answer rate to your badge.</p>
+            <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
+              <Link href={`/monitor?server=${m.slug}&from=mcp-page#start`} className="btn primary">Monitor {m.name}</Link>
+              <span className="small"><span className="offer-tag" style={{ margin: 0 }}>Launch offer</span> $39.99 once, for life <span className="muted">instead of $9.99/month</span> · <Link href="/pricing">All plans</Link></span>
+            </div>
+            <p className="small faint" style={{ marginBottom: 0 }}>Monitoring never changes a score or a rank.</p>
+          </div>
+        </div>
+      ) : (
+        <div className="card publisher-offer" style={{ marginTop: 24 }} id="spotlight">
+          <div className="card-head"><h2>Do you publish {m.name}? Get it seen by people choosing a tool</h2><span className="small muted">For publishers · optional</span></div>
+          <div className="card-body">
+            <p className="small" style={{ marginTop: 0 }}><b>Launch Spotlight</b>: 60 days of clearly labelled Sponsored visibility on the use-case pages where {m.name} already appears, plus the weekly Pulse. No click in 60 days? The next 60 days are free.</p>
+            <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
+              <Link href={`/spotlight?product=${m.slug}&from=mcp-page#preview`} className="btn primary">See where it would appear</Link>
+              <span className="small"><span className="offer-tag" style={{ margin: 0 }}>Launch offer</span> $14.99 once <span className="muted">instead of $69.99</span> · <Link href="/pricing">All plans</Link></span>
+            </div>
+            <p className="small faint" style={{ marginBottom: 0 }}>Sponsored placements never change a score or a rank.</p>
+          </div>
+        </div>
+      )}
       <PublisherKit kind="mcp" slug={m.slug} name={m.name} />
 
       {faq.length ? <div className="card faq" style={{ marginTop: 24 }}>
