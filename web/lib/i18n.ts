@@ -85,7 +85,7 @@ const THEMES_DE: Record<string, string> = {
 };
 
 const en = {
-  nav: { agents: "Agents", tasks: "Tasks", tools: "Tools", compare: "Compare", payments: "Payments", new: "New", pulse: "Pulse", pricing: "Pricing", blog: "Blog", methodology: "Methodology", list: "List your agent" },
+  nav: { agents: "Agents", tasks: "Tasks", apps: "AI apps", tools: "Tools", compare: "Compare", payments: "Payments", new: "New", pulse: "Pulse", pricing: "Pricing", blog: "Blog", methodology: "Methodology", list: "List your agent" },
   footer: {
     tagline: "the trust layer for the agent economy", sourced: "Every fact has a source and a date · no source → no claim",
     scores: "Scores measure observable public data, not performance", advertise: "Advertise", publishedBy: "Published by", estonia: "(Estonia)",
@@ -120,7 +120,7 @@ const en = {
     lede: "Free. We read your public pages, source every fact, and list your agent with its price and score. A listing or a partnership never changes a score.",
     mcpNote1: "Listing an MCP server? Publish it on the", mcpNote2: "Official MCP Registry", mcpNote3: ": our robot lists every registry server automatically, usually within 15 minutes. Use this form for AI agents and for tools that are not in the registry.",
     errSetup: "The site is not connected yet. Please try again later.", errInvalid: "Please check the form: a name, a valid website (https://…) and a valid email are required.",
-    what: "What are you listing?", kindAgent: "AI agent (a product people use)", kindTool: "Tool / MCP server (used by agents)",
+    what: "What are you listing?", kindAgent: "AI agent (a product people use)", kindTool: "Tool / MCP server (used by agents)", kindApp: "AI app for the public (coaching, learning, creativity...)",
     name: "Name *", namePh: "e.g. Acme Sales Agent", website: "Website *", pricing: "Pricing page", theme: "Theme", chooseTheme: "Choose a theme",
     email: "Your email *", emailNote: "Used to contact you about this listing. Never published.", privacy: "Privacy",
     desc: "What does it do? (one or two sentences)", descPh: "e.g. Finds B2B leads, enriches them and sends personalised outreach.",
@@ -141,7 +141,7 @@ const en = {
 export type Dict = typeof en;
 
 const fr: Dict = {
-  nav: { agents: "Agents", tasks: "Tâches", tools: "Outils", compare: "Comparer", payments: "Paiements", new: "Nouveautés", pulse: "Pulse", pricing: "Tarifs", blog: "Blog", methodology: "Méthodologie", list: "Lister votre agent" },
+  nav: { agents: "Agents", tasks: "Tâches", apps: "Apps IA", tools: "Outils", compare: "Comparer", payments: "Paiements", new: "Nouveautés", pulse: "Pulse", pricing: "Tarifs", blog: "Blog", methodology: "Méthodologie", list: "Lister votre agent" },
   footer: {
     tagline: "la couche de confiance de l'économie des agents", sourced: "Chaque fait a une source et une date · pas de source, pas d'affirmation",
     scores: "Les scores mesurent des données publiques observables, pas la performance", advertise: "Publicité", publishedBy: "Publié par", estonia: "(Estonie)",
@@ -176,7 +176,7 @@ const fr: Dict = {
     lede: "Gratuit. Nous lisons vos pages publiques, sourçons chaque fait et listons votre agent avec son prix et son score. Un référencement ou un partenariat ne change jamais un score.",
     mcpNote1: "Vous publiez un serveur MCP ? Publiez-le sur le", mcpNote2: "registre officiel MCP", mcpNote3: " : notre robot liste automatiquement chaque serveur du registre, en général en 15 minutes. Utilisez ce formulaire pour les agents IA et les outils absents du registre.",
     errSetup: "Le site n'est pas encore connecté. Merci de réessayer plus tard.", errInvalid: "Merci de vérifier le formulaire : un nom, un site valide (https://…) et un e-mail valide sont requis.",
-    what: "Que proposez-vous ?", kindAgent: "Agent IA (un produit utilisé par des personnes)", kindTool: "Outil / serveur MCP (utilisé par des agents)",
+    what: "Que proposez-vous ?", kindAgent: "Agent IA (un produit utilisé par des personnes)", kindTool: "Outil / serveur MCP (utilisé par des agents)", kindApp: "App IA grand public (coaching, apprentissage, créativité...)",
     name: "Nom *", namePh: "ex. Acme Sales Agent", website: "Site web *", pricing: "Page des tarifs", theme: "Thème", chooseTheme: "Choisir un thème",
     email: "Votre e-mail *", emailNote: "Utilisé pour vous contacter au sujet de ce référencement. Jamais publié.", privacy: "Confidentialité",
     desc: "Que fait-il ? (une ou deux phrases)", descPh: "ex. Trouve des prospects B2B, les enrichit et envoie des messages personnalisés.",
@@ -196,7 +196,7 @@ const fr: Dict = {
 };
 
 const es: Dict = {
-  nav: { agents: "Agentes", tasks: "Tareas", tools: "Herramientas", compare: "Comparar", payments: "Pagos", new: "Novedades", pulse: "Pulse", pricing: "Precios", blog: "Blog", methodology: "Metodología", list: "Añade tu agente" },
+  nav: { agents: "Agentes", tasks: "Tareas", apps: "Apps de IA", tools: "Herramientas", compare: "Comparar", payments: "Pagos", new: "Novedades", pulse: "Pulse", pricing: "Precios", blog: "Blog", methodology: "Metodología", list: "Añade tu agente" },
   footer: {
     tagline: "la capa de confianza de la economía de los agentes", sourced: "Cada dato tiene una fuente y una fecha · sin fuente, no hay afirmación",
     scores: "Las puntuaciones miden datos públicos observables, no el rendimiento", advertise: "Publicidad", publishedBy: "Publicado por", estonia: "(Estonia)",
@@ -231,7 +231,7 @@ const es: Dict = {
     lede: "Gratis. Leemos tus páginas públicas, citamos la fuente de cada dato y listamos tu agente con su precio y su puntuación. Aparecer en el índice o una colaboración nunca cambia una puntuación.",
     mcpNote1: "¿Publicas un servidor MCP? Publícalo en el", mcpNote2: "registro oficial de MCP", mcpNote3: ": nuestro robot lista automáticamente cada servidor del registro, normalmente en 15 minutos. Usa este formulario para agentes de IA y herramientas que no están en el registro.",
     errSetup: "El sitio aún no está conectado. Inténtalo más tarde.", errInvalid: "Revisa el formulario: se necesita un nombre, un sitio web válido (https://…) y un correo válido.",
-    what: "¿Qué quieres añadir?", kindAgent: "Agente de IA (un producto que usan las personas)", kindTool: "Herramienta / servidor MCP (usado por agentes)",
+    what: "¿Qué quieres añadir?", kindAgent: "Agente de IA (un producto que usan las personas)", kindTool: "Herramienta / servidor MCP (usado por agentes)", kindApp: "App de IA para el público (coaching, aprendizaje, creatividad...)",
     name: "Nombre *", namePh: "p. ej. Acme Sales Agent", website: "Sitio web *", pricing: "Página de precios", theme: "Tema", chooseTheme: "Elige un tema",
     email: "Tu correo *", emailNote: "Para contactarte sobre esta ficha. Nunca se publica.", privacy: "Privacidad",
     desc: "¿Qué hace? (una o dos frases)", descPh: "p. ej. Encuentra clientes potenciales B2B, los enriquece y envía mensajes personalizados.",
@@ -251,7 +251,7 @@ const es: Dict = {
 };
 
 const de: Dict = {
-  nav: { agents: "Agenten", tasks: "Aufgaben", tools: "Tools", compare: "Vergleichen", payments: "Zahlungen", new: "Neu", pulse: "Pulse", pricing: "Preise", blog: "Blog", methodology: "Methodik", list: "Agent eintragen" },
+  nav: { agents: "Agenten", tasks: "Aufgaben", apps: "KI-Apps", tools: "Tools", compare: "Vergleichen", payments: "Zahlungen", new: "Neu", pulse: "Pulse", pricing: "Preise", blog: "Blog", methodology: "Methodik", list: "Agent eintragen" },
   footer: {
     tagline: "die Vertrauensebene der Agenten-Ökonomie", sourced: "Jede Angabe hat eine Quelle und ein Datum · keine Quelle, keine Behauptung",
     scores: "Scores messen beobachtbare öffentliche Daten, nicht die Leistung", advertise: "Werbung", publishedBy: "Herausgegeben von", estonia: "(Estland)",
@@ -286,7 +286,7 @@ const de: Dict = {
     lede: "Kostenlos. Wir lesen deine öffentlichen Seiten, belegen jede Angabe mit einer Quelle und listen deinen Agenten mit Preis und Score. Ein Eintrag oder eine Partnerschaft ändert nie einen Score.",
     mcpNote1: "Du veröffentlichst einen MCP-Server? Trage ihn in die", mcpNote2: "offizielle MCP-Registry", mcpNote3: " ein: Unser Roboter listet jeden Server der Registry automatisch, meist innerhalb von 15 Minuten. Nutze dieses Formular für KI-Agenten und Tools, die nicht in der Registry sind.",
     errSetup: "Die Seite ist noch nicht verbunden. Bitte versuche es später erneut.", errInvalid: "Bitte prüfe das Formular: Name, gültige Website (https://…) und gültige E-Mail sind erforderlich.",
-    what: "Was möchtest du eintragen?", kindAgent: "KI-Agent (ein Produkt, das Menschen nutzen)", kindTool: "Tool / MCP-Server (von Agenten genutzt)",
+    what: "Was möchtest du eintragen?", kindAgent: "KI-Agent (ein Produkt, das Menschen nutzen)", kindTool: "Tool / MCP-Server (von Agenten genutzt)", kindApp: "KI-App für Endnutzer (Coaching, Lernen, Kreativität...)",
     name: "Name *", namePh: "z. B. Acme Sales Agent", website: "Website *", pricing: "Preisseite", theme: "Thema", chooseTheme: "Thema wählen",
     email: "Deine E-Mail *", emailNote: "Nur für Rückfragen zu diesem Eintrag. Wird nie veröffentlicht.", privacy: "Datenschutz",
     desc: "Was macht er? (ein oder zwei Sätze)", descPh: "z. B. Findet B2B-Leads, reichert sie an und versendet personalisierte Nachrichten.",
