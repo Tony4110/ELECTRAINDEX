@@ -35,7 +35,7 @@ export function SiteHeader() {
           <Link href={lhref(lang, "/")}>{t.agents}</Link>
           <Link href={lhref(lang, "/tasks")}>{t.tasks}</Link>
           <Link href="/mcp">{t.tools}</Link>
-          <Link href="/apps" className="nav-opt">{t.apps}</Link>
+          <Link href="/apps">{t.apps}</Link>
           <Link href="/compare" className="nav-opt2">{t.compare}</Link>
           <Link href="/payments" className="nav-opt">{t.payments}</Link>
           <Link href="/new">{t.new}</Link>
