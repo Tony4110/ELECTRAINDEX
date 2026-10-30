@@ -10,18 +10,19 @@ function tagged(url: string, source: string) {
   return `${url}?utm_source=${source}&utm_medium=share&utm_campaign=listing`;
 }
 
-function shareText(kind: "agent" | "mcp", name: string, url: string, lang: Lang = "en") {
+function shareText(kind: "agent" | "mcp" | "app", name: string, url: string, lang: Lang = "en") {
   if (kind === "agent" && lang !== "en") return boxT(lang).shareAgent(name, url);
+  if (kind === "app") return `${name} is now listed on Electra Index, with its publisher and prices checked on its official pages: ${url} #AIapps`;
   return kind === "agent"
     ? `${name} is now listed on Electra Index, the independent index of AI agents with verified prices and rankings. See how we compare: ${url} #AIagents`
     : `${name} is now listed on Electra Index, the independent index of MCP servers, tested live and ranked by use case. See it here: ${url} #MCP #AIagents`;
 }
 
 /** Small row of share buttons (LinkedIn, X, copy link) under a product title. */
-export function ShareRow({ kind, slug, name, lang = "en" }: { kind: "agent" | "mcp"; slug: string; name: string; lang?: Lang }) {
+export function ShareRow({ kind, slug, name, lang = "en" }: { kind: "agent" | "mcp" | "app"; slug: string; name: string; lang?: Lang }) {
   const [copied, setCopied] = useState(false);
   const t = boxT(lang);
-  const url = `${SITE}${lang === "en" ? "" : `/${lang}`}/${kind === "agent" ? "agents" : "mcp"}/${slug}`;
+  const url = `${SITE}${lang === "en" ? "" : `/${lang}`}/${kind === "agent" ? "agents" : kind === "app" ? "apps" : "mcp"}/${slug}`;
   const li = shareText(kind, name, tagged(url, "linkedin"), lang);
   const xUrl = tagged(url, "x");
   return (

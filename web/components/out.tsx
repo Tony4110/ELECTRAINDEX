@@ -3,7 +3,7 @@ import { boxT } from "@/lib/i18n-agent";
 
 /** Outbound link through /go/ so clicks to vendor sites are counted (no personal data).
  *  `sponsored` = the destination is an affiliate link (Google requires rel="sponsored"). */
-export function Out({ type, slug, to, from, className, sponsored, children }: { type: "agent" | "mcp"; slug: string; to: "website" | "pricing" | "repository"; from: string; className?: string; sponsored?: boolean; children: React.ReactNode }) {
+export function Out({ type, slug, to, from, className, sponsored, children }: { type: "agent" | "mcp" | "app"; slug: string; to: "website" | "pricing" | "repository"; from: string; className?: string; sponsored?: boolean; children: React.ReactNode }) {
   const href = `/go/${type}/${slug}?${new URLSearchParams({ to, from })}`;
   return <a href={href} className={className} target="_blank" rel={sponsored ? "sponsored nofollow noopener" : "nofollow noopener"}>{children}</a>;
 }

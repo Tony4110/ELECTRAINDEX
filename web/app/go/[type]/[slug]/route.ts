@@ -13,6 +13,7 @@ import { db } from "@/lib/db";
 const TYPES: Record<string, { entity: string; view: string; cols: Record<string, string> }> = {
   agent: { entity: "agent", view: "v_agent_cards", cols: { website: "website", pricing: "pricing_url" } },
   mcp: { entity: "mcp_server", view: "v_mcp_servers", cols: { website: "website", repository: "repository_url" } },
+  app: { entity: "app", view: "v_apps", cols: { website: "website", pricing: "pricing_url" } },
 };
 const BOT = /bot|crawl|spider|slurp|preview|facebookexternalhit|embedly|headless|python|curl|wget|httpclient|axios|node-fetch|go-http|java\/|okhttp|scrapy|phantom|selenium|playwright|puppeteer/i;
 const OUR_HOSTS = /(^|\.)electraindex\.com$|\.netlify\.app$|^localhost$/i;
@@ -63,7 +64,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ type
     const v = (data as Record<string, string | null> | null)?.[t.cols[to]] ?? null;
     url = v && /^https?:\/\//i.test(v) ? v : null;
   }
-  if (!url) return NextResponse.redirect(new URL(type === "agent" ? `/agents/${slug}` : `/mcp/${slug}`, req.url), 302);
+  if (!url) return NextResponse.redirect(new URL(type === "agent" ? `/agents/${slug}` : type === "app" ? `/apps/${slug}` : `/mcp/${slug}`, req.url), 302);
   const res = NextResponse.redirect(url, 302);
   res.headers.set("X-Robots-Tag", "noindex, nofollow");
   res.headers.set("Cache-Control", "no-store");

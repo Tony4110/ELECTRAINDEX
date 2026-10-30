@@ -14,7 +14,7 @@ async function submit(form: FormData) {
   if (s("company_site")) redirect(`${back}?ok=1`); // honeypot: bots fill it, people never see it
   const url = (v: string) => (v && !/^https?:\/\//i.test(v) ? `https://${v}` : v);
   const row = {
-    kind: s("kind") === "tool" ? "tool" : "agent",
+    kind: s("kind") === "tool" ? "tool" : s("kind") === "app" ? "app" : "agent",
     name: s("name"), website: url(s("website")), pricing_url: url(s("pricing_url")) || null,
     theme: s("theme") || null, description: s("description") || null, contact_email: s("contact_email"),
     offers_opt_in: form.get("offers_opt_in") === "on",
@@ -51,7 +51,7 @@ export async function SubmitView({ searchParams, lang = "en" }: { searchParams: 
         <input type="hidden" name="lang" value={lang} />
         <div className="card-body form-grid">
           <label>{t.what}
-            <select name="kind" defaultValue="agent"><option value="agent">{t.kindAgent}</option><option value="tool">{t.kindTool}</option></select>
+            <select name="kind" defaultValue="agent"><option value="agent">{t.kindAgent}</option><option value="tool">{t.kindTool}</option><option value="app">{t.kindApp}</option></select>
           </label>
           <label>{t.name}<input name="name" required minLength={2} maxLength={120} placeholder={t.namePh} /></label>
           <label>{t.website}<input name="website" required maxLength={300} placeholder="https://your-agent.com" inputMode="url" /></label>
