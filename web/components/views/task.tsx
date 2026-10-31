@@ -105,6 +105,7 @@ export async function TaskView({ t, searchParams, lang = "en" }: { t: Task; sear
         <div className="tk-kpis">
           <span className="tk-kpi main"><b>{num(fullCount ?? 0)}</b> {fr ? ((fullCount ?? 0) > 1 ? "agents font tout le travail" : "agent fait tout le travail") : ((fullCount ?? 0) === 1 ? "agent does the whole job" : "agents do the whole job")}</span>
           {partial > 0 && !onlyFull ? <span className="tk-kpi"><b>{num(partial)}</b> {fr ? "en font une partie" : "do part of it"}</span> : null}
+          <a href="#ranking" className="tk-jump">{fr ? "Voir le classement complet ↓" : "See the full ranking ↓"}</a>
         </div>
       ) : null}
       <p className="lede tk-lede">{fr
@@ -146,7 +147,7 @@ export async function TaskView({ t, searchParams, lang = "en" }: { t: Task; sear
 
       <SpotlightBox path={`/tasks/${t.slug}`} lang={lang} texts={texts} />
 
-      {picks.length && tableRows.length ? <h2 className="tk-more">{fr ? "Les autres agents" : "Other agents"}<span className="small muted"> · {fr ? "classés par part du travail couverte" : "ranked by how much of the job they cover"}</span></h2> : null}
+      {picks.length && tableRows.length ? <h2 className="tk-more" id="ranking">{fr ? "Les autres agents" : "Other agents"}<span className="small muted"> · {fr ? "classés par part du travail couverte" : "ranked by how much of the job they cover"}</span></h2> : null}
       <section className="grid cols-3">
         <div className="card span-2 table-wrap">
           {tableRows.length === 0 && picks.length > 0 ? (
