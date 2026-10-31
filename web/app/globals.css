@@ -486,3 +486,45 @@ tbody tr:nth-child(-n+3) .rank-num::before { content: ""; position: absolute; le
   .nav a.nav-opt { display: none; }
 }
 @media (min-width: 961px) and (max-width: 1200px) { .nav a.nav-opt2 { display: none; } .header .wrap { gap: 14px; } .nav { gap: 14px; } }
+
+/* ── Tasks page: friendlier browsing ───────────────────────────── */
+.tb-hero { position: relative; padding: 28px 28px 24px; border-radius: 16px; background:
+  radial-gradient(120% 140% at 100% 0%, #FEF3D6 0%, rgba(254,243,214,0) 55%),
+  radial-gradient(90% 120% at 0% 100%, #E4E9FB 0%, rgba(228,233,251,0) 60%), var(--panel);
+  border: 1px solid var(--line); }
+.tb-hero h1 { max-width: 22ch; }
+.tb-steps { list-style: none; padding: 0; margin: 20px 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.tb-steps li { display: flex; gap: 12px; align-items: flex-start; background: rgba(255,255,255,.75); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+.tb-steps .n { flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--sun); color: var(--ink); font-weight: 800; display: grid; place-items: center; font-size: 14px; }
+.tb-steps b { display: block; font-size: 15px; }
+.tb-steps span { font-size: 13px; color: var(--muted); }
+@media (max-width: 760px) { .tb-steps { grid-template-columns: minmax(0, 1fr); gap: 6px; margin-top: 14px; } .tb-steps li { padding: 8px 12px; align-items: center; } .tb-steps span { display: none; } .tb-steps .n { width: 24px; height: 24px; font-size: 13px; } .tb-hero { padding: 20px 16px; } }
+
+.tb-controls { position: sticky; top: 0; z-index: 5; background: var(--bg); padding: 16px 0 10px; margin-top: 12px; }
+.tb-search { width: 100%; font: inherit; font-size: 16px; padding: 14px 18px; border-radius: 12px; border: 2px solid var(--ink); background: var(--panel); color: var(--ink); outline: none; }
+.tb-search:focus { box-shadow: 0 0 0 4px var(--sun-soft); }
+.tb-chips { display: flex; gap: 8px; margin-top: 10px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+.tb-chips::-webkit-scrollbar { display: none; }
+.tb-chip { --c: var(--ink); --s: var(--soft); flex: none; display: inline-flex; align-items: center; gap: 7px; font: inherit; font-size: 13px; font-weight: 600; padding: 8px 13px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel); color: var(--ink-2); cursor: pointer; min-height: 38px; }
+.tb-chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+.tb-chip:hover { border-color: var(--c); }
+.tb-chip.on { background: var(--s); border-color: var(--c); color: var(--ink); }
+.tb-none { margin: 24px 0; color: var(--muted); }
+
+.tb-group { margin-top: 30px; }
+.tb-head { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+.tb-bar { width: 6px; align-self: stretch; border-radius: 6px; background: var(--c); }
+.tb-head h2 { font-size: 22px; letter-spacing: -.01em; }
+.tb-head p { margin: 2px 0 0; color: var(--muted); font-size: 14px; }
+.tb-count { margin-left: auto; font-family: var(--mono); font-size: 12px; color: var(--c); background: var(--s); padding: 4px 10px; border-radius: 999px; }
+.tb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+.tb-card { position: relative; display: flex; flex-direction: column; gap: 6px; padding: 16px 40px 16px 18px; border-radius: 12px; background: var(--panel); border: 1px solid var(--line); border-top: 3px solid var(--c); color: var(--ink); transition: transform .12s ease, box-shadow .12s ease; }
+.tb-card:hover { color: var(--ink); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(18,24,22,.08); }
+.tb-name { font-size: 16px; font-weight: 700; line-height: 1.3; }
+.tb-agents { font-size: 13px; font-weight: 600; color: var(--c); }
+.tb-agents.zero { color: var(--faint); font-weight: 500; }
+.tb-price { color: var(--muted); font-weight: 500; }
+.tb-top { font-size: 12px; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+.tb-go { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 18px; color: var(--faint); transition: color .12s, right .12s; }
+.tb-card:hover .tb-go { color: var(--c); right: 10px; }
+@media (prefers-reduced-motion: reduce) { .tb-card, .tb-go { transition: none; } .tb-card:hover { transform: none; } }
