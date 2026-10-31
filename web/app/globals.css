@@ -646,3 +646,4 @@ tr:hover td { background: rgba(255,255,255,.6); }
 .theme-line .n { color: var(--muted); }
 @media (max-width: 760px) { .theme-line a { padding: 6px 10px; } }
 .theme-line + .rank-head { margin-top: 8px; }
+.hero + .theme-line, .theme-line#ranking { margin-top: 68px; }
