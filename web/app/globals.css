@@ -596,3 +596,4 @@ tbody tr:nth-child(-n+3) .rank-num::before { content: ""; position: absolute; le
 .ln-sponsored .sponsor-slot { width: 100%; max-width: none; flex: none; margin: 0; }
 .ln-sponsored .sponsor-slot a { border: 0; background: transparent; padding: 0; flex-direction: column; gap: 3px; }
 .ln-sponsored .sponsor-slot a:hover { color: var(--ink); }
+.ln-hero + .tabs { margin-top: 6px; }
