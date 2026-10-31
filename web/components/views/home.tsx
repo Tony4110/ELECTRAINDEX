@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { themeStyle } from "@/lib/theme-style";
 import { dict, lhref, themeName, type Lang } from "@/lib/i18n";
 import { taskNameFr } from "@/lib/i18n-paths";
 import { db, getSignals, getStats, getThemes, getTasks, type AgentCard } from "@/lib/db";
@@ -67,7 +68,7 @@ export async function HomeView({ searchParams, lang = "en" }: { searchParams: SP
       <nav className="theme-line" aria-label="Themes" id="ranking">
         <Link href={href({ theme: null })} scroll={false} className={!current ? "on" : ""} aria-current={!current ? "true" : undefined}>{t.all} <span className="n">{cards.length}</span></Link>
         {themes.map((t) => (
-          <Link key={t.theme_slug} href={href({ theme: t.theme_slug })} scroll={false} className={current?.theme_slug === t.theme_slug ? "on" : ""} aria-current={current?.theme_slug === t.theme_slug ? "true" : undefined}>
+          <Link key={t.theme_slug} href={href({ theme: t.theme_slug })} scroll={false} className={current?.theme_slug === t.theme_slug ? "on" : ""} aria-current={current?.theme_slug === t.theme_slug ? "true" : undefined} style={{ ["--c" as string]: themeStyle(t.theme_slug).color, ["--s" as string]: themeStyle(t.theme_slug).soft }}>
             {tn(t.theme_slug, t.theme)} <span className="n">{agentsIn(t.theme_slug)}</span>
           </Link>
         ))}

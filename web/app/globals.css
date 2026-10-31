@@ -633,3 +633,16 @@ tr:hover td { background: rgba(255,255,255,.6); }
 @media (max-width: 1560px) { .nav a.nav-i.nav-opt { display: none; } }
 @media (min-width: 961px) and (max-width: 1280px) { .nav a.nav-i.nav-opt2 { display: none; } }
 @media (max-width: 960px) { .nav a.nav-i { padding: 6px 8px; } }
+
+/* ── Home theme filter: coloured pills (like the Tasks page) ── */
+.theme-line { gap: 8px; margin-top: 12px; border-bottom: 0; padding-bottom: 4px; }
+.theme-line a { --c: var(--ink); --s: var(--soft); min-height: 38px; padding: 7px 13px; border-radius: 999px; border: 1px solid var(--glass-line); background: var(--glass); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: var(--ink); font-size: 13px; font-weight: 600; margin-bottom: 0; box-shadow: 0 2px 8px rgba(31,63,209,.05); }
+.theme-line a::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--c); flex: none; }
+.theme-line a:first-child::before { background: conic-gradient(#2F6BFF, #E0457B, #F28C28, #16A34A, #2F6BFF); }
+.theme-line a:hover { border-color: var(--c); color: var(--ink); }
+.theme-line a.on { background: var(--s); border-color: var(--c); color: var(--ink); }
+.theme-line a:first-child.on { background: var(--ink); border-color: var(--ink); color: #fff; }
+.theme-line a:first-child.on .n { color: rgba(255,255,255,.7); }
+.theme-line .n { color: var(--muted); }
+@media (max-width: 760px) { .theme-line a { padding: 6px 10px; } }
+.theme-line + .rank-head { margin-top: 8px; }
