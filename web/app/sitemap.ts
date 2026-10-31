@@ -33,7 +33,8 @@ export async function generateSitemaps() {
   try {
     const c = db();
     if (!c) return [{ id: 0 }];
-    const { count } = await c.from("v_mcp_servers").select("id", { count: "exact", head: true });
+    const ix = await c.from("v_mcp_index").select("slug", { count: "exact", head: true }).eq("indexable", true);
+    const { count } = ix.error ? await c.from("v_mcp_servers").select("id", { count: "exact", head: true }) : ix;
     const chunks = Math.max(1, Math.ceil((count ?? 0) / SITEMAP_CHUNK));
     return Array.from({ length: chunks + 1 }, (_, id) => ({ id }));
   } catch {
@@ -92,6 +93,17 @@ export default async function sitemap({ id }: { id: number }): Promise<MetadataR
   try {
     const from = (n - 1) * SITEMAP_CHUNK;
     const out: MetadataRoute.Sitemap = [];
+    // only the MCP pages with real, unique content (see INSTALL_MCP_INDEX_QUALITY.sql)
+    const probe = await c.from("v_mcp_index").select("slug").limit(1);
+    if (!probe.error) {
+      for (let off = from; off < from + SITEMAP_CHUNK; off += 1000) {
+        const { data } = await c.from("v_mcp_index").select("slug,last_seen_at").eq("indexable", true).order("slug").range(off, off + 999);
+        const rows = (data as { slug: string; last_seen_at: string }[] | null) ?? [];
+        for (const r of rows) out.push({ url: `${SITE}/mcp/${r.slug}`, lastModified: new Date(r.last_seen_at), changeFrequency: "weekly", priority: 0.5 });
+        if (rows.length < 1000) break;
+      }
+      return out;
+    }
     for (let off = from; off < from + SITEMAP_CHUNK; off += 1000) {
       const { data } = await c.from("v_mcp_servers").select("slug,short_description,last_seen_at").order("slug").range(off, off + 999);
       const rows = (data as { slug: string; short_description: string | null; last_seen_at: string }[] | null) ?? [];

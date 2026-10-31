@@ -48,7 +48,12 @@ export async function metadataV2({ params }: { params: P }): Promise<Metadata> {
   const desc = (m.description ?? m.short_description ?? "").trim();
   const thin = desc.length < MIN_DESC;
   const c = db();
-  const { data: lv } = c ? await c.from("v_mcp_live").select("status,tool_count,tools_more,checked_at").eq("slug", m.slug).maybeSingle().then((r) => (r.error ? { data: null } : r)) : { data: null };
+  const [{ data: lv }, { data: ix, error: ixErr }] = c ? await Promise.all([
+    c.from("v_mcp_live").select("status,tool_count,tools_more,checked_at").eq("slug", m.slug).maybeSingle().then((r) => (r.error ? { data: null } : r)),
+    c.from("v_mcp_index").select("indexable").eq("slug", m.slug).maybeSingle(),
+  ]) : [{ data: null }, { data: null, error: null }];
+  // Google sees only pages with real, unique content (v_mcp_index); before that view exists, the old rule applies.
+  const hidden = thin || (!ixErr && ix != null && (ix as { indexable: boolean }).indexable === false);
   const live = lv as { status: string; tool_count: number | null; tools_more: boolean; checked_at: string } | null;
   const online = live?.status === "online";
   const nTools = online && live?.tool_count ? `${live.tool_count}${live.tools_more ? "+" : ""} tool${live.tool_count === 1 && !live.tools_more ? "" : "s"}` : null;
@@ -63,7 +68,7 @@ export async function metadataV2({ params }: { params: P }): Promise<Metadata> {
     title,
     description: cut(`${desc ? cut(desc, 95) + ". " : ""}${status}${access ? `${access[0].toUpperCase()}${access.slice(1)} MCP server: ` : ""}copy-paste setup for Claude, Cursor and VS Code, alternatives and changes.`, 158),
     alternates: { canonical: `/mcp/${m.slug}` },
-    robots: thin ? { index: false, follow: true } : undefined,
+    robots: hidden ? { index: false, follow: true } : undefined,
   };
 }
 
