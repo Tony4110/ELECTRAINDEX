@@ -1,3 +1,4 @@
+import { getFollowers } from "@/lib/follows";
 import Link from "next/link";
 import { Out, AffiliateNote } from "@/components/out";
 import { StatusBadges } from "@/components/status";
@@ -267,7 +268,7 @@ export async function AgentView({ a, lang = "en", text }: { a: AgentCard; lang?:
       </div>
       <ReportBox type="agent" slug={a.slug} status={reportStatus} lang={lang}
         recheckedAgo={reportStatus?.last_rechecked_ok_at && Date.now() - new Date(reportStatus.last_rechecked_ok_at).getTime() < 14 * 86_400_000 ? timeAgo(reportStatus.last_rechecked_ok_at, lang) : null} />
-      <FollowBox type="agent" slug={a.slug} name={a.name} lang={lang} />
+      <FollowBox type="agent" slug={a.slug} name={a.name} lang={lang} followers={await getFollowers("agent", a.slug)} />
       <PublisherKit kind="agent" slug={a.slug} name={a.name} lang={lang} />
     </>
   );

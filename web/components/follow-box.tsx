@@ -25,7 +25,7 @@ export function ProgramBenefits({ type, lang = "en" }: { type: "agent" | "mcp"; 
 }
 
 /** Follow a tool or agent page by email (no account). Alerts never depend on accepting offers. */
-export function FollowBox({ type, slug, name, lang = "en" }: { type: "agent" | "mcp"; slug: string; name: string; lang?: Lang }) {
+export function FollowBox({ type, slug, name, lang = "en", followers = 0 }: { type: "agent" | "mcp" | "app"; slug: string; name: string; lang?: Lang; followers?: number }) {
   const T = boxT(lang).follow;
   const L = lang !== "en" && type === "agent";
   const M = L ? T.msg : MSG;
@@ -35,7 +35,7 @@ export function FollowBox({ type, slug, name, lang = "en" }: { type: "agent" | "
   const what = type === "mcp" ? "stops responding, changes version or how to connect" : "changes its price or plans";
   return (
     <div className="card follow-box" style={{ marginTop: 24 }} id="follow">
-      <div className="card-head"><h2>{type === "mcp" ? `Is ${name} still online?` : T.title(name)}</h2><span className="small muted">{L ? T.sub : "Free alerts · no account"}</span></div>
+      <div className="card-head"><h2>{type === "mcp" ? `Is ${name} still online?` : T.title(name)}</h2><span className="small muted">{L ? T.sub : "Free alerts · no account"}</span><span className="spacer" /><span className="follow-count" title={lang === "fr" ? "Personnes ayant confirmé leur suivi. Ne change jamais un score ni un classement." : "People who confirmed their follow. Never changes a score or a ranking."}>▲ {followers}</span></div>
       <div className="card-body">
         {state.status === "ok" ? <p className="report-ok">{program ? M.ok_program : M.ok}</p> : (
           <form action={action} className="follow-form">
@@ -52,7 +52,7 @@ export function FollowBox({ type, slug, name, lang = "en" }: { type: "agent" | "
             {publisher ? (
               <div className="program-box">
                 <p className="program-title">{L ? T.program : "Join the free Publisher Program"}</p>
-                <ProgramBenefits type={type} lang={lang} />
+                <ProgramBenefits type={type === "mcp" ? "mcp" : "agent"} lang={lang} />
                 <label className="check strong-check"><input type="checkbox" name="offers" checked={program} onChange={(e) => setProgram(e.target.checked)} /> {L ? T.yes : "Yes, add me. Unsubscribe in one click."}</label>
                 <p className="small muted" style={{ margin: "4px 0 0" }}>{L ? T.either : "Alerts work either way. The program never changes a score."}</p>
               </div>

@@ -1,5 +1,6 @@
 /** Tool page, version 2 (richer template). Shown to the rollout sample only, see lib/rollout.ts. */
 import Link from "next/link";
+import { getFollowers } from "@/lib/follows";
 import { Out } from "@/components/out";
 import { StatusBadges } from "@/components/status";
 import { ReportBox, type ReportStatus } from "@/components/report-box";
@@ -316,7 +317,7 @@ export async function ToolPageV2({ params }: { params: P }) {
       </section>
 
       <ReportBox type="mcp" slug={m.slug} status={rep as ReportStatus} />
-      <FollowBox type="mcp" slug={m.slug} name={m.name} />
+      <FollowBox type="mcp" slug={m.slug} name={m.name} followers={await getFollowers("mcp_server", m.slug)} />
       {m.remote ? (
         <div className="card publisher-offer" style={{ marginTop: 24 }} id="monitor">
           <div className="card-head"><h2>Do you run {m.name}? Know when it stops answering</h2><span className="small muted">For publishers · optional</span></div>

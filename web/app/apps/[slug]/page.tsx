@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Out } from "@/components/out";
 import { ShareRow } from "@/components/share";
+import { FollowBox } from "@/components/follow-box";
+import { getFollowers } from "@/lib/follows";
 import { appTheme, loadApp, loadApps, money, per, PLATFORM } from "@/lib/apps";
 import { shortDate } from "@/lib/format";
 
@@ -74,6 +76,8 @@ export default async function AppPage({ params }: { params: P }) {
           </div>
         </div>
       </section>
+
+      <FollowBox type="app" slug={a.slug} name={a.name} followers={await getFollowers("app", a.slug)} />
 
       {others.length ? (
         <section style={{ marginTop: 28 }}>

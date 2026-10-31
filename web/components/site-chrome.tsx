@@ -33,12 +33,12 @@ export function SiteHeader() {
         </Link>
         <nav className="nav" aria-label="Main">
           <Link href={lhref(lang, "/")}>{t.agents}</Link>
+          <Link href="/new" className="nav-hot">{t.new}</Link>
           <Link href={lhref(lang, "/tasks")}>{t.tasks}</Link>
           <Link href="/mcp">{t.tools}</Link>
           <Link href="/apps">{t.apps}</Link>
           <Link href="/compare" className="nav-opt2">{t.compare}</Link>
           <Link href="/payments" className="nav-opt">{t.payments}</Link>
-          <Link href="/new">{t.new}</Link>
           <Link href="/pulse" className="nav-opt2">{t.pulse}</Link>
           <Link href={lhref(lang, "/pricing")}>{t.pricing}</Link>
           <Link href="/blog" className="nav-opt">{t.blog}</Link>

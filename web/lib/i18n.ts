@@ -85,7 +85,7 @@ const THEMES_DE: Record<string, string> = {
 };
 
 const en = {
-  nav: { agents: "Agents", tasks: "Tasks", apps: "AI apps", tools: "Tools", compare: "Compare", payments: "Payments", new: "New", pulse: "Pulse", pricing: "Pricing", blog: "Blog", methodology: "Methodology", list: "List your agent" },
+  nav: { agents: "Agents", tasks: "Tasks", apps: "AI apps", tools: "Tools", compare: "Compare", payments: "Payments", new: "Launches", pulse: "Pulse", pricing: "Pricing", blog: "Blog", methodology: "Methodology", list: "List your agent" },
   footer: {
     tagline: "the trust layer for the agent economy", sourced: "Every fact has a source and a date · no source → no claim",
     scores: "Scores measure observable public data, not performance", advertise: "Advertise", publishedBy: "Published by", estonia: "(Estonia)",
@@ -141,7 +141,7 @@ const en = {
 export type Dict = typeof en;
 
 const fr: Dict = {
-  nav: { agents: "Agents", tasks: "Tâches", apps: "Apps IA", tools: "Outils", compare: "Comparer", payments: "Paiements", new: "Nouveautés", pulse: "Pulse", pricing: "Tarifs", blog: "Blog", methodology: "Méthodologie", list: "Lister votre agent" },
+  nav: { agents: "Agents", tasks: "Tâches", apps: "Apps IA", tools: "Outils", compare: "Comparer", payments: "Paiements", new: "Lancements", pulse: "Pulse", pricing: "Tarifs", blog: "Blog", methodology: "Méthodologie", list: "Lister votre agent" },
   footer: {
     tagline: "la couche de confiance de l'économie des agents", sourced: "Chaque fait a une source et une date · pas de source, pas d'affirmation",
     scores: "Les scores mesurent des données publiques observables, pas la performance", advertise: "Publicité", publishedBy: "Publié par", estonia: "(Estonie)",
@@ -196,7 +196,7 @@ const fr: Dict = {
 };
 
 const es: Dict = {
-  nav: { agents: "Agentes", tasks: "Tareas", apps: "Apps de IA", tools: "Herramientas", compare: "Comparar", payments: "Pagos", new: "Novedades", pulse: "Pulse", pricing: "Precios", blog: "Blog", methodology: "Metodología", list: "Añade tu agente" },
+  nav: { agents: "Agentes", tasks: "Tareas", apps: "Apps de IA", tools: "Herramientas", compare: "Comparar", payments: "Pagos", new: "Lanzamientos", pulse: "Pulse", pricing: "Precios", blog: "Blog", methodology: "Metodología", list: "Añade tu agente" },
   footer: {
     tagline: "la capa de confianza de la economía de los agentes", sourced: "Cada dato tiene una fuente y una fecha · sin fuente, no hay afirmación",
     scores: "Las puntuaciones miden datos públicos observables, no el rendimiento", advertise: "Publicidad", publishedBy: "Publicado por", estonia: "(Estonia)",
@@ -251,7 +251,7 @@ const es: Dict = {
 };
 
 const de: Dict = {
-  nav: { agents: "Agenten", tasks: "Aufgaben", apps: "KI-Apps", tools: "Tools", compare: "Vergleichen", payments: "Zahlungen", new: "Neu", pulse: "Pulse", pricing: "Preise", blog: "Blog", methodology: "Methodik", list: "Agent eintragen" },
+  nav: { agents: "Agenten", tasks: "Aufgaben", apps: "KI-Apps", tools: "Tools", compare: "Vergleichen", payments: "Zahlungen", new: "Launches", pulse: "Pulse", pricing: "Preise", blog: "Blog", methodology: "Methodik", list: "Agent eintragen" },
   footer: {
     tagline: "die Vertrauensebene der Agenten-Ökonomie", sourced: "Jede Angabe hat eine Quelle und ein Datum · keine Quelle, keine Behauptung",
     scores: "Scores messen beobachtbare öffentliche Daten, nicht die Leistung", advertise: "Werbung", publishedBy: "Herausgegeben von", estonia: "(Estland)",
