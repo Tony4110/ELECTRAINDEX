@@ -619,3 +619,17 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
 th { background: rgba(236,239,234,.7); }
 tr:hover td { background: rgba(255,255,255,.6); }
 @supports not (backdrop-filter: blur(1px)) { .card, .tb-hero, .tk-hero, .ln-item, .tb-card, .tk-pick, .tile, .header { background-color: #fff; } }
+
+/* ── Menu: dark labels, one coloured symbol each, soft pill on hover / current page ── */
+.nav { gap: 4px; }
+.nav a.nav-i { display: inline-flex; align-items: center; gap: 6px; padding: 7px 10px; border-radius: 999px; color: var(--ink); font-weight: 600; font-size: 14px; transition: background .12s ease, color .12s ease; }
+.nav a.nav-i .nav-ic { color: var(--c); font-size: 12px; line-height: 1; display: inline-block; transition: transform .15s ease; font-family: var(--sans); }
+.nav a.nav-i:hover { background: color-mix(in srgb, var(--c) 12%, transparent); color: var(--ink); }
+.nav a.nav-i:hover .nav-ic { transform: scale(1.25) rotate(-8deg); }
+.nav a.nav-i.on { background: color-mix(in srgb, var(--c) 14%, transparent); }
+.nav a.nav-hot::before { content: none; }
+@media (min-width: 961px) and (max-width: 1200px) { .nav a.nav-i { padding: 6px 7px; font-size: 13px; } .nav { gap: 2px; } }
+@media (prefers-reduced-motion: reduce) { .nav a.nav-i .nav-ic { transition: none; } .nav a.nav-i:hover .nav-ic { transform: none; } }
+@media (max-width: 1560px) { .nav a.nav-i.nav-opt { display: none; } }
+@media (min-width: 961px) and (max-width: 1280px) { .nav a.nav-i.nav-opt2 { display: none; } }
+@media (max-width: 960px) { .nav a.nav-i { padding: 6px 8px; } }

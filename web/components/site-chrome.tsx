@@ -32,17 +32,23 @@ export function SiteHeader() {
           ELECTRA<span className="sub">INDEX</span>
         </Link>
         <nav className="nav" aria-label="Main">
-          <Link href={lhref(lang, "/")}>{t.agents}</Link>
-          <Link href="/new" className="nav-hot">{t.new}</Link>
-          <Link href={lhref(lang, "/tasks")}>{t.tasks}</Link>
-          <Link href="/mcp">{t.tools}</Link>
-          <Link href="/apps">{t.apps}</Link>
-          <Link href="/compare" className="nav-opt2">{t.compare}</Link>
-          <Link href="/payments" className="nav-opt">{t.payments}</Link>
-          <Link href="/pulse" className="nav-opt2">{t.pulse}</Link>
-          <Link href={lhref(lang, "/pricing")}>{t.pricing}</Link>
-          <Link href="/blog" className="nav-opt">{t.blog}</Link>
-          <Link href="/sources">{t.methodology}</Link>
+          {([
+            [lhref(lang, "/"), t.agents, "◆", "#1F3FD1", "", base === "/"],
+            ["/new", t.new, "▲", "#E0457B", "", base.startsWith("/new")],
+            [lhref(lang, "/tasks"), t.tasks, "✓", "#16A34A", "", base.startsWith("/tasks")],
+            ["/mcp", t.tools, "⬡", "#F28C28", "", base.startsWith("/mcp")],
+            ["/apps", t.apps, "✦", "#7C4DFF", "", base.startsWith("/apps")],
+            ["/compare", t.compare, "⇄", "#0891B2", "nav-opt2", base.startsWith("/compare")],
+            ["/payments", t.payments, "◎", "#0F766E", "nav-opt", base.startsWith("/payments")],
+            ["/pulse", t.pulse, "∿", "#E0457B", "nav-opt2", base.startsWith("/pulse")],
+            [lhref(lang, "/pricing"), t.pricing, "$", "#B7791F", "", base.startsWith("/pricing")],
+            ["/blog", t.blog, "✎", "#4F46E5", "nav-opt", base.startsWith("/blog")],
+            ["/sources", t.methodology, "§", "#56615C", "", base.startsWith("/sources")],
+          ] as const).map(([href, label, icon, color, cls, on]) => (
+            <Link key={href} href={href} className={`nav-i ${cls} ${on ? "on" : ""}`} style={{ ["--c" as string]: color }} aria-current={on ? "page" : undefined}>
+              <span className="nav-ic" aria-hidden="true">{icon}</span>{label}
+            </Link>
+          ))}
         </nav>
         <span className="spacer" />
         <LangSwitch lang={lang} base={base} />
