@@ -649,3 +649,4 @@ tr:hover td { background: rgba(255,255,255,.6); }
 .hero + .theme-line, .theme-line#ranking { margin-top: 68px; }
 .theme-line a:first-child.on { background: var(--sun); border-color: var(--sun); color: var(--ink); } .theme-line a:first-child.on .n { color: rgba(18,24,22,.65); }
 .theme-line a:first-child::before { background: var(--ink); }
+.theme-line a:first-child::before { content: none; }
