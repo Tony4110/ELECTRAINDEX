@@ -4,7 +4,8 @@ import type { Metadata } from "next";
 import { db, type AgentCard } from "@/lib/db";
 import { shortDate } from "@/lib/format";
 import { pairSlug, parsePair } from "@/lib/compare";
-import { Quality, Price, Trust } from "@/components/rank";
+import { Quality, Price, Trust, Logo } from "@/components/rank";
+import { themeStyle } from "@/lib/theme-style";
 import { SetupNotice } from "@/components/ui";
 
 /** Clear yes/no/unknown cell for the comparison table. */
@@ -122,12 +123,23 @@ export default async function ComparePage({ params }: { params: P }) {
       <nav className="crumbs" aria-label="Breadcrumb">
         <Link href="/compare">Compare</Link><span>/</span><span className="ink">{a.name} vs {b.name}</span>
       </nav>
-      <div className="eyebrow">Comparison{theme?.name ? ` · ${theme.name}` : ""}</div>
-      <h1>{a.name} vs {b.name}: which AI agent is better?</h1>
-      <p className="lede">
-        A side-by-side look at <strong>{a.name}</strong> and <strong>{b.name}</strong> on quality, price, capabilities and trust.
-        Scores measure observable public data; prices come from each vendor&apos;s own pricing page. Every fact is sourced and dated.
-      </p>
+      <section className="tk-hero cp-hero" style={{ ["--c" as string]: themeStyle(theme?.s).color, ["--s" as string]: themeStyle(theme?.s).soft }}>
+        <div className="eyebrow">Comparison{theme?.name ? ` · ${theme.name}` : ""}</div>
+        <h1>{a.name} vs {b.name}: which AI agent is better?</h1>
+        <div className="cp-face">
+          {[a, b].map((x, i) => (
+            <Link key={x.slug} href={`/agents/${x.slug}`} className={`cp-fighter ${i ? "r" : ""}`}>
+              <Logo name={x.name} website={x.website} size={48} />
+              <span className="cp-f-body"><span className="cp-f-name">{x.name}</span>
+                <span className="cp-f-facts"><Quality score={x.quality_score} /><Price from={x.from_usd_month} free={x.has_free} hasPricing /></span></span>
+            </Link>
+          ))}
+          <span className="cp-face-vs">VS</span>
+        </div>
+        <p className="lede tk-lede" style={{ marginTop: 12 }}>
+          Quality, price, capabilities and trust, side by side. Scores measure observable public data; prices come from each vendor&apos;s own pricing page. Every fact is sourced and dated.
+        </p>
+      </section>
 
       <div className="card" style={{ marginTop: 20 }}>
         <table className="table">
