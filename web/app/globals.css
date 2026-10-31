@@ -585,7 +585,7 @@ tbody tr:nth-child(-n+3) .rank-num::before { content: ""; position: absolute; le
 .follow-count { font-family: var(--mono); font-size: 13px; font-weight: 600; color: #E0457B; background: #FCE6EE; padding: 4px 10px; border-radius: 999px; }
 .nav a.nav-hot { color: var(--ink); font-weight: 700; } .nav a.nav-hot::before { content: "▲ "; color: #E0457B; font-size: 11px; }
 /* Launches: compact header + sponsored row inside the list */
-.ln-hero { padding: 18px 22px 16px; }
+.ln-hero { padding: 18px 22px 34px; }
 .ln-hero h1 { margin: 4px 0 6px; font-size: clamp(24px, 2.6vw, 34px); }
 .ln-hero-row { display: flex; gap: 20px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
 .ln-hero-row .lede { font-size: 15px; max-width: 80ch; }
