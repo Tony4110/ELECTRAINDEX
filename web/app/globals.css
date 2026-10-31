@@ -597,3 +597,25 @@ tbody tr:nth-child(-n+3) .rank-num::before { content: ""; position: absolute; le
 .ln-sponsored .sponsor-slot a { border: 0; background: transparent; padding: 0; flex-direction: column; gap: 3px; }
 .ln-sponsored .sponsor-slot a:hover { color: var(--ink); }
 .ln-hero + .tabs { margin-top: 6px; }
+
+/* ── "Aurore verre" look (31 Oct 2026): soft colour halos behind frosted-glass cards ── */
+:root { --bg: #F7F8FC; --glass: rgba(255,255,255,.66); --glass-line: rgba(255,255,255,.92); --glass-shadow: 0 8px 30px rgba(31,63,209,.07); }
+html { background: var(--bg); } body { background: transparent; }
+body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(40% 40% at 0% 22%, rgba(31,63,209,.22), transparent 70%),
+    radial-gradient(45% 40% at 55% 100%, rgba(224,69,123,.20), transparent 70%),
+    radial-gradient(30% 30% at 100% 55%, rgba(245,184,46,.16), transparent 70%),
+    var(--bg); }
+.header { background: rgba(255,255,255,.72); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+.card, .tb-hero, .tk-hero, .ln-item, .tb-card, .tk-pick, .tile, .tb-steps li, .launches {
+  background-color: var(--glass); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-color: var(--glass-line); box-shadow: var(--glass-shadow); }
+.tb-hero, .tk-hero { background-image: none; }
+.tk-hero { background-image: radial-gradient(110% 140% at 100% 0%, var(--s) 0%, rgba(255,255,255,0) 55%); }
+.ln-list { gap: 10px; }
+.ln-item:hover { background-color: rgba(255,255,255,.85); }
+.tk-pick.first { background: linear-gradient(180deg, var(--s) 0%, rgba(255,255,255,.7) 60%); }
+.tb-controls { background: transparent; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+th { background: rgba(236,239,234,.7); }
+tr:hover td { background: rgba(255,255,255,.6); }
+@supports not (backdrop-filter: blur(1px)) { .card, .tb-hero, .tk-hero, .ln-item, .tb-card, .tk-pick, .tile, .header { background-color: #fff; } }
