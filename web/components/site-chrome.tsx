@@ -43,7 +43,7 @@ export function SiteHeader() {
             ["/pulse", t.pulse, "∿", "#E0457B", "nav-opt2", base.startsWith("/pulse")],
             [lhref(lang, "/pricing"), t.pricing, "$", "#B7791F", "", base.startsWith("/pricing")],
             ["/blog", t.blog, "✎", "#4F46E5", "nav-opt", base.startsWith("/blog")],
-            ["/sources", t.methodology, "§", "#56615C", "", base.startsWith("/sources")],
+            ["/sources", t.methodology, "§", "#56615C", "nav-opt3", base.startsWith("/sources")],
           ] as const).map(([href, label, icon, color, cls, on]) => (
             <Link key={href} href={href} className={`nav-i ${cls} ${on ? "on" : ""}`} style={{ ["--c" as string]: color }} aria-current={on ? "page" : undefined}>
               <span className="nav-ic" aria-hidden="true">{icon}</span>{label}
@@ -71,7 +71,7 @@ export function SiteFooter() {
         <Link href="/advertise" style={{ color: "var(--muted)" }}>{t.advertise}</Link>
       </div>
       <div className="wrap small" style={{ paddingTop: 8 }}>
-        <span>{t.publishedBy} <a href="https://dreamotion.io" rel="noopener">Dreamotion OÜ</a> {t.estonia} · {t.contact}: <a href="mailto:contact@electraindex.com">contact@electraindex.com</a> · <a href="/privacy">{t.privacy}</a> · <a href="/mcp-server">{t.mcpServer}</a> · <a href={lhref(lang, "/pricing")}>{t.pricing}</a> · <a href="/blog">Blog</a> · <a href="/payments">{dict(lang).nav.payments}</a></span>
+        <span>{t.publishedBy} <a href="https://dreamotion.io" rel="noopener">Dreamotion OÜ</a> {t.estonia} · {t.contact}: <a href="mailto:contact@electraindex.com">contact@electraindex.com</a> · <a href="/privacy">{t.privacy}</a> · <a href="/mcp-server">{t.mcpServer}</a> · <a href={lhref(lang, "/pricing")}>{t.pricing}</a> · <a href="/blog">Blog</a> · <a href="/payments">{dict(lang).nav.payments}</a> · <a href="/sources">{dict(lang).nav.methodology}</a></span>
       </div>
     </footer>
   );

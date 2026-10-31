@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { SetupNotice, Empty } from "@/components/ui";
-import { AppTable } from "@/components/app-list";
+import { AppCards, AppThemePills, appVars } from "@/components/app-list";
 import { APP_THEMES, loadApps } from "@/lib/apps";
 
 export const revalidate = 3600;
@@ -14,27 +14,35 @@ export const metadata: Metadata = {
 export default async function AppsPage() {
   const rows = await loadApps();
   if (rows === null) return <SetupNotice />;
+  const counts = Object.fromEntries(APP_THEMES.map((t) => [t.slug, rows.filter((r) => r.theme === t.slug).length]));
   return (
     <>
-      <div className="eyebrow">Index · AI apps</div>
-      <h1>AI apps, with publisher and prices</h1>
-      <p className="lede">{rows.length} AI apps for everyday life: coaching, journaling, languages, photos, music, accessibility. For each one we show who publishes it, where it runs and what it costs, read on its official pages. Looking for AI agents that do a job for you? See <Link href="/">AI agents</Link>.</p>
-      <div className="filters">
-        {APP_THEMES.map((t) => <Link key={t.slug} href={`/apps/themes/${t.slug}`} className="chip">{t.name} ({rows.filter((r) => r.theme === t.slug).length})</Link>)}
-      </div>
+      <section className="tb-hero ln-hero">
+        <div className="eyebrow">AI apps</div>
+        <h1>AI apps for everyday life</h1>
+        <div className="ln-hero-row">
+          <p className="lede">Coaching, journaling, languages, photos, music, accessibility. For each app: who publishes it, where it runs and what it really costs, checked on its official pages.</p>
+          <Link href="/submit" className="btn primary">Submit your app, free →</Link>
+        </div>
+      </section>
+      <AppThemePills counts={counts} />
       {rows.length === 0
-        ? <div className="card"><div className="card-body"><Empty title="No app yet">Apps appear here once their official pages have been read.</Empty></div></div>
+        ? <div className="card" style={{ marginTop: 16 }}><div className="card-body"><Empty title="No app yet">Apps appear here once their official pages have been read.</Empty></div></div>
         : APP_THEMES.map((t) => {
             const list = rows.filter((r) => r.theme === t.slug);
             if (!list.length) return null;
             return (
-              <section key={t.slug} style={{ marginTop: 28 }}>
-                <h2><Link href={`/apps/themes/${t.slug}`}>{t.name}</Link></h2>
-                <div className="card table-wrap"><AppTable rows={list} showTheme={false} /></div>
+              <section key={t.slug} className="tb-group" style={appVars(t.slug)}>
+                <header className="tb-head">
+                  <span className="tb-bar" />
+                  <div><h2><Link href={`/apps/themes/${t.slug}`} className="ink">{t.name}</Link></h2><p>{t.intro}</p></div>
+                  <span className="tb-count">{list.length}</span>
+                </header>
+                <AppCards rows={list} />
               </section>
             );
           })}
-      <p className="note">AI apps are listed apart from AI agents and never enter the agent rankings. Every app shown has an identifiable publisher, a public price (or a free plan) and a privacy policy. Prices are read on the official pricing page or app store listing, with the date. Publishers can <Link href="/submit">submit their app</Link>.</p>
+      <p className="note" style={{ marginTop: 32 }}>AI apps are listed apart from AI agents and never enter the agent rankings. Every app shown has an identifiable publisher, a public price (or a free plan) and a privacy policy. Prices are read on the official pricing page or app store listing, with the date.</p>
     </>
   );
 }

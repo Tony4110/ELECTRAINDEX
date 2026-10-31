@@ -650,3 +650,22 @@ tr:hover td { background: rgba(255,255,255,.6); }
 .theme-line a:first-child.on { background: var(--sun); border-color: var(--sun); color: var(--ink); } .theme-line a:first-child.on .n { color: rgba(18,24,22,.65); }
 .theme-line a:first-child::before { background: var(--ink); }
 .theme-line a:first-child::before { content: none; }
+
+/* ── AI apps: cards and pills ── */
+.ap-pills { margin-top: 10px; }
+.ap-pills a:first-child::before { content: none; }
+.ap-pills a:first-child.on { background: var(--sun); border-color: var(--sun); color: var(--ink); }
+.ap-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+.ap-card { --c: var(--accent); --s: var(--accent-soft); display: flex; flex-direction: column; gap: 10px; padding: 16px 18px; border-radius: 14px; border: 1px solid var(--glass-line); border-top: 3px solid var(--c); background: var(--glass); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: var(--glass-shadow); color: var(--ink); transition: transform .12s ease, box-shadow .12s ease; }
+.ap-card:hover { color: var(--ink); transform: translateY(-2px); box-shadow: 0 10px 26px rgba(18,24,22,.09); }
+.ap-head { display: flex; align-items: center; gap: 12px; }
+.ap-head > span:last-child { display: flex; flex-direction: column; min-width: 0; }
+.ap-name { font-size: 17px; font-weight: 800; }
+.ap-pub { font-size: 12px; color: var(--muted); }
+.ap-desc { font-size: 13px; color: var(--ink-2); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.ap-foot { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: auto; font-size: 13px; }
+.ap-plat { color: var(--c); font-weight: 600; font-size: 12px; }
+@media (prefers-reduced-motion: reduce) { .ap-card { transition: none; } .ap-card:hover { transform: none; } }
+@media (min-width: 961px) and (max-width: 1380px) { .nav a.nav-i.nav-opt2 { display: none; } }
+@media (min-width: 961px) and (max-width: 1120px) { .header .wrap { gap: 12px; } .nav a.nav-i { padding: 5px 6px; font-size: 13px; gap: 4px; } .nav a.nav-i .nav-ic { font-size: 10px; } .header .btn.dark, .header .btn { padding: 0 12px; } }
+@media (min-width: 961px) and (max-width: 1120px) { .nav a.nav-i.nav-opt3 { display: none; } }

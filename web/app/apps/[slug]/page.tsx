@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Out } from "@/components/out";
+import { Logo } from "@/components/rank";
+import { appVars } from "@/components/app-list";
 import { ShareRow } from "@/components/share";
 import { FollowBox } from "@/components/follow-box";
 import { getFollowers } from "@/lib/follows";
@@ -36,13 +38,15 @@ export default async function AppPage({ params }: { params: P }) {
     <>
       <nav className="crumbs" aria-label="Breadcrumb"><Link href="/apps">AI apps</Link><span>/</span>
         {t ? <><Link href={`/apps/themes/${t.slug}`}>{t.name}</Link><span>/</span></> : null}<span className="ink">{a.name}</span></nav>
-      <div className="eyebrow">AI app{t ? ` · ${t.name}` : ""}</div>
-      <h1>{a.name}</h1>
-      {a.short_description ? <p className="lede">{a.short_description}</p> : null}
-      <div className="chips" style={{ marginBottom: 12 }}>
-        {a.website ? <Out type="app" slug={a.slug} to="website" from={from} className="btn primary">Official website →</Out> : null}
-        {a.pricing_url ? <Out type="app" slug={a.slug} to="pricing" from={from} className="btn">Pricing page →</Out> : null}
-      </div>
+      <section className="tk-hero" style={appVars(a.theme)}>
+        <div className="eyebrow">AI app{t ? ` · ${t.name}` : ""}</div>
+        <div className="ap-head" style={{ marginTop: 6 }}><Logo name={a.name} website={a.website} size={52} /><h1 style={{ margin: 0 }}>{a.name}</h1></div>
+        {a.short_description ? <p className="lede tk-lede" style={{ marginTop: 10 }}>{a.short_description}</p> : null}
+        <div className="chips" style={{ marginTop: 12 }}>
+          {a.website ? <Out type="app" slug={a.slug} to="website" from={from} className="btn primary">Official website →</Out> : null}
+          {a.pricing_url ? <Out type="app" slug={a.slug} to="pricing" from={from} className="btn">Pricing page →</Out> : null}
+        </div>
+      </section>
       <div id="share"><ShareRow kind="app" slug={a.slug} name={a.name} /></div>
 
       <section className="grid cols-3" style={{ marginTop: 20 }}>
