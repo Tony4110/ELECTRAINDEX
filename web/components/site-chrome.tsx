@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
-import { dict, langOfPath, stripLang, lhref, LANGS, isLocalized, type Lang } from "@/lib/i18n";
+import { dict, langOfPath, stripLang, lhref, PUBLIC_LANGS, isLocalized, type Lang } from "@/lib/i18n";
 
 /** Header and footer follow the language of the page (/fr/... -> French). Pages not yet translated stay in English. */
 function useLang(): { lang: Lang; base: string } {
@@ -15,7 +15,7 @@ function useLang(): { lang: Lang; base: string } {
 function LangSwitch({ lang, base }: { lang: Lang; base: string }) {
   return (
     <div className="lang-switch" aria-label="Language">
-      {LANGS.map((l) => (
+      {PUBLIC_LANGS.map((l) => (
         <Link key={l} href={isLocalized(l, base) ? lhref(l, base) : lhref(l, "/")} className={l === lang ? "on" : ""} hrefLang={l} lang={l}>{l.toUpperCase()}</Link>
       ))}
     </div>
