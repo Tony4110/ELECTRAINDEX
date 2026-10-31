@@ -10,6 +10,8 @@ import { lhref, themeName, type Lang } from "@/lib/i18n";
 import { capName, capNameEn } from "@/lib/i18n-agent";
 import { taskNameFr } from "@/lib/i18n-paths";
 import { loadAgentTexts } from "@/components/views/agent";
+import { themeStyle } from "@/lib/theme-style";
+import { Logo } from "@/components/rank";
 
 export type TaskSP = Promise<{ page?: string; full?: string; kind?: string }>;
 const PAGE = 50;
@@ -55,10 +57,21 @@ export async function TaskView({ t, searchParams, lang = "en" }: { t: Task; sear
   // Display tie-break: at equal coverage, a well-verified (high-confidence) match
   // ranks above a keyword-guessed (medium/low) one, then by Agent Score.
   // Scores and the ranking formula are unchanged; this only orders the display.
+  // Agent details (theme, website) for the rows shown: used for relevance and logos.
+  const cardsBySlug = new Map<string, { theme_slugs: string[] | null; website: string | null }>();
+  if (kind === "agents" && rows.length) {
+    const { data: cd } = await c.from("v_agent_cards").select("slug,theme_slugs,website").in("slug", rows.map((r) => r.provider_slug));
+    for (const x of (cd as { slug: string; theme_slugs: string[] | null; website: string | null }[] | null) ?? []) cardsBySlug.set(x.slug, x);
+  }
+  // At equal coverage, an agent whose own theme is the task's theme (a website builder for "build a website")
+  // ranks above one that only shares a side capability; then the better-verified match, then Agent Score.
+  // Scores and the ranking formula are unchanged; this only orders the display.
+  const inTheme = (slug: string) => (t.category_slug && cardsBySlug.get(slug)?.theme_slugs?.includes(t.category_slug) ? 1 : 0);
   if (kind === "agents") {
     const CONF: Record<string, number> = { high: 3, medium: 2, low: 1 };
     rows.sort((a, b) =>
       b.coverage_pct - a.coverage_pct
+      || inTheme(b.provider_slug) - inTheme(a.provider_slug)
       || (CONF[b.match_confidence] ?? 0) - (CONF[a.match_confidence] ?? 0)
       || (b.quality_score ?? -1) - (a.quality_score ?? -1));
   }
@@ -73,6 +86,10 @@ export async function TaskView({ t, searchParams, lang = "en" }: { t: Task; sear
     ? { href: `/compare/${pairSlug(cmp[0].provider_slug, cmp[1].provider_slug)}`, a: cmp[0].provider_name, b: cmp[1].provider_name }
     : null;
   const name = fr ? taskNameFr(t.name, t.slug) : t.name;
+  const st = themeStyle(t.category_slug);
+  const picks = kind === "agents" && page === 1 ? rows.filter((r) => r.coverage_pct === 100).slice(0, 3) : [];
+  const tableRows = rows.filter((r) => !picks.includes(r));
+  const partial = (count ?? 0) - (fullCount ?? 0);
   const cat = t.category_slug ? themeName(lang, t.category_slug, t.category ?? "") : t.category;
   const capNames = t.capabilities.map((x) => capName(lang, x.slug, x.name));
   const conf: Record<string, string> = fr ? { medium: "correspondance moyenne", low: "correspondance faible" } : { medium: "medium match", low: "low match" };
@@ -81,17 +98,45 @@ export async function TaskView({ t, searchParams, lang = "en" }: { t: Task; sear
     <>
       <nav className="crumbs" aria-label="Breadcrumb"><Link href={L("/tasks")}>{fr ? "Tâches" : "Tasks"}</Link><span>/</span>
         {t.category_slug ? <Link href={L(`/themes/${t.category_slug}`)}>{cat}</Link> : <span>{cat}</span>}<span>/</span><span className="ink">{name}</span></nav>
+      <section className="tk-hero" style={{ ["--c" as string]: st.color, ["--s" as string]: st.soft }}>
       <div className="eyebrow">{fr ? "Tâche" : "Task"} · {cat}</div>
       <h1>{taskTitle(t, lang)}</h1>
-      <p className="lede">{fr
+      {kind === "agents" ? (
+        <div className="tk-kpis">
+          <span className="tk-kpi main"><b>{num(fullCount ?? 0)}</b> {fr ? ((fullCount ?? 0) > 1 ? "agents font tout le travail" : "agent fait tout le travail") : ((fullCount ?? 0) === 1 ? "agent does the whole job" : "agents do the whole job")}</span>
+          {partial > 0 && !onlyFull ? <span className="tk-kpi"><b>{num(partial)}</b> {fr ? "en font une partie" : "do part of it"}</span> : null}
+        </div>
+      ) : null}
+      <p className="lede tk-lede">{fr
         ? taskIntroFr(name, capNames, fullCount ?? 0, leaders)
         : kind === "agents"
           ? taskIntro(t.name, t.capabilities, fullCount ?? 0, leaders)
           : `This task needs ${t.capabilities.length} capabilities. ${num(fullCount ?? 0)} ${what} cover all of them; ${num(count ?? 0)} ${onlyFull ? "shown" : "cover at least one"}.`}</p>
       <div className="chips">
-        <span className="small muted">{fr ? "Fonctionnalités requises :" : "Required capabilities:"}</span>
-        {t.capabilities.map((x, i) => <Link key={x.slug} href={`/capabilities#${x.slug}`} className="chip acc">{capNames[i]}</Link>)}
+        <span className="small muted">{fr ? "Ce qu'il faut savoir faire :" : "What it takes:"}</span>
+        {t.capabilities.map((x, i) => <Link key={x.slug} href={`/capabilities#${x.slug}`} className="chip tk-cap">{capNames[i]}</Link>)}
       </div>
+      </section>
+      {picks.length ? (
+        <section className="tk-picks" style={{ ["--c" as string]: st.color, ["--s" as string]: st.soft }}>
+          <h2>{fr ? "Les meilleurs choix" : "Top picks"}<span className="small muted"> · {fr ? "font tout le travail" : "do the whole job"}</span></h2>
+          <div className="tk-pick-grid">
+            {picks.map((r, i) => (
+              <Link key={r.provider_id} href={L(providerHref("agent", r.provider_slug))} className={`tk-pick ${i === 0 ? "first" : ""}`}>
+                <span className="tk-rank">{i === 0 ? (fr ? "N° 1" : "#1") : `#${i + 1}`}</span>
+                <span className="tk-pick-head"><Logo name={r.provider_name} website={cardsBySlug.get(r.provider_slug)?.website} size={40} /><span className="tk-pick-name">{r.provider_name}</span></span>
+                <span className="tk-pick-desc">{fr ? texts.get(r.provider_slug) ?? r.short_description : r.short_description}</span>
+                <span className="tk-pick-facts">
+                  <span><Quality score={r.quality_score} lang={lang} /></span>
+                  <span><Price from={r.from_usd_month} free={r.has_free} hasPricing={r.has_pricing} lang={lang} /></span>
+                  {r.value_label && r.value_label !== "free" ? <span><Value label={r.value_label} lang={lang} /></span> : null}
+                </span>
+                <span className="tk-pick-cta">{fr ? "Voir l'agent →" : "See the agent →"}</span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : null}
       {comparePair ? <p className="small"><Link href={comparePair.href}>{fr ? "Comparer les deux premiers :" : "Compare the top two:"} {comparePair.a} vs {comparePair.b} →</Link></p> : null}
       <KindTabs base={self} kind={kind} counts={{ agents: nAgents ?? 0, tools: nTools ?? 0 }} lang={lang} toolsBase={fr ? `/tasks/${t.slug}` : undefined} />
       <div className="filters">
@@ -101,9 +146,12 @@ export async function TaskView({ t, searchParams, lang = "en" }: { t: Task; sear
 
       <SpotlightBox path={`/tasks/${t.slug}`} lang={lang} texts={texts} />
 
+      {picks.length && tableRows.length ? <h2 className="tk-more">{fr ? "Les autres agents" : "Other agents"}<span className="small muted"> · {fr ? "classés par part du travail couverte" : "ranked by how much of the job they cover"}</span></h2> : null}
       <section className="grid cols-3">
         <div className="card span-2 table-wrap">
-          {rows.length === 0 ? (
+          {tableRows.length === 0 && picks.length > 0 ? (
+            <div className="card-body small muted">{fr ? "Aucun autre agent ne couvre cette tâche pour l'instant." : "No other agent covers this task yet."}</div>
+          ) : tableRows.length === 0 ? (
             <div className="card-body">
               {fr
                 ? <Empty title="Aucune correspondance pour l'instant">Nos robots classent encore les agents et les outils par fonctionnalité. Rien n&apos;est listé sur une supposition.</Empty>
@@ -117,9 +165,9 @@ export async function TaskView({ t, searchParams, lang = "en" }: { t: Task; sear
                   : <tr><th>#</th><th>Agent</th><th>Coverage</th><th>Quality</th><th>From</th><th>Value</th><th>Trust</th></tr>
                 : <tr><th>#</th><th>Tool</th><th>Coverage</th><th>Access</th><th>Trust</th><th>Seen</th></tr>}</thead>
               <tbody>
-                {rows.map((r, i) => (
+                {tableRows.map((r, i) => (
                   <tr key={r.provider_id}>
-                    <td className="rank-num">{(page - 1) * PAGE + i + 1}</td>
+                    <td className="rank-num">{(page - 1) * PAGE + picks.length + i + 1}</td>
                     <ProviderCell type={r.provider_type} slug={r.provider_slug} name={r.provider_name} desc={fr ? texts.get(r.provider_slug) ?? null : r.short_description} lang={lang} />
                     <td>
                       <Coverage pct={r.coverage_pct} />
@@ -157,8 +205,8 @@ export async function TaskView({ t, searchParams, lang = "en" }: { t: Task; sear
         {page < pages ? <Link className="btn" href={link(page + 1)}>{fr ? "Suivant →" : "Next →"}</Link> : null}
       </div>
       {fr
-        ? <p className="note">Couverture = part des fonctionnalités requises par cette tâche qu&apos;un agent documente. Les agents sont classés par couverture, puis selon la fiabilité de la correspondance, puis par Score Agent. Les fonctionnalités des agents IA sont celles indiquées sur le site de l&apos;éditeur. Les fonctionnalités, le niveau de confiance, les sources et les dates de vérification de chaque agent figurent sur sa fiche.</p>
-        : <p className="note">Coverage = share of this task&apos;s required capabilities that an agent or tool documents. Agents are ranked by coverage, then by how well-verified the capability match is, then by Agent Score. For AI agents, capabilities are those stated on the vendor&apos;s website; for tools, they are matched automatically from the publisher&apos;s description (keyword method, low confidence). Each agent&apos;s capabilities, trust level, sources and verification dates are shown on its own page.</p>}
+        ? <p className="note">Couverture = part des fonctionnalités requises par cette tâche qu&apos;un agent documente. Les agents sont classés par couverture ; à couverture égale, ceux dont le thème principal est celui de la tâche passent devant, puis la correspondance la plus fiable, puis le Score Agent. Les fonctionnalités des agents IA sont celles indiquées sur le site de l&apos;éditeur. Les fonctionnalités, le niveau de confiance, les sources et les dates de vérification de chaque agent figurent sur sa fiche.</p>
+        : <p className="note">Coverage = share of this task&apos;s required capabilities that an agent or tool documents. Agents are ranked by coverage; at equal coverage, agents whose main theme is this task's theme come first, then the better-verified match, then Agent Score. For AI agents, capabilities are those stated on the vendor&apos;s website; for tools, they are matched automatically from the publisher&apos;s description (keyword method, low confidence). Each agent&apos;s capabilities, trust level, sources and verification dates are shown on its own page.</p>}
     </>
   );
 }
