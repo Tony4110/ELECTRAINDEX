@@ -61,15 +61,12 @@ export default async function LaunchesPage({ searchParams }: { searchParams: SP 
       <section className="tb-hero ln-hero">
         <div className="eyebrow">Launches</div>
         <h1>New AI agents, MCP servers and apps</h1>
-        <p className="lede">Everything listed on Electra Index in the last 30 days. Like one? Follow it: <b>▲</b> is the number of people who confirmed they follow it. It never changes a score or a ranking.</p>
-        <div className="chips" style={{ marginTop: 14 }}><Link href="/submit" className="btn primary">Launch your product, free →</Link></div>
+        <div className="ln-hero-row">
+          <p className="lede">Everything listed on Electra Index in the last 30 days. Like one? Follow it: <b>▲</b> counts the people who confirmed they follow it. It never changes a score or a ranking.</p>
+          <Link href="/submit" className="btn primary">Launch your product, free →</Link>
+        </div>
       </section>
 
-      <SpotlightBox path="/new" />
-      <div className="featured-launch">
-        <p className="featured-launch-kicker">Featured launch</p>
-        <SponsorSlot site="electra" slot="new-featured" />
-      </div>
 
       <div className="tabs" role="tablist">
         <Link role="tab" aria-selected={tab === "launches"} href={qs({ kind })} className={tab === "launches" ? "on" : ""}>Launches</Link>
@@ -81,8 +78,10 @@ export default async function LaunchesPage({ searchParams }: { searchParams: SP 
           <div className="tb-chips" style={{ marginTop: 14 }}>
             {(Object.keys(KINDS) as (keyof typeof KINDS)[]).map((k) => <Link key={k} href={qs({ kind: k })} className={`tb-chip ${kind === k ? "on" : ""}`}>{KINDS[k]}</Link>)}
           </div>
-          {groups.length === 0 ? <div style={{ marginTop: 16 }}><Empty title="No launch yet">New products appear here as soon as they are listed.</Empty></div> : groups.map((g) => (
-            <section key={g.label}>
+          {/* Featured launch: a sponsored row at the top of the list (like a promoted email), always labelled */}
+          <ol className="ln-list ln-featured"><li className="ln-item ln-sponsored"><SponsorSlot site="electra" slot="new-featured" /></li></ol>
+          {groups.length === 0 ? <div style={{ marginTop: 16 }}><Empty title="No launch yet">New products appear here as soon as they are listed.</Empty></div> : groups.map((g, gi) => (<div key={g.label}>
+            <section>
               <h2 className="ln-day">{g.label} <span className="mono faint small">{g.rows.length}</span></h2>
               <ol className="ln-list">
                 {g.rows.map((l, i) => {
@@ -109,7 +108,9 @@ export default async function LaunchesPage({ searchParams }: { searchParams: SP 
                 })}
               </ol>
             </section>
-          ))}
+            {/* Launch Spotlight cards (sponsored, labelled) after the first group, so the ranking stays above the fold */}
+            {gi === 0 ? <SpotlightBox path="/new" /> : null}
+          </div>))}
         </>
       ) : (
         <div className="card" style={{ marginTop: 16 }}>
