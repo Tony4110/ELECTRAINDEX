@@ -7,8 +7,8 @@ import { dict, isLang, lhref, themeName, type Lang } from "@/lib/i18n";
 export type SubmitSP = Promise<{ ok?: string; error?: string }>;
 const EXPRESS_URL = process.env.NEXT_PUBLIC_STRIPE_EXPRESS_URL ?? "";
 const XT = {
-  en: { title: "How fast should we review it?", std: "Standard review", stdNote: "Free · usually within 7 days", exp: "Express review", expNote: "$19.99 · within 48 hours", rule: "Same criteria for everyone. Express buys a faster review, never a listing or a better rank: if your product cannot be listed, you are refunded in full.", okExp: "Payment received: we will review your request within 48 hours and email you the result." },
-  fr: { title: "En combien de temps voulez-vous être examiné ?", std: "Examen standard", stdNote: "Gratuit · en général sous 7 jours", exp: "Examen express", expNote: "19,99 $ · sous 48 heures", rule: "Les mêmes critères pour tous. L'express achète un examen plus rapide, jamais une inscription ni un meilleur rang : si votre produit ne peut pas être listé, vous êtes intégralement remboursé.", okExp: "Paiement reçu : nous examinons votre demande sous 48 heures et vous envoyons le résultat par e-mail." },
+  en: { title: "How fast should we review it?", std: "Standard review", stdNote: "Free · within 30 days", exp: "Express review", expNote: "$19.99 · within 48 hours", rule: "Same criteria for everyone. Express buys a faster review, never a listing or a better rank: if your product cannot be listed, you are refunded in full.", okExp: "Payment received: we will review your request within 48 hours and email you the result." },
+  fr: { title: "En combien de temps voulez-vous être examiné ?", std: "Examen standard", stdNote: "Gratuit · sous 30 jours", exp: "Examen express", expNote: "19,99 $ · sous 48 heures", rule: "Les mêmes critères pour tous. L'express achète un examen plus rapide, jamais une inscription ni un meilleur rang : si votre produit ne peut pas être listé, vous êtes intégralement remboursé.", okExp: "Paiement reçu : nous examinons votre demande sous 48 heures et vous envoyons le résultat par e-mail." },
 };
 
 async function submit(form: FormData) {
