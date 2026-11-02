@@ -706,7 +706,7 @@ tr:hover td { background: rgba(255,255,255,.6); }
 .review-opt { display: flex !important; flex-direction: row !important; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: 10px; border: 1px solid var(--line); background: var(--panel); cursor: pointer; }
 .review-opt .ro-body { display: flex; flex-direction: column; gap: 2px; }
 .review-opt input { width: auto !important; margin: 4px 0 0; flex: none; accent-color: #E9A916; }
-.review-opt .ro-price { font-size: 24px; font-weight: 800; letter-spacing: -.01em; line-height: 1.15; margin-top: 2px; }
+.review-opt .ro-price { font-size: 18px; font-weight: 700; letter-spacing: -.01em; line-height: 1.15; margin-top: 2px; }
 .review-opt.express .ro-price { color: #B7791F; }
 .review-opt:has(input:checked) { border-color: var(--sun); box-shadow: 0 0 0 3px var(--sun-soft); }
 .review-opt.express b { color: var(--ink); }
