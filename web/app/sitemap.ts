@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { db, MIN_TOOLS_FOR_INDEX } from "@/lib/db";
 import { SITE, SITEMAP_CHUNK, MIN_DESC } from "@/lib/site";
+import { APP_THEMES } from "@/lib/apps";
 import { featuredPairsByTheme, pairSlug } from "@/lib/compare";
 import { allPosts } from "@/lib/posts";
 import { PUBLIC_LANGS, lhref, isLocalized } from "@/lib/i18n";
@@ -8,12 +9,16 @@ import { db as dbType } from "@/lib/db";
 
 /** French pages (only those that exist: translated agents, mapped tasks and themes). */
 async function frUrls(c: NonNullable<ReturnType<typeof dbType>>, now: Date) {
-  const [{ data: ag }, { data: tk }, { data: th }] = await Promise.all([
+  const [{ data: ag }, { data: tk }, { data: th }, ap] = await Promise.all([
     c.from("v_agent_i18n").select("slug").eq("lang", "fr").limit(5000),
     c.from("v_tasks").select("slug"),
     c.from("v_theme_overview").select("theme_slug"),
+    c.from("v_app_i18n").select("slug").eq("lang", "fr").limit(2000),
   ]);
+  const apps = ap.error ? [] : ((ap.data as { slug: string }[] | null) ?? []);
   const paths = [
+    ...(apps.length ? ["/apps", ...APP_THEMES.map((t) => `/apps/themes/${t.slug}`)] : []),
+    ...apps.map((a) => `/apps/${a.slug}`),
     "/tasks", "/themes", "/pricing", "/spotlight", "/monitor",
     ...((th as { theme_slug: string }[] | null) ?? []).map((t) => `/themes/${t.theme_slug}`),
     ...((tk as { slug: string }[] | null) ?? []).map((t) => `/tasks/${t.slug}`),

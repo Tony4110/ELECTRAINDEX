@@ -1,23 +1,32 @@
 import Link from "next/link";
 import { Logo, Price } from "@/components/rank";
 import { appTheme, APP_THEMES, PLATFORM, type AppCard } from "@/lib/apps";
+import { APP_THEMES_FR, appsT } from "@/lib/apps-i18n";
+import { lhref, type Lang } from "@/lib/i18n";
 
 const cssVars = (slug: string | null | undefined) => { const t = appTheme(slug); return { ["--c" as string]: t?.color ?? "#56615C", ["--s" as string]: t?.soft ?? "#ECEFEA" }; };
 
+/** Theme name / title / intro in the page language. */
+export function themeText(slug: string, lang: Lang) {
+  const t = appTheme(slug);
+  if (!t) return null;
+  return lang === "fr" && APP_THEMES_FR[slug] ? { ...t, ...APP_THEMES_FR[slug] } : t;
+}
+
 /** One card per app: logo, publisher, what it does, where it runs, entry price. */
-export function AppCards({ rows }: { rows: AppCard[] }) {
+export function AppCards({ rows, lang = "en", texts }: { rows: AppCard[]; lang?: Lang; texts?: Map<string, string> }) {
   return (
     <div className="ap-grid">
       {rows.map((a) => (
-        <Link key={a.id} href={`/apps/${a.slug}`} className="ap-card" style={cssVars(a.theme)}>
+        <Link key={a.id} href={lhref(lang, `/apps/${a.slug}`)} className="ap-card" style={cssVars(a.theme)}>
           <span className="ap-head">
             <Logo name={a.name} website={a.website} size={44} />
             <span><span className="ap-name">{a.name}</span><span className="ap-pub">{a.company ?? ""}{a.country ? ` · ${a.country}` : ""}</span></span>
           </span>
-          {a.short_description ? <span className="ap-desc">{a.short_description}</span> : null}
+          {a.short_description ? <span className="ap-desc">{texts?.get(a.slug) ?? a.short_description}</span> : null}
           <span className="ap-foot">
             <span className="ap-plat">{(a.platforms ?? []).map((p) => PLATFORM[p] ?? p).join(" · ")}</span>
-            <span className="ap-price"><Price from={a.from_usd_month} free={a.has_free} /></span>
+            <span className="ap-price"><Price from={a.from_usd_month} free={a.has_free} lang={lang} /></span>
           </span>
         </Link>
       ))}
@@ -26,13 +35,13 @@ export function AppCards({ rows }: { rows: AppCard[] }) {
 }
 
 /** Theme pills (link to each theme page), current one filled with its colour. */
-export function AppThemePills({ current, counts }: { current?: string; counts?: Record<string, number> }) {
+export function AppThemePills({ current, counts, lang = "en" }: { current?: string; counts?: Record<string, number>; lang?: Lang }) {
   return (
     <nav className="theme-line ap-pills" aria-label="App themes">
-      <Link href="/apps" className={!current ? "on" : ""}>All{counts ? <span className="n">{Object.values(counts).reduce((x, y) => x + y, 0)}</span> : null}</Link>
+      <Link href={lhref(lang, "/apps")} className={!current ? "on" : ""}>{appsT(lang).all}{counts ? <span className="n">{Object.values(counts).reduce((x, y) => x + y, 0)}</span> : null}</Link>
       {APP_THEMES.map((t) => (
-        <Link key={t.slug} href={`/apps/themes/${t.slug}`} className={current === t.slug ? "on" : ""} style={cssVars(t.slug)}>
-          {t.name}{counts ? <span className="n">{counts[t.slug] ?? 0}</span> : null}
+        <Link key={t.slug} href={lhref(lang, `/apps/themes/${t.slug}`)} className={current === t.slug ? "on" : ""} style={cssVars(t.slug)}>
+          {themeText(t.slug, lang)!.name}{counts ? <span className="n">{counts[t.slug] ?? 0}</span> : null}
         </Link>
       ))}
     </nav>

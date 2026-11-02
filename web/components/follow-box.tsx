@@ -27,7 +27,7 @@ export function ProgramBenefits({ type, lang = "en" }: { type: "agent" | "mcp"; 
 /** Follow a tool or agent page by email (no account). Alerts never depend on accepting offers. */
 export function FollowBox({ type, slug, name, lang = "en", followers = 0 }: { type: "agent" | "mcp" | "app"; slug: string; name: string; lang?: Lang; followers?: number }) {
   const T = boxT(lang).follow;
-  const L = lang !== "en" && type === "agent";
+  const L = lang !== "en" && type !== "mcp";
   const M = L ? T.msg : MSG;
   const [state, action, pending] = useActionState<FollowState, FormData>(followPage, { status: "idle" });
   const [publisher, setPublisher] = useState(false);

@@ -37,7 +37,7 @@ export function SiteHeader() {
             ["/new", t.new, "▲", "#E0457B", "", base.startsWith("/new")],
             [lhref(lang, "/tasks"), t.tasks, "✓", "#16A34A", "", base.startsWith("/tasks")],
             ["/mcp", t.tools, "⬡", "#F28C28", "", base.startsWith("/mcp")],
-            ["/apps", t.apps, "✦", "#7C4DFF", "", base.startsWith("/apps")],
+            [lhref(lang, "/apps"), t.apps, "✦", "#7C4DFF", "", base.startsWith("/apps")],
             ["/compare", t.compare, "⇄", "#0891B2", "nav-opt2", base.startsWith("/compare")],
             ["/payments", t.payments, "◎", "#0F766E", "nav-opt", base.startsWith("/payments")],
             ["/pulse", t.pulse, "∿", "#E0457B", "nav-opt2", base.startsWith("/pulse")],
