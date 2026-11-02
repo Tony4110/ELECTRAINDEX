@@ -7,8 +7,8 @@ import { dict, isLang, lhref, themeName, type Lang } from "@/lib/i18n";
 export type SubmitSP = Promise<{ ok?: string; error?: string }>;
 const EXPRESS_URL = process.env.NEXT_PUBLIC_STRIPE_EXPRESS_URL ?? "";
 const XT = {
-  en: { title: "How fast should we review it?", std: "Standard review", stdNote: "Free · within 30 to 60 days", exp: "Express review", expNote: "$19.99 · within 48 hours", rule: "Same criteria for everyone. Express buys a faster review, never a listing or a better rank: if your product cannot be listed, you are refunded in full.", okExp: "Payment received: we will review your request within 48 hours and email you the result." },
-  fr: { title: "En combien de temps voulez-vous être examiné ?", std: "Examen standard", stdNote: "Gratuit · sous 30 à 60 jours", exp: "Examen express", expNote: "19,99 $ · sous 48 heures", rule: "Les mêmes critères pour tous. L'express achète un examen plus rapide, jamais une inscription ni un meilleur rang : si votre produit ne peut pas être listé, vous êtes intégralement remboursé.", okExp: "Paiement reçu : nous examinons votre demande sous 48 heures et vous envoyons le résultat par e-mail." },
+  en: { title: "How fast should we review it?", std: "Standard review", stdPrice: "Free", stdNote: "within 30 to 60 days", exp: "Express review", expPrice: "$19.99", expNote: "within 48 hours", rule: "Same criteria for everyone. Express buys a faster review, never a listing or a better rank: if your product cannot be listed, you are refunded in full.", okExp: "Payment received: we will review your request within 48 hours and email you the result." },
+  fr: { title: "En combien de temps voulez-vous être examiné ?", std: "Examen standard", stdPrice: "Gratuit", stdNote: "sous 30 à 60 jours", exp: "Examen express", expPrice: "19,99 $", expNote: "sous 48 heures", rule: "Les mêmes critères pour tous. L'express achète un examen plus rapide, jamais une inscription ni un meilleur rang : si votre produit ne peut pas être listé, vous êtes intégralement remboursé.", okExp: "Paiement reçu : nous examinons votre demande sous 48 heures et vous envoyons le résultat par e-mail." },
 };
 
 async function submit(form: FormData) {
@@ -76,8 +76,8 @@ export async function SubmitView({ searchParams, lang = "en" }: { searchParams: 
             <fieldset className="full review-choice">
               <legend className="program-title">{x.title}</legend>
               <div className="review-opts">
-                <label className="review-opt"><input type="radio" name="review" value="standard" defaultChecked /><span><b>{x.std}</b><span className="small muted">{x.stdNote}</span></span></label>
-                <label className="review-opt express"><input type="radio" name="review" value="express" /><span><b>⚡ {x.exp}</b><span className="small">{x.expNote}</span></span></label>
+                <label className="review-opt express"><input type="radio" name="review" value="express" /><span className="ro-body"><b>⚡ {x.exp}</b><span className="ro-price">{x.expPrice}</span><span className="small">{x.expNote}</span></span></label>
+                <label className="review-opt"><input type="radio" name="review" value="standard" defaultChecked /><span className="ro-body"><b>{x.std}</b><span className="ro-price muted">{x.stdPrice}</span><span className="small muted">{x.stdNote}</span></span></label>
               </div>
               <p className="small muted" style={{ margin: "6px 0 0" }}>{x.rule}</p>
             </fieldset>

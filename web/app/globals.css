@@ -703,8 +703,10 @@ tr:hover td { background: rgba(255,255,255,.6); }
 /* ── List your agent: review speed choice ── */
 .review-choice { border: 1px solid var(--glass-line); border-radius: 12px; padding: 14px 16px; margin: 0; background: rgba(255,255,255,.55); }
 .review-opts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-top: 8px; }
-.review-opt { display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--line); background: var(--panel); cursor: pointer; }
-.review-opt span { display: flex; flex-direction: column; gap: 2px; }
-.review-opt input { margin-top: 3px; accent-color: #E9A916; }
+.review-opt { display: flex !important; flex-direction: row !important; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: 10px; border: 1px solid var(--line); background: var(--panel); cursor: pointer; }
+.review-opt .ro-body { display: flex; flex-direction: column; gap: 2px; }
+.review-opt input { width: auto !important; margin: 4px 0 0; flex: none; accent-color: #E9A916; }
+.review-opt .ro-price { font-size: 24px; font-weight: 800; letter-spacing: -.01em; line-height: 1.15; margin-top: 2px; }
+.review-opt.express .ro-price { color: #B7791F; }
 .review-opt:has(input:checked) { border-color: var(--sun); box-shadow: 0 0 0 3px var(--sun-soft); }
 .review-opt.express b { color: var(--ink); }
