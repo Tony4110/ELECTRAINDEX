@@ -17,7 +17,7 @@ export function AppCards({ rows }: { rows: AppCard[] }) {
           {a.short_description ? <span className="ap-desc">{a.short_description}</span> : null}
           <span className="ap-foot">
             <span className="ap-plat">{(a.platforms ?? []).map((p) => PLATFORM[p] ?? p).join(" · ")}</span>
-            <span className="ap-price"><Price from={a.from_usd_month} free={a.has_free} hasPricing={!!a.pricing_url} /></span>
+            <span className="ap-price"><Price from={a.from_usd_month} free={a.has_free} /></span>
           </span>
         </Link>
       ))}

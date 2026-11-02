@@ -15,6 +15,7 @@ export const APP_THEMES: { slug: string; name: string; title: string; intro: str
   { slug: "learning", name: "Learning & languages", title: "AI language and learning apps", intro: "AI tutors and conversation partners for languages and new skills.", color: "#2F6BFF", soft: "#E6EEFF" },
   { slug: "creativity", name: "Creativity: photo, art, music", title: "AI photo, art and music apps", intro: "AI apps that edit photos, create images or compose music.", color: "#E0457B", soft: "#FCE6EE" },
   { slug: "accessibility", name: "Accessibility", title: "AI accessibility apps", intro: "AI apps that read text aloud, describe the world or give a voice to people who cannot speak.", color: "#0891B2", soft: "#DFF3F8" },
+  { slug: "design", name: "Design & e-commerce", title: "AI design apps for brands and online sellers", intro: "AI apps for packaging, labels, logos, product photos and marketing visuals.", color: "#C2410C", soft: "#FDE8DC" },
   { slug: "entertainment", name: "Entertainment & chat", title: "AI entertainment and chat apps", intro: "AI characters, storytelling, games and readings, for fun.", color: "#7C4DFF", soft: "#EFE9FF" },
 ];
 export const appTheme = (slug: string | null | undefined) => APP_THEMES.find((t) => t.slug === slug) ?? null;
