@@ -5,6 +5,11 @@ import { SetupNotice } from "@/components/ui";
 import { dict, isLang, lhref, themeName, type Lang } from "@/lib/i18n";
 
 export type SubmitSP = Promise<{ ok?: string; error?: string }>;
+const EXPRESS_URL = process.env.NEXT_PUBLIC_STRIPE_EXPRESS_URL ?? "";
+const XT = {
+  en: { title: "How fast should we review it?", std: "Standard review", stdNote: "Free · usually within 7 days", exp: "Express review", expNote: "$19.99 · within 48 hours", rule: "Same criteria for everyone. Express buys a faster review, never a listing or a better rank: if your product cannot be listed, you are refunded in full.", okExp: "Payment received: we will review your request within 48 hours and email you the result." },
+  fr: { title: "En combien de temps voulez-vous être examiné ?", std: "Examen standard", stdNote: "Gratuit · en général sous 7 jours", exp: "Examen express", expNote: "19,99 $ · sous 48 heures", rule: "Les mêmes critères pour tous. L'express achète un examen plus rapide, jamais une inscription ni un meilleur rang : si votre produit ne peut pas être listé, vous êtes intégralement remboursé.", okExp: "Paiement reçu : nous examinons votre demande sous 48 heures et vous envoyons le résultat par e-mail." },
+};
 
 async function submit(form: FormData) {
   "use server";
@@ -21,8 +26,13 @@ async function submit(form: FormData) {
   };
   const c = db();
   if (!c) redirect(`${back}?error=setup`);
-  const { error } = await c.from("submissions").insert(row);
-  redirect(error ? `${back}?error=invalid` : `${back}?ok=1`);
+  const express = EXPRESS_URL && form.get("review") === "express";
+  const token = express ? crypto.randomUUID() : null;
+  const payload: Record<string, unknown> = token ? { ...row, express_token: token } : row;
+  const { error } = await c.from("submissions").insert(payload);
+  if (error) redirect(`${back}?error=invalid`);
+  if (token) redirect(`${EXPRESS_URL}?${new URLSearchParams({ client_reference_id: token, prefilled_email: row.contact_email })}`);
+  redirect(`${back}?ok=1`);
 }
 
 export async function SubmitView({ searchParams, lang = "en" }: { searchParams: SubmitSP; lang?: Lang }) {
@@ -35,7 +45,7 @@ export async function SubmitView({ searchParams, lang = "en" }: { searchParams: 
     <>
       <div className="eyebrow">{t.eyebrow}</div>
       <h1>{t.okH1}</h1>
-      <p className="lede">{t.okLede}</p>
+      <p className="lede">{sp.ok === "express" ? (lang === "fr" ? XT.fr : XT.en).okExp : t.okLede}</p>
       <div className="chips" style={{ marginTop: 20 }}><Link href="/new" className="btn primary">{t.okNew}</Link><Link href={lhref(lang, "/")} className="btn">{t.okBack}</Link></div>
     </>
   );
@@ -62,6 +72,16 @@ export async function SubmitView({ searchParams, lang = "en" }: { searchParams: 
           </label>
           <label>{t.email}<input name="contact_email" type="email" required maxLength={200} placeholder="you@company.com" /><span className="small muted">{t.emailNote} <a href="/privacy">{t.privacy}</a></span></label>
           <label className="full">{t.desc}<textarea name="description" maxLength={600} rows={3} placeholder={t.descPh} /></label>
+          {EXPRESS_URL ? (() => { const x = lang === "fr" ? XT.fr : XT.en; return (
+            <fieldset className="full review-choice">
+              <legend className="program-title">{x.title}</legend>
+              <div className="review-opts">
+                <label className="review-opt"><input type="radio" name="review" value="standard" defaultChecked /><span><b>{x.std}</b><span className="small muted">{x.stdNote}</span></span></label>
+                <label className="review-opt express"><input type="radio" name="review" value="express" /><span><b>⚡ {x.exp}</b><span className="small">{x.expNote}</span></span></label>
+              </div>
+              <p className="small muted" style={{ margin: "6px 0 0" }}>{x.rule}</p>
+            </fieldset>
+          ); })() : null}
           <div className="full program-box">
             <p className="program-title">{t.programTitle}</p>
             <ul className="program-list">{t.benefits.map(([b, rest]) => <li key={b}><b>{b}</b>{rest}</li>)}</ul>

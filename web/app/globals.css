@@ -699,3 +699,12 @@ tr:hover td { background: rgba(255,255,255,.6); }
 .cp-f-facts { display: flex; gap: 12px; align-items: center; font-size: 14px; }
 .cp-face-vs { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: var(--c); color: #fff; font-weight: 800; font-size: 13px; box-shadow: 0 0 0 5px rgba(255,255,255,.9); }
 @media (max-width: 640px) { .cp-face { grid-template-columns: 1fr; } .cp-fighter.r { flex-direction: row; text-align: left; } .cp-fighter.r .cp-f-body { align-items: flex-start; } }
+
+/* ── List your agent: review speed choice ── */
+.review-choice { border: 1px solid var(--glass-line); border-radius: 12px; padding: 14px 16px; margin: 0; background: rgba(255,255,255,.55); }
+.review-opts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-top: 8px; }
+.review-opt { display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--line); background: var(--panel); cursor: pointer; }
+.review-opt span { display: flex; flex-direction: column; gap: 2px; }
+.review-opt input { margin-top: 3px; accent-color: #E9A916; }
+.review-opt:has(input:checked) { border-color: var(--sun); box-shadow: 0 0 0 3px var(--sun-soft); }
+.review-opt.express b { color: var(--ink); }

@@ -7,6 +7,7 @@
  *     -> starts lifetime monitoring of the buyer's server
  *   - "Launch Spotlight" paid once (mode "payment", amount = SPOTLIGHT_CENTS, default 1499)
  *     -> 60 days of sponsored visibility for the buyer's agent or MCP server (custom field = its page or website)
+ *   - "Express review" of a listing request, paid once (amount = EXPRESS_CENTS, default 1999) -> flags the request
  *   - customer.subscription.deleted -> ends Monitoring Pro
  *   STRIPE_WEBHOOK_SECRET  whsec_… (Netlify, secret)    MCP_API_SECRET  same value as Vault 'mcp_api_secret'
  *   PACK_PRICE_CENTS (default 599) · PACK_CALLS (default 600) · PACK_DAYS (default 183)
@@ -68,8 +69,14 @@ export async function POST(req: Request) {
   const email = String((s.customer_details as Obj | undefined)?.email ?? s.customer_email ?? "");
   if (!c || !email) return new Response("cannot process", { status: 500 });      // Stripe retries
 
-  // Launch Spotlight (paid once)
+  // Express review of a listing request (paid once): faster review only, never a listing or a rank
   const paid = Number(s.amount_subtotal ?? s.amount_total);
+  if (s.mode === "payment" && paid === Number(process.env.EXPRESS_CENTS ?? 1999)) {
+    const { data, error } = await c.rpc("express_paid", { p_secret: apiSecret, p_token: str(s.client_reference_id), p_email: email, p_session: str(s.id) || null });
+    if (error) return new Response("express failed", { status: 500 });      // Stripe retries; idempotent on session id
+    return new Response(String(data), { status: 200 });
+  }
+  // Launch Spotlight (paid once)
   if (s.mode === "payment" && paid === Number(process.env.SPOTLIGHT_CENTS ?? 1499)) {
     const { data, error } = await c.rpc("spotlight_buy", { p_secret: apiSecret, p_email: email, p_ref: serverRef(s), p_session: str(s.id) || null });
     if (error) return new Response("spotlight failed", { status: 500 });     // Stripe retries; idempotent on session id
