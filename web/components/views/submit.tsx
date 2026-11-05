@@ -76,8 +76,8 @@ export async function SubmitView({ searchParams, lang = "en" }: { searchParams: 
             <fieldset className="full review-choice">
               <legend className="program-title">{x.title}</legend>
               <div className="review-opts">
-                <label className="review-opt express"><input type="radio" name="review" value="express" /><span className="ro-body"><b>⚡ {x.exp}</b><span className="ro-price">{x.expPrice}</span><span className="small">{x.expNote}</span></span></label>
                 <label className="review-opt"><input type="radio" name="review" value="standard" defaultChecked /><span className="ro-body"><b>{x.std}</b><span className="ro-price muted">{x.stdPrice}</span><span className="small muted">{x.stdNote}</span></span></label>
+                <label className="review-opt express"><input type="radio" name="review" value="express" /><span className="ro-body"><b>⚡ {x.exp}</b><span className="ro-price">{x.expPrice}</span><span className="small">{x.expNote}</span></span></label>
               </div>
               <p className="small muted" style={{ margin: "6px 0 0" }}>{x.rule}</p>
             </fieldset>
