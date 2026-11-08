@@ -7,7 +7,10 @@
 --  Setting the status to "rejected" sends the standard polite rejection email automatically
 --  (criteria + "submit again if your product changes"). Paste all in Supabase > SQL Editor > Run.
 
-update submissions set status = 'rejected', reviewed_at = now()
+--  Run INSTALL_REJECT_REASON.sql first: the email then includes the reason below.
+
+update submissions set status = 'rejected', reviewed_at = now(),
+       review_note = 'the marketplace is not available yet (waitlist and early access only), no price or marketplace fee is published, and the website does not show the company name or country behind it (only "© 2026 EGD Agent Grid" in the footer).'
  where status = 'new' and website ilike '%edensgracedigital.com%';
 
 select s.name, s.status,
