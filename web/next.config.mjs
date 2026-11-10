@@ -9,7 +9,9 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 // refreshed in the background ("stale-while-revalidate"), and shared between edge nodes ("durable").
 const CDN_HOUR = "public, durable, max-age=3600, stale-while-revalidate=604800";
 const CDN_15MIN = "public, durable, max-age=900, stale-while-revalidate=86400";
-const cached = (source, value = CDN_HOUR) => ({ source, headers: [{ key: "Netlify-CDN-Cache-Control", value }] });
+// Netlify's CDN ignores the query string in its cache key unless told otherwise: without "Netlify-Vary: query",
+// /new?kind=mcp or /mcp/best/x?page=2 would get the cached copy of the plain URL (filters and pages "not working").
+const cached = (source, value = CDN_HOUR) => ({ source, headers: [{ key: "Netlify-CDN-Cache-Control", value }, { key: "Netlify-Vary", value: "query" }] });
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
