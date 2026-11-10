@@ -5,6 +5,7 @@ import { StatusBadges } from "@/components/status";
 import { ReportBox, type ReportStatus } from "@/components/report-box";
 import { FollowBox } from "@/components/follow-box";
 import { ShareRow, PublisherKit } from "@/components/share";
+import { Reviews } from "@/components/reviews";
 import { timeAgo } from "@/lib/format";
 import { db, type AgentCard, type AgentPrice, type Signal } from "@/lib/db";
 import { shortDate, eventLabel, eventTone, describeSignal } from "@/lib/format";
@@ -269,6 +270,7 @@ export async function AgentView({ a, lang = "en", text }: { a: AgentCard; lang?:
       <ReportBox type="agent" slug={a.slug} status={reportStatus} lang={lang}
         recheckedAgo={reportStatus?.last_rechecked_ok_at && Date.now() - new Date(reportStatus.last_rechecked_ok_at).getTime() < 14 * 86_400_000 ? timeAgo(reportStatus.last_rechecked_ok_at, lang) : null} />
       <FollowBox type="agent" slug={a.slug} name={a.name} lang={lang} followers={await getFollowers("agent", a.slug)} />
+      {lang === "en" ? <Reviews type="agent" slug={a.slug} name={a.name} /> : null}
       <PublisherKit kind="agent" slug={a.slug} name={a.name} lang={lang} />
     </>
   );

@@ -1,5 +1,6 @@
 /** Tool page, version 2 (richer template). Shown to the rollout sample only, see lib/rollout.ts. */
 import Link from "next/link";
+import { Reviews } from "@/components/reviews";
 import { getFollowers } from "@/lib/follows";
 import { Out } from "@/components/out";
 import { StatusBadges } from "@/components/status";
@@ -218,6 +219,7 @@ export async function ToolPageV2({ params }: { params: P }) {
         {agents.length ? <a href="#agents" className="sun">{agents.length} ready-made AI agent{agents.length > 1 ? "s" : ""}</a> : null}
         {similar.length ? <a href="#similar">{similar.length} similar tool{similar.length > 1 ? "s" : ""}</a> : null}
         {tasks.length ? <a href="#tasks">{tasks.length} task{tasks.length > 1 ? "s" : ""} it helps with</a> : null}
+        <a href="#reviews">Reviews</a>
         <a href="#connect">How to connect</a>
       </nav>
 
@@ -271,6 +273,8 @@ export async function ToolPageV2({ params }: { params: P }) {
           </div>
         </section>
       ) : null}
+
+      <Reviews type="mcp" slug={m.slug} name={m.name} />
 
       <section className="grid cols-3" style={{ marginTop: 28 }}>
         <div className="card span-2">
