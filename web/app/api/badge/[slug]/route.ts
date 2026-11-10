@@ -3,11 +3,11 @@
  * Shows the result of our live check. Monitoring Pro servers also show their 30-day answer rate.
  */
 import { db } from "@/lib/db";
-import { svg } from "@/lib/badge";
+import { svg, card } from "@/lib/badge";
 
 export const revalidate = 300;
 
-export async function GET(_req: Request, { params }: { params: Promise<{ slug: string }> }) {
+export async function GET(req: Request, { params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   let value = "not checked", color = "#8A8F8C";
   const c = db();
@@ -23,7 +23,9 @@ export async function GET(_req: Request, { params }: { params: Promise<{ slug: s
     else if (b.status === "unconfirmed") { value = "checking"; color = "#B7791F"; }
     else { value = "listed"; color = "#1F3FD1"; }   // listed, not hosted / not checked live (e.g. runs locally)
   }
-  return new Response(svg("Electra Index", value, color), {
+  const isCard = new URL(req.url).searchParams.get("style") === "card";
+  const body = isCard ? card(value.charAt(0).toUpperCase() + value.slice(1), "MCP server · tested live", color) : svg("Electra Index", value, color);
+  return new Response(body, {
     headers: { "Content-Type": "image/svg+xml; charset=utf-8", "Cache-Control": "public, max-age=300, s-maxage=300" },
   });
 }

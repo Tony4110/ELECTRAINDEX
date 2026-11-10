@@ -30,6 +30,7 @@ export function ShareRow({ kind, slug, name, lang = "en" }: { kind: "agent" | "m
       <span className="small muted">{t.share}</span>
       <a className="share-btn" href={`https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(li)}`} target="_blank" rel="noopener">LinkedIn</a>
       <a className="share-btn" href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText(kind, name, "", lang).replace(/ +#/, " #").replace(/: +#/, " #"))}&url=${encodeURIComponent(xUrl)}`} target="_blank" rel="noopener">X</a>
+      {kind !== "app" ? <a className="share-btn" href="#share">{t.kitBadgeLink}</a> : null}
       <button type="button" className="share-btn" onClick={() => { navigator.clipboard?.writeText(url).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2000); }); }}>{copied ? t.copied : t.copyLink}</button>
     </div>
   );
@@ -42,7 +43,7 @@ export function PublisherKit({ kind, slug, name, lang = "en" }: { kind: "agent" 
   const url = `${SITE}${lang === "en" ? "" : `/${lang}`}/${kind === "agent" ? "agents" : "mcp"}/${slug}`;
   const badge = `${SITE}/api/badge/${kind === "agent" ? "agent/" : ""}${slug}`;
   const bUrl = tagged(url, "badge");
-  const html = `<a href="${bUrl}"><img src="${badge}" alt="Listed on Electra Index"></a>`;
+  const html = `<a href="${bUrl}"><img src="${badge}?style=card" width="260" height="72" alt="Listed on Electra Index"></a>`;
   const md = `[![Listed on Electra Index](${badge})](${bUrl})`;
   const copy = (v: string, k: string) => navigator.clipboard?.writeText(v).then(() => { setCopied(k); setTimeout(() => setCopied(""), 2000); });
   return (
@@ -52,6 +53,11 @@ export function PublisherKit({ kind, slug, name, lang = "en" }: { kind: "agent" 
         <p className="small" style={{ marginTop: 0 }}>{t.kitText}</p>
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
           <a className="btn primary" href={`https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(shareText(kind, name, tagged(url, "linkedin"), lang))}`} target="_blank" rel="noopener">{t.kitLinkedIn}</a>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+        </div>
+        <div style={{ display: "flex", gap: 24, flexWrap: "wrap", alignItems: "center", marginTop: 16 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={`/api/badge/${kind === "agent" ? "agent/" : ""}${slug}?style=card`} alt="Listed on Electra Index" width={260} height={72} />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={`/api/badge/${kind === "agent" ? "agent/" : ""}${slug}`} alt="Listed on Electra Index" height={20} />
         </div>
