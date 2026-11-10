@@ -710,3 +710,9 @@ tr:hover td { background: rgba(255,255,255,.6); }
 .review-opt.express .ro-price { color: #B7791F; }
 .review-opt:has(input:checked) { border-color: var(--sun); box-shadow: 0 0 0 3px var(--sun-soft); }
 .review-opt.express b { color: var(--ink); }
+
+/* Keep exploring strip (top of tool and use-case pages) */
+.explore { margin-top: 20px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); display: flex; flex-direction: column; gap: 10px; }
+.explore-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.explore-title { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); min-width: 150px; }
+.explore a.chip:hover { border-color: var(--sun); box-shadow: 0 0 0 3px var(--sun-soft); }

@@ -1,4 +1,5 @@
 /** Tool page, version 2 (richer template). Shown to the rollout sample only, see lib/rollout.ts. */
+import { ExploreStrip } from "@/components/explore-strip";
 import Link from "next/link";
 import { getFollowers } from "@/lib/follows";
 import { Out } from "@/components/out";
@@ -190,6 +191,12 @@ export async function ToolPageV2({ params }: { params: P }) {
         {remotes.length || pkgs.length ? <a className="btn" href="#connect">How to connect ↓</a> : null}
       </div>
       <ShareRow kind="mcp" slug={m.slug} name={m.name} />
+      <ExploreStrip rows={[
+        { title: "Similar tools", links: similar.slice(0, 5).map((x) => ({ href: `/mcp/${x.provider_slug}`, label: x.provider_name })) },
+        { title: "Ready-made AI agents", links: agents.slice(0, 4).map((x) => ({ href: `/agents/${x.provider_slug}`, label: x.provider_name })),
+          more: best ? { href: `/tasks/${best.task_slug}`, label: `All agents to ${lowerFirst(best.task_name)} →` } : undefined },
+        { title: "Related tasks", links: tasks.slice(1, 5).map((t) => ({ href: `/tasks/${t.task_slug}`, label: t.task_name })) },
+      ]} />
 
       <section className="grid cols-3" style={{ marginTop: 28 }}>
         <div className="card span-2">

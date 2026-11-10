@@ -1,3 +1,4 @@
+import { ExploreStrip } from "@/components/explore-strip";
 import Link from "next/link";
 import { SpotlightBox } from "@/components/spotlight";
 import { notFound } from "next/navigation";
@@ -105,6 +106,12 @@ export default async function BestFor({ params, searchParams }: { params: P; sea
         {top.length ? <> First by relevance and readiness: {top.map((t, i) => <span key={t.tool_slug}>{i ? (i === top.length - 1 ? " and " : ", ") : ""}<Link href={`/mcp/${t.tool_slug}`}>{t.tool_name}</Link></span>)}.</> : null}
       </p>
 
+      <ExploreStrip rows={[
+        { title: "Prefer no setup? AI agents", links: agents.slice(0, 4).map((a) => ({ href: `/agents/${a.slug}`, label: a.name })),
+          more: tasks[0] ? { href: `/tasks/${tasks[0].slug}`, label: "Compare agents →" } : undefined },
+        { title: "Tasks that need it", links: tasks.slice(0, 4).map((t) => ({ href: `/tasks/${t.slug}`, label: t.name })) },
+        { title: "Other use cases", links: related.slice(0, 5).map((r) => ({ href: `/mcp/best/${r.capability_slug}`, label: useCase(r.capability) })) },
+      ]} />
       <SpotlightBox path={`/mcp/best/${o.capability_slug}`} />
 
       <section className="grid cols-3">
