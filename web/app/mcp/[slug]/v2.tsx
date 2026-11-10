@@ -189,8 +189,8 @@ export async function ToolPageV2({ params }: { params: P }) {
         {m.website ? <Out type="mcp" slug={m.slug} to="website" from={`/mcp/${m.slug}`} className="btn primary">Website ↗</Out> : null}
         {m.repository_url ? <Out type="mcp" slug={m.slug} to="repository" from={`/mcp/${m.slug}`} className="btn">Source code ↗</Out> : null}
         {remotes.length || pkgs.length ? <a className="btn" href="#connect">How to connect ↓</a> : null}
+        <ShareRow kind="mcp" slug={m.slug} name={m.name} />
       </div>
-      <ShareRow kind="mcp" slug={m.slug} name={m.name} />
       <ExploreStrip rows={[
         { title: "Similar tools", links: similar.slice(0, 5).map((x) => ({ href: `/mcp/${x.provider_slug}`, label: x.provider_name })) },
         { title: "Ready-made AI agents", links: agents.slice(0, 4).map((x) => ({ href: `/agents/${x.provider_slug}`, label: x.provider_name })),

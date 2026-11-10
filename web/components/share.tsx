@@ -25,14 +25,21 @@ export function ShareRow({ kind, slug, name, lang = "en" }: { kind: "agent" | "m
   const url = `${SITE}${lang === "en" ? "" : `/${lang}`}/${kind === "agent" ? "agents" : kind === "app" ? "apps" : "mcp"}/${slug}`;
   const li = shareText(kind, name, tagged(url, "linkedin"), lang);
   const xUrl = tagged(url, "x");
+  const ic = { width: 16, height: 16, viewBox: "0 0 24 24", "aria-hidden": true } as const;
   return (
-    <div className="share-row">
-      <span className="small muted">{t.share}</span>
-      <a className="share-btn" href={`https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(li)}`} target="_blank" rel="noopener">LinkedIn</a>
-      <a className="share-btn" href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText(kind, name, "", lang).replace(/ +#/, " #").replace(/: +#/, " #"))}&url=${encodeURIComponent(xUrl)}`} target="_blank" rel="noopener">X</a>
+    <span className="share-row" role="group" aria-label={t.share}>
+      <a className="share-btn icon" aria-label="Share on LinkedIn" title="LinkedIn" href={`https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(li)}`} target="_blank" rel="noopener">
+        <svg {...ic} fill="#0A66C2"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.22 8h4.56v14H.22V8zm7.5 0h4.37v1.92h.06c.61-1.15 2.1-2.36 4.32-2.36 4.62 0 5.47 3.04 5.47 7V22h-4.56v-6.6c0-1.57-.03-3.6-2.2-3.6-2.2 0-2.53 1.72-2.53 3.49V22H7.72V8z" /></svg>
+      </a>
+      <a className="share-btn icon" aria-label="Share on X" title="X" href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText(kind, name, "", lang).replace(/ +#/, " #").replace(/: +#/, " #"))}&url=${encodeURIComponent(xUrl)}`} target="_blank" rel="noopener">
+        <svg {...ic} fill="#121816"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.12z" /></svg>
+      </a>
+      <button type="button" className="share-btn icon" aria-label={copied ? t.copied : t.copyLink} title={copied ? t.copied : t.copyLink} onClick={() => { navigator.clipboard?.writeText(url).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2000); }); }}>
+        {copied ? <svg {...ic} fill="none" stroke="#16753A" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round"><path d="M5 12l5 5L20 7" /></svg>
+          : <svg {...ic} fill="none" stroke="#121816" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" /><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" /></svg>}
+      </button>
       {kind !== "app" ? <a className="share-btn" href="#share">{t.kitBadgeLink}</a> : null}
-      <button type="button" className="share-btn" onClick={() => { navigator.clipboard?.writeText(url).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2000); }); }}>{copied ? t.copied : t.copyLink}</button>
-    </div>
+    </span>
   );
 }
 
@@ -43,7 +50,7 @@ export function PublisherKit({ kind, slug, name, lang = "en" }: { kind: "agent" 
   const url = `${SITE}${lang === "en" ? "" : `/${lang}`}/${kind === "agent" ? "agents" : "mcp"}/${slug}`;
   const badge = `${SITE}/api/badge/${kind === "agent" ? "agent/" : ""}${slug}`;
   const bUrl = tagged(url, "badge");
-  const html = `<a href="${bUrl}"><img src="${badge}?style=card" width="260" height="72" alt="Listed on Electra Index"></a>`;
+  const html = `<a href="${bUrl}"><img src="${badge}/card" width="260" height="72" alt="Listed on Electra Index"></a>`;
   const md = `[![Listed on Electra Index](${badge})](${bUrl})`;
   const copy = (v: string, k: string) => navigator.clipboard?.writeText(v).then(() => { setCopied(k); setTimeout(() => setCopied(""), 2000); });
   return (
@@ -57,7 +64,7 @@ export function PublisherKit({ kind, slug, name, lang = "en" }: { kind: "agent" 
         </div>
         <div style={{ display: "flex", gap: 24, flexWrap: "wrap", alignItems: "center", marginTop: 16 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={`/api/badge/${kind === "agent" ? "agent/" : ""}${slug}?style=card`} alt="Listed on Electra Index" width={260} height={72} />
+          <img src={`/api/badge/${kind === "agent" ? "agent/" : ""}${slug}/card`} alt="Listed on Electra Index" width={260} height={72} />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={`/api/badge/${kind === "agent" ? "agent/" : ""}${slug}`} alt="Listed on Electra Index" height={20} />
         </div>

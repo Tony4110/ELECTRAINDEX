@@ -1,31 +1,14 @@
 /**
- * Embeddable status badge for an MCP server: /api/badge/<slug>
+ * Embeddable status badge for an MCP server (README shield): /api/badge/<slug>
  * Shows the result of our live check. Monitoring Pro servers also show their 30-day answer rate.
+ * Website card version: /api/badge/<slug>/card
  */
-import { db } from "@/lib/db";
-import { svg, card } from "@/lib/badge";
+import { svg } from "@/lib/badge";
+import { mcpBadge, svgHeaders } from "@/lib/badge-data";
 
 export const revalidate = 300;
 
-export async function GET(req: Request, { params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  let value = "not checked", color = "#8A8F8C";
-  const c = db();
-  if (c && /^[a-z0-9-]{1,200}$/.test(slug)) {
-    const { data } = await c.rpc("monitor_badge", { p_slug: slug });
-    const b = data as { status?: string; pro?: boolean; rate30?: number | null } | null;
-    if (!b) { value = "not listed"; }
-    else if (b.status === "online" || b.status === "auth_required") {
-      value = b.status === "online" ? "online" : "reachable";
-      if (b.pro && b.rate30 != null) value += ` · ${b.rate30}% 30d`;
-      color = "#1E8E5A";
-    } else if (b.status === "down") { value = "not responding"; color = "#C2410C"; }
-    else if (b.status === "unconfirmed") { value = "checking"; color = "#B7791F"; }
-    else { value = "listed"; color = "#1F3FD1"; }   // listed, not hosted / not checked live (e.g. runs locally)
-  }
-  const isCard = new URL(req.url).searchParams.get("style") === "card";
-  const body = isCard ? card(value.charAt(0).toUpperCase() + value.slice(1), "MCP server · tested live", color) : svg("Electra Index", value, color);
-  return new Response(body, {
-    headers: { "Content-Type": "image/svg+xml; charset=utf-8", "Cache-Control": "public, max-age=300, s-maxage=300" },
-  });
+export async function GET(_req: Request, { params }: { params: Promise<{ slug: string }> }) {
+  const b = await mcpBadge((await params).slug);
+  return new Response(svg("Electra Index", b.value, b.color), { headers: svgHeaders(300) });
 }

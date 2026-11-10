@@ -128,12 +128,12 @@ export async function AppPageView({ slug, lang = "en" }: { slug: string; lang?: 
         <div className="eyebrow">{T.app}{t ? ` · ${t.name}` : ""}</div>
         <div className="ap-head" style={{ marginTop: 6 }}><Logo name={a.name} website={a.website} size={52} /><h1 style={{ margin: 0 }}>{a.name}</h1></div>
         {desc ? <p className="lede tk-lede" style={{ marginTop: 10 }}>{desc}</p> : null}
-        <div className="chips" style={{ marginTop: 12 }}>
+        <div className="chips" id="share" style={{ marginTop: 12 }}>
           {a.website ? <Out type="app" slug={a.slug} to="website" from={from} className="btn primary">{T.site}</Out> : null}
           {a.pricing_url ? <Out type="app" slug={a.slug} to="pricing" from={from} className="btn">{T.pricingPage}</Out> : null}
+          <ShareRow kind="app" slug={a.slug} name={a.name} />
         </div>
       </section>
-      <div id="share"><ShareRow kind="app" slug={a.slug} name={a.name} /></div>
 
       <section className="grid cols-3" style={{ marginTop: 20 }}>
         <div className="card span-2 table-wrap">

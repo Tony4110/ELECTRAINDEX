@@ -156,9 +156,9 @@ export async function AgentView({ a, lang = "en", text }: { a: AgentCard; lang?:
       <div className="chips" style={{ marginTop: 16 }}>
         {a.website ? <Out type="agent" slug={a.slug} to="website" from={self} className="btn primary" sponsored={affiliate}>{t.visit}</Out> : null}
         {a.pricing_url ? <Out type="agent" slug={a.slug} to="pricing" from={self} className="btn">{t.officialPricing}</Out> : null}
+        <ShareRow kind="agent" slug={a.slug} name={a.name} lang={lang} />
       </div>
       {affiliate && a.website ? <AffiliateNote lang={lang} /> : null}
-      <ShareRow kind="agent" slug={a.slug} name={a.name} lang={lang} />
 
       <div className="kv" style={{ marginTop: 28 }}>
         <div><span className="small muted">{t.kv.score}</span><span><Quality score={a.quality_score} lang={lang} /></span></div>

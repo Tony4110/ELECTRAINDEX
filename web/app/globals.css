@@ -469,7 +469,7 @@ tbody tr:nth-child(-n+3) .rank-num::before { content: ""; position: absolute; le
 .spotlight-item { padding: 10px 12px; border-radius: 8px; background: var(--soft); }
 .list-cta { border-top: 1px solid var(--line); background: var(--sun-soft); }
 /* Share & publisher kit */
-.share-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 12px; }
+.share-row { display: inline-flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-left: 8px; }
 .share-btn { display: inline-flex; align-items: center; min-height: 32px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); font: 600 13px var(--sans); cursor: pointer; text-decoration: none; }
 .share-btn:hover { border-color: var(--ink); }
 .kit-code { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 12px; }
@@ -716,3 +716,5 @@ tr:hover td { background: rgba(255,255,255,.6); }
 .explore-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 .explore-title { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); min-width: 150px; }
 .explore a.chip:hover { border-color: var(--sun); box-shadow: 0 0 0 3px var(--sun-soft); }
+
+.share-btn.icon { width: 40px; min-height: 40px; padding: 0; justify-content: center; }
