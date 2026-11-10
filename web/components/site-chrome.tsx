@@ -35,6 +35,7 @@ export function SiteHeader() {
           {([
             [lhref(lang, "/"), t.agents, "◆", "#1F3FD1", "", base === "/"],
             ["/new", t.new, "▲", "#E0457B", "", base.startsWith("/new")],
+            ["/trending", t.trending, "↗", "#16A34A", "", base.startsWith("/trending")],
             [lhref(lang, "/tasks"), t.tasks, "✓", "#16A34A", "", base.startsWith("/tasks")],
             ["/mcp", t.tools, "⬡", "#F28C28", "", base.startsWith("/mcp")],
             [lhref(lang, "/apps"), t.apps, "✦", "#7C4DFF", "", base.startsWith("/apps")],
@@ -71,7 +72,7 @@ export function SiteFooter() {
         <Link href="/advertise" style={{ color: "var(--muted)" }}>{t.advertise}</Link>
       </div>
       <div className="wrap small" style={{ paddingTop: 8 }}>
-        <span>{t.publishedBy} <a href="https://dreamotion.io" rel="noopener">Dreamotion OÜ</a> {t.estonia} · {t.contact}: <a href="mailto:contact@electraindex.com">contact@electraindex.com</a> · <a href="/privacy">{t.privacy}</a> · <a href="/mcp-server">{t.mcpServer}</a> · <a href={lhref(lang, "/pricing")}>{t.pricing}</a> · <a href="/compare">{dict(lang).nav.compare}</a> · <a href="/pulse">{dict(lang).nav.pulse}</a> · <a href="/blog">Blog</a> · <a href="/payments">{dict(lang).nav.payments}</a> · <a href="/sources">{dict(lang).nav.methodology}</a></span>
+        <span>{t.publishedBy} <a href="https://dreamotion.io" rel="noopener">Dreamotion OÜ</a> {t.estonia} · {t.contact}: <a href="mailto:contact@electraindex.com">contact@electraindex.com</a> · <a href="/privacy">{t.privacy}</a> · <a href="/mcp-server">{t.mcpServer}</a> · <a href={lhref(lang, "/pricing")}>{t.pricing}</a> · <a href="/trending">{dict(lang).nav.trending}</a> · <a href="/compare">{dict(lang).nav.compare}</a> · <a href="/pulse">{dict(lang).nav.pulse}</a> · <a href="/blog">Blog</a> · <a href="/payments">{dict(lang).nav.payments}</a> · <a href="/sources">{dict(lang).nav.methodology}</a></span>
       </div>
     </footer>
   );

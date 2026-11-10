@@ -30,6 +30,7 @@ const nextConfig = {
       cached("/fr/themes/:slug"),
       cached("/fr/taches/:slug"),
       cached("/new", CDN_15MIN),
+      cached("/trending", CDN_15MIN),
     ];
   },
 };

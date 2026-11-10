@@ -70,6 +70,7 @@ export default async function LaunchesPage({ searchParams }: { searchParams: SP 
 
       <div className="tabs" role="tablist">
         <Link role="tab" aria-selected={tab === "launches"} href={qs({ kind })} className={tab === "launches" ? "on" : ""}>Launches</Link>
+        <Link role="tab" aria-selected={false} href="/trending">Trending 24H · 7D · 30D ↗</Link>
         <Link role="tab" aria-selected={tab === "changes"} href={qs({ tab: "changes" })} className={tab === "changes" ? "on" : ""}>Price &amp; version changes</Link>
       </div>
 
