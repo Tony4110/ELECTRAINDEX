@@ -1,5 +1,4 @@
 /** Tool page, version 2 (richer template). Shown to the rollout sample only, see lib/rollout.ts. */
-import { ExploreStrip } from "@/components/explore-strip";
 import Link from "next/link";
 import { getFollowers } from "@/lib/follows";
 import { Out } from "@/components/out";
@@ -136,6 +135,7 @@ export async function ToolPageV2({ params }: { params: P }) {
   const similar = (simData as { provider_slug: string; provider_name: string; short_description: string | null; coverage_pct: number; remote: boolean | null; local: boolean | null }[] | null) ?? [];
   const agents = (agData as { provider_slug: string; provider_name: string; quality_score: number | null; from_usd_month: number | null; has_free: boolean; has_pricing: boolean }[] | null) ?? [];
 
+  const followers = await getFollowers("mcp_server", m.slug);
   const seen = new Set<string>();
   const facts = ((obs as Obs[] | null) ?? []).filter((o) => { const k = o.field + o.evidence_level; if (seen.has(k)) return false; seen.add(k); return true; });
   const history = (hist as Signal[] | null) ?? [];
@@ -174,29 +174,103 @@ export async function ToolPageV2({ params }: { params: P }) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(crumbsLd) }} />
-      <nav className="crumbs" aria-label="Breadcrumb"><Link href="/mcp">Tools</Link><span>/</span>{best ? <><Link href={`/tasks/${best.task_slug}`}>{best.task_name}</Link><span>/</span></> : null}<span className="ink">{m.name}</span></nav>
-      <div style={{ display: "flex", gap: 20, alignItems: "center", flexWrap: "wrap" }}>
-        <Logo name={m.name} website={m.website ?? m.repository_url} size={64} />
-        <div>
-          <h1 style={{ margin: 0 }}>{m.name}</h1>
-          <div className="small muted">MCP server{m.remote ? " · hosted" : ""}{m.local ? " · installable" : ""}{m.version ? ` · v${m.version}` : ""} <span className="mono faint">· {m.registry_name}</span></div>
+      <div className="tp-hero">
+        <nav className="crumbs" aria-label="Breadcrumb"><Link href="/mcp">Tools</Link><span>/</span>{best ? <><Link href={`/tasks/${best.task_slug}`}>{best.task_name}</Link><span>/</span></> : null}<span className="ink">{m.name}</span></nav>
+        <div className="tp-hero-grid">
+          <div className="tp-hero-main">
+            <div style={{ display: "flex", gap: 18, alignItems: "center", flexWrap: "wrap" }}>
+              <Logo name={m.name} website={m.website ?? m.repository_url} size={72} />
+              <div style={{ minWidth: 0 }}>
+                <h1 style={{ margin: 0 }}>{m.name}</h1>
+                <div className="tp-tags">
+                  <span className="tp-tag blue">MCP server</span>
+                  {live?.status === "online" ? <span className="tp-tag green">● {m.remote ? "Hosted · " : ""}online</span> : m.remote ? <span className="tp-tag">Hosted</span> : null}
+                  {m.local ? <span className="tp-tag">Installable</span> : null}
+                  {m.version ? <span className="tp-tag sun">v{m.version}</span> : null}
+                </div>
+              </div>
+            </div>
+            <p className="lede" style={{ marginTop: 18, maxWidth: "62ch" }}>{desc ? cut(desc, 260) : "No description published."}</p>
+            <div className="chips" style={{ marginTop: 18 }}>
+              {remotes.length || pkgs.length ? <a className="btn primary" href="#connect">Connect ↓</a> : null}
+              {m.website ? <Out type="mcp" slug={m.slug} to="website" from={`/mcp/${m.slug}`} className="btn">Website ↗</Out> : null}
+              {m.repository_url ? <Out type="mcp" slug={m.slug} to="repository" from={`/mcp/${m.slug}`} className="btn">Source code ↗</Out> : null}
+              <a className="btn" href="#follow">☆ Follow</a>
+              <ShareRow kind="mcp" slug={m.slug} name={m.name} />
+            </div>
+          </div>
+          <aside className="tp-snap" aria-label="At a glance">
+            <div className="tp-snap-title">At a glance</div>
+            <div className="tp-snap-grid">
+              <div><span>Live check</span><b className={live?.status === "online" ? "pos" : ""}>{!live || live.status === "unconfirmed" ? "Not tested" : live.status === "online" ? `Online${live.tool_count ? ` · ${live.tool_count}${live.tools_more ? "+" : ""} tools` : ""}` : live.status === "auth_required" ? "Needs a key" : "Not responding"}</b></div>
+              <div><span>Install</span><b>{m.remote && m.local ? "Hosted or local" : m.remote ? "Hosted" : m.local ? "Local" : "—"}</b></div>
+              <div><span>Version</span><b className="mono">{m.version ?? "—"}</b></div>
+              <div><span>Followers</span><b>{followers}</b></div>
+              <div><span>Tracked since</span><b className="mono">{shortDate(m.first_seen_at)}</b></div>
+              <div><span>Last checked</span><b className="mono">{timeAgo(m.last_seen_at)}</b></div>
+            </div>
+          </aside>
         </div>
       </div>
-      <StatusBadges verifiedAt={m.last_seen_at} verifiedLabel="Seen in the registry" firstSeenAt={m.first_seen_at}
-        changedAt={history.find((h) => h.event_type === "new_version")?.detected_at} changedLabel="New version" extra={<LiveBadge live={live} />} />
-      <p className="lede" style={{ marginTop: 16, maxWidth: "80ch" }}>{desc || "No description published."}</p>
-      <div className="chips" style={{ marginTop: 16 }}>
-        {m.website ? <Out type="mcp" slug={m.slug} to="website" from={`/mcp/${m.slug}`} className="btn primary">Website ↗</Out> : null}
-        {m.repository_url ? <Out type="mcp" slug={m.slug} to="repository" from={`/mcp/${m.slug}`} className="btn">Source code ↗</Out> : null}
-        {remotes.length || pkgs.length ? <a className="btn" href="#connect">How to connect ↓</a> : null}
-        <ShareRow kind="mcp" slug={m.slug} name={m.name} />
-      </div>
-      <ExploreStrip rows={[
-        { title: "Similar tools", links: similar.slice(0, 5).map((x) => ({ href: `/mcp/${x.provider_slug}`, label: x.provider_name })) },
-        { title: "Ready-made AI agents", links: agents.slice(0, 4).map((x) => ({ href: `/agents/${x.provider_slug}`, label: x.provider_name })),
-          more: best ? { href: `/tasks/${best.task_slug}`, label: `All agents to ${lowerFirst(best.task_name)} →` } : undefined },
-        { title: "Related tasks", links: tasks.slice(1, 5).map((t) => ({ href: `/tasks/${t.task_slug}`, label: t.task_name })) },
-      ]} />
+
+      <nav className="tp-explore" aria-label="Keep exploring">
+        <span className="tp-explore-title">Keep exploring</span>
+        {agents.length ? <a href="#agents" className="sun">{agents.length} ready-made AI agent{agents.length > 1 ? "s" : ""}</a> : null}
+        {similar.length ? <a href="#similar">{similar.length} similar tool{similar.length > 1 ? "s" : ""}</a> : null}
+        {tasks.length ? <a href="#tasks">{tasks.length} task{tasks.length > 1 ? "s" : ""} it helps with</a> : null}
+        <a href="#connect">How to connect</a>
+      </nav>
+
+      {tasks.length ? (
+        <section id="tasks" style={{ marginTop: 32 }}>
+          <div className="tp-h"><h2>What you can do with it</h2><span className="small muted">Share of each task&apos;s required capabilities it covers</span></div>
+          <div className="tp-cards">
+            {tasks.map((t, i) => (
+              <Link key={t.task_slug} href={`/tasks/${t.task_slug}`} className={`tp-task c${i % 6}`}>
+                <span className="tp-task-name">{t.task_name}</span>
+                <span className="tp-bar"><span style={{ width: `${Math.round(t.coverage_pct)}%` }} /></span>
+                <span className="mono small">{Math.round(t.coverage_pct)}% covered</span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {agents.length ? (
+        <section id="agents" className="tp-agents">
+          <div className="tp-h"><h2>Prefer a ready-made agent?</h2><span className="small">An MCP server is a connector for your own assistant. These finished products do the job for you{best ? <>: {lowerFirst(best.task_name)}</> : null}.</span></div>
+          <div className="tp-cards">
+            {agents.map((x) => (
+              <Link key={x.provider_slug} href={`/agents/${x.provider_slug}`} className="tp-agent">
+                <span style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                  <Logo name={x.provider_name} size={40} />
+                  <span style={{ flex: 1, minWidth: 0 }}><span className="strong">{x.provider_name}</span><span className="small muted" style={{ display: "block" }}><Price from={x.from_usd_month} free={x.has_free} hasPricing={x.has_pricing} /></span></span>
+                </span>
+                <Quality score={x.quality_score} />
+                <span className="small strong" style={{ color: "var(--accent)" }}>Prices &amp; score →</span>
+              </Link>
+            ))}
+          </div>
+          {best ? <Link href={`/tasks/${best.task_slug}`} className="strong" style={{ display: "inline-block", marginTop: 14 }}>All AI agents to {lowerFirst(best.task_name)}, ranked →</Link> : null}
+        </section>
+      ) : null}
+
+      {similar.length ? (
+        <section id="similar" style={{ marginTop: 32 }}>
+          <div className="tp-h"><h2>Similar tools</h2>{best ? <span className="small muted">Listed for the same task: {lowerFirst(best.task_name)}</span> : null}</div>
+          <div className="tp-cards wide">
+            {similar.map((x) => (
+              <Link key={x.provider_slug} href={`/mcp/${x.provider_slug}`} className="tp-sim">
+                <Logo name={x.provider_name} size={40} />
+                <span style={{ minWidth: 0 }}>
+                  <span style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}><span className="strong">{x.provider_name}</span>{x.remote ? <span className="tp-tag blue">Hosted</span> : null}{x.local ? <span className="tp-tag green">Local</span> : null}</span>
+                  {x.short_description ? <span className="small muted" style={{ display: "block", marginTop: 4 }}>{cut(x.short_description, 120)}</span> : null}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <section className="grid cols-3" style={{ marginTop: 28 }}>
         <div className="card span-2">
@@ -252,41 +326,7 @@ export async function ToolPageV2({ params }: { params: P }) {
 
       {live ? <LiveCheckCard live={live} name={m.name} /> : null}
 
-      {tasks.length ? (
-        <div className="card" style={{ marginTop: 24 }}>
-          <div className="card-head"><h2>Tasks it helps with</h2><span className="small muted">Share of each task&apos;s required capabilities it covers</span></div>
-          <div className="table-wrap"><table><tbody>
-            {tasks.map((t) => <tr key={t.task_slug}><td><Link href={`/tasks/${t.task_slug}`} className="strong ink">{t.task_name}</Link><div className="small muted">{(t.matched_capabilities ?? []).join(" · ")}</div></td><td style={{ width: 200 }}><Coverage pct={t.coverage_pct} /></td></tr>)}
-          </tbody></table></div>
-        </div>
-      ) : null}
 
-      {similar.length || agents.length ? (
-        <section className="grid cols-3" style={{ marginTop: 24 }}>
-          {similar.length ? (
-            <div className="card span-2">
-              <div className="card-head"><h2>Similar tools</h2>{best ? <span className="small muted">Listed for the same task: {lowerFirst(best.task_name)}</span> : null}</div>
-              <ul className="signals">{similar.map((s) => (
-                <li className="signal" key={s.provider_slug}>
-                  <div className="signal-top"><Link href={`/mcp/${s.provider_slug}`} className="strong ink">{s.provider_name}</Link><span className="spacer" /><span className="pills"><Tri label="REMOTE" value={s.remote} /><Tri label="LOCAL" value={s.local} /></span></div>
-                  {s.short_description ? <div className="small muted">{cut(s.short_description, 140)}</div> : null}
-                </li>))}</ul>
-            </div>
-          ) : null}
-          {agents.length ? (
-            <div className="card">
-              <div className="card-head"><h2>Ready-made AI agents</h2></div>
-              <div className="card-body small muted" style={{ paddingBottom: 0 }}>An MCP server is a connector you add to your own assistant. These are finished products that do the same job for you:</div>
-              <ul className="signals">{agents.map((a) => (
-                <li className="signal" key={a.provider_slug}>
-                  <div className="signal-top"><Link href={`/agents/${a.provider_slug}`} className="strong ink">{a.provider_name}</Link><span className="spacer" /><Quality score={a.quality_score} /></div>
-                  <div className="small"><Price from={a.from_usd_month} free={a.has_free} hasPricing={a.has_pricing} /> · <Link href={`/agents/${a.provider_slug}`}>Prices &amp; score →</Link></div>
-                </li>))}</ul>
-              {best ? <div className="card-body small" style={{ paddingTop: 0 }}><Link href={`/tasks/${best.task_slug}`} className="strong">All AI agents to {lowerFirst(best.task_name)}, ranked →</Link></div> : null}
-            </div>
-          ) : null}
-        </section>
-      ) : null}
 
       <section className="grid cols-3" style={{ marginTop: 24 }}>
         <div className="card span-2">
@@ -324,7 +364,7 @@ export async function ToolPageV2({ params }: { params: P }) {
       </section>
 
       <ReportBox type="mcp" slug={m.slug} status={rep as ReportStatus} />
-      <FollowBox type="mcp" slug={m.slug} name={m.name} followers={await getFollowers("mcp_server", m.slug)} />
+      <div id="follow"><FollowBox type="mcp" slug={m.slug} name={m.name} followers={followers} /></div>
       {m.remote ? (
         <div className="card publisher-offer" style={{ marginTop: 24 }} id="monitor">
           <div className="card-head"><h2>Do you run {m.name}? Know when it stops answering</h2><span className="small muted">For publishers · optional</span></div>
