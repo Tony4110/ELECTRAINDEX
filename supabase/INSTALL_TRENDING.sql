@@ -106,7 +106,7 @@ create or replace function refresh_trends()
 returns jsonb language plpgsql security definer set search_path = public as $$
 declare n int;
 begin
-  delete from entity_trends;
+  delete from entity_trends where entity_id is not null;  -- Supabase refuses a DELETE without WHERE
 
   with periods(period, days, max_age) as (
     values ('24h', 1, interval '3 days'), ('7d', 7, interval '10 days'), ('30d', 30, interval '40 days')
@@ -206,7 +206,7 @@ select cron.schedule(
   '17 * * * *',
   $job$
     select net.http_post(
-      url     := 'https://rqgnjavfbahderwxykox.supabase.co/functions/v1/signals-adoption',
+      url     := 'https://rqgnjavfbahderwxykox.supabase.co/functions/v1/signals-adpotion',
       headers := '{"Content-Type":"application/json"}'::jsonb,
       body    := '{}'::jsonb,
       timeout_milliseconds := 150000

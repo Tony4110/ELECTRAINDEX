@@ -12,7 +12,7 @@
 //   GITHUB_TOKEN  required for GitHub (a fine-grained token with no permission at all is enough: public data only)
 //   CRON_SECRET   optional; if set, calls must send the header x-cron-secret
 //
-// Test by hand:  …/functions/v1/signals-adoption?job=npm&limit=20
+// Test by hand:  …/functions/v1/signals-adpotion?job=npm&limit=20
 
 const TIME_BUDGET_MS = 110_000;
 const USER_AGENT = "ElectraIndexBot/1.0 (+https://electraindex.com/sources)";
