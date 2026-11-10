@@ -24,19 +24,41 @@ export default async function Search({ searchParams }: { searchParams: SP }) {
       q.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
         .split(/[^a-z0-9.+#-]+/).filter((w) => w.length >= 2 && !STOP.has(w)),
     )).slice(0, 6);
-    const queries = Array.from(new Set([q, ...words]));
-    const results = await Promise.all(queries.map((term) =>
-      c.rpc("search_entities", { p_q: term, p_type: null, p_limit: 60 }).then((r) => (r.data as Hit[] | null) ?? [])));
+    const terms = words.length > 0 ? words : [q.toLowerCase()];
+    const rpc = (term: string) =>
+      c.rpc("search_entities", { p_q: term, p_type: null, p_limit: 60 }).then((r) => {
+        if (r.error) console.error("search_entities", r.error.message);
+        return (r.data as Hit[] | null) ?? [];
+      });
+    // Plain "contains" match on name and short description: catches forms the full-text index misses
+    // (e.g. "SEO/GEO" is indexed as one token, so "seo" alone would not find it).
+    const contains = (term: string) => {
+      const safe = term.replace(/[^a-z0-9]/g, "");
+      if (safe.length < 2) return Promise.resolve([] as Hit[]);
+      return c.from("entities").select("id,type,slug,name,short_description")
+        .eq("is_published", true)
+        .or(`name.ilike.%${safe}%,short_description.ilike.%${safe}%`)
+        .limit(60)
+        .then((r) => {
+          if (r.error) console.error("search_contains", r.error.message);
+          return ((r.data as Omit<Hit, "rank">[] | null) ?? []).map((h) => ({ ...h, rank: 0 }));
+        });
+    };
+    const [phrase, ...perTerm] = await Promise.all([
+      rpc(q),
+      ...terms.map((t) => Promise.all([rpc(t), contains(t)]).then(([a, b]) => [...a, ...b])),
+    ]);
     const merged = new Map<string, Hit & { matches: number; best: number }>();
-    results.forEach((list, i) => {
-      const isPhrase = i === 0;
-      for (const h of list) {
-        const prev = merged.get(h.id);
-        const gain = isPhrase ? Math.max(words.length, 1) : 1;
-        if (prev) { prev.matches += gain; prev.best = Math.max(prev.best, h.rank); }
-        else merged.set(h.id, { ...h, matches: gain, best: h.rank });
-      }
-    });
+    const add = (h: Hit, gain: number) => {
+      const prev = merged.get(h.id);
+      if (prev) { prev.matches += gain; prev.best = Math.max(prev.best, h.rank); }
+      else merged.set(h.id, { ...h, matches: gain, best: h.rank });
+    };
+    for (const h of phrase) add(h, terms.length);
+    for (const list of perTerm) {
+      const seen = new Set<string>();
+      for (const h of list) { if (!seen.has(h.id)) { seen.add(h.id); add(h, 1); } }
+    }
     hits = Array.from(merged.values()).sort((a, b) => b.matches - a.matches || b.best - a.best).slice(0, 60);
   }
   const tasks = hits.filter((h) => h.type === "task");
