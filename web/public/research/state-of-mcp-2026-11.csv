@@ -1,0 +1,17 @@
+metric,value,unit,definition
+snapshot_date,2026-11-11,date,Date the figures were read from the Electra Index database (UTC)
+mcp_servers_indexed,53954,servers,Published MCP servers from the Official MCP Registry indexed by Electra Index
+mcp_servers_with_remote_endpoint,36861,servers,Servers that declare a hosted (remote) endpoint in the registry
+remote_servers_tested_live,35576,servers,Remote servers checked at least once by the Electra live-check robot
+online_listing_tools,20999,servers,Answered an MCP initialize without credentials and listed at least one tool
+online_no_tools,148,servers,Answered initialize but listed no tool
+auth_required,11252,servers,Reachable but asked for a key or a sign-in (HTTP 401/403)
+not_answering,3177,servers,"Not found, not MCP, server error, timeout or unreachable at the last check"
+tools_exposed_by_online_servers,350980,tools,Sum of tools listed by online servers (first page of tools/list)
+median_tools_per_online_server,7,tools,Median number of tools listed by online servers with at least one tool
+ai_agents_listed,303,agents,AI agents listed on Electra Index
+agents_with_public_paid_price,148,agents,Agents with a monthly or yearly USD price read on their official pricing page
+agents_with_free_plan,128,agents,Agents offering a free plan
+median_agent_entry_price_usd_month,25,USD/month,Median of the cheapest paid monthly price (yearly plans divided by 12)
+ai_apps_listed,49,apps,Consumer AI apps listed on Electra Index
+everyday_tasks_mapped,100,tasks,Everyday tasks matched to the agents that can do them

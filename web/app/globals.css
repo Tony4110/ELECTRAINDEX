@@ -801,3 +801,23 @@ tr:hover td { background: rgba(255,255,255,.6); }
 .tr-spark.up polyline { stroke: #16A34A; } .tr-spark.down polyline { stroke: var(--neg); }
 .tr-empty { padding: 28px; display: grid; gap: 10px; justify-items: start; }
 @media (max-width: 760px) { .tr-hero { padding: 20px 16px; } .tr-sp, .tr-sp-h, .tr-desc { display: none; } .tr-bar .spacer { display: none; } }
+
+/* ---------- Research & press ---------- */
+.research { max-width: 860px; }
+.research h2 { margin: 36px 0 12px; }
+.research p, .research li { line-height: 1.6; }
+.rs-lede { font-size: 19px; line-height: 1.55; color: var(--ink); margin: 8px 0 24px; }
+.rs-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin: 8px 0 8px; }
+.rs-kpi { display: flex; flex-direction: column; gap: 4px; padding: 16px; border-radius: 12px; background: var(--glass, #fff); border: 1px solid var(--line); }
+.rs-kpi b { font-size: 26px; letter-spacing: -.02em; color: #1F3FD1; }
+.rs-kpi span { font-size: 13px; color: var(--muted); line-height: 1.35; }
+.rs-findings { padding-left: 22px; display: grid; gap: 10px; }
+.rs-list { padding-left: 20px; display: grid; gap: 6px; }
+.rs-chart { padding: 18px 20px; margin: 20px 0; color: var(--ink); }
+.rs-cite { padding: 16px 18px; }
+.rs-pre { margin: 0; padding: 10px 12px; border-radius: 8px; background: var(--soft); font: 13px/1.5 var(--mono); white-space: pre-wrap; word-break: break-word; }
+.rs-report { display: flex; flex-direction: column; gap: 6px; padding: 18px 20px; margin-bottom: 12px; text-decoration: none; color: var(--ink); }
+.rs-report-t { font-size: 20px; font-weight: 700; }
+.rs-report-go { color: #1F3FD1; font-weight: 700; }
+.rs-soon { opacity: .75; }
+.rs-logo { display: inline-flex; padding: 18px 24px; border-radius: 12px; border: 1px solid var(--line); background: #fff; }
