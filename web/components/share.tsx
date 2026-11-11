@@ -38,7 +38,10 @@ export function ShareRow({ kind, slug, name, lang = "en" }: { kind: "agent" | "m
         {copied ? <svg {...ic} fill="none" stroke="#16753A" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round"><path d="M5 12l5 5L20 7" /></svg>
           : <svg {...ic} fill="none" stroke="#121816" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" /><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" /></svg>}
       </button>
-      <a className="share-btn" href="#share">{t.kitBadgeLink}</a>
+      <a className="share-badge" href="#share" title={t.kitTitle(name)}>
+        <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round"><path d="M12 2l8 3v6c0 5-3.4 9.3-8 11-4.6-1.7-8-6-8-11V5l8-3z" /><path d="M8.5 12l2.5 2.5 4.5-5" /></svg>
+        {t.kitBadgeLink}
+      </a>
     </span>
   );
 }

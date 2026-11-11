@@ -718,6 +718,9 @@ tr:hover td { background: rgba(255,255,255,.6); }
 .explore a.chip:hover { border-color: var(--sun); box-shadow: 0 0 0 3px var(--sun-soft); }
 
 .share-btn.icon { width: 40px; min-height: 40px; padding: 0; justify-content: center; }
+.share-badge { display: inline-flex; align-items: center; gap: 7px; min-height: 40px; padding: 0 16px; margin-left: 10px; border-radius: 999px; border: 1.5px solid #1F3FD1; background: #EEF2FF; color: #1F3FD1; font: 700 14px var(--sans); text-decoration: none; white-space: nowrap; }
+.share-badge:hover { background: #1F3FD1; color: #fff; }
+@media (max-width: 640px) { .share-badge { margin-left: 0; } }
 
 /* ---------- Tool page v3: colored hero, explore bar, card sections ---------- */
 .tp-hero { background: var(--accent-soft); border-radius: 20px; padding: 24px 28px 28px; }

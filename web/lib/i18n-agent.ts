@@ -97,7 +97,7 @@ const boxEn = {
   shareAgent: (n: string, u: string) => `${n} is now listed on Electra Index, the independent index of AI agents with verified prices and rankings. See how we compare: ${u} #AIagents`,
   kitTitle: (n: string) => `Are you the publisher of ${n}?`, kitSub: "Free · show your listing",
   kitText: "An independent listing builds trust with your buyers. Announce it, and add the badge to your website or README.",
-  kitLinkedIn: "Announce it on LinkedIn", copyHtml: "Copy website badge", copyMd: "Copy README badge", kitBadgeLink: "Get the badge", copiedShort: "Copied",
+  kitLinkedIn: "Announce it on LinkedIn", copyHtml: "Copy website badge", copyMd: "Copy README badge", kitBadgeLink: "Publisher? Get your free badge", copiedShort: "Copied",
   report: {
     title: "Is this page accurate?", sub: "Flag it and our robot re-checks the official source. Reports never change a score.",
     kinds: { price_wrong: "Price is wrong", info_outdated: "Info is outdated", not_working: "Doesn't work", broken_link: "Broken link", other: "Something else" } as Record<string, string>,
@@ -143,7 +143,7 @@ const boxFr: BoxDict = {
   shareAgent: (n, u) => `${n} est désormais référencé sur Electra Index, l'index indépendant des agents IA avec prix vérifiés et classements. Voyez où il se situe : ${u} #AgentsIA`,
   kitTitle: (n) => `Vous êtes l'éditeur de ${n} ?`, kitSub: "Gratuit · montrez votre fiche",
   kitText: "Une fiche indépendante renforce la confiance de vos clients. Annoncez-la et ajoutez le badge sur votre site ou votre README.",
-  kitLinkedIn: "L'annoncer sur LinkedIn", copyHtml: "Copier le badge site web", copyMd: "Copier le badge README", kitBadgeLink: "Obtenir le badge", copiedShort: "Copié",
+  kitLinkedIn: "L'annoncer sur LinkedIn", copyHtml: "Copier le badge site web", copyMd: "Copier le badge README", kitBadgeLink: "Éditeur ? Votre badge gratuit", copiedShort: "Copié",
   report: {
     title: "Cette page est-elle exacte ?", sub: "Signalez-le et notre robot revérifie la source officielle. Un signalement ne change jamais un score.",
     kinds: { price_wrong: "Le prix est faux", info_outdated: "Info dépassée", not_working: "Ne fonctionne pas", broken_link: "Lien cassé", other: "Autre chose" },
