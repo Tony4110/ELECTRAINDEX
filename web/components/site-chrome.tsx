@@ -34,7 +34,7 @@ export function SiteHeader() {
         <nav className={`nav nav-${lang}`} aria-label="Main">
           {([
             [lhref(lang, "/"), t.agents, "◆", "#1F3FD1", "", base === "/"],
-            ["/new", t.new, "▲", "#E0457B", "", base.startsWith("/new")],
+            ["/research", t.research, "◉", "#0EA5E9", "", base.startsWith("/research")],
             ["/trending", t.trending, "↗", "#16A34A", "nav-opt2", base.startsWith("/trending")],
             [lhref(lang, "/tasks"), t.tasks, "✓", "#16A34A", "", base.startsWith("/tasks")],
             ["/mcp", t.tools, "⬡", "#F28C28", "", base.startsWith("/mcp")],
@@ -72,7 +72,7 @@ export function SiteFooter() {
         <Link href="/advertise" style={{ color: "var(--muted)" }}>{t.advertise}</Link>
       </div>
       <div className="wrap small" style={{ paddingTop: 8 }}>
-        <span>{t.publishedBy} <a href="https://dreamotion.io" rel="noopener">Dreamotion OÜ</a> {t.estonia} · {t.contact}: <a href="mailto:contact@electraindex.com">contact@electraindex.com</a> · <a href="/privacy">{t.privacy}</a> · <a href="/mcp-server">{t.mcpServer}</a> · <a href={lhref(lang, "/pricing")}>{t.pricing}</a> · <a href="/trending">{dict(lang).nav.trending}</a> · <a href="/compare">{dict(lang).nav.compare}</a> · <a href="/pulse">{dict(lang).nav.pulse}</a> · <a href="/blog">Blog</a> · <a href="/payments">{dict(lang).nav.payments}</a> · <a href="/sources">{dict(lang).nav.methodology}</a> · <a href="/research">Research</a> · <a href="/press">Press</a></span>
+        <span>{t.publishedBy} <a href="https://dreamotion.io" rel="noopener">Dreamotion OÜ</a> {t.estonia} · {t.contact}: <a href="mailto:contact@electraindex.com">contact@electraindex.com</a> · <a href="/privacy">{t.privacy}</a> · <a href="/mcp-server">{t.mcpServer}</a> · <a href={lhref(lang, "/pricing")}>{t.pricing}</a> · <a href="/trending">{dict(lang).nav.trending}</a> · <a href="/compare">{dict(lang).nav.compare}</a> · <a href="/pulse">{dict(lang).nav.pulse}</a> · <a href="/blog">Blog</a> · <a href="/payments">{dict(lang).nav.payments}</a> · <a href="/sources">{dict(lang).nav.methodology}</a> · <a href="/new">{dict(lang).nav.new}</a> · <a href="/press">Press</a></span>
       </div>
     </footer>
   );
