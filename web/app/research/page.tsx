@@ -46,32 +46,48 @@ export default async function Research() {
   const a = live?.data.agents;
   return (
     <div className="research">
-      <div className="eyebrow">Electra Index · Live data &amp; research</div>
-      <h1>What actually exists in the agent economy</h1>
-      <p className="rs-lede">We measure it every day: which MCP servers answer, which tools they expose, what AI agents really cost. Every figure is dated and free to reuse with a link.</p>
+      <div className="rl-top">
+        <h1 className="rl-h1">Research <span>· live data on MCP servers and AI agents</span></h1>
+        <p className="small muted" style={{ margin: 0 }}>Measured every day by Electra Index. Dated, sourced, free to reuse with a link.</p>
+      </div>
 
       {/* ---------- 1. Live data ---------- */}
       <div className="rl-head"><span className="rl-tag live">● Live data</span><span className="small muted">Recomputed every day · last update {when(live?.computed_at)}</span></div>
 
+      <div className="rl-grid">
+        <div>
       {m ? (
-        <section className="card rl-card">
-          <div className="rl-title"><h2>State of MCP — today</h2><span className="small muted">Base: {n(m.tested)} hosted servers tested by our robot (of {n(m.remote)} with a hosted endpoint, {n(m.servers)} in the registry)</span></div>
-          <div className="rl-big"><b>{pct(m.online_tools, m.tested)}</b><span>of hosted MCP servers answered and listed their tools at their last check</span></div>
-          <Bar parts={[{ k: "Answered and listed tools", v: m.online_tools, c: "#16A34A" }, { k: "Key or sign-in required", v: m.auth, c: "#E9A916" }, { k: "Did not answer", v: m.no_answer, c: "#DC2626" }, { k: "Answered, no tool", v: m.online_no_tools, c: "#8A8F8C" }]} />
-          <ul className="rl-legend">
-            <li><i style={{ background: "#16A34A" }} />Answered and listed tools <b>{n(m.online_tools)}</b></li>
-            <li><i style={{ background: "#E9A916" }} />Key or sign-in required <b>{n(m.auth)}</b> <span className="muted">(often by design, not a failure)</span></li>
-            <li><i style={{ background: "#DC2626" }} />Did not answer <b>{n(m.no_answer)}</b></li>
-            <li><i style={{ background: "#8A8F8C" }} />Answered, no tool listed <b>{n(m.online_no_tools)}</b></li>
-          </ul>
-          <div className="rl-mini">
-            <div><b>{n(m.tools)}</b><span>tools exposed by online servers</span></div>
-            <div><b>{m.median_tools ?? "—"}</b><span>median tools per online server</span></div>
-            <div><b>{n(m.checked_24h)}</b><span>servers re-checked in the last 24 h</span></div>
-          </div>
-          <p className="small muted" style={{ margin: "10px 0 0" }}>Each server is re-checked every few days; latest check {when(m.last_check)}. <Link href="/sources#live-check">How we test</Link> · <Link href="/mcp">Browse the servers</Link></p>
-        </section>
-      ) : null}
+          <section className="card rl-card">
+            <div className="rl-title"><h2>State of MCP — today</h2><span className="small muted">Base: {n(m.tested)} hosted servers tested by our robot (of {n(m.remote)} with a hosted endpoint, {n(m.servers)} in the registry)</span></div>
+            <div className="rl-big"><b>{pct(m.online_tools, m.tested)}</b><span>of hosted MCP servers answered and listed their tools at their last check</span></div>
+            <Bar parts={[{ k: "Answered and listed tools", v: m.online_tools, c: "#16A34A" }, { k: "Key or sign-in required", v: m.auth, c: "#E9A916" }, { k: "Did not answer", v: m.no_answer, c: "#DC2626" }, { k: "Answered, no tool", v: m.online_no_tools, c: "#8A8F8C" }]} />
+            <ul className="rl-legend">
+              <li><i style={{ background: "#16A34A" }} />Answered and listed tools <b>{n(m.online_tools)}</b></li>
+              <li><i style={{ background: "#E9A916" }} />Key or sign-in required <b>{n(m.auth)}</b> <span className="muted">(often by design, not a failure)</span></li>
+              <li><i style={{ background: "#DC2626" }} />Did not answer <b>{n(m.no_answer)}</b></li>
+              <li><i style={{ background: "#8A8F8C" }} />Answered, no tool listed <b>{n(m.online_no_tools)}</b></li>
+            </ul>
+            <div className="rl-mini">
+              <div><b>{n(m.tools)}</b><span>tools exposed by online servers</span></div>
+              <div><b>{m.median_tools ?? "—"}</b><span>median tools per online server</span></div>
+              <div><b>{n(m.checked_24h)}</b><span>servers re-checked in the last 24 h</span></div>
+            </div>
+            <p className="small muted" style={{ margin: "10px 0 0" }}>Each server is re-checked every few days; latest check {when(m.last_check)}. <Link href="/sources#live-check">How we test</Link> · <Link href="/mcp">Browse the servers</Link></p>
+          </section>
+        ) : null}
+        </div>
+        <aside className="rl-side">
+          <span className="rl-tag">Monthly report</span>
+          <Link href={`/research/${R.slug}`} className="card rs-report rl-report">
+            <span className="small muted mono">{R.dateLabel}</span>
+            <span className="rs-report-t">{R.title}</span>
+            <span className="muted small">Only {pct(R.onlineTools, R.tested)} of {n(R.tested)} hosted MCP servers answered and listed their tools on first contact; {pct(R.auth, R.tested)} asked for a key.</span>
+            <span className="rs-report-go">Read the report →</span>
+          </Link>
+          <a className="btn" href={R.csv} download>Download the data (CSV)</a>
+          <Link className="btn" href="/press">Press kit</Link>
+        </aside>
+      </div>
 
       {a ? (
         <section className="card rl-card">
@@ -102,14 +118,7 @@ export default async function Research() {
 
       {!live ? <p className="muted">Live figures are being prepared. Meanwhile, read the monthly report below.</p> : null}
 
-      {/* ---------- 2. Monthly reports ---------- */}
-      <div className="rl-head"><span className="rl-tag">Monthly reports</span><span className="small muted">Frozen and citable: figures never change after publication</span></div>
-      <Link href={`/research/${R.slug}`} className="card rs-report">
-        <span className="small muted mono">{R.dateLabel} · MCP</span>
-        <span className="rs-report-t">{R.title}</span>
-        <span className="muted">Only {pct(R.onlineTools, R.tested)} of {n(R.tested)} hosted MCP servers answered and listed their tools on first contact; {pct(R.auth, R.tested)} asked for a key.</span>
-        <span className="rs-report-go">Read the report →</span>
-      </Link>
+      <div className="rl-head"><span className="rl-tag">Coming next</span></div>
       <div className="card rs-report rs-soon">
         <span className="small muted mono">Planned · early 2027</span>
         <span className="rs-report-t">AI Agent Pricing Index</span>
