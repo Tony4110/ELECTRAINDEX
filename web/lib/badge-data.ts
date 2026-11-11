@@ -15,6 +15,17 @@ export async function agentBadge(slug: string) {
   return { value, color, line };
 }
 
+/** What the AI app badge says: listed or not (apps have no score). */
+export async function appBadge(slug: string) {
+  let value = "listed", color = "#1F3FD1", line = "Listed AI app";
+  const c = db();
+  if (c && /^[a-z0-9-]{1,200}$/.test(slug)) {
+    const { data, error } = await c.from("v_apps").select("slug").eq("slug", slug).maybeSingle();
+    if (!error && !data) { value = "not listed"; color = "#8A8F8C"; line = "Not listed"; }
+  }
+  return { value, color, line };
+}
+
 /** What the MCP server badge says: result of the live check. */
 export async function mcpBadge(slug: string) {
   let value = "not checked", color = "#8A8F8C";

@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { SetupNotice, Empty } from "@/components/ui";
 import { Out } from "@/components/out";
 import { Logo } from "@/components/rank";
-import { ShareRow } from "@/components/share";
+import { ShareRow, PublisherKit } from "@/components/share";
 import { FollowBox } from "@/components/follow-box";
 import { AppCards, AppThemePills, appVars, themeText } from "@/components/app-list";
 import { APP_THEMES, loadApp, loadApps, PLATFORM } from "@/lib/apps";
@@ -168,6 +168,7 @@ export async function AppPageView({ slug, lang = "en" }: { slug: string; lang?: 
       </section>
 
       <FollowBox type="app" slug={a.slug} name={a.name} followers={followers} lang={lang} />
+      <PublisherKit kind="app" slug={a.slug} name={a.name} lang={lang} />
 
       {others.length ? (
         <section style={{ marginTop: 28 }}>

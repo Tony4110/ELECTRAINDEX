@@ -38,17 +38,19 @@ export function ShareRow({ kind, slug, name, lang = "en" }: { kind: "agent" | "m
         {copied ? <svg {...ic} fill="none" stroke="#16753A" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round"><path d="M5 12l5 5L20 7" /></svg>
           : <svg {...ic} fill="none" stroke="#121816" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" /><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" /></svg>}
       </button>
-      {kind !== "app" ? <a className="share-btn" href="#share">{t.kitBadgeLink}</a> : null}
+      <a className="share-btn" href="#share">{t.kitBadgeLink}</a>
     </span>
   );
 }
 
 /** For the publisher: announce the listing and add the badge to their site. */
-export function PublisherKit({ kind, slug, name, lang = "en" }: { kind: "agent" | "mcp"; slug: string; name: string; lang?: Lang }) {
+export function PublisherKit({ kind, slug, name, lang = "en" }: { kind: "agent" | "mcp" | "app"; slug: string; name: string; lang?: Lang }) {
+  const seg = kind === "agent" ? "agents" : kind === "app" ? "apps" : "mcp";
+  const bseg = kind === "mcp" ? "" : `${kind}/`;
   const [copied, setCopied] = useState("");
   const t = boxT(lang);
-  const url = `${SITE}${lang === "en" ? "" : `/${lang}`}/${kind === "agent" ? "agents" : "mcp"}/${slug}`;
-  const badge = `${SITE}/api/badge/${kind === "agent" ? "agent/" : ""}${slug}`;
+  const url = `${SITE}${lang === "en" ? "" : `/${lang}`}/${seg}/${slug}`;
+  const badge = `${SITE}/api/badge/${bseg}${slug}`;
   const bUrl = tagged(url, "badge");
   const html = `<a href="${bUrl}"><img src="${badge}/card" width="260" height="72" alt="Listed on Electra Index"></a>`;
   const md = `[![Listed on Electra Index](${badge})](${bUrl})`;
@@ -64,9 +66,9 @@ export function PublisherKit({ kind, slug, name, lang = "en" }: { kind: "agent" 
         </div>
         <div style={{ display: "flex", gap: 24, flexWrap: "wrap", alignItems: "center", marginTop: 16 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={`/api/badge/${kind === "agent" ? "agent/" : ""}${slug}/card`} alt="Listed on Electra Index" width={260} height={72} />
+          <img src={`/api/badge/${bseg}${slug}/card`} alt="Listed on Electra Index" width={260} height={72} />
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={`/api/badge/${kind === "agent" ? "agent/" : ""}${slug}`} alt="Listed on Electra Index" height={20} />
+          <img src={`/api/badge/${bseg}${slug}`} alt="Listed on Electra Index" height={20} />
         </div>
         <div className="kit-code">
           <code>{html}</code>
