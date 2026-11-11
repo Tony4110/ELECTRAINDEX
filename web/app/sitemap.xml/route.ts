@@ -16,7 +16,8 @@ export async function GET() {
     }
   } catch { /* keep 1 */ }
   const now = new Date().toISOString();
-  const items = Array.from({ length: chunks + 1 }, (_, i) => `  <sitemap><loc>${SITE}/sitemap/${i}.xml</loc><lastmod>${now}</lastmod></sitemap>`).join("\n");
+  const urls = [`${SITE}/sitemap/0.xml`, ...Array.from({ length: chunks }, (_, i) => `${SITE}/sitemap-mcp/${i + 1}.xml`)];
+  const items = urls.map((u) => `  <sitemap><loc>${u}</loc><lastmod>${now}</lastmod></sitemap>`).join("\n");
   const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${items}\n</sitemapindex>\n`;
   return new Response(xml, { headers: { "Content-Type": "application/xml; charset=utf-8", "Cache-Control": "public, max-age=3600, s-maxage=3600" } });
 }
