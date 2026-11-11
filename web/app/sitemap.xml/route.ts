@@ -9,7 +9,9 @@ export async function GET() {
   try {
     const c = db();
     if (c) {
-      const { count } = await c.from("v_mcp_servers").select("id", { count: "exact", head: true });
+      // Same count as generateSitemaps() in app/sitemap.ts: only indexable MCP pages (no empty sitemaps announced).
+      const ix = await c.from("v_mcp_index").select("slug", { count: "exact", head: true }).eq("indexable", true);
+      const { count } = ix.error ? await c.from("v_mcp_servers").select("id", { count: "exact", head: true }) : ix;
       chunks = Math.max(1, Math.ceil((count ?? 0) / SITEMAP_CHUNK));
     }
   } catch { /* keep 1 */ }

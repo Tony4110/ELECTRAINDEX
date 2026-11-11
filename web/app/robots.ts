@@ -8,7 +8,9 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
   const c = db();
   let chunks = 1;
   if (c) {
-    const { count } = await c.from("v_mcp_servers").select("id", { count: "exact", head: true });
+    // Same count as generateSitemaps() in sitemap.ts: only indexable MCP pages, so we never announce empty sitemaps.
+    const ix = await c.from("v_mcp_index").select("slug", { count: "exact", head: true }).eq("indexable", true);
+    const { count } = ix.error ? await c.from("v_mcp_servers").select("id", { count: "exact", head: true }) : ix;
     chunks = Math.max(1, Math.ceil((count ?? 0) / SITEMAP_CHUNK));
   }
   return {
