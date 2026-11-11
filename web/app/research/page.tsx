@@ -4,7 +4,7 @@ import { db } from "@/lib/db";
 import { MCP_NOV_2026 as R, pct, n } from "@/lib/research";
 import { themeStyle } from "@/lib/theme-style";
 
-export const revalidate = 3600;
+export const revalidate = 900;
 
 export const metadata: Metadata = {
   title: "Research — live data on MCP servers and AI agents",
