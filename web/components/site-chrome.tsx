@@ -31,17 +31,17 @@ export function SiteHeader() {
         <Link href={lhref(lang, "/")} className="logo" aria-label="Electra Index — home">
           ELECTRA<span className="sub">INDEX</span>
         </Link>
-        <nav className="nav" aria-label="Main">
+        <nav className={`nav nav-${lang}`} aria-label="Main">
           {([
             [lhref(lang, "/"), t.agents, "◆", "#1F3FD1", "", base === "/"],
             ["/new", t.new, "▲", "#E0457B", "", base.startsWith("/new")],
-            ["/trending", t.trending, "↗", "#16A34A", "", base.startsWith("/trending")],
+            ["/trending", t.trending, "↗", "#16A34A", "nav-opt2", base.startsWith("/trending")],
             [lhref(lang, "/tasks"), t.tasks, "✓", "#16A34A", "", base.startsWith("/tasks")],
             ["/mcp", t.tools, "⬡", "#F28C28", "", base.startsWith("/mcp")],
             [lhref(lang, "/apps"), t.apps, "✦", "#7C4DFF", "", base.startsWith("/apps")],
             ["/compare", t.compare, "⇄", "#0891B2", "", base.startsWith("/compare")],
             ["/payments", t.payments, "◎", "#0F766E", "nav-opt", base.startsWith("/payments")],
-            ["/pulse", t.pulse, "∿", "#E0457B", "nav-opt2", base.startsWith("/pulse")],
+            ["/pulse", t.pulse, "∿", "#E0457B", "nav-opt", base.startsWith("/pulse")],
             [lhref(lang, "/pricing"), t.pricing, "$", "#B7791F", "", base.startsWith("/pricing")],
             ["/blog", t.blog, "✎", "#4F46E5", "nav-opt", base.startsWith("/blog")],
             ["/sources", t.methodology, "§", "#56615C", "nav-opt3", base.startsWith("/sources")],

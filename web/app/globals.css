@@ -630,7 +630,8 @@ tr:hover td { background: rgba(255,255,255,.6); }
 .nav a.nav-hot::before { content: none; }
 @media (min-width: 961px) and (max-width: 1200px) { .nav a.nav-i { padding: 6px 7px; font-size: 13px; } .nav { gap: 2px; } }
 @media (prefers-reduced-motion: reduce) { .nav a.nav-i .nav-ic { transition: none; } .nav a.nav-i:hover .nav-ic { transform: none; } }
-@media (max-width: 1560px) { .nav a.nav-i.nav-opt { display: none; } }
+.nav a.nav-i.nav-opt { display: none; } /* kept in the footer: the header width is capped */
+@media (min-width: 961px) { .nav.nav-fr a.nav-i.nav-opt3 { display: none; } } /* French labels are longer; Méthodologie stays in the footer */
 @media (min-width: 961px) and (max-width: 1280px) { .nav a.nav-i.nav-opt2 { display: none; } }
 @media (max-width: 960px) { .nav a.nav-i { padding: 6px 8px; } }
 
@@ -666,7 +667,8 @@ tr:hover td { background: rgba(255,255,255,.6); }
 .ap-foot { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: auto; font-size: 13px; }
 .ap-plat { color: var(--c); font-weight: 600; font-size: 12px; }
 @media (prefers-reduced-motion: reduce) { .ap-card { transition: none; } .ap-card:hover { transform: none; } }
-@media (min-width: 961px) and (max-width: 1380px) { .nav a.nav-i.nav-opt2 { display: none; } }
+@media (min-width: 961px) and (max-width: 1500px) { .nav a.nav-i.nav-opt2 { display: none; } }
+@media (min-width: 961px) { .header .wrap { flex-wrap: nowrap; gap: 20px; } .header .btn.dark { white-space: nowrap; } }
 @media (min-width: 961px) and (max-width: 1120px) { .header .wrap { gap: 12px; } .nav a.nav-i { padding: 5px 6px; font-size: 13px; gap: 4px; } .nav a.nav-i .nav-ic { font-size: 10px; } .header .btn.dark, .header .btn { padding: 0 12px; } }
 @media (min-width: 961px) and (max-width: 1120px) { .nav a.nav-i.nav-opt3 { display: none; } }
 
@@ -718,9 +720,9 @@ tr:hover td { background: rgba(255,255,255,.6); }
 .explore a.chip:hover { border-color: var(--sun); box-shadow: 0 0 0 3px var(--sun-soft); }
 
 .share-btn.icon { width: 40px; min-height: 40px; padding: 0; justify-content: center; }
-.share-badge { display: inline-flex; align-items: center; gap: 7px; min-height: 40px; padding: 0 16px; margin-left: 10px; border-radius: 999px; border: 1.5px solid #1F3FD1; background: #EEF2FF; color: #1F3FD1; font: 700 14px var(--sans); text-decoration: none; white-space: nowrap; }
+.share-badge { display: inline-flex; align-items: center; gap: 7px; min-height: 40px; padding: 0 16px; margin-right: 6px; border-radius: 999px; border: 1.5px solid #1F3FD1; background: #EEF2FF; color: #1F3FD1; font: 700 14px var(--sans); text-decoration: none; white-space: nowrap; }
 .share-badge:hover { background: #1F3FD1; color: #fff; }
-@media (max-width: 640px) { .share-badge { margin-left: 0; } }
+@media (max-width: 640px) { .share-badge { margin-right: 0; } }
 
 /* ---------- Tool page v3: colored hero, explore bar, card sections ---------- */
 .tp-hero { background: var(--accent-soft); border-radius: 20px; padding: 24px 28px 28px; }

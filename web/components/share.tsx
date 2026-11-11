@@ -28,6 +28,10 @@ export function ShareRow({ kind, slug, name, lang = "en" }: { kind: "agent" | "m
   const ic = { width: 16, height: 16, viewBox: "0 0 24 24", "aria-hidden": true } as const;
   return (
     <span className="share-row" role="group" aria-label={t.share}>
+      <a className="share-badge" href="#share" title={t.kitTitle(name)}>
+        <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round"><path d="M12 2l8 3v6c0 5-3.4 9.3-8 11-4.6-1.7-8-6-8-11V5l8-3z" /><path d="M8.5 12l2.5 2.5 4.5-5" /></svg>
+        {t.kitBadgeLink}
+      </a>
       <a className="share-btn icon" aria-label="Share on LinkedIn" title="LinkedIn" href={`https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(li)}`} target="_blank" rel="noopener">
         <svg {...ic} fill="#0A66C2"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.22 8h4.56v14H.22V8zm7.5 0h4.37v1.92h.06c.61-1.15 2.1-2.36 4.32-2.36 4.62 0 5.47 3.04 5.47 7V22h-4.56v-6.6c0-1.57-.03-3.6-2.2-3.6-2.2 0-2.53 1.72-2.53 3.49V22H7.72V8z" /></svg>
       </a>
@@ -38,10 +42,6 @@ export function ShareRow({ kind, slug, name, lang = "en" }: { kind: "agent" | "m
         {copied ? <svg {...ic} fill="none" stroke="#16753A" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round"><path d="M5 12l5 5L20 7" /></svg>
           : <svg {...ic} fill="none" stroke="#121816" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" /><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" /></svg>}
       </button>
-      <a className="share-badge" href="#share" title={t.kitTitle(name)}>
-        <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round"><path d="M12 2l8 3v6c0 5-3.4 9.3-8 11-4.6-1.7-8-6-8-11V5l8-3z" /><path d="M8.5 12l2.5 2.5 4.5-5" /></svg>
-        {t.kitBadgeLink}
-      </a>
     </span>
   );
 }
