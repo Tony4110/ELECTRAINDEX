@@ -45,7 +45,7 @@ export default async function sitemap({ id }: { id: number }): Promise<MetadataR
   // Core pages need no database — always valid, even if Supabase is unreachable.
   const core: MetadataRoute.Sitemap = [
     { url: SITE, lastModified: now, changeFrequency: "daily", priority: 1 },
-    ...["/compare", "/blog", "/tasks", "/mcp", "/payments", "/new", "/trending", "/pulse", "/mcp-server", "/pricing", "/monitor", "/spotlight", "/sources", "/capabilities", "/submit", "/advertise", "/research", "/research/state-of-mcp-november-2026", "/press"].map((p) => ({ url: SITE + p, lastModified: now, changeFrequency: "daily" as const, priority: 0.8 })),
+    ...["/compare", "/blog", "/tasks", "/mcp", "/payments", "/new", "/trending", "/pulse", "/mcp-server", "/pricing", "/monitor", "/spotlight", "/sources", "/capabilities", "/submit", "/advertise", "/research", "/research/state-of-mcp-november-2026", "/press", "/mcp-tools"].map((p) => ({ url: SITE + p, lastModified: now, changeFrequency: "daily" as const, priority: 0.8 })),
     ...PUBLIC_LANGS.filter((l) => l !== "en").flatMap((l) => ["", "/submit"].map((p) => ({ url: `${SITE}/${l}${p}`, lastModified: now, changeFrequency: "daily" as const, priority: 0.7 }))),
     ...allPosts().map((p) => ({ url: `${SITE}/blog/${p.slug}`, lastModified: new Date(p.date), changeFrequency: "weekly" as const, priority: 0.7 })),
   ];

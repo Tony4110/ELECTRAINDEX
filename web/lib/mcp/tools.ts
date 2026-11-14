@@ -26,6 +26,30 @@ const liveSummary = (l?: Json) => (l ? { status: l.status, tools: l.tool_count ?
 
 export const TOOLS: ToolDef[] = [
   {
+    name: "find_mcp_tool",
+    title: "Find an MCP tool",
+    description: "Search the tools that hosted MCP servers really expose (about 350,000, read live by Electra Index), by what they do, e.g. 'create an invoice', 'send an email', 'query postgres'. Returns the tool name, what it does, the server, whether it works without a key, its 30-day availability and whether the publisher is verified (official) or community. Max 10 results, 3 per server.",
+    inputSchema: { type: "object", properties: {
+      query: { type: "string", description: "What the tool should do." },
+      limit: { type: "integer", minimum: 1, maximum: 10, default: 5 },
+      capability: { type: "string", description: "Optional capability slug, e.g. 'payments', 'web-research'." },
+      access: { type: "string", enum: ["open", "key"], description: "'open' = works without a key, 'key' = key or sign-in required." },
+      official: { type: "boolean", description: "true = verified publisher domain only, false = community only." },
+    }, required: ["query"] },
+    async run(a) {
+      const q = str(a.query, 120); if (!q) throw new Error("query is required");
+      const { searchTools } = await import("@/lib/tool-search");
+      const r = await searchTools({ q, client: "mcp-server", capability: slugOf(a.capability), access: str(a.access, 8), official: typeof a.official === "boolean" ? a.official : null, limit: int(a.limit, 5, 1, 10), dailyCap: 100000 });
+      if (r.error) throw new Error(r.error === "quota" ? "Daily search limit reached." : "Search is temporarily unavailable.");
+      return { query: q, results: r.results.map((t) => ({
+        tool: t.tool, description: t.description, server: t.server, official: t.official,
+        works_without_key: t.status === "online", key_required: t.status === "auth_required",
+        availability_30d_percent: t.checks_30d >= 3 ? t.uptime_30d : null, last_checked: t.checked_at,
+        capabilities: t.capabilities, page: `${SITE}/mcp/${t.slug}` })),
+        source: "Electra Index (electraindex.com), tools read live from hosted MCP servers of the Official MCP Registry" };
+    },
+  },
+  {
     name: "search_mcp_servers",
     title: "Search MCP servers",
     description: "Search the Electra Index catalogue of MCP servers (from the Official MCP Registry, tested live by Electra Index). Returns name, description, hosted or local, live check status and the Electra Index page. Use it to find a server for a task, e.g. 'web scraping', 'invoices', 'postgres'.",
