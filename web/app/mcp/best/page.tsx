@@ -18,7 +18,7 @@ export default async function BestIndex() {
   const rows = (data as CapabilityOverview[] | null) ?? [];
   return (
     <>
-      <nav className="crumbs" aria-label="Breadcrumb"><Link href="/mcp">Tools</Link><span>/</span><span className="ink">Best by use case</span></nav>
+      <nav className="crumbs" aria-label="Breadcrumb"><Link href="/mcp">MCP Tools</Link><span>/</span><span className="ink">Best by use case</span></nav>
       <div className="eyebrow">Tools · Use cases</div>
       <h1>Best MCP servers by use case</h1>
       <p className="lede">Pick a job to see the MCP servers that do it, which ones are hosted, which publish their code, and how to connect them.</p>

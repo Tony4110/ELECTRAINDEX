@@ -98,7 +98,7 @@ export default async function BestFor({ params, searchParams }: { params: P; sea
   return (
     <>
       {ld.map((x, i) => <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(x) }} />)}
-      <nav className="crumbs" aria-label="Breadcrumb"><Link href="/mcp">Tools</Link><span>/</span><Link href="/mcp/best">Best by use case</Link><span>/</span><span className="ink">{o.capability}</span></nav>
+      <nav className="crumbs" aria-label="Breadcrumb"><Link href="/mcp">MCP Tools</Link><span>/</span><Link href="/mcp/best">Best by use case</Link><span>/</span><span className="ink">{o.capability}</span></nav>
       <div className="eyebrow">Tools · {o.capability}</div>
       <h1>Best MCP servers for {uc}</h1>
       <p className="lede">

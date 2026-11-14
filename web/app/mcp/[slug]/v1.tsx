@@ -57,7 +57,7 @@ export async function ToolPageV1({ params }: { params: P }) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <nav className="crumbs" aria-label="Breadcrumb"><Link href="/mcp">Tools</Link><span>/</span><span className="ink">{m.name}</span></nav>
+      <nav className="crumbs" aria-label="Breadcrumb"><Link href="/mcp">MCP Tools</Link><span>/</span><span className="ink">{m.name}</span></nav>
       <div style={{ display: "flex", gap: 20, alignItems: "center", flexWrap: "wrap" }}>
         <span style={{ width: 64, height: 64, borderRadius: 14, background: "var(--ink)", color: "#fff", fontSize: 28, fontWeight: 800, display: "flex", alignItems: "center", justifyContent: "center" }}>{m.name.charAt(0).toUpperCase()}</span>
         <div>

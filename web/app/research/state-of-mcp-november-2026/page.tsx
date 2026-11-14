@@ -111,7 +111,7 @@ export default function StateOfMcpNov2026() {
         <pre className="rs-pre">{CITE}</pre>
         <p style={{ margin: "12px 0 0" }}><a className="btn primary" href={R.csv} download>Download the data (CSV)</a> <Link className="btn" href="/press">Press kit</Link></p>
       </div>
-      <p className="small muted">Questions, corrections or data requests: <a href="mailto:contact@electraindex.com">contact@electraindex.com</a>. Browse the servers: <Link href="/mcp">MCP servers</Link> · <Link href="/sources#live-check">full methodology</Link>.</p>
+      <p className="small muted">Questions, corrections or data requests: <a href="mailto:contact@electraindex.com">contact@electraindex.com</a>. Browse the servers: <Link href="/mcp">MCP Tools</Link> · <Link href="/sources#live-check">full methodology</Link>.</p>
     </article>
   );
 }

@@ -631,7 +631,7 @@ tr:hover td { background: rgba(255,255,255,.6); }
 @media (min-width: 961px) and (max-width: 1200px) { .nav a.nav-i { padding: 6px 7px; font-size: 13px; } .nav { gap: 2px; } }
 @media (prefers-reduced-motion: reduce) { .nav a.nav-i .nav-ic { transition: none; } .nav a.nav-i:hover .nav-ic { transform: none; } }
 .nav a.nav-i.nav-opt { display: none; } /* kept in the footer: the header width is capped */
-@media (min-width: 961px) { .nav.nav-fr a.nav-i.nav-opt3 { display: none; } } /* French labels are longer; Méthodologie stays in the footer */
+@media (min-width: 961px) { .nav a.nav-i.nav-opt3 { display: none; } } /* Methodology stays in the footer: the header is full */
 @media (min-width: 961px) and (max-width: 1280px) { .nav a.nav-i.nav-opt2 { display: none; } }
 @media (max-width: 960px) { .nav a.nav-i { padding: 6px 8px; } }
 
@@ -870,3 +870,14 @@ tr:hover td { background: rgba(255,255,255,.6); }
 .ft-hero-row { display: flex; gap: 8px; }
 .ft-hero-row input { flex: 1; font-size: 17px; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--line); }
 @media (max-width: 640px) { .ft-hero-row { flex-direction: column; } }
+.ft-chips { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.ft-chips .chip { padding: 5px 10px; font-size: 13px; }
+.ft-sep { width: 1px; height: 18px; background: var(--line); margin: 0 4px; }
+.ft-h2 { font-size: 18px; margin: 26px 0 10px; }
+.ft-caps { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 8px; }
+.ft-cap { display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--line); background: var(--glass, #fff); text-decoration: none; color: var(--ink); }
+.ft-cap:hover { border-color: #1F3FD1; }
+.ft-cap span { font-size: 12px; color: var(--muted); }
+.ft-help { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-top: 22px; }
+.ft-help div { display: flex; flex-direction: column; gap: 3px; padding: 12px 14px; border-radius: 10px; background: var(--soft); font-size: 13px; }
+.ft-help span { color: var(--muted); line-height: 1.4; }

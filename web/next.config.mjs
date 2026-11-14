@@ -18,6 +18,9 @@ const nextConfig = {
   reactStrictMode: true,
   // the project root is this folder (ignore stray lockfiles higher up on the machine)
   outputFileTracingRoot: here,
+  async redirects() {
+    return [{ source: "/mcp-tools", destination: "/mcp", permanent: true }];
+  },
   async headers() {
     return [
       cached("/"),

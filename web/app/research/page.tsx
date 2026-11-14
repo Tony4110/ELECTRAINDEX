@@ -72,7 +72,7 @@ export default async function Research() {
               <div><b>{m.median_tools ?? "—"}</b><span>median tools per online server</span></div>
               <div><b>{n(m.checked_24h)}</b><span>servers re-checked in the last 24 h</span></div>
             </div>
-            <p className="small muted" style={{ margin: "10px 0 0" }}>Each server is re-checked every few days; latest check {when(m.last_check)}. <Link href="/sources#live-check">How we test</Link> · <Link href="/mcp">Browse the servers</Link></p>
+            <p className="small muted" style={{ margin: "10px 0 0" }}>Each server is re-checked every few days; latest check {when(m.last_check)}. <Link href="/sources#live-check">How we test</Link> · <Link href="/mcp">Search MCP tools</Link></p>
           </section>
         ) : null}
         </div>
