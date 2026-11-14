@@ -42,11 +42,18 @@ export default async function McpIndex({ searchParams }: { searchParams: SP }) {
     <>
       <div className="eyebrow">Index · Tools</div>
       <h1>Tools for AI agents</h1>
-      <p className="lede">{num(count)} tools that AI agents plug into (MCP servers), from the Official MCP Registry, refreshed every 15 minutes. Facts are declared by publishers unless marked observed. <Link href="/mcp-tools" className="strong">Find a tool by what it does →</Link> · <Link href="/mcp/best">Browse the best tools by use case →</Link> · <Link href="/mcp-server">Search this index from your AI assistant (MCP) →</Link></p>
+      <form className="ft-form card ft-hero" action="/mcp-tools" method="get" role="search">
+        <label htmlFor="ftq" className="ft-hero-l">Find a tool by what it does <span className="small muted">· 335,000 tools exposed by live MCP servers</span></label>
+        <div className="ft-hero-row">
+          <input id="ftq" name="q" type="search" placeholder="e.g. create an invoice, send an email, query postgres" />
+          <button className="btn primary" type="submit">Find a tool</button>
+        </div>
+      </form>
+      <p className="lede">{num(count)} MCP servers from the Official MCP Registry, refreshed every 15 minutes. Facts are declared by publishers unless marked observed. <Link href="/mcp/best">Best tools by use case →</Link> · <Link href="/mcp-server">Search from your AI assistant (MCP) →</Link></p>
 
       <form className="filters" action="/mcp" method="get">
         <label htmlFor="mq" className="sr-only">Search MCP servers</label>
-        <input id="mq" name="q" type="search" defaultValue={q} placeholder="Search by name, description or registry id" />
+        <input id="mq" name="q" type="search" defaultValue={q} placeholder="Browse servers by name or registry id" />
         {access ? <input type="hidden" name="access" value={access} /> : null}
         <button className="btn" type="submit">Search</button>
         <Link href={link({ access: "" })} className={`chip ${access === "" ? "on" : ""}`}>All</Link>

@@ -865,3 +865,8 @@ tr:hover td { background: rgba(255,255,255,.6); }
 .ft-desc { margin: 8px 0 6px; line-height: 1.5; }
 .ft-meta { display: flex; gap: 6px 16px; flex-wrap: wrap; }
 @media (max-width: 640px) { .ft-filters select { flex: 1 1 45%; } .ft-filters .btn { margin-left: 0; width: 100%; } }
+.ft-hero { margin: 6px 0 14px; border: 2px solid #1F3FD1; }
+.ft-hero-l { font-weight: 700; font-size: 16px; }
+.ft-hero-row { display: flex; gap: 8px; }
+.ft-hero-row input { flex: 1; font-size: 17px; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--line); }
+@media (max-width: 640px) { .ft-hero-row { flex-direction: column; } }
