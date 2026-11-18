@@ -27,5 +27,7 @@ select * from (
   union all select 11, 'history', 'checks recorded, last 24 h', count(*)::text from mcp_live_history where checked_at > now() - interval '1 day'
   union all select 12, 'history', 'checks recorded, 24-48 h ago', count(*)::text from mcp_live_history where checked_at between now() - interval '2 days' and now() - interval '1 day'
   union all select 13, 'history', 'checks recorded, 48-72 h ago', count(*)::text from mcp_live_history where checked_at between now() - interval '3 days' and now() - interval '2 days'
+  union all select 14, 'quality (24 h)', 'timeouts, % of checks', round(100.0 * count(*) filter (where status = 'timeout') / nullif(count(*), 0), 1)::text from mcp_live_history where checked_at > now() - interval '1 day'
+  union all select 15, 'quality (24 h)', 'failures (rule B), % of conclusive checks', round(100.0 * count(*) filter (where mcp_check_class(status, http) = 'failure') / nullif(count(*) filter (where mcp_check_class(status, http) <> 'excluded'), 0), 1)::text from mcp_live_history where checked_at > now() - interval '1 day'
   union all select 20, 'largest hosts', host, n::text from (select host, n from hosts order by n desc limit 5) h
 ) r order by ord, lpad(value, 12, '0') desc;
