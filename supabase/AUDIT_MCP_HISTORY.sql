@@ -23,10 +23,16 @@ select * from (
   union all select 9, 'frequency', 'servers with 10+ checks (30 days)', count(*)::text from per_srv where n >= 10
   union all select 10, 'depth', 'servers watched for 30+ days', count(*)::text from age where first_at < now() - interval '30 days'
   union all select 11, 'depth', 'servers watched for 90+ days', count(*)::text from age where first_at < now() - interval '90 days'
-  union all select 12, 'status 30d', 'online', count(*)::text from h30 where status = 'online'
-  union all select 13, 'status 30d', 'auth_required (key or sign-in)', count(*)::text from h30 where status = 'auth_required'
-  union all select 14, 'status 30d', 'down', count(*)::text from h30 where status = 'down'
-  union all select 15, 'status 30d', 'other statuses', count(*)::text from h30 where status not in ('online', 'auth_required', 'down')
+  union all select 12, 'status 30d', st, n::text from (
+              select status || coalesce(' (http ' || case when http is null then 'none' when http in (401, 403, 404, 405, 410, 429) then http::text
+                                                          when http >= 500 then '5xx' when http between 200 and 299 then '2xx' else 'other' end || ')', '') as st,
+                     count(*) as n
+                from mcp_live_history where checked_at > now() - interval '30 days' group by 1) s
+  union all select 13, 'status 30d', 'checks inside 30-min windows where 80%+ failed (our side?)', coalesce(sum(n), 0)::text from (
+              select count(*) as n from mcp_live_history where checked_at > now() - interval '30 days'
+               group by floor(extract(epoch from checked_at) / 1800)
+              having count(*) >= 50 and count(*) filter (where status not in ('online', 'auth_required')) >= 0.8 * count(*)) w
+  union all select 15, 'monitoring', 'servers checked every 30 min (Monitoring Pro)', count(*)::text from per_srv where n >= 500
   union all select 16, 'tools', 'tools recorded', count(*)::text from mcp_tools
   union all select 17, 'tools', 'tool records started on', min(first_seen_at)::text from mcp_tools
   union all select 18, 'tools', 'tools first seen after day one', count(*)::text from mcp_tools where first_seen_at > (select min(first_seen_at) + interval '1 day' from mcp_tools)
