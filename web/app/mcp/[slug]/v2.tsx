@@ -6,6 +6,7 @@ import { Out } from "@/components/out";
 import { StatusBadges } from "@/components/status";
 import { ReportBox, type ReportStatus } from "@/components/report-box";
 import { LiveBadge, LiveCheckCard } from "@/components/live-check";
+import { loadReliability, ReliabilityCard, ToolChangesCard } from "@/components/reliability";
 import { FollowBox } from "@/components/follow-box";
 import { ShareRow, PublisherKit } from "@/components/share";
 import { notFound } from "next/navigation";
@@ -108,13 +109,14 @@ export async function ToolPageV2({ params }: { params: P }) {
   const m = await load((await params).slug);
   if (!m) notFound();
 
-  const [{ data: obs }, { data: hist }, { data: caps }, { data: tr }, { data: rep }, { data: liveData }] = await Promise.all([
+  const [{ data: obs }, { data: hist }, { data: caps }, { data: tr }, { data: rep }, { data: liveData }, rel] = await Promise.all([
     c.from("observations").select("field,value,evidence_level,confidence,observed_at,last_confirmed_at,sources(code,name)").eq("entity_id", m.id).order("observed_at", { ascending: false }),
     c.from("v_signals").select("*").eq("entity_slug", m.slug).eq("entity_type", "mcp_server").order("detected_at", { ascending: false }).limit(30),
     c.from("v_provider_capabilities").select("capability_slug,capability,evidence_level,confidence,evidence").eq("provider_slug", m.slug).eq("provider_type", "mcp_server").order("capability"),
     c.from("v_task_rankings").select("task_slug,task_name,coverage_pct,matched_capabilities").eq("provider_id", m.id).order("coverage_pct", { ascending: false }).limit(30),
     c.from("v_report_status").select("open_reports,under_review,last_rechecked_ok_at").eq("entity_type", "mcp_server").eq("slug", m.slug).maybeSingle().then((r) => (r.error ? { data: null } : r)),
     c.from("v_mcp_live").select("*").eq("slug", m.slug).maybeSingle().then((r) => (r.error ? { data: null } : r)),
+    m.remote ? loadReliability(c, m.slug) : Promise.resolve(null),
   ]);
   const live = (liveData as LiveCheck | null) ?? null;
   const liveTools = live?.tools ?? [];
@@ -154,7 +156,7 @@ export async function ToolPageV2({ params }: { params: P }) {
   if (remotes.length || pkgs.length) faq.push({ q: `How do I connect ${m.name}?`, a: <>{remotes.length ? <>Use the hosted endpoint <code>{remotes[0].url}</code> in your assistant&apos;s MCP settings</> : <>Install the {REGISTRY[pkgs[0].registry ?? ""] ?? pkgs[0].registry} package <code>{pkgs[0].identifier}</code></>}. The exact settings are in &quot;How to connect&quot; above, as declared in the Official MCP Registry.</> });
   if (secrets.length) faq.push({ q: `Does ${m.name} need an API key or token?`, a: <>Yes. The registry entry lists {secrets.length === 1 ? "a required value" : "required values"}: {secrets.map((x, i) => <span key={x}>{i ? ", " : ""}<code>{x}</code></span>)}. Get {secrets.length === 1 ? "it" : "them"} from the publisher.</> });
   if (liveTools.length) faq.push({ q: `What tools does ${m.name} offer?`, a: <>When Electra Index connected on {shortDate(live!.checked_at)}, it listed {live!.tools_more ? `more than ${live!.tool_count}` : live!.tool_count} tool{liveTools.length === 1 ? "" : "s"}: {liveTools.slice(0, 8).map((t, i) => <span key={t.name}>{i ? ", " : ""}<code>{t.name}</code></span>)}{liveTools.length > 8 ? " and more" : ""}. The full list is in &quot;Live check&quot; above.</> });
-  if (live?.status === "online" || live?.status === "down") faq.push({ q: `Is ${m.name} online?`, a: live.status === "online" ? <>Yes. Its hosted endpoint answered an MCP connection from Electra Index {timeAgo(live.checked_at)}.</> : <>Not at our last checks: the hosted endpoint did not answer {live.last_online_at ? <>(last answer on {shortDate(live.last_online_at)})</> : null}. We keep checking every few days.</> });
+  if (live?.status === "online" || live?.status === "down") faq.push({ q: `Is ${m.name} online?`, a: live.status === "online" ? <>Yes. Its hosted endpoint answered an MCP connection from Electra Index {timeAgo(live.checked_at)}.</> : <>Not at our last checks: the hosted endpoint did not answer {live.last_online_at ? <>(last answer on {shortDate(live.last_online_at)})</> : null}. We re-test it about every 3 days.</> });
   if (tasks.length) faq.push({ q: `What can I use ${m.name} for?`, a: <>Based on its description, it is most relevant to: {tasks.slice(0, 4).map((t, i) => <span key={t.task_slug}>{i ? ", " : ""}<Link href={`/tasks/${t.task_slug}`}>{lowerFirst(t.task_name)}</Link></span>)}.</> });
 
   const jsonLd = {
@@ -328,6 +330,8 @@ export async function ToolPageV2({ params }: { params: P }) {
         </div>
       )}
 
+      {rel ? <ReliabilityCard r={rel} name={m.name} /> : null}
+      {rel ? <ToolChangesCard r={rel} /> : null}
       {live ? <LiveCheckCard live={live} name={m.name} /> : null}
 
 

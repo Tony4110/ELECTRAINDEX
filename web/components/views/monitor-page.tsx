@@ -93,7 +93,7 @@ export async function MonitorView({ searchParams, lang = "en" }: { searchParams:
               <li>Un <b>rapport privé</b> : taux de réponse sur 30 et 90 jours, chaque panne, chaque vérification</li>
               <li>Un <b>badge de statut</b> pour votre README ou votre site, avec votre taux de réponse sur 30 jours</li>
             </> : <>
-              <li>Your endpoint checked <b>every 30 minutes</b> (public pages: every few days)</li>
+              <li>Your endpoint checked <b>every 30 minutes</b> (public pages: about every 3 days)</li>
               <li>An <b>email when it stops answering</b> (2 failed checks in a row, so within about an hour) and when it is back</li>
               <li>A <b>private report</b>: answer rate over 30 and 90 days, every outage, every check</li>
               <li>A <b>status badge</b> for your README or website, with your 30-day answer rate</li>

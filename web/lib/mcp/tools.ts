@@ -1,5 +1,5 @@
 /** Electra Index MCP server: the tools AI assistants can call. Read-only, public data only. */
-import { db } from "@/lib/db";
+import { db, fromCaps } from "@/lib/db";
 
 const SITE = "https://electraindex.com";
 type Json = Record<string, unknown>;
@@ -44,9 +44,10 @@ export const TOOLS: ToolDef[] = [
       return { query: q, results: r.results.map((t) => ({
         tool: t.tool, description: t.description, server: t.server, official: t.official,
         works_without_key: t.status === "online", key_required: t.status === "auth_required",
-        availability_30d_percent: t.checks_30d >= 3 ? t.uptime_30d : null, last_checked: t.checked_at,
+        availability_30d_percent: t.checks_30d >= 10 ? t.uptime_30d : null, availability_checks_30d: t.checks_30d, access: t.access ?? null, last_checked: t.checked_at,
         capabilities: t.capabilities, page: `${SITE}/mcp/${t.slug}` })),
-        source: "Electra Index (electraindex.com), tools read live from hosted MCP servers of the Official MCP Registry" };
+        source: "Electra Index (electraindex.com), tools read live from hosted MCP servers of the Official MCP Registry",
+        availability_method: "Observed availability = answers / (answers + failures) over our checks of the last 30 days (about one every 3 days). A request for a key or sign-in counts as an answer. Null under 10 checks. Not a guarantee of future availability. https://electraindex.com/sources#reliability" };
     },
   },
   {
@@ -115,7 +116,7 @@ export const TOOLS: ToolDef[] = [
     async run(a) {
       const c = client();
       const want = str(a.use_case, 80).toLowerCase();
-      const { data: ov } = await c.from("v_capability_overview").select("capability_slug,capability,tools,hosted_tools").order("tools", { ascending: false });
+      const { data: ov } = await fromCaps((t) => c.from(t).select("capability_slug,capability,tools,hosted_tools").order("tools", { ascending: false }));
       const list = ((ov as Json[] | null) ?? []);
       const norm = (x: string) => x.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
       const hit = want ? list.find((x) => x.capability_slug === norm(want)) ?? list.find((x) => String(x.capability).toLowerCase().includes(want)) : undefined;

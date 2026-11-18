@@ -3,6 +3,12 @@ import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 let client: SupabaseClient | null = null;
 
 /** Read-only client (anon / publishable key). The database only exposes published rows. */
+/** Use cases: the table precomputed every hour (capability_overview_cache), or the live view until that table exists. */
+export async function fromCaps<T = unknown>(q: (table: string) => PromiseLike<{ data: T | null; error: unknown }>): Promise<{ data: T | null; error: unknown }> {
+  const r = await q("capability_overview_cache");
+  return r.error ? q("v_capability_overview") : r;
+}
+
 export function db(): SupabaseClient | null {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;

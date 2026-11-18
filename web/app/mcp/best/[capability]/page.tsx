@@ -3,7 +3,7 @@ import Link from "next/link";
 import { SpotlightBox } from "@/components/spotlight";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { db, MIN_TOOLS_FOR_INDEX, type AgentCard, type CapabilityOverview, type CapabilityTool } from "@/lib/db";
+import { db, fromCaps, MIN_TOOLS_FOR_INDEX, type AgentCard, type CapabilityOverview, type CapabilityTool } from "@/lib/db";
 import { SITE } from "@/lib/site";
 import { num, timeAgo, useCase, lowerFirst } from "@/lib/format";
 import { Tri, Empty, SetupNotice } from "@/components/ui";
@@ -18,7 +18,7 @@ const PAGE = 50;
 async function load(slug: string) {
   const c = db();
   if (!c) return null;
-  const { data } = await c.from("v_capability_overview").select("*").eq("capability_slug", slug).maybeSingle();
+  const { data } = await fromCaps((t) => c.from(t).select("*").eq("capability_slug", slug).maybeSingle());
   return data as CapabilityOverview | null;
 }
 
@@ -62,7 +62,7 @@ export default async function BestFor({ params, searchParams }: { params: P; sea
     toolList(o.capability_slug, page),
     c.from("v_provider_capabilities").select("provider_slug").eq("capability_slug", o.capability_slug).eq("provider_type", "agent").limit(200),
     c.from("v_tasks").select("slug,name").contains("capabilities", [{ slug: o.capability_slug }]).limit(8),
-    c.from("v_capability_overview").select("capability_slug,capability,tools").gte("tools", MIN_TOOLS_FOR_INDEX).neq("capability_slug", o.capability_slug).order("tools", { ascending: false }).limit(8),
+    fromCaps((t) => c.from(t).select("capability_slug,capability,tools").gte("tools", MIN_TOOLS_FOR_INDEX).neq("capability_slug", o.capability_slug).order("tools", { ascending: false }).limit(8)),
   ]);
   // the registry has several entries with the same name (forks, re-publishes): show each name once per page
   const seen = new Set<string>();

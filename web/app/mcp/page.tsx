@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { headers } from "next/headers";
-import { db } from "@/lib/db";
+import { db, fromCaps } from "@/lib/db";
 import { searchTools, type ToolHit } from "@/lib/tool-search";
 import { num } from "@/lib/format";
 
@@ -48,7 +48,7 @@ export default async function McpTools({ searchParams }: { searchParams: SP }) {
   const [res, liveRow, capRows] = await Promise.all([
     q ? searchTools({ q, client: await visitor(), capability: cap, access, official: src === "official" ? true : src === "community" ? false : null }) : Promise.resolve(null),
     c ? c.from("v_research_live").select("data").maybeSingle().then((r) => (r.data as { data: Live } | null)?.data ?? null) : Promise.resolve(null),
-    c ? c.from("v_capability_overview").select("capability_slug,capability,tools").gt("tools", 0).order("tools", { ascending: false }).limit(18).then((r) => (r.data as Cap[] | null) ?? []) : Promise.resolve([] as Cap[]),
+    c ? fromCaps((t) => c.from(t).select("capability_slug,capability,tools").gt("tools", 0).order("tools", { ascending: false }).limit(18)).then((r) => (r.data as Cap[] | null) ?? []) : Promise.resolve([] as Cap[]),
   ]);
   const capName = new Map(capRows.map((x) => [x.capability_slug, x.capability]));
   const m = liveRow?.mcp;
@@ -62,7 +62,7 @@ export default async function McpTools({ searchParams }: { searchParams: SP }) {
     <div className="ft">
       <h1 className="rl-h1">MCP Tools <span>· find what your AI agent can connect to</span></h1>
       <p className="small muted" style={{ margin: "4px 0 14px" }}>
-        {m ? <>{num(m.tools)} tools from {num(m.online_tools)} MCP servers that answered our robot · tested every day · </> : null}
+        {m ? <>{num(m.tools)} tools from {num(m.online_tools)} MCP servers that answered our robot · re-tested about every 3 days · </> : null}
         <Link href="/sources#live-check">how we test</Link>
       </p>
 
@@ -105,7 +105,7 @@ export default async function McpTools({ searchParams }: { searchParams: SP }) {
           <div className="ft-help">
             <div><b>Works without a key</b><span>The server answered and listed its tools with no credentials.</span></div>
             <div><b>Official</b><span>The publisher proved its domain to the Official MCP Registry (e.g. com.stripe/…).</span></div>
-            <div><b>30-day availability</b><span>Share of our checks it answered. Checks blocked by a key are not counted.</span></div>
+            <div><b>Observed availability, 30 days</b><span>Share of our conclusive checks that got an answer. A request for a key counts as an answer. Shown from 10 checks.</span></div>
           </div>
           <p className="small muted" style={{ marginTop: 18 }}>
             <Link href="/mcp/directory">Browse all {m ? num(m.servers) : ""} servers</Link> · <Link href="/mcp/best">Best servers by use case</Link> · <Link href="/research">Live data &amp; reports</Link> · <Link href="/mcp-server">Use this search from your AI agent (MCP)</Link>
@@ -131,7 +131,7 @@ export default async function McpTools({ searchParams }: { searchParams: SP }) {
                 {t.description ? <p className="ft-desc">{t.description}</p> : null}
                 <div className="ft-meta small muted">
                   <span>on <Link href={`/mcp/${t.slug}`} className="strong">{t.server}</Link>{t.tool_count ? <> · {t.tool_count} tools</> : null}</span>
-                  <span>{t.uptime_30d != null && t.checks_30d >= 3 ? <>{t.uptime_30d}% available over 30 days</> : <>availability: not enough checks yet</>}</span>
+                  <span>{t.uptime_30d != null && t.checks_30d >= 10 ? <Link href={`/mcp/${t.slug}#reliability`}>{t.uptime_30d}% observed availability, 30 days ({t.checks_30d} checks)</Link> : <>availability: fewer than 10 checks so far</>}</span>
                   <span>{when(t.checked_at)}</span>
                   {t.capabilities.slice(0, 3).map((x) => <Link key={x} href={href({ cap: x })}>#{capName.get(x) ?? x}</Link>)}
                 </div>

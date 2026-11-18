@@ -4,7 +4,7 @@ import { db } from "@/lib/db";
 export type ToolHit = {
   tool: string; description: string | null; server: string; slug: string; registry_name: string | null;
   official: boolean; status: string | null; checked_at: string | null; tool_count: number | null;
-  uptime_30d: number | null; checks_30d: number; capabilities: string[];
+  uptime_30d: number | null; checks_30d: number; access?: "open" | "protected" | null; capabilities: string[];
 };
 export type ToolSearch = { results: ToolHit[]; total: number; error?: string };
 

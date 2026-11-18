@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { db, MIN_TOOLS_FOR_INDEX } from "@/lib/db";
+import { db, fromCaps, MIN_TOOLS_FOR_INDEX } from "@/lib/db";
 import { SITE } from "@/lib/site";
 import { APP_THEMES } from "@/lib/apps";
 import { featuredPairsByTheme, pairSlug } from "@/lib/compare";
@@ -60,7 +60,7 @@ export default async function sitemap({ id }: { id: number }): Promise<MetadataR
         c.from("v_tasks").select("slug"),
         c.from("v_agent_cards").select("slug,last_verified_at").limit(1000),
         featuredPairsByTheme(6).catch(() => []),
-        c.from("v_capability_overview").select("capability_slug").gte("tools", MIN_TOOLS_FOR_INDEX),
+        fromCaps((t) => c.from(t).select("capability_slug").gte("tools", MIN_TOOLS_FOR_INDEX)),
         c.from("v_apps").select("slug,theme,last_verified_at").limit(1000),
       ]);
       const appRows = apps.error ? [] : ((apps.data as { slug: string; theme: string | null; last_verified_at: string | null }[] | null) ?? []);
