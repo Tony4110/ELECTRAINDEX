@@ -55,8 +55,9 @@ export async function metadataV2({ params }: { params: P }): Promise<Metadata> {
     c.from("v_mcp_live").select("status,tool_count,tools_more,checked_at").eq("slug", m.slug).maybeSingle().then((r) => (r.error ? { data: null } : r)),
     c.from("v_mcp_index").select("indexable").eq("slug", m.slug).maybeSingle(),
   ]) : [{ data: null }, { data: null, error: null }];
-  // Google sees only pages with real, unique content (v_mcp_index); before that view exists, the old rule applies.
-  const hidden = thin || (!ixErr && ix != null && (ix as { indexable: boolean }).indexable === false);
+  // Google sees only pages with real, unique content. v_mcp_index decides (it is also what the MCP sitemaps list),
+  // so a page in a sitemap is never noindex. Without that answer, the old rule (short description = hidden) applies.
+  const hidden = !ixErr && ix != null ? (ix as { indexable: boolean }).indexable === false : thin;
   const live = lv as { status: string; tool_count: number | null; tools_more: boolean; checked_at: string } | null;
   const online = live?.status === "online";
   const nTools = online && live?.tool_count ? `${live.tool_count}${live.tools_more ? "+" : ""} tool${live.tool_count === 1 && !live.tools_more ? "" : "s"}` : null;
