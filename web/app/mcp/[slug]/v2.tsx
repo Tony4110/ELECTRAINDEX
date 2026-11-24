@@ -381,7 +381,7 @@ export async function ToolPageV2({ params }: { params: P }) {
             <p className="small" style={{ marginTop: 0 }}>Its hosted endpoint can be monitored. <b>Monitoring Pro</b> connects every 30 minutes like an AI assistant, emails you within the hour when it stops answering, keeps a 90-day availability history and adds your answer rate to your badge.</p>
             <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
               <Link href={`/monitor?server=${m.slug}&from=mcp-page#start`} className="btn primary">Monitor {m.name}</Link>
-              <span className="small"><span className="offer-tag" style={{ margin: 0 }}>Launch offer</span> $39.99 once, for life <span className="muted">instead of $9.99/month</span> · <Link href="/pricing">All plans</Link></span>
+              <span className="small"><span className="offer-tag" style={{ margin: 0 }}>Founding offer</span> $29.99 a year <span className="muted">instead of $9.99/month</span> · <Link href="/pricing">All plans</Link></span>
             </div>
             <p className="small faint" style={{ marginBottom: 0 }}>Monitoring never changes a score or a rank.</p>
           </div>

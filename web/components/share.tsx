@@ -55,7 +55,7 @@ export function PublisherKit({ kind, slug, name, lang = "en" }: { kind: "agent" 
   const url = `${SITE}${lang === "en" ? "" : `/${lang}`}/${seg}/${slug}`;
   const badge = `${SITE}/api/badge/${bseg}${slug}`;
   const bUrl = tagged(url, "badge");
-  const html = `<a href="${bUrl}"><img src="${badge}/card" width="260" height="72" alt="Listed on Electra Index"></a>`;
+  const html = `<a href="${bUrl}" rel="nofollow"><img src="${badge}/card" width="260" height="72" alt="Listed on Electra Index"></a>`;
   const md = `[![Listed on Electra Index](${badge})](${bUrl})`;
   const copy = (v: string, k: string) => navigator.clipboard?.writeText(v).then(() => { setCopied(k); setTimeout(() => setCopied(""), 2000); });
   return (

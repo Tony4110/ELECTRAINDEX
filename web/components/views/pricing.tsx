@@ -8,11 +8,11 @@ const PACK_URL = process.env.NEXT_PUBLIC_STRIPE_PACK_URL ?? "";
 export const PRICING_META = {
   en: {
     title: "Pricing — Electra Index for developers, publishers and sponsors",
-    description: "Free index, alerts and MCP server. Developer pack: $5.99 for 600 calls to the paid tools. Free Publisher Program and Monitoring Pro (launch offer: $39.99 once, for life). Sponsored placements that never change a ranking.",
+    description: "Free index, alerts and MCP server. Developer pack: $5.99 for 600 calls to the paid tools. Free Publisher Program and Monitoring Pro (founding offer: $29.99 a year). Sponsored placements that never change a ranking.",
   },
   fr: {
     title: "Tarifs — Electra Index pour les développeurs, les éditeurs et les sponsors",
-    description: "Index, alertes et serveur MCP gratuits. Pack développeur : 5,99 $ pour 600 appels aux outils payants. Publisher Program gratuit et Monitoring Pro (offre de lancement : 39,99 $ une seule fois, à vie). Des emplacements sponsorisés qui ne changent jamais un classement.",
+    description: "Index, alertes et serveur MCP gratuits. Pack développeur : 5,99 $ pour 600 appels aux outils payants. Publisher Program gratuit et Monitoring Pro (offre fondateur : 29,99 $ par an). Des emplacements sponsorisés qui ne changent jamais un classement.",
   },
 };
 
@@ -81,7 +81,7 @@ export function PricingView({ lang = "en" }: { lang?: Lang }) {
             {lifetimeOn ? (
               <>
                 <p style={{ margin: 0 }}><span className="offer-tag" style={{ margin: 0 }}>{T("Exclusive launch offer", "Offre de lancement exclusive")}</span></p>
-                <p className="price-amount">{T("$39.99", "39,99 $")} <span className="small muted">{T("once, for life", "une seule fois, à vie")}</span></p>
+                <p className="price-amount">{T("$29.99", "29,99 $")} <span className="small muted">{T("a year, founding price", "par an, prix fondateur")}</span></p>
                 <p className="offer-instead" style={{ margin: 0 }}>{T("Instead of", "Au lieu de")} <span className="offer-strike">{T("$9.99/month", "9,99 $/mois")}</span> (<span className="offer-strike">{T("$120 a year", "120 $ par an")}</span>)</p>
               </>
             ) : <p className="price-amount">{T("$9.99", "9,99 $")} <span className="small muted">{T("per month", "par mois")}</span></p>}
@@ -91,9 +91,9 @@ export function PricingView({ lang = "en" }: { lang?: Lang }) {
               <li>{T("Private 90-day report: answer rate, outages, every check", "Un rapport privé sur 90 jours : taux de réponse, pannes, chaque vérification")}</li>
               <li>{T("Status badge for your README or website, with your answer rate", "Un badge de statut pour votre README ou votre site, avec votre taux de réponse")}</li>
             </ul>
-            {lifetimeOn ? <a href={process.env.NEXT_PUBLIC_STRIPE_MONITOR_LIFETIME_URL} className="btn primary" rel="noopener">{T("Get it for $39.99", "En profiter pour 39,99 $")}</a> : <Link href={`${L("/monitor")}#start`} className="btn primary">{T("Monitor my server", "Surveiller mon serveur")}</Link>}
+            {lifetimeOn ? <a href={process.env.NEXT_PUBLIC_STRIPE_MONITOR_LIFETIME_URL} className="btn primary" rel="noopener">{T("Get it for $29.99", "En profiter pour 29,99 $")}</a> : <Link href={`${L("/monitor")}#start`} className="btn primary">{T("Monitor my server", "Surveiller mon serveur")}</Link>}
             <p className="small muted" style={{ marginBottom: 0 }}>{T(<>For people who <b>publish</b> a hosted MCP server.</>, <>Pour ceux qui <b>publient</b> un serveur MCP hébergé.</>)}{lifetimeOn
-              ? T(<> Pay by card, enter your server address at checkout. <Link href={L("/monitor")}>Details</Link></>, <> Paiement par carte, vous indiquez l&apos;adresse de votre serveur au paiement. <Link href={L("/monitor")}>Détails</Link></>)
+              ? T(<> Pay by card, enter your server address at checkout, cancel anytime. <Link href={L("/monitor")}>Details</Link></>, <> Paiement par carte, vous indiquez l&apos;adresse de votre serveur au paiement, résiliable à tout moment. <Link href={L("/monitor")}>Détails</Link></>)
               : T(" Cancel anytime.", " Résiliable à tout moment.")}</p>
           </div>
         </div>

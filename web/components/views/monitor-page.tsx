@@ -9,11 +9,11 @@ const LIFETIME_URL = process.env.NEXT_PUBLIC_STRIPE_MONITOR_LIFETIME_URL ?? ""; 
 export const MONITOR_META = {
   en: {
     title: "Monitoring Pro — know within the hour when your MCP server stops answering",
-    description: "For publishers of hosted MCP servers: a check every 30 minutes, an email when it stops answering and when it is back, a private 90-day report and a status badge. Launch offer: USD 39.99 once, for life, instead of USD 9.99/month.",
+    description: "For publishers of hosted MCP servers: a check every 30 minutes, an email when it stops answering and when it is back, a private 90-day report and a status badge. Founding offer: USD 29.99 a year instead of USD 9.99/month.",
   },
   fr: {
     title: "Monitoring Pro — sachez dans l'heure quand votre serveur MCP ne répond plus",
-    description: "Pour les éditeurs de serveurs MCP hébergés : une vérification toutes les 30 minutes, un e-mail quand il ne répond plus et quand il revient, un rapport privé sur 90 jours et un badge de statut. Offre de lancement : 39,99 $ une seule fois, à vie, au lieu de 9,99 $/mois.",
+    description: "Pour les éditeurs de serveurs MCP hébergés : une vérification toutes les 30 minutes, un e-mail quand il ne répond plus et quand il revient, un rapport privé sur 90 jours et un badge de statut. Offre fondateur : 29,99 $ par an au lieu de 9,99 $/mois.",
   },
 };
 
@@ -54,11 +54,11 @@ export async function MonitorView({ searchParams, lang = "en" }: { searchParams:
       {offer ? (
         <div className="offer-box" style={{ marginTop: 20 }}>
           <span className="offer-tag">{T("Exclusive launch offer", "Offre de lancement exclusive")}</span>
-          <p className="offer-price">{T(<><b>$39.99 once</b>, monitoring for life</>, <><b>39,99 $ une seule fois</b>, surveillance à vie</>)}</p>
-          <p className="offer-was" style={{ margin: "4px 0 0" }}>{T("Instead of", "Au lieu de")} <span className="offer-strike">{T("$9.99/month", "9,99 $/mois")}</span> {T("(about $120 a year)", "(environ 120 $ par an)")} <span className="offer-save">{T("Save 67% in year one", "67 % d'économie dès la première année")}</span></p>
-          <p className="small" style={{ margin: "4px 0 12px" }}>{T("One payment, no subscription, nothing more to pay. Available during the launch only.", "Un seul paiement, sans abonnement, plus rien à payer ensuite. Disponible uniquement pendant le lancement.")}</p>
+          <p className="offer-price">{T(<><b>$29.99 a year</b>, founding price</>, <><b>29,99 $ par an</b>, prix fondateur</>)}</p>
+          <p className="offer-was" style={{ margin: "4px 0 0" }}>{T("Instead of", "Au lieu de")} <span className="offer-strike">{T("$9.99/month", "9,99 $/mois")}</span> {T("(about $120 a year)", "(environ 120 $ par an)")} <span className="offer-save">{T("Save 75%", "75 % d'économie")}</span></p>
+          <p className="small" style={{ margin: "4px 0 12px" }}>{T("Billed once a year, cancel anytime from your Stripe receipt or by email. The founding price stays yours as long as you keep it. Available during the launch only.", "Facturé une fois par an, résiliable à tout moment depuis votre reçu Stripe ou par e-mail. Le prix fondateur reste le vôtre tant que vous le gardez. Disponible uniquement pendant le lancement.")}</p>
           <div style={{ display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap" }}>
-            <a className="btn primary" href={LIFETIME_URL} rel="noopener">{T("Get it for $39.99 →", "En profiter pour 39,99 $ →")}</a>
+            <a className="btn primary" href={LIFETIME_URL} rel="noopener">{T("Get it for $29.99 →", "En profiter pour 29,99 $ →")}</a>
             <span className="small">{T(<>You enter your server address at checkout. Not sure it can be monitored? <a href="#start">Check it first ↓</a></>,
               <>Vous indiquez l&apos;adresse de votre serveur au paiement. Vous ne savez pas s&apos;il peut être surveillé ? <a href="#start">Vérifiez d&apos;abord ↓</a></>)}</span>
           </div>
@@ -125,8 +125,8 @@ export async function MonitorView({ searchParams, lang = "en" }: { searchParams:
             <ol className="steps-mini">
               <li className={check?.found && check.hosted && !check.active ? "done" : "now"}>{T(<><b>Tell us which server</b> to monitor: its name, its Electra Index page or its endpoint URL. We check that it can be monitored, so you never pay for nothing.</>,
                 <><b>Indiquez le serveur</b> à surveiller : son nom, sa page Electra Index ou l&apos;URL de son endpoint. Nous vérifions qu&apos;il peut être surveillé, pour que vous ne payiez jamais pour rien.</>)}</li>
-              <li className={check?.found && check.hosted && !check.active ? "now" : ""}>{T(<><b>Pay by card</b> with Stripe{offer ? " ($39.99 once)" : ""}. Your welcome email arrives within a minute.</>,
-                <><b>Payez par carte</b> avec Stripe{offer ? " (39,99 $ une seule fois)" : ""}. Votre e-mail de bienvenue arrive en moins d&apos;une minute.</>)}</li>
+              <li className={check?.found && check.hosted && !check.active ? "now" : ""}>{T(<><b>Pay by card</b> with Stripe{offer ? " ($29.99 a year)" : ""}. Your welcome email arrives within a minute.</>,
+                <><b>Payez par carte</b> avec Stripe{offer ? " (29,99 $ par an)" : ""}. Votre e-mail de bienvenue arrive en moins d&apos;une minute.</>)}</li>
             </ol>
             <label className="small" htmlFor="server">{T("Your server", "Votre serveur")}</label>
             <div className="follow-row">
@@ -145,8 +145,8 @@ export async function MonitorView({ searchParams, lang = "en" }: { searchParams:
                   <p style={{ marginTop: 0 }}><span className="badge live-ok">{T("FOUND", "TROUVÉ")}</span> <b>{check.name}</b> · {T("we will check", "nous vérifierons")} <code>{check.url}</code></p>
                   {offer ? (
                     <>
-                      <a className="btn primary" href={checkoutLink(check.slug!, LIFETIME_URL)} rel="noopener">{T(<>Monitor {check.name} for life · $39.99 once</>, <>Surveiller {check.name} à vie · 39,99 $ une seule fois</>)}</a>
-                      <p className="small" style={{ margin: "8px 0 0" }}>{T(<><b>Launch offer</b>: one payment, no subscription.</>, <><b>Offre de lancement</b> : un seul paiement, sans abonnement.</>)}{on ? T(<> Prefer monthly? <a href={checkoutLink(check.slug!)} rel="noopener">$9.99/month</a>, cancel anytime.</>, <> Vous préférez au mois ? <a href={checkoutLink(check.slug!)} rel="noopener">9,99 $/mois</a>, résiliable à tout moment.</>) : null}</p>
+                      <a className="btn primary" href={checkoutLink(check.slug!, LIFETIME_URL)} rel="noopener">{T(<>Monitor {check.name} · $29.99 a year</>, <>Surveiller {check.name} · 29,99 $ par an</>)}</a>
+                      <p className="small" style={{ margin: "8px 0 0" }}>{T(<><b>Founding offer</b>: $29.99 a year, cancel anytime.</>, <><b>Offre fondateur</b> : 29,99 $ par an, résiliable à tout moment.</>)}{on ? T(<> Prefer monthly? <a href={checkoutLink(check.slug!)} rel="noopener">$9.99/month</a>, cancel anytime.</>, <> Vous préférez au mois ? <a href={checkoutLink(check.slug!)} rel="noopener">9,99 $/mois</a>, résiliable à tout moment.</>) : null}</p>
                     </>
                   ) : on ? <a className="btn primary" href={checkoutLink(check.slug!)} rel="noopener">{T(<>Subscribe for {check.name} · $9.99/month</>, <>S&apos;abonner pour {check.name} · 9,99 $/mois</>)}</a>
                       : <p className="small muted">{T("Subscriptions open very soon.", "Les abonnements ouvrent très prochainement.")}</p>}
@@ -172,16 +172,16 @@ export async function MonitorView({ searchParams, lang = "en" }: { searchParams:
         <div className="card-head"><h2>{T("Questions", "Questions fréquentes")}</h2></div>
         <div className="card-body">
           {fr ? <>
-            {offer ? <details open><summary>Que veut dire « à vie » ?</summary><p>Vous payez 39,99 $ une seule fois, sans abonnement ni renouvellement. Nous surveillons votre serveur aussi longtemps qu&apos;Electra Index propose le service Monitoring Pro. Ce prix est une offre de lancement qui prendra fin ; une fois acquise, elle est à vous.</p></details> : null}
+            {offer ? <details open><summary>Qu&apos;est-ce que le prix fondateur ?</summary><p>29,99 $ par an au lieu de 9,99 $ par mois (environ 120 $ par an). Il se renouvelle chaque année au même prix tant que vous le gardez ; résiliable à tout moment, plus rien n&apos;est prélevé ensuite. Ce prix est une offre de lancement et prendra fin.</p></details> : null}
             {offer ? <details><summary>Puis-je la transférer sur un autre serveur plus tard ?</summary><p>Oui, un serveur à la fois : écrivez à contact@electraindex.com et nous faisons le changement.</p></details> : null}
-            <details><summary>Comment résilier ?</summary><p>L&apos;offre de lancement n&apos;a rien à résilier : elle est payée une seule fois. Pour la formule mensuelle, répondez à n&apos;importe quel e-mail Monitoring Pro ou écrivez à contact@electraindex.com ; aucun paiement n&apos;est prélevé après la résiliation.</p></details>
+            <details><summary>Comment résilier ?</summary><p>Répondez à n&apos;importe quel e-mail Monitoring Pro ou écrivez à contact@electraindex.com ; aucun paiement n&apos;est prélevé après la résiliation.</p></details>
             <details><summary>Est-ce que cela améliore le classement de mon serveur ?</summary><p>Non. Nous vendons de la surveillance et des données, jamais un score, un classement ni la suppression d&apos;une information. <Link href="/sources#what-we-sell">Ce que nous vendons</Link></p></details>
             <details><summary>Et si mon serveur demande une clé ou une connexion ?</summary><p>Il compte comme répondant : nous vérifions que l&apos;endpoint est en ligne et parle MCP. Nous n&apos;envoyons jamais d&apos;identifiants.</p></details>
             <details><summary>Le badge est-il gratuit ?</summary><p>Chaque serveur listé peut afficher son statut en direct avec le badge <code>https://electraindex.com/api/badge/votre-slug</code>. Avec Monitoring Pro, le badge affiche aussi votre taux de réponse sur 30 jours.</p></details>
           </> : <>
-            {offer ? <details open><summary>What does &quot;for life&quot; mean?</summary><p>You pay $39.99 once, with no subscription and no renewal. We monitor your server for as long as Electra Index runs the Monitoring Pro service. This price is a launch offer and will end; once you have it, it is yours.</p></details> : null}
+            {offer ? <details open><summary>What is the founding price?</summary><p>$29.99 a year instead of $9.99 a month (about $120 a year). It renews each year at the same price as long as you keep it; cancel anytime and nothing more is charged. This price is a launch offer and will end.</p></details> : null}
             {offer ? <details><summary>Can I move it to another server later?</summary><p>Yes, one server at a time: write to contact@electraindex.com and we switch it.</p></details> : null}
-            <details><summary>How do I cancel?</summary><p>The launch offer has nothing to cancel: it is paid once. For the monthly plan, reply to any Monitoring Pro email or write to contact@electraindex.com; no further payment is taken after cancellation.</p></details>
+            <details><summary>How do I cancel?</summary><p>Reply to any Monitoring Pro email or write to contact@electraindex.com; no further payment is taken after cancellation.</p></details>
             <details><summary>Does it make my server rank higher?</summary><p>No. We sell monitoring and data, never a score, a rank or the removal of a fact. <Link href="/sources#what-we-sell">What we sell</Link></p></details>
             <details><summary>What if my server asks for a key or a sign-in?</summary><p>It counts as answering: we check that the endpoint is up and speaks MCP. We never send credentials.</p></details>
             <details><summary>Is the badge free?</summary><p>Every listed server can show its live status with the badge <code>https://electraindex.com/api/badge/your-slug</code>. With Monitoring Pro the badge also shows your 30-day answer rate.</p></details>
