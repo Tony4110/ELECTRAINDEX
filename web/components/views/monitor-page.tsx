@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { headers } from "next/headers";
 import { db } from "@/lib/db";
 import { lhref, type Lang } from "@/lib/i18n";
 
@@ -36,7 +37,12 @@ export async function MonitorView({ searchParams, lang = "en" }: { searchParams:
   const c = db();
   let check: Check | null = null;
   let suggestions: { slug: string; name: string }[] = [];
-  if (q && c) {
+  // The server lookup runs only for a search made from one of our pages (form or link on electraindex.com).
+  // A robot loading /monitor?server=... directly (no referrer, many countries, one browser) gets the form, not our data.
+  const h = await headers();
+  let fromUs = ["same-origin", "same-site"].includes(h.get("sec-fetch-site") ?? "");
+  try { fromUs = fromUs || /(^|\.)electraindex\.com$|\.netlify\.app$|^localhost$/i.test(new URL(h.get("referer") ?? "").hostname); } catch { /* no referrer */ }
+  if (q && c && fromUs) {
     const { data } = await c.rpc("monitor_check_server", { p_ref: q });
     check = (data as Check | null) ?? { found: false };
     if (!check.found && q.length >= 3 && !/^https?:\/\//i.test(q)) {
