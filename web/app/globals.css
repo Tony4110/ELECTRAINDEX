@@ -904,3 +904,18 @@ tr:hover td { background: rgba(255,255,255,.6); }
 @media (max-width: 620px) { .rel-changes li { grid-template-columns: 1fr auto; } .rel-changes li > span:last-child { display: none; } }
 .rel-pill { font-family: var(--mono); font-size: 11px; padding: 2px 8px; border-radius: 999px; white-space: nowrap; justify-self: start; }
 .rel-pill.added { background: var(--pos-soft); color: var(--pos); } .rel-pill.removed { background: var(--neg-soft); color: var(--neg); }
+
+/* MCP page: reliability in the header, discreet in-page links (25 Nov 2026) */
+.rel-strip { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 18px; align-items: center; margin-top: 20px; padding: 14px 16px; background: var(--panel); border-radius: 14px; color: inherit; text-decoration: none; border: 1px solid transparent; }
+.rel-strip:hover { border-color: var(--line); color: inherit; }
+.rel-strip-fig { display: flex; flex-direction: column; }
+.rel-strip-fig b { font-size: 28px; line-height: 1.05; }
+.rel-strip-fig b.rel-insuff { font-size: 16px; }
+.rel-strip-fig span { font-size: 12px; color: var(--muted); }
+.rel-strip-bars { display: flex; gap: 2px; height: 26px; align-items: stretch; min-width: 0; }
+.rel-strip-bars i { flex: 1 1 0; min-width: 2px; max-width: 14px; border-radius: 2px; }
+.rel-strip-meta { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 13px; }
+.tp-jump { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 6px 8px; }
+.tp-jump a { font-size: 13px; padding: 6px 12px; border-radius: 999px; background: var(--panel); border: 1px solid var(--line); color: var(--ink-2); }
+.tp-jump a:hover { border-color: var(--accent); color: var(--accent); }
+@media (max-width: 640px) { .rel-strip { grid-template-columns: 1fr; } }

@@ -24,6 +24,15 @@ export type Reliability = {
   checks: { at: string; c: Cls }[]; tool_changes: ToolChanges;
 };
 
+/** Latest 7-day figure of the Electra MCP Reliability Index (the whole ecosystem), or null. */
+export async function loadEcosystem(c: SupabaseClient): Promise<{ value: number; day: string } | null> {
+  try {
+    const { data, error } = await c.from("reliability_index_daily").select("day,w_global").order("day", { ascending: false }).limit(1).maybeSingle();
+    const d = data as { day: string; w_global: number | null } | null;
+    return error || !d || d.w_global == null ? null : { value: Number(d.w_global), day: d.day };
+  } catch { return null; }
+}
+
 export async function loadReliability(c: SupabaseClient, slug: string): Promise<Reliability | null> {
   try {
     const { data, error } = await c.rpc("mcp_public_reliability", { p_slug: slug });
@@ -36,7 +45,7 @@ export async function loadReliability(c: SupabaseClient, slug: string): Promise<
 const LABEL: Record<Cls, string> = { open: "Answered", protected: "Answered, key or sign-in required", failure: "No valid answer", excluded: "Inconclusive, not counted" };
 const day = (iso: string) => new Date(iso).toLocaleDateString("en-GB", { day: "2-digit", month: "short" });
 
-export function ReliabilityCard({ r, name }: { r: Reliability; name: string }) {
+export function ReliabilityCard({ r, name, eco = null }: { r: Reliability; name: string; eco?: { value: number } | null }) {
   const o = r.d30;
   if (!o.checks) return null;
   const freq = r.frequency === "30min" ? "Checked every 30 minutes (Monitoring Pro)" : r.frequency === "12h" ? "Re-tested every 12 hours (Electra Verified)" : "Re-tested about every 2 days";
@@ -54,6 +63,7 @@ export function ReliabilityCard({ r, name }: { r: Reliability; name: string }) {
           <div className="rel-kpi"><b>{o.answers} / {o.failures}</b><span>Answers / failures, 30 days{o.excluded ? ` · ${o.excluded} not counted` : ""}</span></div>
           <div className="rel-kpi"><b className="rel-access">{o.access === "open" ? "No key needed" : o.access === "protected" ? "Key or sign-in required" : "No answer in 30 days"}</b><span>Access status (latest answer)</span></div>
         </div>
+        {eco ? <p className="small" style={{ margin: "0 0 12px" }}>For comparison, all hosted MCP servers together: <b>{eco.value.toFixed(1)}%</b> of tests answered over the last 7 days. <Link href="/mcp-reliability-index">Electra MCP Reliability Index</Link></p> : null}
         <div className="rel-hist">
           <span className="small muted">Observed test history · one mark = one check{marks.length >= 60 ? " (latest 60)" : ""}</span>
           <div className="rel-bars" role="img" aria-label={`${name}: ${o.answers} answers and ${o.failures} failures in ${o.conclusive} conclusive checks over 30 days`}>
@@ -106,5 +116,26 @@ export function ToolChangesCard({ r }: { r: Reliability }) {
         <p className="small muted rel-method">Changes are confirmed by comparing complete tool lists only, read about every 2 days, and dated by the day we saw them. A renamed tool appears as one removal and one addition.</p>
       </div>
     </div>
+  );
+}
+
+/** Short version shown in the page header: the 30-day figure, the last checks, and the ecosystem average. */
+export function ReliabilityStrip({ r, eco }: { r: Reliability; eco: { value: number } | null }) {
+  const o = r.d30;
+  if (!o.checks) return null;
+  const marks = r.checks.slice(-30);
+  const freq = r.frequency === "30min" ? "every 30 min" : r.frequency === "12h" ? "every 12 h (Verified)" : "about every 2 days";
+  return (
+    <a href="#reliability" className="rel-strip" aria-label="Reliability details">
+      <div className="rel-strip-fig">
+        {o.availability != null ? <b>{o.availability}%</b> : <b className="rel-insuff">Not enough tests yet</b>}
+        <span>{o.availability != null ? `observed availability · 30 days · ${o.conclusive} tests` : `${o.conclusive} of ${o.min_checks} tests needed for a figure`}</span>
+      </div>
+      <div className="rel-strip-bars" aria-hidden="true">{marks.map((k) => <i key={k.at} className={`rel-${k.c}`} />)}</div>
+      <div className="rel-strip-meta">
+        {eco ? <span>All MCP servers: <b>{eco.value.toFixed(1)}%</b> <span className="muted">(7-day index)</span></span> : null}
+        <span className="muted">Tested {freq} · last test {timeAgo(o.last_check)} · details ↓</span>
+      </div>
+    </a>
   );
 }

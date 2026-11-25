@@ -6,7 +6,7 @@ import { Out } from "@/components/out";
 import { StatusBadges } from "@/components/status";
 import { ReportBox, type ReportStatus } from "@/components/report-box";
 import { LiveBadge, LiveCheckCard } from "@/components/live-check";
-import { loadReliability, ReliabilityCard, ToolChangesCard } from "@/components/reliability";
+import { loadEcosystem, loadReliability, ReliabilityCard, ReliabilityStrip, ToolChangesCard } from "@/components/reliability";
 import { FollowBox } from "@/components/follow-box";
 import { ShareRow, PublisherKit } from "@/components/share";
 import { notFound } from "next/navigation";
@@ -110,7 +110,7 @@ export async function ToolPageV2({ params }: { params: P }) {
   const m = await load((await params).slug);
   if (!m) notFound();
 
-  const [{ data: obs }, { data: hist }, { data: caps }, { data: tr }, { data: rep }, { data: liveData }, rel] = await Promise.all([
+  const [{ data: obs }, { data: hist }, { data: caps }, { data: tr }, { data: rep }, { data: liveData }, rel, eco] = await Promise.all([
     c.from("observations").select("field,value,evidence_level,confidence,observed_at,last_confirmed_at,sources(code,name)").eq("entity_id", m.id).order("observed_at", { ascending: false }),
     c.from("v_signals").select("*").eq("entity_slug", m.slug).eq("entity_type", "mcp_server").order("detected_at", { ascending: false }).limit(30),
     c.from("v_provider_capabilities").select("capability_slug,capability,evidence_level,confidence,evidence").eq("provider_slug", m.slug).eq("provider_type", "mcp_server").order("capability"),
@@ -118,6 +118,7 @@ export async function ToolPageV2({ params }: { params: P }) {
     c.from("v_report_status").select("open_reports,under_review,last_rechecked_ok_at").eq("entity_type", "mcp_server").eq("slug", m.slug).maybeSingle().then((r) => (r.error ? { data: null } : r)),
     c.from("v_mcp_live").select("*").eq("slug", m.slug).maybeSingle().then((r) => (r.error ? { data: null } : r)),
     m.remote ? loadReliability(c, m.slug) : Promise.resolve(null),
+    m.remote ? loadEcosystem(c) : Promise.resolve(null),
   ]);
   const live = (liveData as LiveCheck | null) ?? null;
   const liveTools = live?.tools ?? [];
@@ -202,6 +203,7 @@ export async function ToolPageV2({ params }: { params: P }) {
               <a className="btn" href="#follow">☆ Follow</a>
               <ShareRow kind="mcp" slug={m.slug} name={m.name} />
             </div>
+            {rel ? <ReliabilityStrip r={rel} eco={eco} /> : null}
           </div>
           <aside className="tp-snap" aria-label="At a glance">
             <div className="tp-snap-title">At a glance</div>
@@ -209,21 +211,21 @@ export async function ToolPageV2({ params }: { params: P }) {
               <div><span>Live check</span><b className={live?.status === "online" ? "pos" : ""}>{!live || live.status === "unconfirmed" ? "Not tested" : live.status === "online" ? `Online${live.tool_count ? ` · ${live.tool_count}${live.tools_more ? "+" : ""} tools` : ""}` : live.status === "auth_required" ? "Needs a key" : "Not responding"}</b></div>
               <div><span>Install</span><b>{m.remote && m.local ? "Hosted or local" : m.remote ? "Hosted" : m.local ? "Local" : "—"}</b></div>
               <div><span>Version</span><b className="mono">{m.version ?? "—"}</b></div>
-              <div><span>Followers</span><b>{followers}</b></div>
+              <div><span>Availability · 30 days</span><b className={rel?.d30.availability != null && rel.d30.availability >= 95 ? "pos" : ""}>{rel?.d30.availability != null ? `${rel.d30.availability}%` : m.remote ? "Not enough tests" : "Not hosted"}</b></div>
               <div><span>Tracked since</span><b className="mono">{shortDate(m.first_seen_at)}</b></div>
-              <div><span>Last checked</span><b className="mono">{timeAgo(m.last_seen_at)}</b></div>
+              <div><span>Last test</span><b className="mono">{timeAgo(rel?.d30.last_check ?? m.last_seen_at)}</b></div>
             </div>
           </aside>
         </div>
       </div>
 
-      <nav className="tp-explore" aria-label="Keep exploring">
-        <span className="tp-explore-title">Keep exploring</span>
-        {agents.length ? <a href="#agents" className="sun">{agents.length} ready-made AI agent{agents.length > 1 ? "s" : ""}</a> : null}
-        {similar.length ? <a href="#similar">{similar.length} similar tool{similar.length > 1 ? "s" : ""}</a> : null}
+      <nav className="tp-jump" aria-label="On this page">
+        {rel ? <a href="#reliability">Reliability</a> : null}
+        {remotes.length || pkgs.length ? <a href="#connect">How to connect</a> : null}
         {tasks.length ? <a href="#tasks">{tasks.length} task{tasks.length > 1 ? "s" : ""} it helps with</a> : null}
+        {agents.length ? <a href="#agents">{agents.length} ready-made AI agent{agents.length > 1 ? "s" : ""}</a> : null}
+        {similar.length ? <a href="#similar">{similar.length} similar tool{similar.length > 1 ? "s" : ""}</a> : null}
         <a href="#reviews">Reviews</a>
-        <a href="#connect">How to connect</a>
       </nav>
 
       {tasks.length ? (
@@ -331,7 +333,7 @@ export async function ToolPageV2({ params }: { params: P }) {
         </div>
       )}
 
-      {rel ? <ReliabilityCard r={rel} name={m.name} /> : null}
+      {rel ? <ReliabilityCard r={rel} name={m.name} eco={eco} /> : null}
       {rel ? <ToolChangesCard r={rel} /> : null}
       {live ? <LiveCheckCard live={live} name={m.name} /> : null}
 
