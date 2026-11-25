@@ -200,14 +200,14 @@ export async function ToolPageV2({ params }: { params: P }) {
           <aside className="hr-side" aria-label="At a glance">
             <div className="hr-t">At a glance</div>
             <div className="hr-g">
-              <div><span>Status now</span><b className={live?.status === "online" || live?.status === "auth_required" ? "pos" : ""}>{!live || live.status === "unconfirmed" ? "Not tested" : live.status === "online" || live.status === "auth_required" ? "● Online" : "Not responding"}</b></div>
+              <div><span>Status now</span><b className={live?.status === "online" || live?.status === "auth_required" ? "pos" : ""}>{!live || live.status === "unconfirmed" ? "Not tested" : live.status === "online" || live.status === "auth_required" ? `● Online${live.tool_count ? ` · ${live.tool_count}${live.tools_more ? "+" : ""} tools` : ""}` : "Not responding"}</b></div>
               <div><span>Access</span><b>{live?.status === "auth_required" || rel?.d30.access === "protected" ? "Key required" : live?.status === "online" ? "No key needed" : "—"}</b></div>
               <div><span>Install</span><b>{m.remote && m.local ? "Hosted or local" : m.remote ? "Hosted" : m.local ? "Local" : "—"}</b></div>
               <div><span>Version</span><b className="mono">{m.version ?? "—"}</b></div>
               <div><span>Last test</span><b>{m.remote ? timeAgo(rel?.d30.last_check ?? live?.checked_at ?? null) : "Not hosted"}</b></div>
               <div><span>Tested</span><b>{rel?.frequency === "30min" ? "every 30 min" : rel?.frequency === "12h" ? "every 12 h" : m.remote ? "~ every 2 days" : "—"}</b></div>
               <div><span>Tracked since</span><b>{shortDate(m.first_seen_at)}</b></div>
-              <div><span>Tools listed</span><b>{live?.tool_count ? `${live.tool_count}${live.tools_more ? "+" : ""}` : "—"}</b></div>
+              <div title="From the Official MCP Registry: a server name under a company domain means the publisher proved it owns that domain."><span>Publisher</span><b>{m.registry_name && !/^io\.github\./i.test(m.registry_name) ? "Verified domain" : m.registry_name ? "GitHub account" : "—"}</b></div>
             </div>
             <div className="hr-t" style={{ marginTop: 6 }}>Links</div>
             {m.website ? <Out type="mcp" slug={m.slug} to="website" from={`/mcp/${m.slug}`} className="hr-lk">Website <span>{host(m.website)} ↗</span></Out> : null}
