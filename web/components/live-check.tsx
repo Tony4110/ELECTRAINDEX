@@ -56,7 +56,7 @@ export function LiveCheckCard({ live, name }: { live: LiveCheck; name: string })
           </>
         ) : live.status === "online" ? <p className="small muted">The server did not list its tools to an anonymous client.</p> : null}
 
-        <p className="small muted" style={{ marginBottom: 0 }}>What &quot;online&quot; means: the server answered an MCP connection at the time of the check. It is not a guarantee of security, quality or continuous uptime. How we test: we open an MCP session and ask for the tool list, as an AI assistant would. We never run a tool and never send a key. Re-tested about every 3 days. <a href="/sources#live-check">Method</a></p>
+        <p className="small muted" style={{ marginBottom: 0 }}>What &quot;online&quot; means: the server answered an MCP connection at the time of the check. It is not a guarantee of security, quality or continuous uptime. How we test: we open an MCP session and ask for the tool list, as an AI assistant would. We never run a tool and never send a key. Re-tested about every 2 days. <a href="/sources#live-check">Method</a></p>
         <p className="small" style={{ marginBottom: 0 }}><b>Is this your server?</b> <a href={`/monitor?server=${encodeURIComponent(live.slug)}#start`}>Monitoring Pro</a>: a check every 30 minutes and an email within the hour when it stops answering.{(process.env.NEXT_PUBLIC_STRIPE_MONITOR_ANNUAL_URL || process.env.NEXT_PUBLIC_STRIPE_MONITOR_LIFETIME_URL) ? " Founding offer: $29.99 a year." : " $9.99/month."}</p>
       </div>
     </div>

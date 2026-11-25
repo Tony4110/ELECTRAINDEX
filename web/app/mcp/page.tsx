@@ -62,7 +62,7 @@ export default async function McpTools({ searchParams }: { searchParams: SP }) {
     <div className="ft">
       <h1 className="rl-h1">MCP Tools <span>· find what your AI agent can connect to</span></h1>
       <p className="small muted" style={{ margin: "4px 0 14px" }}>
-        {m ? <>{num(m.tools)} tools from {num(m.online_tools)} MCP servers that answered our robot · re-tested about every 3 days · </> : null}
+        {m ? <>{num(m.tools)} tools from {num(m.online_tools)} MCP servers that answered our robot · re-tested about every 2 days · </> : null}
         <Link href="/sources#live-check">how we test</Link>
       </p>
 

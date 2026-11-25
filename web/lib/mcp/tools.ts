@@ -47,7 +47,7 @@ export const TOOLS: ToolDef[] = [
         availability_30d_percent: t.checks_30d >= 10 ? t.uptime_30d : null, availability_checks_30d: t.checks_30d, access: t.access ?? null, last_checked: t.checked_at,
         capabilities: t.capabilities, page: `${SITE}/mcp/${t.slug}` })),
         source: "Electra Index (electraindex.com), tools read live from hosted MCP servers of the Official MCP Registry",
-        availability_method: "Observed availability = answers / (answers + failures) over our checks of the last 30 days (about one every 3 days). A request for a key or sign-in counts as an answer. Null under 10 checks. Not a guarantee of future availability. https://electraindex.com/sources#reliability" };
+        availability_method: "Observed availability = answers / (answers + failures) over our checks of the last 30 days (about one every 2 days). A request for a key or sign-in counts as an answer. Null under 10 checks. Not a guarantee of future availability. https://electraindex.com/sources#reliability" };
     },
   },
   {

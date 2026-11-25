@@ -39,7 +39,7 @@ const day = (iso: string) => new Date(iso).toLocaleDateString("en-GB", { day: "2
 export function ReliabilityCard({ r, name }: { r: Reliability; name: string }) {
   const o = r.d30;
   if (!o.checks) return null;
-  const freq = r.frequency === "30min" ? "Checked every 30 minutes (Monitoring Pro)" : "Re-tested about every 3 days";
+  const freq = r.frequency === "30min" ? "Checked every 30 minutes (Monitoring Pro)" : "Re-tested about every 2 days";
   const marks = r.checks;
   return (
     <div className="card rel-card" style={{ marginTop: 24 }} id="reliability">
@@ -103,7 +103,7 @@ export function ToolChangesCard({ r }: { r: Reliability }) {
             </ul>
           </>
         )}
-        <p className="small muted rel-method">Changes are confirmed by comparing complete tool lists only, read about every 3 days, and dated by the day we saw them. A renamed tool appears as one removal and one addition.</p>
+        <p className="small muted rel-method">Changes are confirmed by comparing complete tool lists only, read about every 2 days, and dated by the day we saw them. A renamed tool appears as one removal and one addition.</p>
       </div>
     </div>
   );
