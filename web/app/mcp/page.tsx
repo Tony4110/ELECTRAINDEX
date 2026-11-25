@@ -71,7 +71,7 @@ export default async function McpTools({ searchParams }: { searchParams: SP }) {
 
   return (
     <div className="ft">
-      <section className={`ft-top ${q ? "compact" : ""}`}>
+      <section className={`ft-band ${q ? "compact" : ""}`}>
         {m ? (
           <div className="ft-live">
             <span className="dot" /><b>Live</b><span className="sep" />
