@@ -53,10 +53,10 @@ export default async function ReliabilityIndexPage() {
       {!t ? <p className="muted">The first values are being published.</p> : (
         <>
           <div className="rs-kpis">
-            <div className="rs-kpi"><b>{f(t.d_global)}</b><span>Daily · global test success rate · {dl(t.day)}</span></div>
-            <div className="rs-kpi"><b>{f(t.w_global)}</b><span>Stability · 7 days{delta != null ? ` · ${delta >= 0 ? "+" : ""}${delta} pt vs previous day` : ""}</span></div>
-            <div className="rs-kpi"><b>{f(t.d_server_avg)}</b><span>Daily · server reliability average (each server weighs the same)</span></div>
-            <div className="rs-kpi"><b>{n(t.d_checks)}</b><span>conclusive tests of {n(t.d_servers)} servers that day</span></div>
+            <div className="rs-kpi"><b>{f(t.w_global)}</b><span>7-day global test success rate · to {dl(t.day)}{delta != null ? ` · ${delta >= 0 ? "+" : ""}${delta} pt vs previous day` : ""}</span></div>
+            <div className="rs-kpi"><b>{f(t.w_server_avg)}</b><span>7-day server reliability average (each server weighs the same) · {n(t.w_servers)} servers</span></div>
+            <div className="rs-kpi"><b>{f(t.d_global)}</b><span>Daily · {dl(t.day)} · {n(t.d_checks)} conclusive tests</span></div>
+            <div className="rs-kpi"><b>{n(t.d_failures)}</b><span>failed tests that day ({n(t.d_answers)} answers)</span></div>
           </div>
           {t.insufficient ? <p className="small"><span className="badge">INSUFFICIENT SAMPLE</span> Fewer than 1,000 conclusive tests or 500 servers that day: read with care.</p> : null}
 
@@ -82,7 +82,7 @@ export default async function ReliabilityIndexPage() {
       <ul>
         <li><b>What is tested:</b> every hosted MCP server of the Official MCP Registry that declares an endpoint. Our robot opens an MCP session and asks for the tool list, as an AI assistant would. About every 2 days per server, more often for servers under Electra Verified or Monitoring Pro.</li>
         <li><b>Answer or failure:</b> a server that answers, or asks for a key or sign-in, counts as an answer. Timeouts (15 s), unreachable endpoints, server errors, missing addresses and invalid MCP replies count as failures. Rate-limited tests (429), other inconclusive replies and tests made during an incident on our side are not counted, and their number is published.</li>
-        <li><b>Daily:</b> the UTC day from 00:00 to 24:00. <b>Stability:</b> the 7 UTC days ending that day.</li>
+        <li><b>Daily:</b> the UTC day from 00:00 to 24:00. <b>Stability:</b> the 7 UTC days ending that day. Each server is tested about every 2 days, so one day covers about half of the servers and daily values can alternate by a point or two between the two halves: the 7-day figure is the reference for trends.</li>
         <li><b>Two measures:</b> the <i>global test success rate</i> counts every test the same; the <i>server reliability average</i> counts every server the same, so servers tested more often do not weigh more.</li>
         <li><b>Archive:</b> one value per day, computed at 00:30 UTC and never rewritten. A correction is published as a separate, dated entry. Days before 25 Nov 2026 were computed from our kept history at the first publication.</li>
         <li><b>Limits:</b> these are our observations at each test, not continuous uptime nor a guarantee of future availability. The index measures availability, not quality or security. Same method as on each <Link href="/sources#reliability">server page</Link>.</li>
