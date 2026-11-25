@@ -95,6 +95,8 @@ export function PricingView({ lang = "en" }: { lang?: Lang }) {
             <p className="small muted" style={{ marginBottom: 0 }}>{T(<>For people who <b>publish</b> a hosted MCP server.</>, <>Pour ceux qui <b>publient</b> un serveur MCP hébergé.</>)}{lifetimeOn
               ? T(<> Pay by card, enter your server address at checkout, cancel anytime. <Link href={L("/monitor")}>Details</Link></>, <> Paiement par carte, vous indiquez l&apos;adresse de votre serveur au paiement, résiliable à tout moment. <Link href={L("/monitor")}>Détails</Link></>)
               : T(" Cancel anytime.", " Résiliable à tout moment.")}</p>
+            <p className="small" style={{ marginBottom: 0 }}>{T(<><b>Free alternative:</b> <Link href="/verified">Electra Verified</Link>, a test every 12 hours and outage emails while our badge is on your site or README.</>,
+              <><b>Alternative gratuite :</b> <Link href="/verified">Electra Verified</Link>, un test toutes les 12 heures et des alertes e-mail tant que notre badge est sur votre site ou votre README.</>)}</p>
           </div>
         </div>
       </div>

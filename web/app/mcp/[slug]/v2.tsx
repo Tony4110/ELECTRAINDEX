@@ -378,12 +378,14 @@ export async function ToolPageV2({ params }: { params: P }) {
         <div className="card publisher-offer" style={{ marginTop: 24 }} id="monitor">
           <div className="card-head"><h2>Do you run {m.name}? Know when it stops answering</h2><span className="small muted">For publishers · optional</span></div>
           <div className="card-body">
-            <p className="small" style={{ marginTop: 0 }}>Its hosted endpoint can be monitored. <b>Monitoring Pro</b> connects every 30 minutes like an AI assistant, emails you within the hour when it stops answering, keeps a 90-day availability history and adds your answer rate to your badge.</p>
+            <p className="small" style={{ marginTop: 0 }}><b>Free: Electra Verified.</b> Show the Electra Index badge on your site or README: we test {m.name} every 12 hours, email you when it stops answering, and the badge shows its 30-day availability.</p>
+            <p className="small"><b>Monitoring Pro</b> connects every 30 minutes like an AI assistant, emails you within the hour when it stops answering, keeps a 90-day availability history and adds your answer rate to your badge.</p>
             <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
-              <Link href={`/monitor?server=${m.slug}&from=mcp-page#start`} className="btn primary">Monitor {m.name}</Link>
+              <Link href={`/verified?server=${m.slug}#start`} className="btn primary">Get Verified, free</Link>
+              <Link href={`/monitor?server=${m.slug}&from=mcp-page#start`} className="btn">Monitor {m.name}</Link>
               <span className="small"><span className="offer-tag" style={{ margin: 0 }}>Founding offer</span> $29.99 a year <span className="muted">instead of $9.99/month</span> · <Link href="/pricing">All plans</Link></span>
             </div>
-            <p className="small faint" style={{ marginBottom: 0 }}>Monitoring never changes a score or a rank.</p>
+            <p className="small faint" style={{ marginBottom: 0 }}>Verified and Monitoring never change a score or a rank.</p>
           </div>
         </div>
       ) : (

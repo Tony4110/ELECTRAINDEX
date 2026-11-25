@@ -50,6 +50,8 @@ export async function MonitorView({ searchParams, lang = "en" }: { searchParams:
       <div className="eyebrow">{T("For MCP server publishers", "Pour les éditeurs de serveurs MCP")}</div>
       <h1>Monitoring Pro</h1>
       <p className="lede">{T("Know within the hour when your hosted MCP server stops answering, before your users tell you.", "Sachez dans l'heure quand votre serveur MCP hébergé ne répond plus, avant que vos utilisateurs ne vous le disent.")}</p>
+      <p className="small">{T(<>Not ready to pay? <Link href="/verified"><b>Electra Verified</b></Link> is free: a test every 12 hours and outage emails while our badge is on your site or README.</>,
+        <>Pas prêt à payer ? <Link href="/verified"><b>Electra Verified</b></Link> est gratuit : un test toutes les 12 heures et des alertes e-mail tant que notre badge est sur votre site ou votre README.</>)}</p>
 
       {offer ? (
         <div className="offer-box" style={{ marginTop: 20 }}>
