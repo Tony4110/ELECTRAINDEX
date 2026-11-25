@@ -86,6 +86,7 @@ export default async function Research() {
           </Link>
           <a className="btn" href={R.csv} download>Download the data (CSV)</a>
           <Link className="btn" href="/press">Press kit</Link>
+          <Link className="btn primary" href="/mcp-reliability-index">Electra MCP Reliability Index (daily)</Link>
         </aside>
       </div>
 
