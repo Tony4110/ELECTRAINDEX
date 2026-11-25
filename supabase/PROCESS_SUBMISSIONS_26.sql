@@ -10,7 +10,7 @@
 -- Paste everything in Supabase > SQL Editor > Run. Re-runnable.
 
 select ingest_apps($apps$[{"name": "Prelulu", "company": "TheInfluence, Inc.", "country": "United States", "website": "https://prelulu.ai",
-  "pricing_url": "https://prelulu.ai/pricing", "privacy_url": "https://prelulu.ai/privacy", "theme": "entertainment", "platforms": ["web", "ios", "android"],
+  "pricing_url": "https://prelulu.ai/pricing", "privacy_url": "https://prelulu.ai/privacy", "theme": "entertainment", "platforms": ["web", "ios"],
   "short_description": "Talk with AI characters by text, voice or live video call, on the publisher's own avatar model. Characters remember you, and you can create your own characters and story scenes.",
   "free_plan": true,
   "plans": [
