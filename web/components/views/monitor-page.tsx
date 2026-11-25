@@ -58,7 +58,7 @@ export async function MonitorView({ searchParams, lang = "en" }: { searchParams:
           <p className="offer-was" style={{ margin: "4px 0 0" }}>{T("Instead of", "Au lieu de")} <span className="offer-strike">{T("$9.99/month", "9,99 $/mois")}</span> {T("(about $120 a year)", "(environ 120 $ par an)")} <span className="offer-save">{T("Save 75%", "75 % d'économie")}</span></p>
           <p className="small" style={{ margin: "4px 0 12px" }}>{T("Billed once a year, cancel anytime from your Stripe receipt or by email. The founding price stays yours as long as you keep it. Available during the launch only.", "Facturé une fois par an, résiliable à tout moment depuis votre reçu Stripe ou par e-mail. Le prix fondateur reste le vôtre tant que vous le gardez. Disponible uniquement pendant le lancement.")}</p>
           <div style={{ display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap" }}>
-            <a className="btn primary" href={LIFETIME_URL} rel="noopener">{T("Get it for $29.99 →", "En profiter pour 29,99 $ →")}</a>
+            <a className="btn primary" href={LIFETIME_URL} rel="noopener">{T("Get it for $29.99 a year →", "En profiter pour 29,99 $ par an →")}</a>
             <span className="small">{T(<>You enter your server address at checkout. Not sure it can be monitored? <a href="#start">Check it first ↓</a></>,
               <>Vous indiquez l&apos;adresse de votre serveur au paiement. Vous ne savez pas s&apos;il peut être surveillé ? <a href="#start">Vérifiez d&apos;abord ↓</a></>)}</span>
           </div>

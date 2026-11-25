@@ -91,7 +91,7 @@ export function PricingView({ lang = "en" }: { lang?: Lang }) {
               <li>{T("Private 90-day report: answer rate, outages, every check", "Un rapport privé sur 90 jours : taux de réponse, pannes, chaque vérification")}</li>
               <li>{T("Status badge for your README or website, with your answer rate", "Un badge de statut pour votre README ou votre site, avec votre taux de réponse")}</li>
             </ul>
-            {lifetimeOn ? <a href={(process.env.NEXT_PUBLIC_STRIPE_MONITOR_ANNUAL_URL || process.env.NEXT_PUBLIC_STRIPE_MONITOR_LIFETIME_URL)} className="btn primary" rel="noopener">{T("Get it for $29.99", "En profiter pour 29,99 $")}</a> : <Link href={`${L("/monitor")}#start`} className="btn primary">{T("Monitor my server", "Surveiller mon serveur")}</Link>}
+            {lifetimeOn ? <a href={(process.env.NEXT_PUBLIC_STRIPE_MONITOR_ANNUAL_URL || process.env.NEXT_PUBLIC_STRIPE_MONITOR_LIFETIME_URL)} className="btn primary" rel="noopener">{T("Get it for $29.99 a year", "En profiter pour 29,99 $ par an")}</a> : <Link href={`${L("/monitor")}#start`} className="btn primary">{T("Monitor my server", "Surveiller mon serveur")}</Link>}
             <p className="small muted" style={{ marginBottom: 0 }}>{T(<>For people who <b>publish</b> a hosted MCP server.</>, <>Pour ceux qui <b>publient</b> un serveur MCP hébergé.</>)}{lifetimeOn
               ? T(<> Pay by card, enter your server address at checkout, cancel anytime. <Link href={L("/monitor")}>Details</Link></>, <> Paiement par carte, vous indiquez l&apos;adresse de votre serveur au paiement, résiliable à tout moment. <Link href={L("/monitor")}>Détails</Link></>)
               : T(" Cancel anytime.", " Résiliable à tout moment.")}</p>
