@@ -4,7 +4,7 @@ import { db } from "@/lib/db";
 import { lhref, type Lang } from "@/lib/i18n";
 
 const MONITOR_URL = process.env.NEXT_PUBLIC_STRIPE_MONITOR_URL ?? "";
-const LIFETIME_URL = process.env.NEXT_PUBLIC_STRIPE_MONITOR_LIFETIME_URL ?? "";   // launch offer, paid once
+const LIFETIME_URL = (process.env.NEXT_PUBLIC_STRIPE_MONITOR_ANNUAL_URL || process.env.NEXT_PUBLIC_STRIPE_MONITOR_LIFETIME_URL) ?? "";   // launch offer, paid once
 
 export const MONITOR_META = {
   en: {
