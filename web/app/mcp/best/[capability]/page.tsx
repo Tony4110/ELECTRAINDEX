@@ -8,6 +8,7 @@ import { SITE } from "@/lib/site";
 import { num, timeAgo, useCase, lowerFirst } from "@/lib/format";
 import { Tri, Empty, SetupNotice } from "@/components/ui";
 import { Quality, Price } from "@/components/rank";
+import { capIcon, capVars } from "@/lib/use-case-look";
 
 // rendered on each request (reads ?page=), like the task pages
 
@@ -98,24 +99,38 @@ export default async function BestFor({ params, searchParams }: { params: P; sea
   return (
     <>
       {ld.map((x, i) => <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(x) }} />)}
-      <nav className="crumbs" aria-label="Breadcrumb"><Link href="/mcp">MCP Tools</Link><span>/</span><Link href="/mcp/best">Best by use case</Link><span>/</span><span className="ink">{o.capability}</span></nav>
-      <div className="eyebrow">Tools · {o.capability}</div>
-      <h1>Best MCP servers for {uc}</h1>
-      <p className="lede">
-        {num(o.tools)} MCP servers in the Official MCP Registry do {uc}. {num(o.hosted_tools)} can be used as a hosted endpoint, with nothing to install, and {num(o.open_source_tools)} publish their source code.
-        {top.length ? <> First by relevance and readiness: {top.map((t, i) => <span key={t.tool_slug}>{i ? (i === top.length - 1 ? " and " : ", ") : ""}<Link href={`/mcp/${t.tool_slug}`}>{t.tool_name}</Link></span>)}.</> : null}
-      </p>
+      <div className="uc" style={capVars(o.capability_slug)}>
+      <section className="uc-hero">
+        <nav className="crumbs" aria-label="Breadcrumb"><Link href="/mcp">MCP Tools</Link><span>/</span><Link href="/mcp/best">Best by use case</Link><span>/</span><span className="ink">{o.capability}</span></nav>
+        <div className="uc-top">
+          <span className="uc-ic" aria-hidden>{capIcon(o.capability_slug, o.capability)}</span>
+          <div>
+            <div className="uc-eye">MCP use case · {o.capability}</div>
+            <h1>Best MCP servers for {uc}</h1>
+          </div>
+        </div>
+        <p className="lede">
+          {num(o.tools)} MCP servers in the Official MCP Registry do {uc}. {num(o.hosted_tools)} can be used as a hosted endpoint, with nothing to install, and {num(o.open_source_tools)} publish their source code.
+          {top.length ? <> First by relevance and readiness: {top.map((t, i) => <span key={t.tool_slug}>{i ? (i === top.length - 1 ? " and " : ", ") : ""}<Link href={`/mcp/${t.tool_slug}`}>{t.tool_name}</Link></span>)}.</> : null}
+        </p>
+        <div className="uc-stats">
+          <span><b>{num(o.tools)}</b> servers</span>
+          <span><b>{num(o.hosted_tools)}</b> hosted, nothing to install</span>
+          <span><b>{num(o.open_source_tools)}</b> open source</span>
+          {agents.length ? <span><b>{num(agents.length)}</b> ready-made AI agent{agents.length > 1 ? "s" : ""}</span> : null}
+        </div>
+      </section>
 
       <ExploreStrip rows={[
         { title: "Prefer no setup? AI agents", links: agents.slice(0, 4).map((a) => ({ href: `/agents/${a.slug}`, label: a.name })),
           more: tasks[0] ? { href: `/tasks/${tasks[0].slug}`, label: "Compare agents →" } : undefined },
         { title: "Tasks that need it", links: tasks.slice(0, 4).map((t) => ({ href: `/tasks/${t.slug}`, label: t.name })) },
-        { title: "Other use cases", links: related.slice(0, 5).map((r) => ({ href: `/mcp/best/${r.capability_slug}`, label: useCase(r.capability) })) },
+        { title: "Other use cases", links: related.slice(0, 5).map((r) => ({ href: `/mcp/best/${r.capability_slug}`, label: useCase(r.capability), icon: capIcon(r.capability_slug, r.capability), style: capVars(r.capability_slug) })) },
       ]} />
       <SpotlightBox path={`/mcp/best/${o.capability_slug}`} />
 
       <section className="grid cols-3">
-        <div className="card span-2 table-wrap">
+        <div className="card span-2 table-wrap uc-table">
           {tools.length === 0 ? <div className="card-body"><Empty title="No tool on this page" /></div> : (
             <table>
               <thead><tr><th>#</th><th>Tool</th><th>Relevance</th><th>Connect</th><th>Code</th><th>Seen</th></tr></thead>
@@ -124,7 +139,7 @@ export default async function BestFor({ params, searchParams }: { params: P; sea
                   <tr key={t.tool_id}>
                     <td className="rank-num">{(page - 1) * PAGE + i + 1}</td>
                     <td><Link href={`/mcp/${t.tool_slug}`} className="strong ink">{t.tool_name}</Link>{t.short_description ? <div className="desc">{t.short_description}</div> : null}</td>
-                    <td className="small">{t.name_match ? <span className="badge accent">In name</span> : <span className="badge">In description</span>}{t.keywords ? <div className="mono faint small">{t.keywords}</div> : null}</td>
+                    <td className="small">{t.name_match ? <span className="badge uc-b">In name</span> : <span className="badge">In description</span>}{t.keywords ? <div className="mono faint small">{t.keywords}</div> : null}</td>
                     <td><span className="pills"><Tri label="HOSTED" value={t.remote} /><Tri label="LOCAL" value={t.local} /></span></td>
                     <td className="small">{t.has_source ? "Open" : <span className="faint">—</span>}</td>
                     <td className="mono small muted">{timeAgo(t.last_seen_at)}</td>
@@ -134,7 +149,7 @@ export default async function BestFor({ params, searchParams }: { params: P; sea
             </table>
           )}
         </div>
-        <div className="card">
+        <div className="card uc-side">
           <div className="card-head"><h2>Ready-made AI agents</h2></div>
           {agents.length === 0 ? <div className="card-body"><span className="muted small">No AI agent documents this capability yet.</span></div> : (
             <ul className="signals">
@@ -152,7 +167,7 @@ export default async function BestFor({ params, searchParams }: { params: P; sea
           </> : null}
           {related.length ? <>
             <div className="card-head" style={{ borderTop: "1px solid var(--line)" }}><h2>Other use cases</h2></div>
-            <ul className="signals">{related.map((r) => <li className="signal" key={r.capability_slug}><Link href={`/mcp/best/${r.capability_slug}`}>MCP servers for {useCase(r.capability)}</Link> <span className="mono small faint">{num(r.tools)}</span></li>)}</ul>
+            <ul className="signals">{related.map((r) => <li className="signal" key={r.capability_slug}><span className="uc-mini" style={capVars(r.capability_slug)}>{capIcon(r.capability_slug, r.capability)}</span><Link href={`/mcp/best/${r.capability_slug}`}>MCP servers for {useCase(r.capability)}</Link> <span className="mono small faint">{num(r.tools)}</span></li>)}</ul>
           </> : null}
         </div>
       </section>
@@ -167,6 +182,7 @@ export default async function BestFor({ params, searchParams }: { params: P; sea
         <div className="card-body">{faq.map((f) => <details key={f.q} open><summary>{f.q}</summary><p>{f.a}</p></details>)}</div>
       </div>
       <p className="note">How this list is ordered: a tool comes first when the use case appears in its name rather than only in its description, then when its description covers more aspects of the use case, then when it offers a hosted endpoint, then when its source code is public, then by how recently our robot saw it in the Official MCP Registry. The match to {lowerFirst(o.capability)} comes from the publisher&apos;s description (keyword method), not from a test of the tool. Only active tools with a real description are listed. No tool pays to appear here.</p>
+      </div>
     </>
   );
 }

@@ -1,6 +1,8 @@
 import Link from "next/link";
 
-export type ExploreLink = { href: string; label: string };
+import type { CSSProperties } from "react";
+
+export type ExploreLink = { href: string; label: string; icon?: string; style?: CSSProperties };
 export type ExploreRow = { title: string; links: ExploreLink[]; more?: ExploreLink };
 
 /**
@@ -16,7 +18,7 @@ export function ExploreStrip({ rows }: { rows: ExploreRow[] }) {
         <div className="explore-row" key={r.title}>
           <span className="explore-title">{r.title}</span>
           <div className="chips" style={{ marginTop: 0 }}>
-            {r.links.map((l) => <Link key={l.href} href={l.href} className="chip">{l.label}</Link>)}
+            {r.links.map((l) => <Link key={l.href} href={l.href} className={`chip${l.icon ? " ic-chip" : ""}`} style={l.style}>{l.icon ? <i>{l.icon}</i> : null}{l.label}</Link>)}
             {r.more ? <Link href={r.more.href} className="chip acc">{r.more.label}</Link> : null}
           </div>
         </div>

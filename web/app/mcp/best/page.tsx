@@ -1,8 +1,9 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { db, fromCaps, type CapabilityOverview } from "@/lib/db";
-import { num, useCase } from "@/lib/format";
+import { num } from "@/lib/format";
 import { Empty, SetupNotice } from "@/components/ui";
+import { capIcon, capLook } from "@/lib/use-case-look";
 
 export const revalidate = 3600;
 export const metadata: Metadata = {
@@ -23,13 +24,16 @@ export default async function BestIndex() {
       <h1>Best MCP servers by use case</h1>
       <p className="lede">Pick a job to see the MCP servers that do it, which ones are hosted, which publish their code, and how to connect them.</p>
       {rows.length === 0 ? <Empty title="Temporarily unavailable">The list of use cases could not be loaded. Please try again in a few minutes.</Empty> : (
-        <div className="tiles" style={{ marginTop: 24 }}>
-          {rows.map((r) => (
-            <Link key={r.capability_slug} href={`/mcp/best/${r.capability_slug}`} className="tile">
-              <span className="name">MCP servers for {useCase(r.capability)}</span>
-              <span className="small muted">{num(r.tools)} tools · {num(r.hosted_tools)} hosted{r.agents ? ` · ${num(r.agents)} AI agents` : ""}</span>
-            </Link>
-          ))}
+        <div className="ft-caps2" style={{ marginTop: 24 }}>
+          {rows.map((r) => {
+            const k = capLook(r.capability_slug);
+            return (
+              <Link key={r.capability_slug} href={`/mcp/best/${r.capability_slug}`} className="ft-cap2">
+                <span className="ic" style={{ background: k.s, color: k.ink }}>{capIcon(r.capability_slug, r.capability)}</span>
+                <span><b>{r.capability}</b><span>{num(r.tools)} servers · {num(r.hosted_tools)} hosted{r.agents ? ` · ${num(r.agents)} AI agents` : ""}</span></span>
+              </Link>
+            );
+          })}
         </div>
       )}
     </>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { capLook, capIcon } from "@/lib/use-case-look";
 import { headers } from "next/headers";
 import { db, fromCaps } from "@/lib/db";
 import { searchTools, type ToolHit } from "@/lib/tool-search";
@@ -17,17 +18,6 @@ export async function generateMetadata({ searchParams }: { searchParams: SP }): 
   };
   return sp.q || sp.cap || sp.access || sp.src ? { ...base, robots: { index: false, follow: true } } : base;
 }
-
-const CAP_LOOK = [
-  { bg: "var(--accent-soft)", fg: "var(--accent)" }, { bg: "var(--pos-soft)", fg: "var(--pos)" },
-  { bg: "var(--sun-soft)", fg: "var(--sun-ink)" }, { bg: "var(--ember-soft)", fg: "var(--ember-ink)" },
-];
-const CAP_ICON: Record<string, string> = {
-  "social-media-management": "◎", payments: "$", "document-understanding": "▤", "sql-querying": "⌗", invoicing: "€",
-  "travel-booking": "✈", "seo-optimization": "↗", "web-scraping": "⌘", "browser-automation": "⧉", "devops-automation": "⚙",
-  "knowledge-base-qa": "?", "lead-generation": "◆", "e-commerce-management": "◫", "api-integration": "⇄", "calendar-management": "◷",
-  "web-research": "⌕", "security-scanning": "◈", procurement: "▦",
-};
 
 function when(iso: string | null) {
   if (!iso) return "not checked yet";
@@ -106,11 +96,11 @@ export default async function McpTools({ searchParams }: { searchParams: SP }) {
               <h2 className="ft-h2">Browse by use case</h2>
               <p className="ft-h2s">The most common things agents connect to. Each page ranks servers by measured availability.</p>
               <div className="ft-caps2">
-                {capRows.slice(0, 8).map((x, i) => {
-                  const k = CAP_LOOK[i % CAP_LOOK.length];
+                {capRows.slice(0, 8).map((x) => {
+                  const k = capLook(x.capability_slug);
                   return (
                     <Link key={x.capability_slug} href={`/mcp/best/${x.capability_slug}`} className="ft-cap2">
-                      <span className="ic" style={{ background: k.bg, color: k.fg }}>{CAP_ICON[x.capability_slug] ?? x.capability.charAt(0)}</span>
+                      <span className="ic" style={{ background: k.s, color: k.ink }}>{capIcon(x.capability_slug, x.capability)}</span>
                       <span><b>{x.capability}</b><span>{num(x.tools)} servers</span></span>
                     </Link>
                   );
