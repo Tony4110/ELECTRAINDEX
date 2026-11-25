@@ -20,7 +20,7 @@ type ToolChanges =
   | { tracked: true; since: string; partial: false; last_list: string; tools: number; added_count: number; removed_count: number;
       added: { name: string; at: string }[]; removed: { name: string; last_seen: string }[] };
 export type Reliability = {
-  d30: Obs; history_since: string | null; frequency: "standard" | "30min";
+  d30: Obs; history_since: string | null; frequency: "standard" | "12h" | "30min"; verified?: boolean;
   checks: { at: string; c: Cls }[]; tool_changes: ToolChanges;
 };
 
@@ -39,7 +39,7 @@ const day = (iso: string) => new Date(iso).toLocaleDateString("en-GB", { day: "2
 export function ReliabilityCard({ r, name }: { r: Reliability; name: string }) {
   const o = r.d30;
   if (!o.checks) return null;
-  const freq = r.frequency === "30min" ? "Checked every 30 minutes (Monitoring Pro)" : "Re-tested about every 2 days";
+  const freq = r.frequency === "30min" ? "Checked every 30 minutes (Monitoring Pro)" : r.frequency === "12h" ? "Re-tested every 12 hours (Electra Verified)" : "Re-tested about every 2 days";
   const marks = r.checks;
   return (
     <div className="card rel-card" style={{ marginTop: 24 }} id="reliability">

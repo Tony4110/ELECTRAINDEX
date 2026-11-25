@@ -78,6 +78,9 @@ export function PublisherKit({ kind, slug, name, lang = "en" }: { kind: "agent" 
           <button type="button" className="share-btn" onClick={() => copy(html, "html")}>{copied === "html" ? t.copiedShort : t.copyHtml}</button>
           <button type="button" className="share-btn" onClick={() => copy(md, "md")}>{copied === "md" ? t.copiedShort : t.copyMd}</button>
         </div>
+        {kind === "mcp" ? (
+          <p className="small" style={{ marginBottom: 0 }}><b>Free with the badge: Electra Verified.</b> While it is on your site or README, we test {name} every 12 hours, email you when it stops answering, and the badge shows its 30-day availability. <a href={`/verified?server=${encodeURIComponent(slug)}#start`}>Get Verified →</a></p>
+        ) : null}
       </div>
     </div>
   );
