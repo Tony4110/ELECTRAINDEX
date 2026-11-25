@@ -120,6 +120,7 @@ export function ToolChangesCard({ r }: { r: Reliability }) {
 }
 
 /** Short version shown in the page header: the 30-day figure, the last checks, and the ecosystem average. */
+/** (previous header version, kept for other pages) */
 export function ReliabilityStrip({ r, eco }: { r: Reliability; eco: { value: number } | null }) {
   const o = r.d30;
   if (!o.checks) return null;
@@ -137,5 +138,45 @@ export function ReliabilityStrip({ r, eco }: { r: Reliability; eco: { value: num
         <span className="muted">Tested {freq} · last test {timeAgo(o.last_check)} · details ↓</span>
       </div>
     </a>
+  );
+}
+
+/** Header block of an MCP page (25 Nov 2026 design): 30-day figure, live status, last tests, ecosystem, and the 3 services. */
+export function HeroReliability({ r, eco, slug, status }: { r: Reliability; eco: { value: number } | null; slug: string; status: string | null }) {
+  const o = r.d30;
+  const marks = r.checks.slice(-30);
+  const answered = marks.filter((k) => k.c === "open" || k.c === "protected").length;
+  let ai = 0;
+  const warm = (i: number, n: number) => { const t = n > 1 ? i / (n - 1) : 0; return `hsl(${46 - 18 * t}, 90%, ${56 - 4 * t}%)`; };
+  const chip = status === "online" ? (o.access === "protected" ? "Online · key required" : "Online")
+    : status === "auth_required" ? "Online · key required" : status === "down" || status === "unreachable" || status === "timeout" || status === "error" ? "Not responding" : "Checking";
+  const chipCls = chip.startsWith("Online") ? "pos" : chip === "Not responding" ? "neg" : "warn";
+  const diff = eco && o.availability != null ? Math.round((o.availability - eco.value) * 10) / 10 : null;
+  return (
+    <div className="hr-rel">
+      <div className="hr-top">
+        <div>
+          <div className="hr-lab">Reliability · last 30 days</div>
+          {o.availability != null ? <div className="hr-big">{o.availability}%</div> : <div className="hr-big small">Not enough tests yet</div>}
+          <span className={`hr-chip ${chipCls}`}>● {chip}</span>
+          <div className="hr-legend"><i className="ok" />answered<i className="ko" />no valid answer</div>
+        </div>
+        <div className="hr-bars" aria-label={`${answered} answers in the last ${marks.length} tests`} role="img">
+          {marks.map((k) => k.c === "failure" ? <i key={k.at} className="ko" title={`${shortDate(k.at)} · ${LABEL[k.c]}`} />
+            : k.c === "excluded" ? <i key={k.at} className="ex" title={`${shortDate(k.at)} · ${LABEL[k.c]}`} />
+            : <i key={k.at} style={{ background: warm(ai++, answered) }} title={`${shortDate(k.at)} · ${LABEL[k.c]}`} />)}
+        </div>
+      </div>
+      <div className="hr-meta">
+        <span>{o.conclusive} test{o.conclusive === 1 ? "" : "s"} · {o.answers} answer{o.answers === 1 ? "" : "s"} · {o.failures} failure{o.failures === 1 ? "" : "s"}{o.availability == null ? ` · a figure from ${o.min_checks} tests` : ""}</span>
+        {eco ? <span>All MCP servers (7-day index): <b>{eco.value.toFixed(1)}%</b>{diff != null ? <> · <b className={diff >= 0 ? "pos" : "neg"}>{diff >= 0 ? "+" : ""}{diff} pts</b></> : null}</span> : null}
+        <a href="#reliability">Details ↓</a>
+      </div>
+      <div className="hr-svc">
+        <a href="#follow" className="hr-opt a"><span className="ic">◉</span><span><b>Get alerts</b><small>Email if it changes or stops · free</small></span></a>
+        <Link href={`/verified?server=${slug}#start`} className="hr-opt v"><span className="ic">✓</span><span><b>Electra Verified</b><small>Publisher: test every 12 h · free</small></span></Link>
+        <Link href={`/monitor?server=${slug}&from=mcp-page#start`} className="hr-opt m"><span className="ic">✦</span><span><b>Monitoring Pro</b><small>Every 30 min · $29.99 a year</small></span></Link>
+      </div>
+    </div>
   );
 }

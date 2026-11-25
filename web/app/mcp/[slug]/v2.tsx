@@ -6,7 +6,7 @@ import { Out } from "@/components/out";
 import { StatusBadges } from "@/components/status";
 import { ReportBox, type ReportStatus } from "@/components/report-box";
 import { LiveBadge, LiveCheckCard } from "@/components/live-check";
-import { loadEcosystem, loadReliability, ReliabilityCard, ReliabilityStrip, ToolChangesCard } from "@/components/reliability";
+import { HeroReliability, loadEcosystem, loadReliability, ReliabilityCard, ToolChangesCard } from "@/components/reliability";
 import { FollowBox } from "@/components/follow-box";
 import { ShareRow, PublisherKit } from "@/components/share";
 import { notFound } from "next/navigation";
@@ -37,6 +37,10 @@ async function load(slug: string) {
     if (!Array.isArray(m.package_list)) m.package_list = null;
   }
   return m;
+}
+
+function host(u: string) {
+  try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return u; }
 }
 
 function cut(s: string, n: number) {
@@ -181,51 +185,47 @@ export async function ToolPageV2({ params }: { params: P }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(crumbsLd) }} />
       <div className="tp-hero">
         <nav className="crumbs" aria-label="Breadcrumb"><Link href="/mcp">MCP Tools</Link><span>/</span>{best ? <><Link href={`/tasks/${best.task_slug}`}>{best.task_name}</Link><span>/</span></> : null}<span className="ink">{m.name}</span></nav>
-        <div className="tp-hero-grid">
-          <div className="tp-hero-main">
+        <div className="hr-grid">
+          <div className="hr-main">
             <div style={{ display: "flex", gap: 18, alignItems: "center", flexWrap: "wrap" }}>
               <Logo name={m.name} website={m.website ?? m.repository_url} size={72} />
               <div style={{ minWidth: 0 }}>
                 <h1 style={{ margin: 0 }}>{m.name}</h1>
-                <div className="tp-tags">
-                  <span className="tp-tag blue">MCP server</span>
-                  {live?.status === "online" ? <span className="tp-tag green">● {m.remote ? "Hosted · " : ""}online</span> : m.remote ? <span className="tp-tag">Hosted</span> : null}
-                  {m.local ? <span className="tp-tag">Installable</span> : null}
-                  {m.version ? <span className="tp-tag sun">v{m.version}</span> : null}
-                </div>
+                <div className="hr-facts"><b>MCP server</b>{m.remote ? <span>Hosted</span> : null}{m.local ? <span>Installable</span> : null}{m.version ? <span>v{m.version}</span> : null}</div>
               </div>
             </div>
-            <p className="lede" style={{ marginTop: 18, maxWidth: "62ch" }}>{desc ? cut(desc, 260) : "No description published."}</p>
-            <div className="chips" style={{ marginTop: 18 }}>
-              {remotes.length || pkgs.length ? <a className="btn primary" href="#connect">Connect ↓</a> : null}
-              {m.website ? <Out type="mcp" slug={m.slug} to="website" from={`/mcp/${m.slug}`} className="btn">Website ↗</Out> : null}
-              {m.repository_url ? <Out type="mcp" slug={m.slug} to="repository" from={`/mcp/${m.slug}`} className="btn">Source code ↗</Out> : null}
-              <a className="btn" href="#follow">☆ Follow</a>
-              <ShareRow kind="mcp" slug={m.slug} name={m.name} />
-            </div>
-            {rel ? <ReliabilityStrip r={rel} eco={eco} /> : null}
+            <p className="lede" style={{ marginTop: 16, maxWidth: "68ch" }}>{desc ? cut(desc, 260) : "No description published."}</p>
+            {rel && rel.d30.checks ? <HeroReliability r={rel} eco={eco} slug={m.slug} status={live?.status ?? null} /> : null}
           </div>
-          <aside className="tp-snap" aria-label="At a glance">
-            <div className="tp-snap-title">At a glance</div>
-            <div className="tp-snap-grid">
-              <div><span>Live check</span><b className={live?.status === "online" ? "pos" : ""}>{!live || live.status === "unconfirmed" ? "Not tested" : live.status === "online" ? `Online${live.tool_count ? ` · ${live.tool_count}${live.tools_more ? "+" : ""} tools` : ""}` : live.status === "auth_required" ? "Needs a key" : "Not responding"}</b></div>
+          <aside className="hr-side" aria-label="At a glance">
+            <div className="hr-t">At a glance</div>
+            <div className="hr-g">
+              <div><span>Status now</span><b className={live?.status === "online" || live?.status === "auth_required" ? "pos" : ""}>{!live || live.status === "unconfirmed" ? "Not tested" : live.status === "online" || live.status === "auth_required" ? "● Online" : "Not responding"}</b></div>
+              <div><span>Access</span><b>{live?.status === "auth_required" || rel?.d30.access === "protected" ? "Key required" : live?.status === "online" ? "No key needed" : "—"}</b></div>
               <div><span>Install</span><b>{m.remote && m.local ? "Hosted or local" : m.remote ? "Hosted" : m.local ? "Local" : "—"}</b></div>
               <div><span>Version</span><b className="mono">{m.version ?? "—"}</b></div>
-              <div><span>Availability · 30 days</span><b className={rel?.d30.availability != null && rel.d30.availability >= 95 ? "pos" : ""}>{rel?.d30.availability != null ? `${rel.d30.availability}%` : m.remote ? "Not enough tests" : "Not hosted"}</b></div>
-              <div><span>Tracked since</span><b className="mono">{shortDate(m.first_seen_at)}</b></div>
-              <div><span>Last test</span><b className="mono">{timeAgo(rel?.d30.last_check ?? m.last_seen_at)}</b></div>
+              <div><span>Last test</span><b>{m.remote ? timeAgo(rel?.d30.last_check ?? live?.checked_at ?? null) : "Not hosted"}</b></div>
+              <div><span>Tested</span><b>{rel?.frequency === "30min" ? "every 30 min" : rel?.frequency === "12h" ? "every 12 h" : m.remote ? "~ every 2 days" : "—"}</b></div>
+              <div><span>Tracked since</span><b>{shortDate(m.first_seen_at)}</b></div>
+              <div><span>Tools listed</span><b>{live?.tool_count ? `${live.tool_count}${live.tools_more ? "+" : ""}` : "—"}</b></div>
             </div>
+            <div className="hr-t" style={{ marginTop: 6 }}>Links</div>
+            {m.website ? <Out type="mcp" slug={m.slug} to="website" from={`/mcp/${m.slug}`} className="hr-lk">Website <span>{host(m.website)} ↗</span></Out> : null}
+            {m.repository_url ? <Out type="mcp" slug={m.slug} to="repository" from={`/mcp/${m.slug}`} className="hr-lk">Source code <span>{/github\.com/i.test(m.repository_url) ? "GitHub" : host(m.repository_url)} ↗</span></Out> : null}
+            {m.docs_url ? <a href={m.docs_url} className="hr-lk" rel="noopener nofollow" target="_blank">Documentation <span>{host(m.docs_url)} ↗</span></a> : null}
+            <div className="hr-share"><span>Share this page</span><ShareRow kind="mcp" slug={m.slug} name={m.name} compact /></div>
           </aside>
         </div>
       </div>
 
-      <nav className="tp-jump" aria-label="On this page">
-        {rel ? <a href="#reliability">Reliability</a> : null}
-        {remotes.length || pkgs.length ? <a href="#connect">How to connect</a> : null}
+      <nav className="hr-bar" aria-label="On this page">
+        {remotes.length || pkgs.length ? <a className="btn primary" href="#connect">Connect ↓</a> : null}
+        {remotes.length || pkgs.length ? <span className="vr" /> : null}
         {tasks.length ? <a href="#tasks">{tasks.length} task{tasks.length > 1 ? "s" : ""} it helps with</a> : null}
         {agents.length ? <a href="#agents">{agents.length} ready-made AI agent{agents.length > 1 ? "s" : ""}</a> : null}
         {similar.length ? <a href="#similar">{similar.length} similar tool{similar.length > 1 ? "s" : ""}</a> : null}
         <a href="#reviews">Reviews</a>
+        <a href="#share">Badge for publishers</a>
       </nav>
 
       {tasks.length ? (
