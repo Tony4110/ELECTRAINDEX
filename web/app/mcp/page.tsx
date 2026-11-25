@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import { db, fromCaps } from "@/lib/db";
 import { searchTools, type ToolHit } from "@/lib/tool-search";
 import { num } from "@/lib/format";
+import { loadEcosystem } from "@/components/reliability";
 
 type SP = Promise<{ q?: string; cap?: string; access?: string; src?: string }>;
 
@@ -17,7 +18,16 @@ export async function generateMetadata({ searchParams }: { searchParams: SP }): 
   return sp.q || sp.cap || sp.access || sp.src ? { ...base, robots: { index: false, follow: true } } : base;
 }
 
-const EXAMPLES = ["create an invoice", "send an email", "search the web", "query postgres", "book a meeting", "scrape a website"];
+const CAP_LOOK = [
+  { bg: "var(--accent-soft)", fg: "var(--accent)" }, { bg: "var(--pos-soft)", fg: "var(--pos)" },
+  { bg: "var(--sun-soft)", fg: "var(--sun-ink)" }, { bg: "var(--ember-soft)", fg: "var(--ember-ink)" },
+];
+const CAP_ICON: Record<string, string> = {
+  "social-media-management": "◎", payments: "$", "document-understanding": "▤", "sql-querying": "⌗", invoicing: "€",
+  "travel-booking": "✈", "seo-optimization": "↗", "web-scraping": "⌘", "browser-automation": "⧉", "devops-automation": "⚙",
+  "knowledge-base-qa": "?", "lead-generation": "◆", "e-commerce-management": "◫", "api-integration": "⇄", "calendar-management": "◷",
+  "web-research": "⌕", "security-scanning": "◈", procurement: "▦",
+};
 
 function when(iso: string | null) {
   if (!iso) return "not checked yet";
@@ -45,10 +55,11 @@ export default async function McpTools({ searchParams }: { searchParams: SP }) {
   const src = sp.src === "official" || sp.src === "community" ? sp.src : "";
   const c = db();
 
-  const [res, liveRow, capRows] = await Promise.all([
+  const [res, liveRow, capRows, eco] = await Promise.all([
     q ? searchTools({ q, client: await visitor(), capability: cap, access, official: src === "official" ? true : src === "community" ? false : null }) : Promise.resolve(null),
     c ? c.from("v_research_live").select("data").maybeSingle().then((r) => (r.data as { data: Live } | null)?.data ?? null) : Promise.resolve(null),
     c ? fromCaps((t) => c.from(t).select("capability_slug,capability,tools").gt("tools", 0).order("tools", { ascending: false }).limit(18)).then((r) => (r.data as Cap[] | null) ?? []) : Promise.resolve([] as Cap[]),
+    c ? loadEcosystem(c) : Promise.resolve(null),
   ]);
   const capName = new Map(capRows.map((x) => [x.capability_slug, x.capability]));
   const m = liveRow?.mcp;
@@ -60,18 +71,21 @@ export default async function McpTools({ searchParams }: { searchParams: SP }) {
 
   return (
     <div className="ft">
-      <h1 className="rl-h1">MCP Tools <span>· find what your AI agent can connect to</span></h1>
-      <p className="small muted" style={{ margin: "4px 0 14px" }}>
-        {m ? <>{num(m.tools)} tools from {num(m.online_tools)} MCP servers that answered our robot · re-tested about every 2 days · </> : null}
-        <Link href="/sources#live-check">how we test</Link>
-      </p>
-
-      <form className="ft-form card ft-hero" action="/mcp" method="get" role="search">
-        <label htmlFor="ftq" className="ft-hero-l">What should your agent be able to do?</label>
-        <div className="ft-hero-row">
+      <section className={`ft-top ${q ? "compact" : ""}`}>
+        {m ? (
+          <div className="ft-live">
+            <span className="dot" /><b>Live</b><span className="sep" />
+            <span><b>{num(m.online_tools)}</b> servers answering</span><span className="sep" />
+            <span><b>{num(m.tools)}</b> tools</span>
+            {eco ? <><span className="sep" /><Link href="/mcp-reliability-index" className="ft-idx">MCP Reliability Index <b>{eco.value.toFixed(1)}%</b> · 7 days →</Link></> : null}
+          </div>
+        ) : null}
+        <h1 className="ft-title">Search the tools of every MCP server we test live</h1>
+        <form className="ft-search" action="/mcp" method="get" role="search">
+          <label htmlFor="ftq" className="sr-only">What should your agent be able to do?</label>
           <input id="ftq" name="q" type="search" defaultValue={q} placeholder="e.g. create an invoice, send an email, query postgres" />
           <button className="btn primary" type="submit">Find tools</button>
-        </div>
+        </form>
         {q ? (
           <div className="ft-chips">
             <Link className={`chip ${!access ? "on" : ""}`} href={href({ access: "" })}>Any access</Link>
@@ -83,33 +97,40 @@ export default async function McpTools({ searchParams }: { searchParams: SP }) {
             {cap ? <Link className="chip on" href={href({ cap: "" })}>#{capName.get(cap) ?? cap} ✕</Link> : null}
           </div>
         ) : null}
-      </form>
+      </section>
 
       {!q ? (
         <>
-          <div className="chips" style={{ marginTop: 4 }}><span className="small muted">Try:</span>{EXAMPLES.map((e) => <Link key={e} className="chip" href={`/mcp?q=${encodeURIComponent(e)}`}>{e}</Link>)}</div>
-
           {capRows.length ? (
             <>
-              <h2 className="ft-h2">Or browse by use case</h2>
-              <div className="ft-caps">
-                {capRows.map((x) => (
-                  <Link key={x.capability_slug} href={`/mcp/best/${x.capability_slug}`} className="ft-cap">
-                    <b>{x.capability}</b><span>{num(x.tools)} servers</span>
-                  </Link>
-                ))}
+              <h2 className="ft-h2">Browse by use case</h2>
+              <p className="ft-h2s">The most common things agents connect to. Each page ranks servers by measured availability.</p>
+              <div className="ft-caps2">
+                {capRows.slice(0, 8).map((x, i) => {
+                  const k = CAP_LOOK[i % CAP_LOOK.length];
+                  return (
+                    <Link key={x.capability_slug} href={`/mcp/best/${x.capability_slug}`} className="ft-cap2">
+                      <span className="ic" style={{ background: k.bg, color: k.fg }}>{CAP_ICON[x.capability_slug] ?? x.capability.charAt(0)}</span>
+                      <span><b>{x.capability}</b><span>{num(x.tools)} servers</span></span>
+                    </Link>
+                  );
+                })}
               </div>
+              <div className="ft-more"><span className="muted small">More use cases, each ranked by measured availability</span><Link href="/mcp/best">See all use cases →</Link></div>
             </>
           ) : null}
 
-          <div className="ft-help">
-            <div><b>Works without a key</b><span>The server answered and listed its tools with no credentials.</span></div>
-            <div><b>Official</b><span>The publisher proved its domain to the Official MCP Registry (e.g. com.stripe/…).</span></div>
-            <div><b>Observed availability, 30 days</b><span>Share of our conclusive checks that got an answer. A request for a key counts as an answer. Shown from 10 checks.</span></div>
+          <div className="ft-legend">
+            <div><i className="pos">No key</i><p>The server answered and listed its tools without credentials.</p></div>
+            <div><i className="acc">Official</i><p>The publisher proved its domain to the Official MCP Registry (e.g. com.stripe/…).</p></div>
+            <div><i className="sun">99.6%</i><p>Observed availability over 30 days: share of our conclusive tests that got an answer. Shown from 10 tests.</p></div>
           </div>
-          <p className="small muted" style={{ marginTop: 18 }}>
-            <Link href="/mcp/directory">Browse all {m ? num(m.servers) : ""} servers</Link> · <Link href="/mcp/best">Best servers by use case</Link> · <Link href="/research">Live data &amp; reports</Link> · <Link href="/mcp-server">Use this search from your AI agent (MCP)</Link>
-          </p>
+          <div className="ft-foot">
+            <Link href="/mcp/directory">Browse all {m ? num(m.servers) : ""} servers</Link>
+            <Link href="/mcp/best">Best servers by use case</Link>
+            <Link href="/mcp-reliability-index">Reliability Index</Link>
+            <Link href="/mcp-server">Use this search from your agent (MCP)</Link>
+          </div>
         </>
       ) : res?.error === "quota" ? (
         <p className="card" style={{ padding: 16, marginTop: 16 }}>You have reached today&apos;s free search limit. It resets tomorrow. Building an agent? Use the <Link href="/mcp-server">Electra Index MCP server</Link>.</p>
