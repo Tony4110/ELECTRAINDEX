@@ -77,7 +77,7 @@ export default async function PaymentsPage({ searchParams }: { searchParams: SP 
       <SponsorSlot site="electra" slot="payments" />
       <div className="pay-body">
       <div className="tabs" role="tablist">
-        <Link role="tab" aria-selected={tab === "live"} href="/payments" className={tab === "live" ? "on" : ""}>x402 live test {x4sum?.services ? <span className="mono faint">{x4sum.services}</span> : null}</Link>
+        <Link role="tab" aria-selected={tab === "live"} href="/payments" className={tab === "live" ? "on" : ""}>x402 live test {x4sum?.services ? <span className="mono faint">{Number(x4sum.services).toLocaleString("en-US")}</span> : null}</Link>
         <Link role="tab" aria-selected={tab === "protocols"} href="/payments?tab=protocols" className={tab === "protocols" ? "on" : ""}>Protocols <span className="mono faint">{protocols.length}</span></Link>
         <Link role="tab" aria-selected={tab === "providers"} href="/payments?tab=providers" className={tab === "providers" ? "on" : ""}>Providers &amp; fees <span className="mono faint">{nProviders}</span></Link>
         <span className="soon">Compare routes · soon</span>
@@ -85,9 +85,10 @@ export default async function PaymentsPage({ searchParams }: { searchParams: SP 
 
       {tab === "live" ? (
         <>
-          <div className="x4-stats x4-sum">
-            <div><span>Services tested</span><b>{x4sum?.services ?? 0}</b></div>
-            <div><span>Payable now</span><b>{x4sum?.passing_now ?? 0}</b><em>{x4sum?.passing_now_pct != null ? `${Number(x4sum.passing_now_pct)}%` : ""}</em></div>
+          <div className="x4-stats x4-sum x4-5">
+            <div><span>In the x402 catalogue</span><b>{Number(x4sum?.services ?? 0).toLocaleString("en-US")}</b><em>paid services found</em></div>
+            <div><span>Tested · last 24 h</span><b>{Number(x4sum?.checked_24h ?? 0).toLocaleString("en-US")}</b></div>
+            <div><span>Payable</span><b>{x4sum?.passing_now_pct != null ? `${Number(x4sum.passing_now_pct)}%` : "—"}</b><em>{x4sum?.passing_now ? `${Number(x4sum.passing_now).toLocaleString("en-US")} services passed their last test` : ""}</em></div>
             <div><span>Median price per call</span><b>{priceText(x4sum?.median_price_usd)}</b></div>
             <div><span>Last test</span><b>{x4sum?.last_check ? timeAgo(x4sum.last_check) : "—"}</b></div>
           </div>

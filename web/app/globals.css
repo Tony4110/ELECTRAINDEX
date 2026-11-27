@@ -1033,3 +1033,4 @@ tr:hover td { background: rgba(255,255,255,.6); }
 .x4-v { font-size: 12px; font-weight: 600; padding: 3px 8px; border-radius: 6px; background: var(--soft); color: var(--ink-2); white-space: nowrap; }
 .x4-v.pos { background: var(--pos-soft); color: var(--pos); } .x4-v.neg { background: var(--neg-soft); color: var(--neg); }
 @media (max-width: 760px) { .x4-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } .x4-list li { grid-template-columns: minmax(0, 1fr) auto; } .x4-list .x4-m { display: none; } .x4-card { padding: 16px; } }
+.x4-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); } @media (max-width: 760px) { .x4-5 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
