@@ -1066,3 +1066,5 @@ tr:hover td { background: rgba(255,255,255,.6); }
 @media (max-width: 960px) { .hd-doors, .hd-live { grid-template-columns: minmax(0, 1fr); } .hd-hero { padding: 24px 16px; } .hd-search { flex-direction: column; } .hd-n { font-size: 32px; } }
 .hd-band { margin-bottom: 4px; }
 .hd-sub { max-width: 64ch; margin: 6px auto 0; color: var(--ink-2); font-size: 17px; }
+.hd-band .ft-title { margin-top: 0; }
+.hd-live-bar { margin-top: 18px; }
