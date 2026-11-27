@@ -41,7 +41,7 @@ export function SiteHeader() {
             [lhref(lang, "/apps"), t.apps, "✦", "#7C4DFF", "", base.startsWith("/apps")],
             ["/compare", t.compare, "⇄", "#0891B2", "", base.startsWith("/compare")],
             ["/payments", t.payments, "◎", "#0F766E", "nav-opt", base.startsWith("/payments")],
-            ["https://electra.finance", t.finance, "⇅", "#0E9F6E", "nav-opt", false],
+            ["https://electra.finance", t.finance, "⇅", "#0E9F6E", "", false],
             ["/pulse", t.pulse, "∿", "#E0457B", "nav-opt", base.startsWith("/pulse")],
             [lhref(lang, "/pricing"), t.pricing, "$", "#B7791F", "", base.startsWith("/pricing")],
             ["/blog", t.blog, "✎", "#4F46E5", "nav-opt", base.startsWith("/blog")],
