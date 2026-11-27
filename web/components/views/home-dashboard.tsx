@@ -32,13 +32,6 @@ export async function HomeDashboard() {
   return (
     <>
       <section className="ft-band hd-band">
-        <div className="ft-live">
-          <span className="dot" /><b>Live</b><span className="sep" />
-          <span><b>{num(stats?.mcp_servers)}</b> MCP servers</span><span className="sep" />
-          <span><b>{pay ? num(pay.services) : "—"}</b> x402 services</span><span className="sep" />
-          <span><b>{num(agents)}</b> AI agents</span>
-          {eco ? <><span className="sep" /><Link href="/mcp-reliability-index" className="ft-idx">Reliability Index <b>{eco.value.toFixed(1)}%</b> · 7 days →</Link></> : null}
-        </div>
         <h1 className="ft-title">The trust layer for the agent economy</h1>
         <p className="hd-sub">Compare, test and verify the tools, payments and agents that power AI.</p>
         <form className="ft-search" action="/search" method="get" role="search">
