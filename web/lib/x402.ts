@@ -35,7 +35,8 @@ export const VERDICT: Record<string, { label: string; tone: "pos" | "neg" | "" }
 export function priceText(p: number | null | undefined) {
   if (p == null) return "—";
   const v = Number(p);
-  return v >= 1 ? `$${v.toFixed(2)}` : v >= 0.01 ? `$${v.toFixed(3).replace(/0$/, "")}` : `$${v.toPrecision(2)}`;
+  if (v >= 1) return `$${v.toFixed(2)}`;
+  return `$${String(Number(v.toPrecision(2)))}`; // $0.02, $0.005, $0.001
 }
 
 async function ef<T>(path: string, revalidate = 900): Promise<T | null> {
