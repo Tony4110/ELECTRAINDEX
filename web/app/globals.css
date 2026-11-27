@@ -1117,3 +1117,5 @@ tr:hover td { background: rgba(255,255,255,.6); }
 .sponsor-slot-wide a { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 6px 16px; padding: 14px 20px; border-radius: 14px; }
 .sponsor-slot-wide img { width: auto; max-height: 60px; }
 .sponsor-slot-wide strong { font-size: 15px; }
+.sponsor-slot-wide a { min-height: 76px; padding: 16px 20px; }
+.sponsor-slot-wide strong { font-size: 16px; } .sponsor-slot-wide a > span:not(.sponsor-slot-label) { font-size: 15px; }
