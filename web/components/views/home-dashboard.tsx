@@ -74,7 +74,6 @@ export async function HomeDashboard() {
         </Link>
       </div>
 
-      <SponsorSlot site="electra" slot="home-sponsor" />
 
       <div className="hd-live">
         <section className="hd-col">
@@ -115,6 +114,8 @@ export async function HomeDashboard() {
         </div>
         <Link href="/submit" className="btn dark">List your product, free</Link>
       </div>
+
+      <SponsorSlot site="electra" slot="home-sponsor" variant="wide" />
 
       <div className="stats-line" aria-label="Index at a glance" style={{ marginTop: 24 }}>
         <span><b>{num(stats?.mcp_servers)}</b> MCP servers</span>

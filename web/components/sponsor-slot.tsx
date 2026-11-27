@@ -36,7 +36,7 @@ function rpc(name: string, body: unknown, keepalive = false, signal?: AbortSigna
   });
 }
 
-export default function SponsorSlot({ site, slot, variant, lang = "en" }: { site: string; slot: string; variant?: "halfpage"; lang?: Lang }) {
+export default function SponsorSlot({ site, slot, variant, lang = "en" }: { site: string; slot: string; variant?: "halfpage" | "wide"; lang?: Lang }) {
   const st = boxT(lang);
   const [ad, setAd] = useState<Ad | null>(null);
   const asked = useRef(false);
@@ -63,7 +63,7 @@ export default function SponsorSlot({ site, slot, variant, lang = "en" }: { site
   const image = isHttps(imageUrl);
 
   return (
-    <aside aria-label="Sponsored" className={half ? "sponsor-slot sponsor-slot-halfpage" : "sponsor-slot"}>
+    <aside aria-label="Sponsored" className={half ? "sponsor-slot sponsor-slot-halfpage" : variant === "wide" ? "sponsor-slot sponsor-slot-wide" : "sponsor-slot"}>
       <a
         href={ad.click_url}
         target="_blank"
