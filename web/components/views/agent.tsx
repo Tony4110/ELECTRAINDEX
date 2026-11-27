@@ -1,3 +1,4 @@
+import { X402Section } from "@/components/x402";
 import { getFollowers } from "@/lib/follows";
 import Link from "next/link";
 import { Out, AffiliateNote } from "@/components/out";
@@ -160,6 +161,7 @@ export async function AgentView({ a, lang = "en", text }: { a: AgentCard; lang?:
         <ShareRow kind="agent" slug={a.slug} name={a.name} lang={lang} />
       </div>
       {affiliate && a.website ? <AffiliateNote lang={lang} /> : null}
+      <X402Section urls={[a.website, a.pricing_url]} name={a.name} />
 
       <div className="kv" style={{ marginTop: 28 }}>
         <div><span className="small muted">{t.kv.score}</span><span><Quality score={a.quality_score} lang={lang} /></span></div>

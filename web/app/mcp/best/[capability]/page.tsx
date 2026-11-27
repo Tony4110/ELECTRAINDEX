@@ -1,5 +1,6 @@
 import { ExploreStrip } from "@/components/explore-strip";
 import Link from "next/link";
+import { getX402PayableHosts, hostsMatch } from "@/lib/x402";
 import { SpotlightBox } from "@/components/spotlight";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -68,6 +69,14 @@ export default async function BestFor({ params, searchParams }: { params: P; sea
   // the registry has several entries with the same name (forks, re-publishes): show each name once per page
   const seen = new Set<string>();
   const tools = ((tl as CapabilityTool[] | null) ?? []).filter((t) => { const k = t.tool_name.trim().toLowerCase(); if (seen.has(k)) return false; seen.add(k); return true; });
+  // x402 pill: tools whose own domain publishes a payable x402 endpoint (tested by Electra Finance)
+  const [payHosts, { data: urlRows }] = await Promise.all([
+    getX402PayableHosts(),
+    c.from("v_mcp_servers").select("slug,website,remotes").in("slug", tools.map((t) => t.tool_slug)),
+  ]);
+  const payable = new Set(((urlRows as { slug: string; website: string | null; remotes: { url: string }[] | null }[] | null) ?? [])
+    .filter((r) => payHosts.size && hostsMatch(payHosts, [r.website, ...(Array.isArray(r.remotes) ? r.remotes.map((x) => x.url) : [])]))
+    .map((r) => r.slug));
   const agentSlugs = ((ag as { provider_slug: string }[] | null) ?? []).map((x) => x.provider_slug);
   const { data: ac } = agentSlugs.length
     ? await c.from("v_agent_cards").select("slug,name,short_description,quality_score,from_usd_month,has_free").in("slug", agentSlugs).order("quality_score", { ascending: false, nullsFirst: false }).limit(6)
@@ -138,7 +147,7 @@ export default async function BestFor({ params, searchParams }: { params: P; sea
                 {tools.map((t, i) => (
                   <tr key={t.tool_id}>
                     <td className="rank-num">{(page - 1) * PAGE + i + 1}</td>
-                    <td><Link href={`/mcp/${t.tool_slug}`} className="strong ink">{t.tool_name}</Link>{t.short_description ? <div className="desc">{t.short_description}</div> : null}</td>
+                    <td><Link href={`/mcp/${t.tool_slug}`} className="strong ink">{t.tool_name}</Link>{payable.has(t.tool_slug) ? <Link href={`/mcp/${t.tool_slug}#payments`} className="x4-v pos" style={{ marginLeft: 8 }} title="AI agents can pay this tool with x402, tested live">x402 ✓</Link> : null}{t.short_description ? <div className="desc">{t.short_description}</div> : null}</td>
                     <td className="small">{t.name_match ? <span className="badge uc-b">In name</span> : <span className="badge">In description</span>}{t.keywords ? <div className="mono faint small">{t.keywords}</div> : null}</td>
                     <td><span className="pills"><Tri label="HOSTED" value={t.remote} /><Tri label="LOCAL" value={t.local} /></span></td>
                     <td className="small">{t.has_source ? "Open" : <span className="faint">—</span>}</td>

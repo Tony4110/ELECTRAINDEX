@@ -6,6 +6,7 @@ import { Out } from "@/components/out";
 import { StatusBadges } from "@/components/status";
 import { ReportBox, type ReportStatus } from "@/components/report-box";
 import { LiveBadge, LiveCheckCard } from "@/components/live-check";
+import { X402Section } from "@/components/x402";
 import { HeroReliability, loadEcosystem, loadReliability, ReliabilityCard, ToolChangesCard } from "@/components/reliability";
 import { FollowBox } from "@/components/follow-box";
 import { ShareRow, PublisherKit } from "@/components/share";
@@ -227,6 +228,8 @@ export async function ToolPageV2({ params }: { params: P }) {
         <a href="#reviews">Reviews</a>
         <a href="#share">Badge for publishers</a>
       </nav>
+
+      <X402Section urls={[m.website, ...remotes.map((r) => r.url)]} name={m.name} />
 
       {tasks.length ? (
         <section id="tasks" style={{ marginTop: 32 }}>

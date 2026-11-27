@@ -1,3 +1,4 @@
+import { X402Section } from "@/components/x402";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -134,6 +135,7 @@ export async function AppPageView({ slug, lang = "en" }: { slug: string; lang?: 
           <ShareRow kind="app" slug={a.slug} name={a.name} />
         </div>
       </section>
+      <X402Section urls={[a.website, a.pricing_url]} name={a.name} />
 
       <section className="grid cols-3" style={{ marginTop: 20 }}>
         <div className="card span-2 table-wrap">

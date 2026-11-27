@@ -5,13 +5,15 @@ import { shortDate } from "@/lib/format";
 import { SetupNotice, Empty } from "@/components/ui";
 import { Logo } from "@/components/rank";
 import SponsorSlot from "@/components/sponsor-slot";
+import { getX402List, getX402Summary, networkName, priceText, VERDICT, hostOf } from "@/lib/x402";
+import { timeAgo } from "@/lib/format";
 
 export const metadata: Metadata = {
-  title: "Payment Index — how AI agents pay, compared",
-  description: "x402, MPP, AP2, ACP, UCP and the providers behind them: what each protocol does, who supports it and what it costs. Sourced and dated.",
+  title: "Agent Payments — x402 services tested live",
+  description: "Which services AI agents can really pay: every x402 endpoint in the public catalogue tested live, with price, network and success rate. Plus x402, MPP, AP2, ACP and UCP compared.",
   alternates: { canonical: "/payments" },
 };
-type SP = Promise<{ tab?: string; protocol?: string }>;
+type SP = Promise<{ tab?: string; protocol?: string; sort?: string }>;
 
 type Protocol = {
   slug: string; name: string; full_name: string | null; one_liner: string | null; website: string | null; role: string | null; best_for: string | null;
@@ -55,7 +57,9 @@ export default async function PaymentsPage({ searchParams }: { searchParams: SP 
   const c = db();
   if (!c) return <SetupNotice />;
   const sp = await searchParams;
-  const tab = sp.tab === "providers" ? "providers" : "protocols";
+  const tab = sp.tab === "providers" ? "providers" : sp.tab === "protocols" ? "protocols" : "live";
+  const sort = sp.sort === "cheapest" ? "cheapest" : sp.sort === "newest" ? "newest" : "reliable";
+  const [x4sum, x4rows] = tab === "live" ? await Promise.all([getX402Summary(), getX402List(sort, 100)]) : [null, []];
   const [{ data: pd }, { data: vd }] = await Promise.all([c.from("v_protocols").select("*"), c.from("v_payment_providers").select("*")]);
   const protocols = ((pd as Protocol[] | null) ?? []).sort((a, b) => (ROLE[a.role ?? ""]?.order ?? 9) - (ROLE[b.role ?? ""]?.order ?? 9) || b.providers - a.providers || a.name.localeCompare(b.name));
   let providers = ((vd as Provider[] | null) ?? []).sort((a, b) => b.protocols.length - a.protocols.length || b.fees.length - a.fees.length || a.name.localeCompare(b.name));
@@ -66,20 +70,65 @@ export default async function PaymentsPage({ searchParams }: { searchParams: SP 
   return (
     <div className="pay-layout">
       <div className="pay-intro">
-        <div className="eyebrow">Electra Payment Index</div>
-        <h1 className="h1-md">How AI agents pay, compared</h1>
-        <p className="lede">The protocols and providers that let an agent pay or get paid: what each one does, who supports it, and what it costs. Read on official pages and dated. Electra Index does not process payments.</p>
+        <div className="eyebrow">Agent Payments · tested live</div>
+        <h1 className="h1-md">Which services can AI agents really pay?</h1>
+        <p className="lede">Every paid service in the public x402 catalogue, called by our robot every day without paying: does it answer &ldquo;402 Payment Required&rdquo; with a valid price, network, token and recipient? Plus the protocols and providers behind agent payments, sourced and dated. Electra Index never holds or moves money.</p>
       </div>
       <SponsorSlot site="electra" slot="payments" />
       <div className="pay-body">
       <div className="tabs" role="tablist">
-        <Link role="tab" aria-selected={tab === "protocols"} href="/payments" className={tab === "protocols" ? "on" : ""}>Protocols <span className="mono faint">{protocols.length}</span></Link>
+        <Link role="tab" aria-selected={tab === "live"} href="/payments" className={tab === "live" ? "on" : ""}>x402 live test {x4sum?.services ? <span className="mono faint">{x4sum.services}</span> : null}</Link>
+        <Link role="tab" aria-selected={tab === "protocols"} href="/payments?tab=protocols" className={tab === "protocols" ? "on" : ""}>Protocols <span className="mono faint">{protocols.length}</span></Link>
         <Link role="tab" aria-selected={tab === "providers"} href="/payments?tab=providers" className={tab === "providers" ? "on" : ""}>Providers &amp; fees <span className="mono faint">{nProviders}</span></Link>
         <span className="soon">Compare routes · soon</span>
-        <span className="soon">Service prices (x402) · soon</span>
       </div>
 
-      {tab === "protocols" ? (
+      {tab === "live" ? (
+        <>
+          <div className="x4-stats x4-sum">
+            <div><span>Services tested</span><b>{x4sum?.services ?? 0}</b></div>
+            <div><span>Payable now</span><b>{x4sum?.passing_now ?? 0}</b><em>{x4sum?.passing_now_pct != null ? `${Number(x4sum.passing_now_pct)}%` : ""}</em></div>
+            <div><span>Median price per call</span><b>{priceText(x4sum?.median_price_usd)}</b></div>
+            <div><span>Last test</span><b>{x4sum?.last_check ? timeAgo(x4sum.last_check) : "—"}</b></div>
+          </div>
+          <div className="filters" style={{ marginTop: 14 }}>
+            {([["reliable", "Most reliable"], ["cheapest", "Cheapest"], ["newest", "Newest"]] as const).map(([k, l]) => (
+              <Link key={k} href={k === "reliable" ? "/payments" : `/payments?sort=${k}`} className={`chip ${sort === k ? "on" : ""}`}>{l}</Link>
+            ))}
+          </div>
+          {x4rows.length === 0 ? (
+            <div className="card" style={{ marginTop: 14 }}><div className="card-body"><Empty title="First tests running">Our robot is reading the public x402 catalogue and testing each service. Results appear here within the hour.</Empty></div></div>
+          ) : (
+            <div className="card table-wrap" style={{ marginTop: 14 }}>
+              <table>
+                <thead><tr><th>Service</th><th>Price / call</th><th>Network</th><th>Success · 7 d</th><th>Last test</th><th>Result</th></tr></thead>
+                <tbody>
+                  {x4rows.map((r) => {
+                    const v = r.last_verdict ? VERDICT[r.last_verdict] : null;
+                    return (
+                      <tr key={r.id}>
+                        <td><span className="strong ink">{r.service_name ?? hostOf(r.url)}</span><div className="desc mono" style={{ fontSize: 12 }}>{r.method} {r.url.replace(/^https?:\/\//, "").slice(0, 60)}</div>{r.description ? <div className="desc">{r.description.slice(0, 110)}</div> : null}</td>
+                        <td className="mono">{priceText(r.price_usd)}</td>
+                        <td>{networkName(r.network)}</td>
+                        <td className="mono">{r.success_7d_pct != null ? `${Number(r.success_7d_pct)}%` : "—"}<div className="desc">{r.checks_7d ? `${r.passed_7d}/${r.checks_7d}` : ""}</div></td>
+                        <td className="small">{r.last_checked_at ? timeAgo(r.last_checked_at) : "—"}</td>
+                        <td><span className={`x4-v ${v?.tone ?? ""}`}>{v ? (v.tone === "pos" ? "✓ " : "") + v.label : "Not tested yet"}</span></td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          )}
+          <section id="get-tested" className="card" style={{ marginTop: 20 }}>
+            <div className="card-body">
+              <h2 style={{ marginTop: 0 }}>Accept agent payments? Get tested, free</h2>
+              <p className="muted" style={{ maxWidth: 760 }}>Publish your endpoint with x402 and list it in the public x402 catalogue (the Bazaar discovery extension of your facilitator). Our robot finds it within 24 hours, tests it several times a day without paying, and shows the result on your product page with the badge <b>&ldquo;Payable by agents · Verified by Electra&rdquo;</b>. No signup, no fee, and a test never changes a score or a ranking.</p>
+              <p className="small muted" style={{ marginBottom: 0 }}>How we test: one normal request without payment; the service must answer 402 with valid payment terms (x402 v1 body or v2 PAYMENT-REQUIRED header). Prices are shown in USD when the token is USDC. Tests run by <a href="https://electra.finance" rel="noopener">Electra Finance</a>.</p>
+            </div>
+          </section>
+        </>
+      ) : tab === "protocols" ? (
         protocols.length === 0 ? <div style={{ marginTop: 16 }}><Empty title="No protocol yet">Protocols appear once their official documentation has been read.</Empty></div> : (
           <>
             <div className="card table-wrap" style={{ marginTop: 16 }}>
