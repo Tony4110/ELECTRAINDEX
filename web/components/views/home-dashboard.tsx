@@ -5,7 +5,8 @@ import { SignalItem, SetupNotice } from "@/components/ui";
 import { Logo } from "@/components/rank";
 import SponsorSlot from "@/components/sponsor-slot";
 import { loadEcosystem } from "@/components/reliability";
-import { getX402Summary, priceText } from "@/lib/x402";
+import { getX402Summary, getX402Latest, priceText } from "@/lib/x402";
+import { HeroLive, x402Feed, type FeedItem } from "@/components/hero-live";
 
 type Trend = { type: "agent" | "mcp_server" | "app"; slug: string; name: string; website: string | null; stars_gain: number | null; downloads: number | null; downloads_growth: number | null };
 type Launch = { type: "agent" | "mcp_server" | "app"; slug: string; name: string; short_description: string | null; website: string | null; first_seen_at: string };
@@ -26,20 +27,28 @@ export async function HomeDashboard() {
     c.from("v_trending").select("type,slug,name,website,stars_gain,downloads,downloads_growth").eq("period", "24h").order("score", { ascending: false }).limit(6).then((r) => (r.data as Trend[] | null) ?? []),
     c.from("v_launches").select("type,slug,name,short_description,website,first_seen_at").order("first_seen_at", { ascending: false }).limit(6).then((r) => (r.data as Launch[] | null) ?? []),
   ]);
+  // live feed: latest MCP checks and latest x402 checks, interleaved
+  const [{ data: liveRows }, x4] = await Promise.all([
+    c.from("v_mcp_live").select("slug,status,tool_count,checked_at").in("status", ["online", "auth_required", "down"]).order("checked_at", { ascending: false }).limit(8),
+    getX402Latest(8),
+  ]);
+  const live = (liveRows as { slug: string; status: string; tool_count: number | null; checked_at: string }[] | null) ?? [];
+  const names = live.length ? new Map((((await c.from("v_mcp_servers").select("slug,name").in("slug", live.map((l) => l.slug))).data as { slug: string; name: string }[] | null) ?? []).map((x) => [x.slug, x.name])) : new Map<string, string>();
+  const mcpFeed: FeedItem[] = live.map((l) => ({
+    key: "m" + l.slug, ok: l.status !== "down", name: names.get(l.slug) ?? l.slug, tag: "MCP",
+    detail: l.status === "down" ? "not responding" : l.status === "auth_required" ? "online · key required" : `online${l.tool_count ? ` · ${l.tool_count} tools` : ""}`,
+    at: l.checked_at, href: `/mcp/${l.slug}`,
+  }));
+  const payFeed = x402Feed(x4);
+  const feed: FeedItem[] = [];
+  for (let i = 0; i < Math.max(mcpFeed.length, payFeed.length); i++) { if (mcpFeed[i]) feed.push(mcpFeed[i]); if (payFeed[i]) feed.push(payFeed[i]); }
+
   const trend = trend24.length ? trend24 : ((await c.from("v_trending").select("type,slug,name,website,stars_gain,downloads,downloads_growth").eq("period", "7d").order("score", { ascending: false }).limit(6)).data as Trend[] | null) ?? [];
   const agents = stats?.agents ?? 0;
 
   return (
     <>
-      <section className="ft-band hd-band">
-        <h1 className="ft-title">The trust layer for the agent economy</h1>
-        <p className="hd-sub">Compare, test and verify the tools, payments and agents that power AI.</p>
-        <form className="ft-search" action="/search" method="get" role="search">
-          <label htmlFor="hq" className="sr-only">Search the index</label>
-          <input id="hq" name="q" type="search" placeholder="e.g. send an invoice, scrape a website, pay per API call" autoComplete="off" />
-          <button className="btn primary" type="submit">Search</button>
-        </form>
-      </section>
+      <HeroLive feed={feed} />
 
       <div className="hd-doors">
         <div className="hd-door d-mcp">

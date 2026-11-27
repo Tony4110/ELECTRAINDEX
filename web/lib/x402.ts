@@ -93,3 +93,9 @@ export async function getX402PayableHosts(): Promise<Set<string>> {
 export function hostsMatch(set: Set<string>, urls: (string | null | undefined)[]) {
   return urls.some((u) => { const h = hostOf(u); return !!h && !SHARED.has(h) && set.has(h); });
 }
+
+/** Latest checks, for the live feed on the home page. */
+export async function getX402Latest(limit = 8): Promise<X402Service[]> {
+  // the base table is lighter than the view (no 7-day aggregates needed here)
+  return (await ef<X402Service[]>(`x402_resources?select=id,url,method,service_name,network,price_usd,last_verdict,last_checked_at&is_testnet=eq.false&last_checked_at=not.is.null&order=last_checked_at.desc&limit=${limit}`, 300)) ?? [];
+}
