@@ -34,7 +34,7 @@ export async function HomeDashboard() {
       <section className="hd-hero">
         <div className="eyebrow">Electra Index · the trust layer for the agent economy</div>
         <h1>Know which AI tools and agents really work.</h1>
-        <p className="lede">We test {num(stats?.mcp_servers)} MCP servers and {pay ? num(pay.services) : "thousands of"} paid agent services live, and compare {num(agents)} AI agents on price and quality. Every fact sourced and dated. No paid ranking.</p>
+        <p className="lede">We track {num(stats?.mcp_servers)} MCP servers and {pay ? num(pay.services) : "thousands of"} paid agent services, test the hosted ones live, and compare {num(agents)} AI agents on price and quality. Every fact sourced and dated. No paid ranking.</p>
         <form action="/search" method="get" className="hd-search" role="search">
           <label htmlFor="hq" className="sr-only">Search the index</label>
           <input id="hq" name="q" type="search" placeholder="What do you need an AI agent or tool to do?" autoComplete="off" />
