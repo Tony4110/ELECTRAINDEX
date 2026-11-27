@@ -9,7 +9,6 @@ export function HeroLive({ feed }: { feed: FeedItem[] }) {
   return (
     <section className={`hx ${feed.length ? "" : "hx-solo"}`}>
       <div className="hx-bg" aria-hidden="true">
-        <span className="hx-grid" />
         <span className="hx-scan" />
         <i style={{ left: "3%", top: "88%" }} /><i style={{ left: "52%", top: "6%", animationDelay: "1.2s" }} />
         <i style={{ left: "56%", top: "92%", animationDelay: ".6s" }} /><i style={{ left: "97%", top: "14%", animationDelay: "2s" }} />
