@@ -32,13 +32,6 @@ export async function HomeDashboard() {
   return (
     <>
       <section className="ft-band hd-band">
-        <div className="ft-live">
-          <span className="dot" /><b>Live</b><span className="sep" />
-          <span><b>{num(stats?.mcp_servers)}</b> MCP servers</span><span className="sep" />
-          <span><b>{pay ? num(pay.services) : "—"}</b> x402 services</span><span className="sep" />
-          <span><b>{num(agents)}</b> AI agents</span>
-          {eco ? <><span className="sep" /><Link href="/mcp-reliability-index" className="ft-idx">Reliability Index <b>{eco.value.toFixed(1)}%</b> · 7 days →</Link></> : null}
-        </div>
         <h1 className="ft-title">The trust layer for the agent economy</h1>
         <p className="hd-sub">Compare, test and verify the tools, payments and agents that power AI.</p>
         <form className="ft-search" action="/search" method="get" role="search">
@@ -49,22 +42,22 @@ export async function HomeDashboard() {
       </section>
 
       <div className="hd-doors">
-        <Link href="/mcp" className="hd-door d-mcp">
-          <span className="hd-k">MCP TOOLS · TESTED LIVE</span>
+        <div className="hd-door d-mcp">
+          <span className="hd-k"><span className="hd-dot" />LIVE · MCP TOOLS</span>
           <b className="hd-n">{num(stats?.mcp_servers)}</b>
           <span className="hd-s">MCP servers your AI assistant can connect to</span>
-          <span className="hd-m">{eco ? <>Reliability index <b>{eco.value.toFixed(1)}%</b> · live checks every day</> : "Live checks every day"}</span>
-          <span className="hd-go">Find a tool →</span>
-        </Link>
+          {eco ? <Link href="/mcp-reliability-index" className="hd-idx">Reliability Index <b>{eco.value.toFixed(1)}%</b> · 7 days →</Link> : <span className="hd-m">Live checks every day</span>}
+          <Link href="/mcp" className="hd-go hd-stretch">Find a tool →</Link>
+        </div>
         <Link href="/payments" className="hd-door d-pay">
-          <span className="hd-k">AGENT PAYMENTS · x402</span>
+          <span className="hd-k"><span className="hd-dot" />LIVE · AGENT PAYMENTS x402</span>
           <b className="hd-n">{pay ? num(pay.services) : "—"}</b>
           <span className="hd-s">paid services AI agents can pay per call</span>
           <span className="hd-m">{pay?.passing_now_pct != null ? <><b>{Number(pay.passing_now_pct)}%</b> payable · median <b>{priceText(pay.median_price_usd)}</b> per call</> : "Tested without paying"}</span>
           <span className="hd-go">See what agents can pay →</span>
         </Link>
         <Link href="/agents" className="hd-door d-ag">
-          <span className="hd-k">AI AGENTS · COMPARED</span>
+          <span className="hd-k"><span className="hd-dot" />LIVE · AI AGENTS</span>
           <b className="hd-n">{num(agents)}</b>
           <span className="hd-s">AI agents ranked on quality and price</span>
           <span className="hd-m">{top.length ? <>Top: {top.map((a) => a.name).join(" · ")}</> : "Prices read on each vendor's page"}</span>

@@ -1066,3 +1066,9 @@ tr:hover td { background: rgba(255,255,255,.6); }
 @media (max-width: 960px) { .hd-doors, .hd-live { grid-template-columns: minmax(0, 1fr); } .hd-hero { padding: 24px 16px; } .hd-search { flex-direction: column; } .hd-n { font-size: 32px; } }
 .hd-band { margin-bottom: 4px; }
 .hd-sub { margin: 8px auto 0; color: var(--ink-2); font-size: 18px; }
+.hd-door { position: relative; }
+.hd-stretch::after { content: ""; position: absolute; inset: 0; border-radius: 16px; }
+.hd-idx { position: relative; z-index: 1; justify-self: start; margin-top: 8px; font-size: 13px; color: #7A4A00; background: var(--sun-soft); border-radius: 999px; padding: 5px 12px; }
+.hd-idx:hover { color: #5A3600; background: #FCE7B0; }
+.hd-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--pos); box-shadow: 0 0 0 3px var(--pos-soft); margin-right: 8px; vertical-align: 1px; }
+.hd-band .ft-title { margin-top: 0; }
