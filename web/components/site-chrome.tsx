@@ -41,6 +41,7 @@ export function SiteHeader() {
             [lhref(lang, "/apps"), t.apps, "✦", "#7C4DFF", "", base.startsWith("/apps")],
             ["/compare", t.compare, "⇄", "#0891B2", "", base.startsWith("/compare")],
             ["/payments", t.payments, "◎", "#0F766E", "nav-opt", base.startsWith("/payments")],
+            ["https://electra.finance", t.finance, "⇅", "#0E9F6E", "nav-opt", false],
             ["/pulse", t.pulse, "∿", "#E0457B", "nav-opt", base.startsWith("/pulse")],
             [lhref(lang, "/pricing"), t.pricing, "$", "#B7791F", "", base.startsWith("/pricing")],
             ["/blog", t.blog, "✎", "#4F46E5", "nav-opt", base.startsWith("/blog")],
@@ -72,7 +73,7 @@ export function SiteFooter() {
         <Link href="/advertise" style={{ color: "var(--muted)" }}>{t.advertise}</Link>
       </div>
       <div className="wrap small" style={{ paddingTop: 8 }}>
-        <span>{t.publishedBy} <a href="https://dreamotion.io" rel="noopener">Dreamotion OÜ</a> {t.estonia} · {t.contact}: <a href="mailto:contact@electraindex.com">contact@electraindex.com</a> · <a href="/privacy">{t.privacy}</a> · <a href="/mcp-server">{t.mcpServer}</a> · <a href={lhref(lang, "/pricing")}>{t.pricing}</a> · <a href="/trending">{dict(lang).nav.trending}</a> · <a href="/compare">{dict(lang).nav.compare}</a> · <a href="/pulse">{dict(lang).nav.pulse}</a> · <a href="/blog">Blog</a> · <a href="/payments">{dict(lang).nav.payments}</a> · <a href="/sources">{dict(lang).nav.methodology}</a> · <a href="/new">{dict(lang).nav.new}</a> · <a href="/press">Press</a></span>
+        <span>{t.publishedBy} <a href="https://dreamotion.io" rel="noopener">Dreamotion OÜ</a> {t.estonia} · {t.contact}: <a href="mailto:contact@electraindex.com">contact@electraindex.com</a> · <a href="/privacy">{t.privacy}</a> · <a href="/mcp-server">{t.mcpServer}</a> · <a href={lhref(lang, "/pricing")}>{t.pricing}</a> · <a href="/trending">{dict(lang).nav.trending}</a> · <a href="/compare">{dict(lang).nav.compare}</a> · <a href="/pulse">{dict(lang).nav.pulse}</a> · <a href="/blog">Blog</a> · <a href="/payments">{dict(lang).nav.payments}</a> · <a href="https://electra.finance" rel="noopener">Electra Finance</a> · <a href="/sources">{dict(lang).nav.methodology}</a> · <a href="/new">{dict(lang).nav.new}</a> · <a href="/press">Press</a></span>
       </div>
     </footer>
   );
