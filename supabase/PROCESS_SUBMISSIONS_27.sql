@@ -10,7 +10,7 @@
 -- Paste everything in Supabase > SQL Editor > Run. Re-runnable.
 
 select ingest_apps($apps$[{"name": "Quest", "company": "New Quest AI Inc.", "country": "United States", "website": "https://new.quest",
-  "pricing_url": "https://apps.apple.com/us/app/quest-personal-ai-advisor/id6763097866", "theme": "coaching", "platforms": ["ios"],
+  "pricing_url": "https://apps.apple.com/us/app/quest-personal-ai-advisor/id6763097866", "theme": "coaching", "platforms": ["ios", "mac"],
   "short_description": "Personal AI advisor that lives in iMessage, text and voice. With your permission it connects email, calendar, location and health data, turns your goals into plans and follows up with check-ins.",
   "free_plan": true,
   "plans": [{"plan": "Free", "billing_model": "free", "amount": 0, "currency": "USD", "interval": "month", "unit": "App Store, no paid plan published", "is_trial": false}],
