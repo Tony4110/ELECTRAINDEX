@@ -33,9 +33,9 @@ export function SiteHeader() {
         </Link>
         <nav className={`nav nav-${lang}`} aria-label="Main">
           {([
-            [lhref(lang, "/"), t.agents, "◆", "#1F3FD1", "", base === "/"],
             ["/mcp", t.tools, "⬡", "#F28C28", "", base.startsWith("/mcp")],
             ["/payments", t.payments, "◎", "#0E9F6E", "", base.startsWith("/payments")],
+            [lang === "en" ? "/agents" : lhref(lang, "/"), t.agents, "◆", "#1F3FD1", "", lang === "en" ? base.startsWith("/agents") : base === "/"],
             ["/research", t.research, "◉", "#0EA5E9", "", base.startsWith("/research")],
             ["/trending", t.trending, "↗", "#16A34A", "nav-opt2", base.startsWith("/trending")],
             [lhref(lang, "/tasks"), t.tasks, "✓", "#16A34A", "", base.startsWith("/tasks")],
