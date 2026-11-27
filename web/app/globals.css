@@ -1064,3 +1064,5 @@ tr:hover td { background: rgba(255,255,255,.6); }
 .hd-sig { margin: 0; } .hd-sig li { padding-left: 0 !important; padding-right: 0 !important; }
 .hd-pub { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; margin-top: 22px; padding: 16px 20px; border-radius: 14px; background: var(--sun-soft); border: 1px solid #F3D58A; }
 @media (max-width: 960px) { .hd-doors, .hd-live { grid-template-columns: minmax(0, 1fr); } .hd-hero { padding: 24px 16px; } .hd-search { flex-direction: column; } .hd-n { font-size: 32px; } }
+.hd-band { margin-bottom: 4px; }
+.hd-sub { max-width: 64ch; margin: 6px auto 0; color: var(--ink-2); font-size: 17px; }

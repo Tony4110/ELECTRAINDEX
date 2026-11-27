@@ -31,14 +31,20 @@ export async function HomeDashboard() {
 
   return (
     <>
-      <section className="hd-hero">
-        <div className="eyebrow">Electra Index · the trust layer for the agent economy</div>
-        <h1>Know which AI tools and agents really work.</h1>
-        <p className="lede">We track {num(stats?.mcp_servers)} MCP servers and {pay ? num(pay.services) : "thousands of"} paid agent services, test the hosted ones live, and compare {num(agents)} AI agents on price and quality. Every fact sourced and dated. No paid ranking.</p>
-        <form action="/search" method="get" className="hd-search" role="search">
+      <section className="ft-band hd-band">
+        <div className="ft-live">
+          <span className="dot" /><b>Live</b><span className="sep" />
+          <span><b>{num(stats?.mcp_servers)}</b> MCP servers</span><span className="sep" />
+          <span><b>{pay ? num(pay.services) : "—"}</b> x402 services</span><span className="sep" />
+          <span><b>{num(agents)}</b> AI agents</span>
+          {eco ? <><span className="sep" /><Link href="/mcp-reliability-index" className="ft-idx">Reliability Index <b>{eco.value.toFixed(1)}%</b> · 7 days →</Link></> : null}
+        </div>
+        <h1 className="ft-title">The trust layer for the agent economy</h1>
+        <p className="hd-sub">Discover, compare and verify the tools, payments and agents that power AI. Tested live, every fact sourced and dated.</p>
+        <form className="ft-search" action="/search" method="get" role="search">
           <label htmlFor="hq" className="sr-only">Search the index</label>
-          <input id="hq" name="q" type="search" placeholder="What do you need an AI agent or tool to do?" autoComplete="off" />
-          <button type="submit">Search</button>
+          <input id="hq" name="q" type="search" placeholder="e.g. send an invoice, scrape a website, pay per API call" autoComplete="off" />
+          <button className="btn primary" type="submit">Search</button>
         </form>
       </section>
 
